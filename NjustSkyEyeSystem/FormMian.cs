@@ -40,6 +40,7 @@ namespace NjustSkyEyeSystem
         private Image image_Library_Compare;//底库比对图片
         readonly DataAngine.BLL.hitalert hitbll = new DataAngine.BLL.hitalert();
         readonly DataAngine.BLL.user user = new DataAngine.BLL.user();
+        readonly DataAngine.BLL.table table = new DataAngine.BLL.table();
         //已告警的用户项
         private Dictionary<uint, HitUserItemInfo> hitUserItemMap = new Dictionary<uint, HitUserItemInfo>();
         private int hitUserMaxCount = 20;
@@ -61,7 +62,7 @@ namespace NjustSkyEyeSystem
 
             StartCaptureAuto();
         }
-    
+
 
         #region 初始化
         private static void InitFRS()
@@ -99,6 +100,9 @@ namespace NjustSkyEyeSystem
 
         private void InitUI()
         {
+            //下拉框
+            ComboxList();
+
             flowLayoutPanel.Controls.Clear();
             lbl_CountCHC.Text = "";
             lbl_CountCapture.Text = "";
@@ -150,7 +154,7 @@ namespace NjustSkyEyeSystem
             string connectionStringMySQL = ConfigurationManager.AppSettings["ConnectionStringMySQL"];
             string[] consMySQL = connectionStringMySQL.Split(new char[] { ';' });
             txtDataBaseAddress.Text = consMySQL[0].Split(new char[] { '=' })[1];
-            txtDataBaseName.Text = consMySQL[1].Split(new char[] { '=' })[1];
+            combox_DataBaseName.Text = consMySQL[1].Split(new char[] { '=' })[1];
             txtDataBaseUid.Text = consMySQL[2].Split(new char[] { '=' })[1];
             txtDataBasePwd.Text = consMySQL[3].Split(new char[] { '=' })[1];
 
@@ -319,7 +323,7 @@ namespace NjustSkyEyeSystem
         private delegate void HitAlertCallback(HitAlert[] result);
 
         void GetHitAlertResult(HitAlert[] result)
-        {        
+        {
             if (0 == result.Count())
             {
                 return;
@@ -1117,13 +1121,13 @@ namespace NjustSkyEyeSystem
                 {
                     DataRow row = dt.Rows[i];
                     string userImagePath = dt.Rows[i]["face_image_path"].ToString();
-                    Image face = Image.FromFile(userImagePath);                    
+                    Image face = Image.FromFile(userImagePath);
                     imageListFaceLibrary.Images.Add(face);
                     listViewLibrary.Items.Add("", 0);
                     listViewLibrary.Items[i].ImageIndex = i;
-                   
-                }             
-                listViewLibrary.Refresh(); 
+
+                }
+                listViewLibrary.Refresh();
             }
             catch (Exception ex)
             {
@@ -1146,24 +1150,39 @@ namespace NjustSkyEyeSystem
         }
 
         private void btn_Library_Compare_Click(object sender, EventArgs e)
-        {   
-            if (image_Library_Compare == null){
+        {
+            if (image_Library_Compare == null)
+            {
                 MessageBox.Show("请选择一张图片");
             }
             fa.LoadData();
             HitAlert[] hits = fa.Search(image_Library_Compare);
-            if (hits!=null){           
+            if (hits != null)
+            {
                 this.pic_Library.Image = Image.FromFile(hits[0].Details[0].imgPath);
-                
+
                 MessageBox.Show("图像相似度为" + hits[0].Details[0].Score);
             }
-            else{
+            else
+            {
                 MessageBox.Show("未匹配到相似人员");
             }
             return;
         }
 
-
+        /// <summary>
+        /// 绑定数据到组合框
+        /// </summary>
+        public void ComboxList()
+        {
+            DataSet ds = table.GetAllTable();
+            DataTable dt = ds.Tables[0];
+            System.Windows.Forms.MessageBox.Show(dt.Rows[0]["name"].ToString());
+            combox_DataBaseName.DataSource = dt;
+            combox_DataBaseName.ValueMember = "id";
+            combox_DataBaseName.DisplayMember = "name";
+          
+        }
 
     }
 }
