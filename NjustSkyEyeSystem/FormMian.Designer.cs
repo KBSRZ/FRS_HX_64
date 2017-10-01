@@ -34,12 +34,24 @@
             this.imageListFaceLibrary = new System.Windows.Forms.ImageList(this.components);
             this.bwRegisterInBulk = new System.ComponentModel.BackgroundWorker();
             this.tabViewLibrary = new System.Windows.Forms.TabPage();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.listViewLibrary = new System.Windows.Forms.ListView();
             this.btn_ViewLibrary = new System.Windows.Forms.Button();
-            this.tpOneVSOne = new System.Windows.Forms.TabPage();
+            this.tpCertificate = new System.Windows.Forms.TabPage();
+            this.tp_PicSearch = new System.Windows.Forms.TabControl();
+            this.tabOneVsOne = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btn_PicCompare = new System.Windows.Forms.Button();
+            this.picCompare2 = new System.Windows.Forms.PictureBox();
+            this.picCompare1 = new System.Windows.Forms.PictureBox();
+            this.tab_Library_Compare = new System.Windows.Forms.TabPage();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.btn_Library_Compare = new System.Windows.Forms.Button();
+            this.pic_Library = new System.Windows.Forms.PictureBox();
+            this.pic_Library_Compare = new System.Windows.Forms.PictureBox();
             this.tpView = new System.Windows.Forms.TabPage();
             this.btn_ExportResult = new System.Windows.Forms.Button();
             this.dgvHitAlert = new System.Windows.Forms.DataGridView();
@@ -109,7 +121,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.btn_DetectParamsUpdate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtDataBaseName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -125,9 +136,11 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnRegisterGetCurrentFrame = new System.Windows.Forms.Button();
+            this.picRegisterFace = new System.Windows.Forms.PictureBox();
             this.tex_RegUserName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.picRegister = new System.Windows.Forms.PictureBox();
             this.btnRegisterOne = new System.Windows.Forms.Button();
             this.btnRegisterInBulkFromFile = new System.Windows.Forms.Button();
             this.selectRegisterFile = new System.Windows.Forms.Button();
@@ -149,31 +162,45 @@
             this.lbl_CountMatch = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lbl_CatchFaceCount = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listViewFace = new System.Windows.Forms.ListView();
-            this.txtVideoAddress = new System.Windows.Forms.TextBox();
-            this.btnStartCapture = new System.Windows.Forms.Button();
-            this.tpViewLibrary = new System.Windows.Forms.TabControl();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_CatchFaceCount = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.listViewFace = new System.Windows.Forms.ListView();
+            this.txtVideoAddress = new System.Windows.Forms.TextBox();
             this.picPlayer = new System.Windows.Forms.PictureBox();
-            this.picRegisterFace = new System.Windows.Forms.PictureBox();
-            this.picRegister = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.picCompare2 = new System.Windows.Forms.PictureBox();
-            this.picCompare1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.btnStartCapture = new System.Windows.Forms.Button();
+            this.tpViewLibrary = new System.Windows.Forms.TabControl();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabViewLibrary.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel3.SuspendLayout();
-            this.tpOneVSOne.SuspendLayout();
+            this.tpCertificate.SuspendLayout();
+            this.tp_PicSearch.SuspendLayout();
+            this.tabOneVsOne.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompare2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompare1)).BeginInit();
+            this.tab_Library_Compare.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_Library)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_Library_Compare)).BeginInit();
             this.tpView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHitAlert)).BeginInit();
             this.tabSetting.SuspendLayout();
@@ -207,23 +234,20 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picRegisterFace)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picRegister)).BeginInit();
             this.tpCapture.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.tpViewLibrary.SuspendLayout();
             this.flowLayoutPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPlayer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRegisterFace)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRegister)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCompare2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCompare1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.tpViewLibrary.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageListFace
@@ -259,6 +283,15 @@
             this.tabViewLibrary.Text = "底库查看";
             this.tabViewLibrary.UseVisualStyleBackColor = true;
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(6, 6);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(333, 51);
+            this.pictureBox4.TabIndex = 1;
+            this.pictureBox4.TabStop = false;
+            // 
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -293,27 +326,60 @@
             this.btn_ViewLibrary.UseVisualStyleBackColor = true;
             this.btn_ViewLibrary.Click += new System.EventHandler(this.btn_ViewLibrary_Click);
             // 
-            // tpOneVSOne
+            // tpCertificate
             // 
-            this.tpOneVSOne.Controls.Add(this.panel4);
-            this.tpOneVSOne.Location = new System.Drawing.Point(4, 22);
-            this.tpOneVSOne.Name = "tpOneVSOne";
-            this.tpOneVSOne.Padding = new System.Windows.Forms.Padding(3);
-            this.tpOneVSOne.Size = new System.Drawing.Size(1057, 597);
-            this.tpOneVSOne.TabIndex = 4;
-            this.tpOneVSOne.Text = "证件比对";
-            this.tpOneVSOne.UseVisualStyleBackColor = true;
+            this.tpCertificate.Controls.Add(this.tp_PicSearch);
+            this.tpCertificate.Location = new System.Drawing.Point(4, 22);
+            this.tpCertificate.Name = "tpCertificate";
+            this.tpCertificate.Padding = new System.Windows.Forms.Padding(3);
+            this.tpCertificate.Size = new System.Drawing.Size(1057, 597);
+            this.tpCertificate.TabIndex = 4;
+            this.tpCertificate.Text = "证件查询";
+            this.tpCertificate.UseVisualStyleBackColor = true;
+            // 
+            // tp_PicSearch
+            // 
+            this.tp_PicSearch.Controls.Add(this.tabOneVsOne);
+            this.tp_PicSearch.Controls.Add(this.tab_Library_Compare);
+            this.tp_PicSearch.Location = new System.Drawing.Point(0, 17);
+            this.tp_PicSearch.Name = "tp_PicSearch";
+            this.tp_PicSearch.SelectedIndex = 0;
+            this.tp_PicSearch.Size = new System.Drawing.Size(1061, 584);
+            this.tp_PicSearch.TabIndex = 5;
+            // 
+            // tabOneVsOne
+            // 
+            this.tabOneVsOne.Controls.Add(this.panel4);
+            this.tabOneVsOne.Location = new System.Drawing.Point(4, 22);
+            this.tabOneVsOne.Name = "tabOneVsOne";
+            this.tabOneVsOne.Padding = new System.Windows.Forms.Padding(3);
+            this.tabOneVsOne.Size = new System.Drawing.Size(1053, 558);
+            this.tabOneVsOne.TabIndex = 0;
+            this.tabOneVsOne.Text = "证件比对";
+            this.tabOneVsOne.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.pictureBox3);
             this.panel4.Controls.Add(this.btn_PicCompare);
             this.panel4.Controls.Add(this.picCompare2);
             this.panel4.Controls.Add(this.picCompare1);
-            this.panel4.Location = new System.Drawing.Point(215, 72);
+            this.panel4.Location = new System.Drawing.Point(275, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(660, 522);
-            this.panel4.TabIndex = 4;
+            this.panel4.Size = new System.Drawing.Size(662, 558);
+            this.panel4.TabIndex = 5;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(167, 352);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(335, 165);
+            this.pictureBox3.TabIndex = 4;
+            this.pictureBox3.TabStop = false;
             // 
             // btn_PicCompare
             // 
@@ -324,6 +390,93 @@
             this.btn_PicCompare.Text = "比对";
             this.btn_PicCompare.UseVisualStyleBackColor = true;
             this.btn_PicCompare.Click += new System.EventHandler(this.btn_PicCompare_Click);
+            // 
+            // picCompare2
+            // 
+            this.picCompare2.BackColor = System.Drawing.Color.DimGray;
+            this.picCompare2.Location = new System.Drawing.Point(392, 3);
+            this.picCompare2.Name = "picCompare2";
+            this.picCompare2.Size = new System.Drawing.Size(268, 275);
+            this.picCompare2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picCompare2.TabIndex = 2;
+            this.picCompare2.TabStop = false;
+            this.picCompare2.Click += new System.EventHandler(this.picCompare2_Click);
+            // 
+            // picCompare1
+            // 
+            this.picCompare1.BackColor = System.Drawing.Color.DimGray;
+            this.picCompare1.Location = new System.Drawing.Point(3, 3);
+            this.picCompare1.Name = "picCompare1";
+            this.picCompare1.Size = new System.Drawing.Size(268, 275);
+            this.picCompare1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picCompare1.TabIndex = 1;
+            this.picCompare1.TabStop = false;
+            this.picCompare1.Click += new System.EventHandler(this.picCompare1_Click);
+            // 
+            // tab_Library_Compare
+            // 
+            this.tab_Library_Compare.Controls.Add(this.panel5);
+            this.tab_Library_Compare.Location = new System.Drawing.Point(4, 22);
+            this.tab_Library_Compare.Name = "tab_Library_Compare";
+            this.tab_Library_Compare.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_Library_Compare.Size = new System.Drawing.Size(1053, 558);
+            this.tab_Library_Compare.TabIndex = 1;
+            this.tab_Library_Compare.Text = "底库比对";
+            this.tab_Library_Compare.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.Controls.Add(this.pictureBox5);
+            this.panel5.Controls.Add(this.btn_Library_Compare);
+            this.panel5.Controls.Add(this.pic_Library);
+            this.panel5.Controls.Add(this.pic_Library_Compare);
+            this.panel5.Location = new System.Drawing.Point(195, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(662, 558);
+            this.panel5.TabIndex = 6;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(167, 352);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(335, 165);
+            this.pictureBox5.TabIndex = 4;
+            this.pictureBox5.TabStop = false;
+            // 
+            // btn_Library_Compare
+            // 
+            this.btn_Library_Compare.Location = new System.Drawing.Point(228, 312);
+            this.btn_Library_Compare.Name = "btn_Library_Compare";
+            this.btn_Library_Compare.Size = new System.Drawing.Size(209, 34);
+            this.btn_Library_Compare.TabIndex = 3;
+            this.btn_Library_Compare.Text = "查询";
+            this.btn_Library_Compare.UseVisualStyleBackColor = true;
+            this.btn_Library_Compare.Click += new System.EventHandler(this.btn_Library_Compare_Click);
+            // 
+            // pic_Library
+            // 
+            this.pic_Library.BackColor = System.Drawing.Color.DimGray;
+            this.pic_Library.Location = new System.Drawing.Point(392, 3);
+            this.pic_Library.Name = "pic_Library";
+            this.pic_Library.Size = new System.Drawing.Size(268, 275);
+            this.pic_Library.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_Library.TabIndex = 2;
+            this.pic_Library.TabStop = false;
+            // 
+            // pic_Library_Compare
+            // 
+            this.pic_Library_Compare.BackColor = System.Drawing.Color.DimGray;
+            this.pic_Library_Compare.Location = new System.Drawing.Point(3, 3);
+            this.pic_Library_Compare.Name = "pic_Library_Compare";
+            this.pic_Library_Compare.Size = new System.Drawing.Size(268, 275);
+            this.pic_Library_Compare.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_Library_Compare.TabIndex = 1;
+            this.pic_Library_Compare.TabStop = false;
+            this.pic_Library_Compare.Click += new System.EventHandler(this.pic_Library_Compare_Click);
             // 
             // tpView
             // 
@@ -364,7 +517,7 @@
             this.FaceScore,
             this.hitrecordId});
             this.dgvHitAlert.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvHitAlert.Location = new System.Drawing.Point(0, -22);
+            this.dgvHitAlert.Location = new System.Drawing.Point(0, 68);
             this.dgvHitAlert.Name = "dgvHitAlert";
             this.dgvHitAlert.ReadOnly = true;
             this.dgvHitAlert.RowHeadersVisible = false;
@@ -372,7 +525,7 @@
             this.dgvHitAlert.RowTemplate.Height = 80;
             this.dgvHitAlert.RowTemplate.ReadOnly = true;
             this.dgvHitAlert.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHitAlert.Size = new System.Drawing.Size(1057, 619);
+            this.dgvHitAlert.Size = new System.Drawing.Size(1057, 529);
             this.dgvHitAlert.TabIndex = 55;
             // 
             // dataGridViewTextBoxColumnTime
@@ -458,6 +611,7 @@
             // 
             // tabSetting
             // 
+            this.tabSetting.Controls.Add(this.groupBox8);
             this.tabSetting.Controls.Add(this.groupBox5);
             this.tabSetting.Controls.Add(this.groupBox2);
             this.tabSetting.Controls.Add(this.groupBox1);
@@ -1079,7 +1233,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtDataBaseName);
+            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
@@ -1094,13 +1248,6 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "数据库设置";
-            // 
-            // txtDataBaseName
-            // 
-            this.txtDataBaseName.Location = new System.Drawing.Point(101, 67);
-            this.txtDataBaseName.Name = "txtDataBaseName";
-            this.txtDataBaseName.Size = new System.Drawing.Size(183, 21);
-            this.txtDataBaseName.TabIndex = 10;
             // 
             // label8
             // 
@@ -1210,6 +1357,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.btnSelectRegisterDir);
             this.splitContainer1.Panel2.Controls.Add(this.txtRegisterDir);
             this.splitContainer1.Panel2.Controls.Add(this.btnRegisterInBulk);
+            this.splitContainer1.Panel2.Margin = new System.Windows.Forms.Padding(3);
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(3);
             this.splitContainer1.Size = new System.Drawing.Size(1051, 591);
             this.splitContainer1.SplitterDistance = 455;
             this.splitContainer1.TabIndex = 2;
@@ -1262,6 +1411,16 @@
             this.btnRegisterGetCurrentFrame.UseVisualStyleBackColor = true;
             this.btnRegisterGetCurrentFrame.Click += new System.EventHandler(this.btnRegisterGetCurrentFrame_Click);
             // 
+            // picRegisterFace
+            // 
+            this.picRegisterFace.BackColor = System.Drawing.Color.DimGray;
+            this.picRegisterFace.Location = new System.Drawing.Point(310, 42);
+            this.picRegisterFace.Name = "picRegisterFace";
+            this.picRegisterFace.Size = new System.Drawing.Size(130, 130);
+            this.picRegisterFace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picRegisterFace.TabIndex = 5;
+            this.picRegisterFace.TabStop = false;
+            // 
             // tex_RegUserName
             // 
             this.tex_RegUserName.Location = new System.Drawing.Point(152, 336);
@@ -1285,6 +1444,17 @@
             this.splitter1.Size = new System.Drawing.Size(3, 589);
             this.splitter1.TabIndex = 2;
             this.splitter1.TabStop = false;
+            // 
+            // picRegister
+            // 
+            this.picRegister.BackColor = System.Drawing.Color.DimGray;
+            this.picRegister.Location = new System.Drawing.Point(24, 18);
+            this.picRegister.Name = "picRegister";
+            this.picRegister.Size = new System.Drawing.Size(268, 275);
+            this.picRegister.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picRegister.TabIndex = 0;
+            this.picRegister.TabStop = false;
+            this.picRegister.Click += new System.EventHandler(this.picRegister_Click);
             // 
             // btnRegisterOne
             // 
@@ -1328,9 +1498,9 @@
             // rtxRegisterLog
             // 
             this.rtxRegisterLog.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.rtxRegisterLog.Location = new System.Drawing.Point(0, 201);
+            this.rtxRegisterLog.Location = new System.Drawing.Point(3, 183);
             this.rtxRegisterLog.Name = "rtxRegisterLog";
-            this.rtxRegisterLog.Size = new System.Drawing.Size(590, 388);
+            this.rtxRegisterLog.Size = new System.Drawing.Size(584, 403);
             this.rtxRegisterLog.TabIndex = 3;
             this.rtxRegisterLog.Text = "";
             // 
@@ -1517,99 +1687,6 @@
             this.groupBox4.TabIndex = 20;
             this.groupBox4.TabStop = false;
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Window;
-            this.panel1.Controls.Add(this.lbl_CatchFaceCount);
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Location = new System.Drawing.Point(3, 459);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1049, 24);
-            this.panel1.TabIndex = 1;
-            // 
-            // lbl_CatchFaceCount
-            // 
-            this.lbl_CatchFaceCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbl_CatchFaceCount.AutoSize = true;
-            this.lbl_CatchFaceCount.Location = new System.Drawing.Point(974, 6);
-            this.lbl_CatchFaceCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbl_CatchFaceCount.Name = "lbl_CatchFaceCount";
-            this.lbl_CatchFaceCount.Size = new System.Drawing.Size(65, 12);
-            this.lbl_CatchFaceCount.TabIndex = 2;
-            this.lbl_CatchFaceCount.Text = "抓拍张数:0";
-            this.lbl_CatchFaceCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label15.Location = new System.Drawing.Point(4, 6);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(53, 12);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "人脸抓拍";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.listViewFace);
-            this.groupBox3.Location = new System.Drawing.Point(3, 480);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(1050, 222);
-            this.groupBox3.TabIndex = 19;
-            this.groupBox3.TabStop = false;
-            // 
-            // listViewFace
-            // 
-            this.listViewFace.Alignment = System.Windows.Forms.ListViewAlignment.Default;
-            this.listViewFace.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listViewFace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewFace.LargeImageList = this.imageListFace;
-            this.listViewFace.Location = new System.Drawing.Point(2, 16);
-            this.listViewFace.Margin = new System.Windows.Forms.Padding(2);
-            this.listViewFace.MultiSelect = false;
-            this.listViewFace.Name = "listViewFace";
-            this.listViewFace.Size = new System.Drawing.Size(1046, 204);
-            this.listViewFace.TabIndex = 16;
-            this.listViewFace.UseCompatibleStateImageBehavior = false;
-            // 
-            // txtVideoAddress
-            // 
-            this.txtVideoAddress.Location = new System.Drawing.Point(158, 6);
-            this.txtVideoAddress.Name = "txtVideoAddress";
-            this.txtVideoAddress.Size = new System.Drawing.Size(382, 21);
-            this.txtVideoAddress.TabIndex = 14;
-            this.txtVideoAddress.Text = "rtsp://admin:1106840228lzg@192.168.1.66:554";
-            // 
-            // btnStartCapture
-            // 
-            this.btnStartCapture.Location = new System.Drawing.Point(544, 3);
-            this.btnStartCapture.Name = "btnStartCapture";
-            this.btnStartCapture.Size = new System.Drawing.Size(95, 23);
-            this.btnStartCapture.TabIndex = 1;
-            this.btnStartCapture.Text = "开始";
-            this.btnStartCapture.UseVisualStyleBackColor = true;
-            this.btnStartCapture.Click += new System.EventHandler(this.btnStartCapture_Click);
-            // 
-            // tpViewLibrary
-            // 
-            this.tpViewLibrary.Controls.Add(this.tpCapture);
-            this.tpViewLibrary.Controls.Add(this.tpRegister);
-            this.tpViewLibrary.Controls.Add(this.tabSetting);
-            this.tpViewLibrary.Controls.Add(this.tpView);
-            this.tpViewLibrary.Controls.Add(this.tpOneVSOne);
-            this.tpViewLibrary.Controls.Add(this.tabViewLibrary);
-            this.tpViewLibrary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tpViewLibrary.Location = new System.Drawing.Point(0, 0);
-            this.tpViewLibrary.Name = "tpViewLibrary";
-            this.tpViewLibrary.SelectedIndex = 0;
-            this.tpViewLibrary.Size = new System.Drawing.Size(1065, 623);
-            this.tpViewLibrary.TabIndex = 2;
-            // 
             // flowLayoutPanel
             // 
             this.flowLayoutPanel.AutoScroll = true;
@@ -1696,6 +1773,74 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.panel1.Controls.Add(this.lbl_CatchFaceCount);
+            this.panel1.Controls.Add(this.label15);
+            this.panel1.Location = new System.Drawing.Point(3, 459);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1049, 24);
+            this.panel1.TabIndex = 1;
+            // 
+            // lbl_CatchFaceCount
+            // 
+            this.lbl_CatchFaceCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_CatchFaceCount.AutoSize = true;
+            this.lbl_CatchFaceCount.Location = new System.Drawing.Point(974, 6);
+            this.lbl_CatchFaceCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_CatchFaceCount.Name = "lbl_CatchFaceCount";
+            this.lbl_CatchFaceCount.Size = new System.Drawing.Size(65, 12);
+            this.lbl_CatchFaceCount.TabIndex = 2;
+            this.lbl_CatchFaceCount.Text = "抓拍张数:0";
+            this.lbl_CatchFaceCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label15.Location = new System.Drawing.Point(4, 6);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(53, 12);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "人脸抓拍";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.listViewFace);
+            this.groupBox3.Location = new System.Drawing.Point(3, 480);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Size = new System.Drawing.Size(1050, 222);
+            this.groupBox3.TabIndex = 19;
+            this.groupBox3.TabStop = false;
+            // 
+            // listViewFace
+            // 
+            this.listViewFace.Alignment = System.Windows.Forms.ListViewAlignment.Default;
+            this.listViewFace.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewFace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewFace.LargeImageList = this.imageListFace;
+            this.listViewFace.Location = new System.Drawing.Point(2, 16);
+            this.listViewFace.Margin = new System.Windows.Forms.Padding(2);
+            this.listViewFace.MultiSelect = false;
+            this.listViewFace.Name = "listViewFace";
+            this.listViewFace.Size = new System.Drawing.Size(1046, 204);
+            this.listViewFace.TabIndex = 16;
+            this.listViewFace.UseCompatibleStateImageBehavior = false;
+            // 
+            // txtVideoAddress
+            // 
+            this.txtVideoAddress.Location = new System.Drawing.Point(158, 6);
+            this.txtVideoAddress.Name = "txtVideoAddress";
+            this.txtVideoAddress.Size = new System.Drawing.Size(382, 21);
+            this.txtVideoAddress.TabIndex = 14;
+            this.txtVideoAddress.Text = "rtsp://admin:1106840228lzg@192.168.1.66:554";
+            // 
             // picPlayer
             // 
             this.picPlayer.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -1706,66 +1851,111 @@
             this.picPlayer.TabIndex = 0;
             this.picPlayer.TabStop = false;
             // 
-            // picRegisterFace
+            // btnStartCapture
             // 
-            this.picRegisterFace.BackColor = System.Drawing.Color.DimGray;
-            this.picRegisterFace.Location = new System.Drawing.Point(310, 42);
-            this.picRegisterFace.Name = "picRegisterFace";
-            this.picRegisterFace.Size = new System.Drawing.Size(130, 130);
-            this.picRegisterFace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picRegisterFace.TabIndex = 5;
-            this.picRegisterFace.TabStop = false;
+            this.btnStartCapture.Location = new System.Drawing.Point(544, 3);
+            this.btnStartCapture.Name = "btnStartCapture";
+            this.btnStartCapture.Size = new System.Drawing.Size(95, 23);
+            this.btnStartCapture.TabIndex = 1;
+            this.btnStartCapture.Text = "开始";
+            this.btnStartCapture.UseVisualStyleBackColor = true;
+            this.btnStartCapture.Click += new System.EventHandler(this.btnStartCapture_Click);
             // 
-            // picRegister
+            // tpViewLibrary
             // 
-            this.picRegister.BackColor = System.Drawing.Color.DimGray;
-            this.picRegister.Location = new System.Drawing.Point(24, 18);
-            this.picRegister.Name = "picRegister";
-            this.picRegister.Size = new System.Drawing.Size(268, 275);
-            this.picRegister.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picRegister.TabIndex = 0;
-            this.picRegister.TabStop = false;
-            this.picRegister.Click += new System.EventHandler(this.picRegister_Click);
+            this.tpViewLibrary.Controls.Add(this.tpCapture);
+            this.tpViewLibrary.Controls.Add(this.tpRegister);
+            this.tpViewLibrary.Controls.Add(this.tabSetting);
+            this.tpViewLibrary.Controls.Add(this.tpView);
+            this.tpViewLibrary.Controls.Add(this.tpCertificate);
+            this.tpViewLibrary.Controls.Add(this.tabViewLibrary);
+            this.tpViewLibrary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tpViewLibrary.Location = new System.Drawing.Point(0, 0);
+            this.tpViewLibrary.Name = "tpViewLibrary";
+            this.tpViewLibrary.SelectedIndex = 0;
+            this.tpViewLibrary.Size = new System.Drawing.Size(1065, 623);
+            this.tpViewLibrary.TabIndex = 2;
             // 
-            // pictureBox3
+            // groupBox8
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(167, 352);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(335, 165);
-            this.pictureBox3.TabIndex = 4;
-            this.pictureBox3.TabStop = false;
+            this.groupBox8.Controls.Add(this.textBox1);
+            this.groupBox8.Controls.Add(this.label36);
+            this.groupBox8.Controls.Add(this.label37);
+            this.groupBox8.Controls.Add(this.label38);
+            this.groupBox8.Controls.Add(this.textBox2);
+            this.groupBox8.Controls.Add(this.button1);
+            this.groupBox8.Controls.Add(this.textBox3);
+            this.groupBox8.Location = new System.Drawing.Point(738, 260);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(316, 201);
+            this.groupBox8.TabIndex = 13;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "数据库注册";
             // 
-            // picCompare2
+            // textBox1
             // 
-            this.picCompare2.BackColor = System.Drawing.Color.DimGray;
-            this.picCompare2.Location = new System.Drawing.Point(392, 3);
-            this.picCompare2.Name = "picCompare2";
-            this.picCompare2.Size = new System.Drawing.Size(268, 275);
-            this.picCompare2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picCompare2.TabIndex = 2;
-            this.picCompare2.TabStop = false;
-            this.picCompare2.Click += new System.EventHandler(this.picCompare2_Click);
+            this.textBox1.Location = new System.Drawing.Point(101, 37);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(183, 21);
+            this.textBox1.TabIndex = 10;
             // 
-            // picCompare1
+            // label36
             // 
-            this.picCompare1.BackColor = System.Drawing.Color.DimGray;
-            this.picCompare1.Location = new System.Drawing.Point(3, 3);
-            this.picCompare1.Name = "picCompare1";
-            this.picCompare1.Size = new System.Drawing.Size(268, 275);
-            this.picCompare1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picCompare1.TabIndex = 1;
-            this.picCompare1.TabStop = false;
-            this.picCompare1.Click += new System.EventHandler(this.picCompare1_Click);
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(45, 66);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(53, 12);
+            this.label36.TabIndex = 0;
+            this.label36.Text = "用户名：";
             // 
-            // pictureBox4
+            // label37
             // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(6, 6);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(333, 51);
-            this.pictureBox4.TabIndex = 1;
-            this.pictureBox4.TabStop = false;
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(34, 40);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(65, 12);
+            this.label37.TabIndex = 9;
+            this.label37.Text = "数据库名：";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(56, 92);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(41, 12);
+            this.label38.TabIndex = 1;
+            this.label38.Text = "密码：";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(101, 64);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(183, 21);
+            this.textBox2.TabIndex = 7;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(132, 126);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "注册";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(101, 90);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(183, 21);
+            this.textBox3.TabIndex = 6;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(101, 68);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(183, 20);
+            this.comboBox1.TabIndex = 10;
             // 
             // FormMian
             // 
@@ -1780,9 +1970,20 @@
             this.Text = "海信网络科技";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMian_FormClosing);
             this.tabViewLibrary.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.tpOneVSOne.ResumeLayout(false);
+            this.tpCertificate.ResumeLayout(false);
+            this.tp_PicSearch.ResumeLayout(false);
+            this.tabOneVsOne.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompare2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompare1)).EndInit();
+            this.tab_Library_Compare.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_Library)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_Library_Compare)).EndInit();
             this.tpView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHitAlert)).EndInit();
             this.tabSetting.ResumeLayout(false);
@@ -1822,27 +2023,25 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picRegisterFace)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picRegister)).EndInit();
             this.tpCapture.ResumeLayout(false);
             this.tpCapture.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.tpViewLibrary.ResumeLayout(false);
             this.flowLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picPlayer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRegisterFace)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRegister)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCompare2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCompare1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.tpViewLibrary.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1856,11 +2055,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ListView listViewLibrary;
         private System.Windows.Forms.Button btn_ViewLibrary;
-        private System.Windows.Forms.TabPage tpOneVSOne;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button btn_PicCompare;
-        private System.Windows.Forms.PictureBox picCompare2;
-        private System.Windows.Forms.PictureBox picCompare1;
+        private System.Windows.Forms.TabPage tpCertificate;
         private System.Windows.Forms.TabPage tpView;
         private System.Windows.Forms.Button btn_ExportResult;
         private System.Windows.Forms.DataGridView dgvHitAlert;
@@ -1930,7 +2125,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button btn_DetectParamsUpdate;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtDataBaseName;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
@@ -1987,8 +2181,29 @@
         private System.Windows.Forms.PictureBox picPlayer;
         private System.Windows.Forms.Button btnStartCapture;
         private System.Windows.Forms.TabControl tpViewLibrary;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.TabControl tp_PicSearch;
+        private System.Windows.Forms.TabPage tabOneVsOne;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button btn_PicCompare;
+        private System.Windows.Forms.PictureBox picCompare2;
+        private System.Windows.Forms.PictureBox picCompare1;
+        private System.Windows.Forms.TabPage tab_Library_Compare;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Button btn_Library_Compare;
+        private System.Windows.Forms.PictureBox pic_Library;
+        private System.Windows.Forms.PictureBox pic_Library_Compare;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

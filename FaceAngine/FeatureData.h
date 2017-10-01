@@ -427,7 +427,7 @@ namespace FRS {
 		Int32 searchFaceRollThresh = 60;
 		Int32 searchFacePitchThresh = 60;
 
-		float scoreThresh = 0.65f;
+		float scoreThresh = 0.20f;
 		Int32 topK = 3;
 		Int32 maxPersonNum = 5;
 		Int32 searchFaceQualityThresh = 30;

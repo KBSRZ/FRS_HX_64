@@ -37,6 +37,7 @@ namespace NjustSkyEyeSystem
         private Image imageOnShow;//正在显示中的图片帧
         private Image imageCompare1;//证件比对图片
         private Image imageCompare2;//证件比对图片
+        private Image image_Library_Compare;//底库比对图片
         readonly DataAngine.BLL.hitalert hitbll = new DataAngine.BLL.hitalert();
         readonly DataAngine.BLL.user user = new DataAngine.BLL.user();
         //已告警的用户项
@@ -56,9 +57,12 @@ namespace NjustSkyEyeSystem
             InitFRS();
             InitSetting();
             InitUI();
+            this.WindowState = FormWindowState.Maximized;    //最大化窗体
 
             StartCaptureAuto();
         }
+    
+
         #region 初始化
         private static void InitFRS()
         {
@@ -1125,6 +1129,38 @@ namespace NjustSkyEyeSystem
             {
                 ShowMsgInfo("LocateFaceLibrary Error", ex);
             }
+        }
+
+        private void pic_Library_Compare_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openfile = new OpenFileDialog())
+            {
+                DialogResult dr = openfile.ShowDialog();
+                if (dr == System.Windows.Forms.DialogResult.OK)
+                {
+                    string filename = openfile.FileName;
+                    this.pic_Library_Compare.Image = Image.FromFile(filename);
+                    image_Library_Compare = Image.FromFile(filename);
+                }
+            }
+        }
+
+        private void btn_Library_Compare_Click(object sender, EventArgs e)
+        {   
+            if (image_Library_Compare == null){
+                MessageBox.Show("请选择一张图片");
+            }
+            fa.LoadData();
+            HitAlert[] hits = fa.Search(image_Library_Compare);
+            if (hits!=null){           
+                this.pic_Library.Image = Image.FromFile(hits[0].Details[0].imgPath);
+                
+                MessageBox.Show("图像相似度为" + hits[0].Details[0].Score);
+            }
+            else{
+                MessageBox.Show("未匹配到相似人员");
+            }
+            return;
         }
 
 
