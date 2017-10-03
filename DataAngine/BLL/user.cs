@@ -89,6 +89,18 @@ namespace DataAngine.BLL
         
             return allUsers;
         }
+
+        public List<Model.user> GetAllUser(string libraryname)
+        {
+
+            DataSet ds = dal.GetList(string.Empty,libraryname);
+            List<Model.user> allUsers;
+            DataTable dt = ds.Tables[0];
+
+            allUsers = DataTableToList(dt);
+
+            return allUsers;
+        }
         ///// <summary>
         ///// 得到一个对象实体，从缓存中
         ///// </summary>

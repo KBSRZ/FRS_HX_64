@@ -1,4 +1,3 @@
-
 #include "FeatureData.h"
 
 #include <opencv2/core/version.hpp>
@@ -418,21 +417,34 @@ Int32 FeatureData::LoadData()
 	if (IsExpired()) throw gcnew Exception("software has been expired");;
 #endif
 
-	try
-	{
-
-		allUsers = usrbll->GetAllUser();
-		
+	try{
+		allUsers = usrbll->GetAllUser();		
 	}
-	catch (Exception ^e)
-	{
+	catch (Exception ^e){
 		MessageBox::Show("GetAllUser Error:" + e->Message);
 		return ReturnCode::UNKOWN_EXCEPTION;
 	}
 	return ReturnCode::SUCCESS;
-
-
 }
+
+Int32 FeatureData::LoadData(String^ libraryname)
+{
+	std::cout<<"loaddata string"<<std::endl;
+
+#if USE_EXPIRE
+	if (IsExpired()) throw gcnew Exception("software has been expired");;
+#endif
+
+	try{
+		allUsers = usrbll->GetAllUser(libraryname);
+	}
+	catch (Exception ^e){
+		MessageBox::Show("GetAllUser Error:" + e->Message);
+		return ReturnCode::UNKOWN_EXCEPTION;
+	}
+	return ReturnCode::SUCCESS;
+}
+
 
 array<HitAlertDetail>^ FeatureData::Search(array<BYTE> ^feats)
 {

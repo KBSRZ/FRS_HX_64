@@ -1177,11 +1177,39 @@ namespace NjustSkyEyeSystem
         {
             DataSet ds = table.GetAllTable();
             DataTable dt = ds.Tables[0];
-            System.Windows.Forms.MessageBox.Show(dt.Rows[0]["name"].ToString());
+
             combox_DataBaseName.DataSource = dt;
             combox_DataBaseName.ValueMember = "id";
             combox_DataBaseName.DisplayMember = "name";
           
+        }
+
+        private void btn_Library_Register_Click(object sender, EventArgs e)
+        {
+            string regTableName = txt_library_name.Text;
+            string regLibraryUid = txt_library_uid.Text;
+            string regLibraryPsw = txt_library_psw.Text;
+
+            if (string.IsNullOrEmpty(regTableName))
+            {
+                MessageBox.Show("请填写完整相关注册信息！");
+                return;
+            }
+
+            DataAngine.Model.table table = new DataAngine.Model.table();
+            DataAngine.BLL.table tablebll = new DataAngine.BLL.table();
+            table.name = regTableName;
+
+            if (true == tablebll.Add(table))
+            {
+                fa.LoadData(regTableName);
+                ComboxList();
+                MessageBox.Show("注册成功");
+            }
+            else
+            {
+                MessageBox.Show("注册失败，请检查");
+            }
         }
 
     }

@@ -337,6 +337,8 @@ namespace FRS {
 		*/
 		Int32 LoadData();
 
+		Int32 LoadData(String^ libraryname);
+
 		/** @brief search the user
 		*	@param feat   the feature
 		*/

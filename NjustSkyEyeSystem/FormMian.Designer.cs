@@ -67,13 +67,13 @@
             this.btnRetriew = new System.Windows.Forms.Button();
             this.tabSetting = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_library_name = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txt_library_uid = new System.Windows.Forms.TextBox();
+            this.btn_Library_Register = new System.Windows.Forms.Button();
+            this.txt_library_psw = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btn_LoginCHC = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
@@ -624,13 +624,13 @@
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.textBox1);
+            this.groupBox8.Controls.Add(this.txt_library_name);
             this.groupBox8.Controls.Add(this.label36);
             this.groupBox8.Controls.Add(this.label37);
             this.groupBox8.Controls.Add(this.label38);
-            this.groupBox8.Controls.Add(this.textBox2);
-            this.groupBox8.Controls.Add(this.button1);
-            this.groupBox8.Controls.Add(this.textBox3);
+            this.groupBox8.Controls.Add(this.txt_library_uid);
+            this.groupBox8.Controls.Add(this.btn_Library_Register);
+            this.groupBox8.Controls.Add(this.txt_library_psw);
             this.groupBox8.Location = new System.Drawing.Point(738, 260);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(316, 201);
@@ -638,12 +638,12 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "数据库注册";
             // 
-            // textBox1
+            // txt_library_name
             // 
-            this.textBox1.Location = new System.Drawing.Point(101, 37);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(183, 21);
-            this.textBox1.TabIndex = 10;
+            this.txt_library_name.Location = new System.Drawing.Point(101, 37);
+            this.txt_library_name.Name = "txt_library_name";
+            this.txt_library_name.Size = new System.Drawing.Size(183, 21);
+            this.txt_library_name.TabIndex = 10;
             // 
             // label36
             // 
@@ -672,28 +672,29 @@
             this.label38.TabIndex = 1;
             this.label38.Text = "密码：";
             // 
-            // textBox2
+            // txt_library_uid
             // 
-            this.textBox2.Location = new System.Drawing.Point(101, 64);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(183, 21);
-            this.textBox2.TabIndex = 7;
+            this.txt_library_uid.Location = new System.Drawing.Point(101, 64);
+            this.txt_library_uid.Name = "txt_library_uid";
+            this.txt_library_uid.Size = new System.Drawing.Size(183, 21);
+            this.txt_library_uid.TabIndex = 7;
             // 
-            // button1
+            // btn_Library_Register
             // 
-            this.button1.Location = new System.Drawing.Point(132, 126);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "注册";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_Library_Register.Location = new System.Drawing.Point(132, 126);
+            this.btn_Library_Register.Name = "btn_Library_Register";
+            this.btn_Library_Register.Size = new System.Drawing.Size(75, 23);
+            this.btn_Library_Register.TabIndex = 3;
+            this.btn_Library_Register.Text = "注册";
+            this.btn_Library_Register.UseVisualStyleBackColor = true;
+            this.btn_Library_Register.Click += new System.EventHandler(this.btn_Library_Register_Click);
             // 
-            // textBox3
+            // txt_library_psw
             // 
-            this.textBox3.Location = new System.Drawing.Point(101, 90);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(183, 21);
-            this.textBox3.TabIndex = 6;
+            this.txt_library_psw.Location = new System.Drawing.Point(101, 90);
+            this.txt_library_psw.Name = "txt_library_psw";
+            this.txt_library_psw.Size = new System.Drawing.Size(183, 21);
+            this.txt_library_psw.TabIndex = 6;
             // 
             // groupBox5
             // 
@@ -2196,13 +2197,13 @@
         private System.Windows.Forms.PictureBox pic_Library;
         private System.Windows.Forms.PictureBox pic_Library_Compare;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_library_name;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txt_library_uid;
+        private System.Windows.Forms.Button btn_Library_Register;
+        private System.Windows.Forms.TextBox txt_library_psw;
         private System.Windows.Forms.ComboBox combox_DataBaseName;
     }
 }

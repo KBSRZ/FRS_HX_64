@@ -649,6 +649,32 @@ namespace DataAngine.DBUtility
                 }
             }
         }
+
+
+        public static DataSet Query(string SQLString, bool isdatabase, string libraryname)
+        {
+            if (!isdatabase)
+                return Query(SQLString, false);
+            Console.WriteLine(libraryname);
+            connectionString = "server=127.0.0.1;database=" + libraryname + ";uid=root;pwd=123456";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                DataSet ds = new DataSet();
+                try
+                {
+                    connection.Open();
+                    MySqlDataAdapter command = new MySqlDataAdapter(SQLString, connection);
+                    command.Fill(ds, "ds");
+                    //
+                    connection.Close();
+                }
+                catch (MySql.Data.MySqlClient.MySqlException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                return ds;
+            }
+        }
         public static DataSet Query(string SQLString, int Times)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
