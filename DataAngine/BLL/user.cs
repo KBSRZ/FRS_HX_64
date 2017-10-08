@@ -137,6 +137,11 @@ namespace DataAngine.BLL
         {
             return dal.GetPicPathList(strWhere);
         }
+        //分页查询
+        public DataSet GetPicPathList(string strWhere, int startIndex, int endIndex)
+        {
+            return dal.GetPicPathList(strWhere,startIndex,endIndex);
+        }
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
@@ -185,9 +190,9 @@ namespace DataAngine.BLL
 		/// <summary>
 		/// 分页获取数据列表
 		/// </summary>
-		public DataSet GetListByPage(string strWhere, string orderby, int startIndex, int endIndex)
+		public DataSet GetListByPage(string strWhere, string orderby, int startIndex, int pageSize)
 		{
-			return dal.GetListByPage( strWhere,  orderby,  startIndex,  endIndex);
+            return dal.GetListByPage(strWhere, orderby, startIndex, pageSize);
 		}
 		/// <summary>
 		/// 分页获取数据列表

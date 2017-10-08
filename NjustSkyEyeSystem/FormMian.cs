@@ -41,6 +41,13 @@ namespace NjustSkyEyeSystem
         readonly DataAngine.BLL.hitalert hitbll = new DataAngine.BLL.hitalert();
         readonly DataAngine.BLL.user user = new DataAngine.BLL.user();
         readonly DataAngine.BLL.table table = new DataAngine.BLL.table();
+
+        //底库查询
+        int PageSize = 36;
+        int CurPage;
+        int Count_Record;
+        int Count_Page;
+
         //已告警的用户项
         private Dictionary<uint, HitUserItemInfo> hitUserItemMap = new Dictionary<uint, HitUserItemInfo>();
         private int hitUserMaxCount = 20;
@@ -1106,15 +1113,177 @@ namespace NjustSkyEyeSystem
         private void btn_ViewLibrary_Click(object sender, EventArgs e)
         {
             listViewLibrary.Items.Clear();
+            imageListFaceLibrary.Images.Clear();
+
             DataSet ds = user.GetPicPathList(null);
+
             if (0 == ds.Tables.Count)
             {
                 MessageBox.Show("未查询到符合人员");
                 return;
             }
+
+            Count_Record = ds.Tables[0].Rows.Count;
+            txt_Count_Record.Text = Count_Record.ToString();
+            txt_PageSize.Text = PageSize.ToString();
+            Count_Page = Count_Record % PageSize == 0 ? Count_Record / PageSize : Count_Record / PageSize + 1;
+            txt_Count_Page.Text = Count_Page.ToString();
+  
+            try
+            {
+                ds = user.GetPicPathList(null, 0, PageSize);
+                DataTable dt = ds.Tables[0];
+
+                CurPage = 1;
+                txt_Current_Page.Text = CurPage.ToString();     
+
+                int faceCount = dt.Rows.Count;
+
+                for (int i = 0; i < faceCount; ++i)
+                {
+                    DataRow row = dt.Rows[i];
+                    string userImagePath = dt.Rows[i]["face_image_path"].ToString();
+                    Image face = Image.FromFile(userImagePath);
+                    imageListFaceLibrary.Images.Add(face);
+                    listViewLibrary.Items.Add("", 0);
+                    listViewLibrary.Items[i].ImageIndex = i;
+
+                }
+                listViewLibrary.Refresh();
+            }
+            catch (Exception ex)
+            {
+                ShowMsgInfo("LocateFaceLibrary Error", ex);
+            }
+        }
+
+        private void btn_PrePage_Click(object sender, EventArgs e)
+        {
+            if (CurPage <= 1)
+            {
+                MessageBox.Show("已经到首页");
+                return;
+            }
+
+            CurPage--;
+            listViewLibrary.Items.Clear();
+            imageListFaceLibrary.Images.Clear();
+
+            DataSet ds = user.GetPicPathList(null, (CurPage - 1) * PageSize, PageSize);
+
+            if (0 == ds.Tables.Count)
+            {
+                MessageBox.Show("未查询到符合人员");
+                return;
+            }          
+
+            try
+            {                
+                DataTable dt = ds.Tables[0];
+
+                txt_Current_Page.Text = CurPage.ToString();               
+
+                int faceCount = dt.Rows.Count;
+
+                for (int i = 0; i < faceCount; ++i)
+                {
+                    DataRow row = dt.Rows[i];
+                    string userImagePath = dt.Rows[i]["face_image_path"].ToString();
+                    Image face = Image.FromFile(userImagePath);
+                    imageListFaceLibrary.Images.Add(face);
+                    listViewLibrary.Items.Add("", 0);
+                    listViewLibrary.Items[i].ImageIndex = i;
+
+                }
+                listViewLibrary.Refresh();
+            }
+            catch (Exception ex)
+            {
+                ShowMsgInfo("LocateFaceLibrary Error", ex);
+            }
+        }
+
+        private void btn_NextPage_Click(object sender, EventArgs e)
+        {
+            if (CurPage >= Count_Page)
+            {
+                MessageBox.Show("已经到末页");
+                return;
+            }
+
+            CurPage++;
+            listViewLibrary.Items.Clear();
+            imageListFaceLibrary.Images.Clear();
+
+            DataSet ds = user.GetPicPathList(null, (CurPage - 1) * PageSize, PageSize);
+
+            if (0 == ds.Tables.Count)
+            {
+                MessageBox.Show("未查询到符合人员");
+                return;
+            }
+
             try
             {
                 DataTable dt = ds.Tables[0];
+
+                txt_Current_Page.Text = CurPage.ToString();
+
+                int faceCount = dt.Rows.Count;
+
+                for (int i = 0; i < faceCount; ++i)
+                {
+                    DataRow row = dt.Rows[i];
+                    string userImagePath = dt.Rows[i]["face_image_path"].ToString();
+                    Image face = Image.FromFile(userImagePath);
+                    imageListFaceLibrary.Images.Add(face);
+                    listViewLibrary.Items.Add("", 0);
+                    listViewLibrary.Items[i].ImageIndex = i;
+
+                }
+                listViewLibrary.Refresh();
+            }
+            catch (Exception ex)
+            {
+                ShowMsgInfo("LocateFaceLibrary Error", ex);
+            }
+        }
+
+        private void btn_GoPage_Click(object sender, EventArgs e)
+        {
+            if (CurPage < 1 || CurPage > Count_Page)
+            {
+                MessageBox.Show("页数错误");
+                return;
+            }
+
+            try
+            {
+                CurPage = Convert.ToInt32(txt_Current_Page.Text);
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("页数错误");
+                return;
+            }
+
+            listViewLibrary.Items.Clear();
+            imageListFaceLibrary.Images.Clear();
+
+            DataSet ds = user.GetPicPathList(null, (CurPage - 1) * PageSize, PageSize);
+
+            if (0 == ds.Tables.Count)
+            {
+                MessageBox.Show("未查询到符合人员");
+                return;
+            }
+
+            try
+            {
+                DataTable dt = ds.Tables[0];
+
+                txt_Current_Page.Text = CurPage.ToString();
+
                 int faceCount = dt.Rows.Count;
 
                 for (int i = 0; i < faceCount; ++i)
@@ -1210,7 +1379,7 @@ namespace NjustSkyEyeSystem
             {
                 MessageBox.Show("注册失败，请检查");
             }
-        }
+        }   
 
     }
 }

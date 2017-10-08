@@ -415,19 +415,25 @@ namespace DataAngine.DAL
             //{
             //    strSql.Append(" where " + strWhere);
             //}
+            return DbHelperMySQL.Query(strSql.ToString());          
+        }
+
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        public DataSet GetPicPathList(string strWhere, int startIndex, int pageSize)
+        {
+            StringBuilder strSql = new StringBuilder();
+
+            strSql.Append("select id,people_id,name,gender,card_id,image_id,face_image_path ");
+            strSql.Append(" FROM user ");
+            strSql.Append(" limit " + startIndex + ", " + pageSize);
+
+            //if (strWhere.Trim() != "")
+            //{
+            //    strSql.Append(" where " + strWhere);
+            //}
             return DbHelperMySQL.Query(strSql.ToString());
-
-            /*
-                        strSql.Append("select id,name,gender,id_card,face_image_path,feature_data,type,create_time,modified_time,quality_score ");
-                        strSql.Append(" FROM TH_FACE_USER ");
-
-                        if (strWhere.Trim() != "")
-                        {
-                            strSql.Append(" where " + strWhere);
-                        }
-
-                        return DbHelperOracle.ExecuteDataSet(CommandType.Text,strSql.ToString());
-             */
         }
 
         /// <summary>

@@ -36,6 +36,19 @@
             this.tabViewLibrary = new System.Windows.Forms.TabPage();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.btn_GoPage = new System.Windows.Forms.Button();
+            this.txt_Current_Page = new System.Windows.Forms.TextBox();
+            this.btn_NextPage = new System.Windows.Forms.Button();
+            this.btn_PrePage = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.txt_Count_Page = new System.Windows.Forms.TextBox();
+            this.txt_PageSize = new System.Windows.Forms.TextBox();
+            this.txt_Count_Record = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
             this.listViewLibrary = new System.Windows.Forms.ListView();
             this.btn_ViewLibrary = new System.Windows.Forms.Button();
             this.tpCertificate = new System.Windows.Forms.TabPage();
@@ -189,6 +202,8 @@
             this.tabViewLibrary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel3.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.tpCertificate.SuspendLayout();
             this.tp_PicSearch.SuspendLayout();
             this.tabOneVsOne.SuspendLayout();
@@ -298,11 +313,135 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel3.Controls.Add(this.panel7);
+            this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.listViewLibrary);
             this.panel3.Location = new System.Drawing.Point(3, 60);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1046, 534);
             this.panel3.TabIndex = 1;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.btn_GoPage);
+            this.panel7.Controls.Add(this.txt_Current_Page);
+            this.panel7.Controls.Add(this.btn_NextPage);
+            this.panel7.Controls.Add(this.btn_PrePage);
+            this.panel7.Location = new System.Drawing.Point(737, 1);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(305, 37);
+            this.panel7.TabIndex = 10;
+            // 
+            // btn_GoPage
+            // 
+            this.btn_GoPage.Location = new System.Drawing.Point(260, 9);
+            this.btn_GoPage.Name = "btn_GoPage";
+            this.btn_GoPage.Size = new System.Drawing.Size(31, 23);
+            this.btn_GoPage.TabIndex = 10;
+            this.btn_GoPage.Text = "GO";
+            this.btn_GoPage.UseVisualStyleBackColor = true;
+            this.btn_GoPage.Click += new System.EventHandler(this.btn_GoPage_Click);
+            // 
+            // txt_Current_Page
+            // 
+            this.txt_Current_Page.Location = new System.Drawing.Point(89, 11);
+            this.txt_Current_Page.Name = "txt_Current_Page";
+            this.txt_Current_Page.Size = new System.Drawing.Size(80, 21);
+            this.txt_Current_Page.TabIndex = 9;
+            // 
+            // btn_NextPage
+            // 
+            this.btn_NextPage.Location = new System.Drawing.Point(175, 9);
+            this.btn_NextPage.Name = "btn_NextPage";
+            this.btn_NextPage.Size = new System.Drawing.Size(75, 23);
+            this.btn_NextPage.TabIndex = 3;
+            this.btn_NextPage.Text = "下一页";
+            this.btn_NextPage.UseVisualStyleBackColor = true;
+            this.btn_NextPage.Click += new System.EventHandler(this.btn_NextPage_Click);
+            // 
+            // btn_PrePage
+            // 
+            this.btn_PrePage.Location = new System.Drawing.Point(8, 9);
+            this.btn_PrePage.Name = "btn_PrePage";
+            this.btn_PrePage.Size = new System.Drawing.Size(75, 23);
+            this.btn_PrePage.TabIndex = 4;
+            this.btn_PrePage.Text = "上一页";
+            this.btn_PrePage.UseVisualStyleBackColor = true;
+            this.btn_PrePage.Click += new System.EventHandler(this.btn_PrePage_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.txt_Count_Page);
+            this.panel6.Controls.Add(this.txt_PageSize);
+            this.panel6.Controls.Add(this.txt_Count_Record);
+            this.panel6.Controls.Add(this.label40);
+            this.panel6.Controls.Add(this.label42);
+            this.panel6.Controls.Add(this.label39);
+            this.panel6.Controls.Add(this.label41);
+            this.panel6.Location = new System.Drawing.Point(407, 2);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(325, 35);
+            this.panel6.TabIndex = 8;
+            // 
+            // txt_Count_Page
+            // 
+            this.txt_Count_Page.Location = new System.Drawing.Point(258, 7);
+            this.txt_Count_Page.Name = "txt_Count_Page";
+            this.txt_Count_Page.ReadOnly = true;
+            this.txt_Count_Page.Size = new System.Drawing.Size(35, 21);
+            this.txt_Count_Page.TabIndex = 10;
+            // 
+            // txt_PageSize
+            // 
+            this.txt_PageSize.Location = new System.Drawing.Point(177, 7);
+            this.txt_PageSize.Name = "txt_PageSize";
+            this.txt_PageSize.ReadOnly = true;
+            this.txt_PageSize.Size = new System.Drawing.Size(33, 21);
+            this.txt_PageSize.TabIndex = 9;
+            // 
+            // txt_Count_Record
+            // 
+            this.txt_Count_Record.Location = new System.Drawing.Point(36, 7);
+            this.txt_Count_Record.Name = "txt_Count_Record";
+            this.txt_Count_Record.ReadOnly = true;
+            this.txt_Count_Record.Size = new System.Drawing.Size(52, 21);
+            this.txt_Count_Record.TabIndex = 8;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(94, 12);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(77, 12);
+            this.label40.TabIndex = 5;
+            this.label40.Text = "条记录，每页";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(297, 12);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(17, 12);
+            this.label42.TabIndex = 7;
+            this.label42.Text = "页";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(13, 12);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(17, 12);
+            this.label39.TabIndex = 1;
+            this.label39.Text = "共";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(217, 12);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(41, 12);
+            this.label41.TabIndex = 6;
+            this.label41.Text = "条，共";
             // 
             // listViewLibrary
             // 
@@ -310,15 +449,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewLibrary.LargeImageList = this.imageListFaceLibrary;
-            this.listViewLibrary.Location = new System.Drawing.Point(3, 3);
+            this.listViewLibrary.Location = new System.Drawing.Point(3, 39);
             this.listViewLibrary.Name = "listViewLibrary";
-            this.listViewLibrary.Size = new System.Drawing.Size(1040, 528);
+            this.listViewLibrary.Size = new System.Drawing.Size(1040, 492);
             this.listViewLibrary.TabIndex = 0;
             this.listViewLibrary.UseCompatibleStateImageBehavior = false;
             // 
             // btn_ViewLibrary
             // 
-            this.btn_ViewLibrary.Location = new System.Drawing.Point(974, 31);
+            this.btn_ViewLibrary.Location = new System.Drawing.Point(971, 31);
             this.btn_ViewLibrary.Name = "btn_ViewLibrary";
             this.btn_ViewLibrary.Size = new System.Drawing.Size(75, 23);
             this.btn_ViewLibrary.TabIndex = 0;
@@ -1973,6 +2112,10 @@
             this.tabViewLibrary.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel3.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.tpCertificate.ResumeLayout(false);
             this.tp_PicSearch.ResumeLayout(false);
             this.tabOneVsOne.ResumeLayout(false);
@@ -2205,6 +2348,19 @@
         private System.Windows.Forms.Button btn_Library_Register;
         private System.Windows.Forms.TextBox txt_library_psw;
         private System.Windows.Forms.ComboBox combox_DataBaseName;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.TextBox txt_Count_Page;
+        private System.Windows.Forms.TextBox txt_PageSize;
+        private System.Windows.Forms.TextBox txt_Count_Record;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Button btn_PrePage;
+        private System.Windows.Forms.Button btn_NextPage;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button btn_GoPage;
+        private System.Windows.Forms.TextBox txt_Current_Page;
     }
 }
 
