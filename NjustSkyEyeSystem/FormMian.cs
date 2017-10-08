@@ -1251,19 +1251,21 @@ namespace NjustSkyEyeSystem
 
         private void btn_GoPage_Click(object sender, EventArgs e)
         {
-            if (CurPage < 1 || CurPage > Count_Page)
+            int TmpPage = CurPage;
+            try
+            {
+                CurPage = Convert.ToInt32(txt_Current_Page.Text);
+            }
+            catch (Exception)
             {
                 MessageBox.Show("页数错误");
                 return;
             }
 
-            try
-            {
-                CurPage = Convert.ToInt32(txt_Current_Page.Text);
-            }
-            catch(Exception)
+            if (CurPage < 1 || CurPage > Count_Page)
             {
                 MessageBox.Show("页数错误");
+                CurPage = TmpPage;
                 return;
             }
 
