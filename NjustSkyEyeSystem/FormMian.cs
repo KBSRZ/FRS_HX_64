@@ -622,7 +622,7 @@ namespace NjustSkyEyeSystem
                 return;
             }
 
-            fa.LoadData();
+            fa.LoadData(library);
 
             if (rdb_CameraCHC.Checked)
             {
@@ -778,7 +778,7 @@ namespace NjustSkyEyeSystem
             picRegisterFace.Image = faceBitmap;
             if (0 == fa.Register(picRegister.Image, hitUserInfo))
             {
-                fa.LoadData();
+                fa.LoadData(library);
                 MessageBox.Show("注册成功");
             }
             else
@@ -1339,7 +1339,7 @@ namespace NjustSkyEyeSystem
             {
                 MessageBox.Show("请选择一张图片");
             }
-            fa.LoadData();
+            fa.LoadData(library);
             HitAlert[] hits = fa.Search(image_Library_Compare);
             if (hits != null)
             {
@@ -1370,11 +1370,11 @@ namespace NjustSkyEyeSystem
 
         private void btn_Library_Register_Click(object sender, EventArgs e)
         {
-            string regTableName = txt_library_name.Text;
+            library = txt_library_name.Text;
             string regLibraryUid = txt_library_uid.Text;
             string regLibraryPsw = txt_library_psw.Text;
 
-            if (string.IsNullOrEmpty(regTableName))
+            if (string.IsNullOrEmpty(library))
             {
                 MessageBox.Show("请填写完整相关注册信息！");
                 return;
@@ -1382,11 +1382,11 @@ namespace NjustSkyEyeSystem
 
             DataAngine.Model.table table = new DataAngine.Model.table();
             DataAngine.BLL.table tablebll = new DataAngine.BLL.table();
-            table.name = regTableName;
+            table.name = library;
 
             if (true == tablebll.Add(table))
             {
-                fa.LoadData(regTableName);
+                fa.LoadData(library);
                 ComboxList();
                 MessageBox.Show("注册成功");
             }
