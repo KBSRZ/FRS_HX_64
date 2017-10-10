@@ -293,7 +293,7 @@
             this.tabViewLibrary.Location = new System.Drawing.Point(4, 22);
             this.tabViewLibrary.Name = "tabViewLibrary";
             this.tabViewLibrary.Padding = new System.Windows.Forms.Padding(3);
-            this.tabViewLibrary.Size = new System.Drawing.Size(1057, 597);
+            this.tabViewLibrary.Size = new System.Drawing.Size(1354, 688);
             this.tabViewLibrary.TabIndex = 5;
             this.tabViewLibrary.Text = "底库查看";
             this.tabViewLibrary.UseVisualStyleBackColor = true;
@@ -318,7 +318,7 @@
             this.panel3.Controls.Add(this.listViewLibrary);
             this.panel3.Location = new System.Drawing.Point(3, 60);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1046, 534);
+            this.panel3.Size = new System.Drawing.Size(1343, 625);
             this.panel3.TabIndex = 1;
             // 
             // panel7
@@ -327,7 +327,7 @@
             this.panel7.Controls.Add(this.txt_Current_Page);
             this.panel7.Controls.Add(this.btn_NextPage);
             this.panel7.Controls.Add(this.btn_PrePage);
-            this.panel7.Location = new System.Drawing.Point(737, 1);
+            this.panel7.Location = new System.Drawing.Point(1085, 2);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(305, 37);
             this.panel7.TabIndex = 10;
@@ -378,7 +378,7 @@
             this.panel6.Controls.Add(this.label42);
             this.panel6.Controls.Add(this.label39);
             this.panel6.Controls.Add(this.label41);
-            this.panel6.Location = new System.Drawing.Point(407, 2);
+            this.panel6.Location = new System.Drawing.Point(755, 3);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(325, 35);
             this.panel6.TabIndex = 8;
@@ -451,13 +451,13 @@
             this.listViewLibrary.LargeImageList = this.imageListFaceLibrary;
             this.listViewLibrary.Location = new System.Drawing.Point(3, 39);
             this.listViewLibrary.Name = "listViewLibrary";
-            this.listViewLibrary.Size = new System.Drawing.Size(1040, 492);
+            this.listViewLibrary.Size = new System.Drawing.Size(1337, 583);
             this.listViewLibrary.TabIndex = 0;
             this.listViewLibrary.UseCompatibleStateImageBehavior = false;
             // 
             // btn_ViewLibrary
             // 
-            this.btn_ViewLibrary.Location = new System.Drawing.Point(971, 31);
+            this.btn_ViewLibrary.Location = new System.Drawing.Point(1271, 31);
             this.btn_ViewLibrary.Name = "btn_ViewLibrary";
             this.btn_ViewLibrary.Size = new System.Drawing.Size(75, 23);
             this.btn_ViewLibrary.TabIndex = 0;
@@ -471,7 +471,7 @@
             this.tpCertificate.Location = new System.Drawing.Point(4, 22);
             this.tpCertificate.Name = "tpCertificate";
             this.tpCertificate.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCertificate.Size = new System.Drawing.Size(1057, 597);
+            this.tpCertificate.Size = new System.Drawing.Size(1354, 688);
             this.tpCertificate.TabIndex = 4;
             this.tpCertificate.Text = "证件查询";
             this.tpCertificate.UseVisualStyleBackColor = true;
@@ -483,7 +483,7 @@
             this.tp_PicSearch.Location = new System.Drawing.Point(0, 17);
             this.tp_PicSearch.Name = "tp_PicSearch";
             this.tp_PicSearch.SelectedIndex = 0;
-            this.tp_PicSearch.Size = new System.Drawing.Size(1061, 584);
+            this.tp_PicSearch.Size = new System.Drawing.Size(1399, 584);
             this.tp_PicSearch.TabIndex = 5;
             // 
             // tabOneVsOne
@@ -492,7 +492,7 @@
             this.tabOneVsOne.Location = new System.Drawing.Point(4, 22);
             this.tabOneVsOne.Name = "tabOneVsOne";
             this.tabOneVsOne.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOneVsOne.Size = new System.Drawing.Size(1053, 558);
+            this.tabOneVsOne.Size = new System.Drawing.Size(1391, 558);
             this.tabOneVsOne.TabIndex = 0;
             this.tabOneVsOne.Text = "证件比对";
             this.tabOneVsOne.UseVisualStyleBackColor = true;
@@ -506,9 +506,9 @@
             this.panel4.Controls.Add(this.btn_PicCompare);
             this.panel4.Controls.Add(this.picCompare2);
             this.panel4.Controls.Add(this.picCompare1);
-            this.panel4.Location = new System.Drawing.Point(275, 0);
+            this.panel4.Location = new System.Drawing.Point(352, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(662, 558);
+            this.panel4.Size = new System.Drawing.Size(663, 552);
             this.panel4.TabIndex = 5;
             // 
             // pictureBox3
@@ -558,7 +558,7 @@
             this.tab_Library_Compare.Location = new System.Drawing.Point(4, 22);
             this.tab_Library_Compare.Name = "tab_Library_Compare";
             this.tab_Library_Compare.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Library_Compare.Size = new System.Drawing.Size(1053, 558);
+            this.tab_Library_Compare.Size = new System.Drawing.Size(1391, 558);
             this.tab_Library_Compare.TabIndex = 1;
             this.tab_Library_Compare.Text = "底库比对";
             this.tab_Library_Compare.UseVisualStyleBackColor = true;
@@ -574,7 +574,7 @@
             this.panel5.Controls.Add(this.pic_Library_Compare);
             this.panel5.Location = new System.Drawing.Point(195, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(662, 558);
+            this.panel5.Size = new System.Drawing.Size(1000, 558);
             this.panel5.TabIndex = 6;
             // 
             // pictureBox5
@@ -626,7 +626,7 @@
             this.tpView.Controls.Add(this.btnRetriew);
             this.tpView.Location = new System.Drawing.Point(4, 22);
             this.tpView.Name = "tpView";
-            this.tpView.Size = new System.Drawing.Size(1057, 597);
+            this.tpView.Size = new System.Drawing.Size(1354, 688);
             this.tpView.TabIndex = 3;
             this.tpView.Text = "查看";
             this.tpView.UseVisualStyleBackColor = true;
@@ -656,7 +656,7 @@
             this.FaceScore,
             this.hitrecordId});
             this.dgvHitAlert.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvHitAlert.Location = new System.Drawing.Point(0, 68);
+            this.dgvHitAlert.Location = new System.Drawing.Point(0, 159);
             this.dgvHitAlert.Name = "dgvHitAlert";
             this.dgvHitAlert.ReadOnly = true;
             this.dgvHitAlert.RowHeadersVisible = false;
@@ -664,7 +664,7 @@
             this.dgvHitAlert.RowTemplate.Height = 80;
             this.dgvHitAlert.RowTemplate.ReadOnly = true;
             this.dgvHitAlert.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHitAlert.Size = new System.Drawing.Size(1057, 529);
+            this.dgvHitAlert.Size = new System.Drawing.Size(1354, 529);
             this.dgvHitAlert.TabIndex = 55;
             // 
             // dataGridViewTextBoxColumnTime
@@ -756,7 +756,7 @@
             this.tabSetting.Controls.Add(this.groupBox1);
             this.tabSetting.Location = new System.Drawing.Point(4, 22);
             this.tabSetting.Name = "tabSetting";
-            this.tabSetting.Size = new System.Drawing.Size(1057, 597);
+            this.tabSetting.Size = new System.Drawing.Size(1354, 688);
             this.tabSetting.TabIndex = 2;
             this.tabSetting.Text = "设置";
             this.tabSetting.UseVisualStyleBackColor = true;
@@ -770,7 +770,7 @@
             this.groupBox8.Controls.Add(this.txt_library_uid);
             this.groupBox8.Controls.Add(this.btn_Library_Register);
             this.groupBox8.Controls.Add(this.txt_library_psw);
-            this.groupBox8.Location = new System.Drawing.Point(738, 260);
+            this.groupBox8.Location = new System.Drawing.Point(1043, 273);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(316, 201);
             this.groupBox8.TabIndex = 13;
@@ -943,7 +943,7 @@
             this.groupBox2.Controls.Add(this.groupBox7);
             this.groupBox2.Controls.Add(this.groupBox6);
             this.groupBox2.Controls.Add(this.btn_DetectParamsUpdate);
-            this.groupBox2.Location = new System.Drawing.Point(269, 42);
+            this.groupBox2.Location = new System.Drawing.Point(413, 46);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -1455,7 +1455,7 @@
             this.groupBox1.Controls.Add(this.txtDataBasePwd);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.txtDataBaseAddress);
-            this.groupBox1.Location = new System.Drawing.Point(734, 38);
+            this.groupBox1.Location = new System.Drawing.Point(1039, 51);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(316, 201);
             this.groupBox1.TabIndex = 12;
@@ -1510,7 +1510,7 @@
             this.btnTestConnection.Name = "btnTestConnection";
             this.btnTestConnection.Size = new System.Drawing.Size(75, 23);
             this.btnTestConnection.TabIndex = 3;
-            this.btnTestConnection.Text = "测试连接";
+            this.btnTestConnection.Text = "登录";
             this.btnTestConnection.UseVisualStyleBackColor = true;
             this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
@@ -1543,7 +1543,7 @@
             this.tpRegister.Location = new System.Drawing.Point(4, 22);
             this.tpRegister.Name = "tpRegister";
             this.tpRegister.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRegister.Size = new System.Drawing.Size(1057, 597);
+            this.tpRegister.Size = new System.Drawing.Size(1354, 688);
             this.tpRegister.TabIndex = 1;
             this.tpRegister.Text = "注册";
             this.tpRegister.UseVisualStyleBackColor = true;
@@ -1580,8 +1580,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.btnRegisterInBulk);
             this.splitContainer1.Panel2.Margin = new System.Windows.Forms.Padding(3);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(3);
-            this.splitContainer1.Size = new System.Drawing.Size(1051, 591);
-            this.splitContainer1.SplitterDistance = 455;
+            this.splitContainer1.Size = new System.Drawing.Size(1348, 682);
+            this.splitContainer1.SplitterDistance = 582;
             this.splitContainer1.TabIndex = 2;
             // 
             // cb_RegUserGender
@@ -1662,7 +1662,7 @@
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 589);
+            this.splitter1.Size = new System.Drawing.Size(3, 680);
             this.splitter1.TabIndex = 2;
             this.splitter1.TabStop = false;
             // 
@@ -1719,9 +1719,9 @@
             // rtxRegisterLog
             // 
             this.rtxRegisterLog.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.rtxRegisterLog.Location = new System.Drawing.Point(3, 183);
+            this.rtxRegisterLog.Location = new System.Drawing.Point(3, 274);
             this.rtxRegisterLog.Name = "rtxRegisterLog";
-            this.rtxRegisterLog.Size = new System.Drawing.Size(584, 403);
+            this.rtxRegisterLog.Size = new System.Drawing.Size(754, 403);
             this.rtxRegisterLog.TabIndex = 3;
             this.rtxRegisterLog.Text = "";
             // 
@@ -1768,7 +1768,7 @@
             this.tpCapture.Location = new System.Drawing.Point(4, 22);
             this.tpCapture.Name = "tpCapture";
             this.tpCapture.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCapture.Size = new System.Drawing.Size(1057, 597);
+            this.tpCapture.Size = new System.Drawing.Size(1354, 688);
             this.tpCapture.TabIndex = 0;
             this.tpCapture.Text = "监控";
             // 
@@ -1807,7 +1807,7 @@
             this.panel2.Controls.Add(this.lbl_CountCollect);
             this.panel2.Controls.Add(this.lbl_CountMatch);
             this.panel2.Controls.Add(this.label18);
-            this.panel2.Location = new System.Drawing.Point(650, 3);
+            this.panel2.Location = new System.Drawing.Point(651, 3);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(403, 55);
@@ -1900,7 +1900,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.flowLayoutPanel);
-            this.groupBox4.Location = new System.Drawing.Point(650, 63);
+            this.groupBox4.Location = new System.Drawing.Point(652, 63);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
@@ -2002,14 +2002,14 @@
             this.panel1.Location = new System.Drawing.Point(3, 459);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1049, 24);
+            this.panel1.Size = new System.Drawing.Size(1051, 24);
             this.panel1.TabIndex = 1;
             // 
             // lbl_CatchFaceCount
             // 
             this.lbl_CatchFaceCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_CatchFaceCount.AutoSize = true;
-            this.lbl_CatchFaceCount.Location = new System.Drawing.Point(974, 6);
+            this.lbl_CatchFaceCount.Location = new System.Drawing.Point(976, 6);
             this.lbl_CatchFaceCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_CatchFaceCount.Name = "lbl_CatchFaceCount";
             this.lbl_CatchFaceCount.Size = new System.Drawing.Size(65, 12);
@@ -2094,14 +2094,14 @@
             this.tpViewLibrary.Location = new System.Drawing.Point(0, 0);
             this.tpViewLibrary.Name = "tpViewLibrary";
             this.tpViewLibrary.SelectedIndex = 0;
-            this.tpViewLibrary.Size = new System.Drawing.Size(1065, 623);
+            this.tpViewLibrary.Size = new System.Drawing.Size(1362, 714);
             this.tpViewLibrary.TabIndex = 2;
             // 
             // FormMian
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1065, 623);
+            this.ClientSize = new System.Drawing.Size(1362, 714);
             this.Controls.Add(this.tpViewLibrary);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

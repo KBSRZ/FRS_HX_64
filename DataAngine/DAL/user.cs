@@ -121,6 +121,52 @@ namespace DataAngine.DAL
                 return false;
             }
         }
+
+        public bool Add(DataAngine.Model.user model, string library)
+        {
+            StringBuilder strSql = new StringBuilder();
+
+
+            strSql.Append("insert into user(");
+            strSql.Append("people_id,name,gender,card_id,image_id,face_image_path,feature_data,type,create_time,modified_time,quality_score)");
+            strSql.Append(" values (");
+            strSql.Append("@people_id,@name,@gender,@card_id,@image_id,@face_image_path,@feature_data,@type,@create_time,@modified_time,@quality_score)");
+            MySqlParameter[] parameters = {
+                    new MySqlParameter("@people_id", MySqlDbType.VarChar,50),
+					new MySqlParameter("@name", MySqlDbType.VarChar,50),
+					new MySqlParameter("@gender", MySqlDbType.VarChar,5),
+                    new MySqlParameter("@card_id", MySqlDbType.VarChar, 50),
+                    new MySqlParameter("@image_id", MySqlDbType.VarChar, 60),
+					new MySqlParameter("@face_image_path", MySqlDbType.VarChar,200),
+					new MySqlParameter("@feature_data", MySqlDbType.LongBlob),
+					new MySqlParameter("@type", MySqlDbType.VarChar,1),
+					new MySqlParameter("@create_time", MySqlDbType.DateTime),
+					new MySqlParameter("@modified_time", MySqlDbType.DateTime),
+					new MySqlParameter("@quality_score", MySqlDbType.Float)};
+
+            parameters[0].Value = model.people_id;
+            parameters[1].Value = model.name;
+            parameters[2].Value = model.gender;
+            parameters[3].Value = model.card_id;
+            parameters[4].Value = model.image_id;
+            parameters[5].Value = model.face_image_path;
+            parameters[6].Value = model.feature_data;
+            parameters[7].Value = model.type;
+            parameters[8].Value = model.create_time;
+            parameters[9].Value = model.modified_time;
+            parameters[10].Value = model.quality_score;
+
+            int rows = DbHelperMySQL.ExecuteSql(strSql.ToString(), true, library, parameters);
+           
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         /// <summary>
         /// 更新一条数据
         /// </summary>
@@ -419,6 +465,23 @@ namespace DataAngine.DAL
         }
 
         /// <summary>
+        /// 获得数据列表
+        /// </summary>
+        public DataSet GetPicPathList(string strWhere, string library)
+        {
+            StringBuilder strSql = new StringBuilder();
+
+            strSql.Append("select id,people_id,name,gender,card_id,image_id,face_image_path ");
+            strSql.Append(" FROM user ");
+
+            //if (strWhere.Trim() != "")
+            //{
+            //    strSql.Append(" where " + strWhere);
+            //}
+            return DbHelperMySQL.Query(strSql.ToString(), true, library);
+        }
+
+        /// <summary>
         /// 分页查询
         /// </summary>
         public DataSet GetPicPathList(string strWhere, int startIndex, int pageSize)
@@ -434,6 +497,24 @@ namespace DataAngine.DAL
             //    strSql.Append(" where " + strWhere);
             //}
             return DbHelperMySQL.Query(strSql.ToString());
+        }
+
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        public DataSet GetPicPathList(string strWhere, int startIndex, int pageSize, string library)
+        {
+            StringBuilder strSql = new StringBuilder();
+
+            strSql.Append("select id,people_id,name,gender,card_id,image_id,face_image_path ");
+            strSql.Append(" FROM user ");
+            strSql.Append(" limit " + startIndex + ", " + pageSize);
+
+            //if (strWhere.Trim() != "")
+            //{
+            //    strSql.Append(" where " + strWhere);
+            //}
+            return DbHelperMySQL.Query(strSql.ToString(), true, library);
         }
 
         /// <summary>

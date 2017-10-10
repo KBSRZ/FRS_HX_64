@@ -246,24 +246,63 @@ Int32 FeatureData::RegisterInBulk1(String^ fileDirPath)
 
 }
 
+Int32 FeatureData::RegisterInBulk1(String^ fileDirPath, String^ library)
+{
+#if USE_EXPIRE
+	if (IsExpired()) throw gcnew Exception("software has been expired");;
+#endif
+
+	if (allUsers == nullptr) allUsers = gcnew List<Model::user^>();
+
+	DirectoryInfo^ dir = gcnew DirectoryInfo(fileDirPath);
+	array<FileInfo^>^files = dir->GetFiles();
+	int count = 0;
+
+	for (int i = 0; i < files->Length; i++)
+	{
+
+		int status = -1;
+		cv::Mat cvImg = cv::imread((char*)(void*)Marshal::StringToHGlobalAnsi(files[i]->FullName), 1);
+		if (!cvImg.empty())
+		{
+			UserInfo^ userInfo = gcnew UserInfo();
+			userInfo->name = System::IO::Path::GetFileNameWithoutExtension(files[i]->Name);//440100Z009992016120002_1
+			userInfo->imageId = System::IO::Path::GetFileNameWithoutExtension(files[i]->Name);//440100Z009992016120002_1 
+			userInfo->peopleId = System::IO::Path::GetFileNameWithoutExtension(files[i]->Name)->Split('_')[0];//440100Z009992016120002
+			status = Register(cvImg, userInfo, library);
+		}
+
+		count++;
+
+		try {
+			RegisterOneFinisedEvent(count, files[i]->FullName + ": " + status);
+		}
+		catch (Exception ^e)
+		{
+			MessageBox::Show(e->Message);
+		}
+	}
+
+	LoadData(library);
+	return count;
+
+
+}
+
  Int32 FeatureData::Register(cv::Mat& cvImg, Model::user ^ usr)
 {
-	if (cvImg.channels() < 3) throw gcnew   ArgumentException("image must have more than 3 channels");
-
-		
+	if (cvImg.channels() < 3) throw gcnew   ArgumentException("image must have more than 3 channels");		
 	try{
 		if (allUsers == nullptr) allUsers = gcnew List<Model::user^>();
 
 		int nWidth = cvImg.cols;
 		int nHeight = cvImg.rows;
-
-		
+	
 		if (nWidth < registerFaceWidthThresh || nHeight < registerFaceHeightThresh)
 		{
 			return ReturnCode::IMAGE_TOO_SMALL;
 		}
 		
-
 		/*
 		if (BlurrFaceEliminate(cvImg,1))
 		{
@@ -275,8 +314,6 @@ Int32 FeatureData::RegisterInBulk1(String^ fileDirPath)
 		//face detect
 		THFI_FacePos ptfp1[n];
 		int k;
-
-		
 		
 		int face_num = FaceImage::DetectFace(0, cvImg.data, 24, nWidth, nHeight, ptfp1, 1);
 		
@@ -300,8 +337,6 @@ Int32 FeatureData::RegisterInBulk1(String^ fileDirPath)
 		usr->feature_data = pFeature;
 		usr->quality_score = ptfp1[0].nQuality;
 		
-		
-
 		String^ fileName = System::Guid::NewGuid().ToString() + L".jpg";
 		
 		String ^savePath = Path::Combine(regFaceDir, fileName);
@@ -311,17 +346,6 @@ Int32 FeatureData::RegisterInBulk1(String^ fileDirPath)
 		if (usrbll->Add(usr))
 		{	
 			cv::imwrite(((char*)(void*)Marshal::StringToHGlobalAnsi(savePath)), cvImg);
-
-			/*
-			String ^ localFilePath = Path::GetFullPath(savePath);
-
-			String ^ server1FilePath = Path::Combine(server1Dir, savePath);
-			String ^ server2FilePath = Path::Combine(server2Dir, savePath);
-			
-			File::Copy(localFilePath, server1FilePath, true);
-			File::Copy(localFilePath, server2FilePath, true);
-			*/
-			
 			return ReturnCode::SUCCESS;
 		}
 		else
@@ -337,6 +361,80 @@ Int32 FeatureData::RegisterInBulk1(String^ fileDirPath)
 	}
 	return ReturnCode::SUCCESS;
 	
+}
+
+ Int32 FeatureData::Register(cv::Mat& cvImg, Model::user ^ usr,String^ library)
+ {
+	 if (cvImg.channels() < 3) throw gcnew   ArgumentException("image must have more than 3 channels");		
+	 try{
+		 if (allUsers == nullptr) allUsers = gcnew List<Model::user^>();
+
+		 int nWidth = cvImg.cols;
+		 int nHeight = cvImg.rows;
+
+		 if (nWidth < registerFaceWidthThresh || nHeight < registerFaceHeightThresh)
+		 {
+			 return ReturnCode::IMAGE_TOO_SMALL;
+		 }
+
+		 /*
+		 if (BlurrFaceEliminate(cvImg,1))
+		 {
+		 return -1;
+		 }
+		 */
+
+		 const int n = 1;
+		 //face detect
+		 THFI_FacePos ptfp1[n];
+		 int k;
+
+		 int face_num = FaceImage::DetectFace(0, cvImg.data, 24, nWidth, nHeight, ptfp1, 1);
+
+		 if (face_num <= 0)
+		 {
+			 return ReturnCode::NO_FACE;
+		 }
+		 if (abs(ptfp1[0].fAngle.pitch)> registerFaceYawThresh || abs(ptfp1[0].fAngle.roll)>registerFaceRollThresh || abs(ptfp1[0].fAngle.yaw)>registerFaceYawThresh){
+			 return ReturnCode::ILLEGAL_FACE_ANGLE;
+		 }
+		 if (registerFaceQualityThresh > ptfp1[0].nQuality)
+			 return ReturnCode::ILLEGAL_FACE_QUALITY;
+
+		 if (abs(ptfp1[0].rcFace.bottom - ptfp1[0].rcFace.top) < registerFaceHeightThresh || abs(ptfp1[0].rcFace.right - ptfp1[0].rcFace.left)<registerFaceWidthThresh)
+			 return ReturnCode::ILLEGAL_FACE_SIZE;
+
+		 //BYTE* pFeature1 = new BYTE[EF_Size()];
+		 array<BYTE>^ pFeature = gcnew array<BYTE>(Feature::Size());
+		 //only extract the first face(max size face)
+		 int ret = Feature::Extract(0, cvImg, nWidth, nHeight, 3, (THFI_FacePos*)&ptfp1[0], pFeature);
+		 usr->feature_data = pFeature;
+		 usr->quality_score = ptfp1[0].nQuality;
+
+		 String^ fileName = System::Guid::NewGuid().ToString() + L".jpg";
+
+		 String ^savePath = Path::Combine(regFaceDir, fileName);
+
+		 usr->face_image_path = savePath;
+
+		 if (usrbll->Add(usr, library))
+		 {
+			 cv::imwrite(((char*)(void*)Marshal::StringToHGlobalAnsi(savePath)), cvImg);
+			 return ReturnCode::SUCCESS;
+		 }
+		 else
+		 {
+			 return ReturnCode::WRITE_TO_DATABASE_FAILED;
+		 }
+	 }
+	 catch (Exception ^e)
+	 {
+		 ShowMsgEvent("Register Error:", e);
+		 Console::WriteLine(e->Message + "," + System::Environment::CommandLine);
+		 return ReturnCode::UNKOWN_EXCEPTION;
+	 }
+	 return ReturnCode::SUCCESS;
+
 }
  Int32 FeatureData::Register(String^ filePath, String^ username)
  {
@@ -366,6 +464,19 @@ Int32 FeatureData::RegisterInBulk1(String^ fileDirPath)
 	 usr->type = userInfo->type;
 	
 	 return Register(cvImg, usr);
+ }
+
+ Int32 FeatureData::Register(cv::Mat& cvImg, UserInfo^ userInfo, String^ library)
+ {
+	 Model::user ^usr = gcnew Model::user();
+	 usr->name = userInfo->name;
+	 usr->gender = userInfo->gender;
+	 usr->card_id = userInfo->cardId;
+	 usr->people_id = userInfo->peopleId;
+	 usr->image_id = userInfo->imageId;
+	 usr->type = userInfo->type;
+
+	 return Register(cvImg, usr, library);
  }
 
 
@@ -429,8 +540,6 @@ Int32 FeatureData::LoadData()
 
 Int32 FeatureData::LoadData(String^ libraryname)
 {
-	std::cout<<"loaddata string"<<std::endl;
-
 #if USE_EXPIRE
 	if (IsExpired()) throw gcnew Exception("software has been expired");;
 #endif

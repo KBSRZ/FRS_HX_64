@@ -313,6 +313,7 @@ namespace FRS {
 		Int32 FeatureData::RegisterInBulk(String^ fileDirPath);
 		Int32 FeatureData::RegisterInBulkFromFile(String^ filePath);
 		Int32 FeatureData::RegisterInBulk1(String^ fileDirPath);
+		Int32 FeatureData::RegisterInBulk1(String^ fileDirPath, String^ library);
 		/** @brief  register a user;
 		*	@param filePath   the file path of source image
 		*	@param dataSavePath Path of the saving the feature data
@@ -397,7 +398,9 @@ namespace FRS {
 		*	@param username the user name
 		*/
 		Int32 Register(cv::Mat& image_color, UserInfo^ userInfo);
+		Int32 Register(cv::Mat& image_color, UserInfo^ userInfo, String^ library);
 		Int32 FeatureData::Register(cv::Mat& img_color, Model::user ^ usr);
+		Int32 FeatureData::Register(cv::Mat& img_color, Model::user ^ usr, String^ library);
 
 		System::Drawing::Rectangle FeatureData::GetScaleFaceRect(int imgWidth, int imgHeight, RECT rectFacePos, float faceRectScale);
 

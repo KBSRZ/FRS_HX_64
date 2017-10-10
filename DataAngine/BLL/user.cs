@@ -41,6 +41,15 @@ namespace DataAngine.BLL
            
 		}
 
+        /// <summary>
+        /// 增加一条数据
+        /// </summary>
+        public bool Add(DataAngine.Model.user model, string library)
+        {
+            return dal.Add(model, library);
+
+        }
+
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
@@ -90,6 +99,7 @@ namespace DataAngine.BLL
             return allUsers;
         }
 
+
         public List<Model.user> GetAllUser(string libraryname)
         {
 
@@ -137,10 +147,18 @@ namespace DataAngine.BLL
         {
             return dal.GetPicPathList(strWhere);
         }
+        public DataSet GetPicPathList(string strWhere,string library)
+        {
+            return dal.GetPicPathList(strWhere, library);
+        }
         //分页查询
         public DataSet GetPicPathList(string strWhere, int startIndex, int endIndex)
         {
             return dal.GetPicPathList(strWhere,startIndex,endIndex);
+        }
+        public DataSet GetPicPathList(string strWhere, int startIndex, int endIndex,string library)
+        {
+            return dal.GetPicPathList(strWhere, startIndex, endIndex, library);
         }
 		/// <summary>
 		/// 获得数据列表

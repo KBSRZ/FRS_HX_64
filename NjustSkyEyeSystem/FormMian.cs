@@ -33,6 +33,9 @@ namespace NjustSkyEyeSystem
 
         public static FeatureData fa;//数据操作类
         private Capture cap;//视频处理类
+
+        private string library = "";//当前操作数据库
+
         public static string registerDataDir = "";//注册目录
         private Image imageOnShow;//正在显示中的图片帧
         private Image imageCompare1;//证件比对图片
@@ -831,7 +834,8 @@ namespace NjustSkyEyeSystem
         private void bwRegisterInBulk_DoWork(object sender, DoWorkEventArgs e)
         {
             if (registerType == REG_IN_BUILK_FROM_DIR)//从文件夹中注册
-                fa.RegisterInBulk1(txtRegisterDir.Text);
+                //fa.RegisterInBulk1(txtRegisterDir.Text);
+                fa.RegisterInBulk1(txtRegisterDir.Text, library);
             else if (registerType == REG_IN_BUILK_FROM_FILE)//从文件中注册
             {
                 fa.RegisterInBulkFromFile(txtRegisterFile.Text);
@@ -972,14 +976,23 @@ namespace NjustSkyEyeSystem
         #region 数据库测试
         private void btnTestConnection_Click(object sender, EventArgs e)
         {
-            if (DataAngine.DBUtility.DbHelperMySQL.ConnectionTest())
+            if (fa.LoadData(combox_DataBaseName.Text.ToString())==0)
             {
-                MessageBox.Show("连接成功");
+                library = combox_DataBaseName.Text.ToString();
+                MessageBox.Show("登录成功");
             }
             else
             {
-                MessageBox.Show("连接失败");
+                MessageBox.Show("登录失败");
             }
+            //if (DataAngine.DBUtility.DbHelperMySQL.ConnectionTest())
+            //{
+            //    MessageBox.Show("连接成功");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("连接失败");
+            //}
         }
         #endregion
 
