@@ -67,6 +67,19 @@
             this.btnRetriew = new System.Windows.Forms.Button();
             this.tabSetting = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.btn_Device_Register = new System.Windows.Forms.Button();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.txt_device_name = new System.Windows.Forms.TextBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.txt_device_password = new System.Windows.Forms.TextBox();
+            this.txt_device_user = new System.Windows.Forms.TextBox();
+            this.txt_device_port = new System.Windows.Forms.TextBox();
+            this.txt_device_ip = new System.Windows.Forms.TextBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
@@ -84,13 +97,14 @@
             this.label26 = new System.Windows.Forms.Label();
             this.btn_DetectParamsUpdate = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.txt_library_uid = new System.Windows.Forms.TextBox();
+            this.txt_library_psw = new System.Windows.Forms.TextBox();
             this.txt_library_name = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
-            this.txt_library_uid = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
             this.btn_Library_Register = new System.Windows.Forms.Button();
-            this.txt_library_psw = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.txtDataBaseUid = new System.Windows.Forms.TextBox();
@@ -135,15 +149,17 @@
             this.nudClarityThresh = new System.Windows.Forms.NumericUpDown();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tex_DevIP = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.tex_DevPort = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.tex_UserName = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.tex_UserPwd = new System.Windows.Forms.TextBox();
-            this.btn_LoginCHC = new System.Windows.Forms.Button();
+            this.tex_UserName = new System.Windows.Forms.TextBox();
+            this.tex_DevPort = new System.Windows.Forms.TextBox();
+            this.tex_DevIP = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox_DevName = new System.Windows.Forms.ComboBox();
+            this.btn_LoginDevice = new System.Windows.Forms.Button();
             this.tpRegister = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.cb_RegUserGender = new System.Windows.Forms.ComboBox();
@@ -212,7 +228,6 @@
             this.btn_Library_Compare = new System.Windows.Forms.Button();
             this.pic_Library = new System.Windows.Forms.PictureBox();
             this.pic_Library_Compare = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.tabViewLibrary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel3.SuspendLayout();
@@ -223,6 +238,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvHitAlert)).BeginInit();
             this.tabSetting.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
             this.panel12.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -233,6 +250,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudRegisterRollThresh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRegisterYawThresh)).BeginInit();
             this.groupBox8.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -290,7 +308,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Library)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Library_Compare)).BeginInit();
-            this.tableLayoutPanel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageListFace
@@ -653,6 +670,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.15361F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.69276F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.15362F));
+            this.tableLayoutPanel3.Controls.Add(this.groupBox9, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.panel12, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.groupBox8, 2, 1);
             this.tableLayoutPanel3.Controls.Add(this.groupBox1, 2, 0);
@@ -665,6 +683,159 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1343, 687);
             this.tableLayoutPanel3.TabIndex = 58;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox9.Controls.Add(this.btn_Device_Register);
+            this.groupBox9.Controls.Add(this.tableLayoutPanel11);
+            this.groupBox9.Location = new System.Drawing.Point(2, 345);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox9.Size = new System.Drawing.Size(414, 340);
+            this.groupBox9.TabIndex = 64;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "摄像头注册";
+            // 
+            // btn_Device_Register
+            // 
+            this.btn_Device_Register.Location = new System.Drawing.Point(148, 190);
+            this.btn_Device_Register.Name = "btn_Device_Register";
+            this.btn_Device_Register.Size = new System.Drawing.Size(75, 23);
+            this.btn_Device_Register.TabIndex = 63;
+            this.btn_Device_Register.Text = "注册";
+            this.btn_Device_Register.UseVisualStyleBackColor = true;
+            this.btn_Device_Register.Click += new System.EventHandler(this.btn_Device_Register_Click);
+            // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.ColumnCount = 2;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.Controls.Add(this.txt_device_name, 1, 0);
+            this.tableLayoutPanel11.Controls.Add(this.label44, 0, 0);
+            this.tableLayoutPanel11.Controls.Add(this.label45, 0, 4);
+            this.tableLayoutPanel11.Controls.Add(this.txt_device_password, 1, 4);
+            this.tableLayoutPanel11.Controls.Add(this.txt_device_user, 1, 3);
+            this.tableLayoutPanel11.Controls.Add(this.txt_device_port, 1, 2);
+            this.tableLayoutPanel11.Controls.Add(this.txt_device_ip, 1, 1);
+            this.tableLayoutPanel11.Controls.Add(this.label46, 0, 3);
+            this.tableLayoutPanel11.Controls.Add(this.label47, 0, 2);
+            this.tableLayoutPanel11.Controls.Add(this.label48, 0, 1);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(69, 19);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 5;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(240, 144);
+            this.tableLayoutPanel11.TabIndex = 62;
+            // 
+            // txt_device_name
+            // 
+            this.txt_device_name.Location = new System.Drawing.Point(122, 2);
+            this.txt_device_name.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_device_name.Name = "txt_device_name";
+            this.txt_device_name.Size = new System.Drawing.Size(116, 21);
+            this.txt_device_name.TabIndex = 64;
+            // 
+            // label44
+            // 
+            this.label44.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(65, 0);
+            this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(53, 28);
+            this.label44.TabIndex = 63;
+            this.label44.Text = "设备名称";
+            // 
+            // label45
+            // 
+            this.label45.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(89, 112);
+            this.label45.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(29, 32);
+            this.label45.TabIndex = 61;
+            this.label45.Text = "密码";
+            // 
+            // txt_device_password
+            // 
+            this.txt_device_password.Location = new System.Drawing.Point(122, 114);
+            this.txt_device_password.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_device_password.Name = "txt_device_password";
+            this.txt_device_password.Size = new System.Drawing.Size(116, 21);
+            this.txt_device_password.TabIndex = 60;
+            // 
+            // txt_device_user
+            // 
+            this.txt_device_user.Location = new System.Drawing.Point(122, 86);
+            this.txt_device_user.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_device_user.Name = "txt_device_user";
+            this.txt_device_user.Size = new System.Drawing.Size(116, 21);
+            this.txt_device_user.TabIndex = 59;
+            // 
+            // txt_device_port
+            // 
+            this.txt_device_port.Location = new System.Drawing.Point(122, 58);
+            this.txt_device_port.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_device_port.Name = "txt_device_port";
+            this.txt_device_port.Size = new System.Drawing.Size(116, 21);
+            this.txt_device_port.TabIndex = 58;
+            // 
+            // txt_device_ip
+            // 
+            this.txt_device_ip.Location = new System.Drawing.Point(122, 30);
+            this.txt_device_ip.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_device_ip.Name = "txt_device_ip";
+            this.txt_device_ip.Size = new System.Drawing.Size(116, 21);
+            this.txt_device_ip.TabIndex = 57;
+            // 
+            // label46
+            // 
+            this.label46.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(77, 84);
+            this.label46.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(41, 28);
+            this.label46.TabIndex = 57;
+            this.label46.Text = "用户名";
+            // 
+            // label47
+            // 
+            this.label47.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(65, 56);
+            this.label47.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(53, 28);
+            this.label47.TabIndex = 57;
+            this.label47.Text = "设备端口";
+            // 
+            // label48
+            // 
+            this.label48.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(77, 28);
+            this.label48.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(41, 28);
+            this.label48.TabIndex = 57;
+            this.label48.Text = "设备IP";
             // 
             // panel12
             // 
@@ -871,23 +1042,46 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "数据库注册";
             // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 2;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel10.Controls.Add(this.txt_library_uid, 1, 1);
+            this.tableLayoutPanel10.Controls.Add(this.txt_library_psw, 1, 2);
+            this.tableLayoutPanel10.Controls.Add(this.txt_library_name, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.label37, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.label38, 0, 2);
+            this.tableLayoutPanel10.Controls.Add(this.label36, 0, 1);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(79, 20);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 3;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(292, 100);
+            this.tableLayoutPanel10.TabIndex = 63;
+            // 
+            // txt_library_uid
+            // 
+            this.txt_library_uid.Location = new System.Drawing.Point(149, 36);
+            this.txt_library_uid.Name = "txt_library_uid";
+            this.txt_library_uid.Size = new System.Drawing.Size(140, 21);
+            this.txt_library_uid.TabIndex = 7;
+            // 
+            // txt_library_psw
+            // 
+            this.txt_library_psw.Location = new System.Drawing.Point(149, 69);
+            this.txt_library_psw.Name = "txt_library_psw";
+            this.txt_library_psw.Size = new System.Drawing.Size(140, 21);
+            this.txt_library_psw.TabIndex = 6;
+            // 
             // txt_library_name
             // 
             this.txt_library_name.Location = new System.Drawing.Point(149, 3);
             this.txt_library_name.Name = "txt_library_name";
             this.txt_library_name.Size = new System.Drawing.Size(140, 21);
             this.txt_library_name.TabIndex = 10;
-            // 
-            // label36
-            // 
-            this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(90, 33);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(53, 33);
-            this.label36.TabIndex = 0;
-            this.label36.Text = "用户名：";
             // 
             // label37
             // 
@@ -911,12 +1105,16 @@
             this.label38.TabIndex = 1;
             this.label38.Text = "密码：";
             // 
-            // txt_library_uid
+            // label36
             // 
-            this.txt_library_uid.Location = new System.Drawing.Point(149, 36);
-            this.txt_library_uid.Name = "txt_library_uid";
-            this.txt_library_uid.Size = new System.Drawing.Size(140, 21);
-            this.txt_library_uid.TabIndex = 7;
+            this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(90, 33);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(53, 33);
+            this.label36.TabIndex = 0;
+            this.label36.Text = "用户名：";
             // 
             // btn_Library_Register
             // 
@@ -927,13 +1125,6 @@
             this.btn_Library_Register.Text = "注册";
             this.btn_Library_Register.UseVisualStyleBackColor = true;
             this.btn_Library_Register.Click += new System.EventHandler(this.btn_Library_Register_Click);
-            // 
-            // txt_library_psw
-            // 
-            this.txt_library_psw.Location = new System.Drawing.Point(149, 69);
-            this.txt_library_psw.Name = "txt_library_psw";
-            this.txt_library_psw.Size = new System.Drawing.Size(140, 21);
-            this.txt_library_psw.TabIndex = 6;
             // 
             // groupBox1
             // 
@@ -1470,33 +1661,35 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.tableLayoutPanel6);
-            this.groupBox5.Controls.Add(this.btn_LoginCHC);
+            this.groupBox5.Controls.Add(this.btn_LoginDevice);
             this.groupBox5.Location = new System.Drawing.Point(2, 2);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
-            this.tableLayoutPanel3.SetRowSpan(this.groupBox5, 2);
-            this.groupBox5.Size = new System.Drawing.Size(414, 683);
+            this.groupBox5.Size = new System.Drawing.Size(414, 339);
             this.groupBox5.TabIndex = 57;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "海康摄像头参数";
+            this.groupBox5.Text = "摄像头设置";
             // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 2;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.label6, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.tex_DevIP, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.label20, 0, 3);
-            this.tableLayoutPanel6.Controls.Add(this.tex_DevPort, 1, 1);
-            this.tableLayoutPanel6.Controls.Add(this.label19, 0, 2);
-            this.tableLayoutPanel6.Controls.Add(this.tex_UserName, 1, 2);
-            this.tableLayoutPanel6.Controls.Add(this.label17, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.tex_UserPwd, 1, 3);
+            this.tableLayoutPanel6.Controls.Add(this.label43, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.label20, 0, 4);
+            this.tableLayoutPanel6.Controls.Add(this.tex_UserPwd, 1, 4);
+            this.tableLayoutPanel6.Controls.Add(this.tex_UserName, 1, 3);
+            this.tableLayoutPanel6.Controls.Add(this.tex_DevPort, 1, 2);
+            this.tableLayoutPanel6.Controls.Add(this.tex_DevIP, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.label19, 0, 3);
+            this.tableLayoutPanel6.Controls.Add(this.label17, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.label6, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.comboBox_DevName, 1, 0);
             this.tableLayoutPanel6.Location = new System.Drawing.Point(69, 19);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 4;
+            this.tableLayoutPanel6.RowCount = 5;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -1505,99 +1698,117 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(240, 144);
             this.tableLayoutPanel6.TabIndex = 62;
             // 
-            // label6
+            // label43
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label43.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(77, 0);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 36);
-            this.label6.TabIndex = 57;
-            this.label6.Text = "设备IP";
-            // 
-            // tex_DevIP
-            // 
-            this.tex_DevIP.Location = new System.Drawing.Point(122, 2);
-            this.tex_DevIP.Margin = new System.Windows.Forms.Padding(2);
-            this.tex_DevIP.Name = "tex_DevIP";
-            this.tex_DevIP.Size = new System.Drawing.Size(116, 21);
-            this.tex_DevIP.TabIndex = 57;
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(65, 0);
+            this.label43.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(53, 28);
+            this.label43.TabIndex = 63;
+            this.label43.Text = "设备名称";
             // 
             // label20
             // 
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(89, 108);
+            this.label20.Location = new System.Drawing.Point(89, 112);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(29, 36);
+            this.label20.Size = new System.Drawing.Size(29, 32);
             this.label20.TabIndex = 61;
             this.label20.Text = "密码";
             // 
+            // tex_UserPwd
+            // 
+            this.tex_UserPwd.Location = new System.Drawing.Point(122, 114);
+            this.tex_UserPwd.Margin = new System.Windows.Forms.Padding(2);
+            this.tex_UserPwd.Name = "tex_UserPwd";
+            this.tex_UserPwd.Size = new System.Drawing.Size(116, 21);
+            this.tex_UserPwd.TabIndex = 60;
+            // 
+            // tex_UserName
+            // 
+            this.tex_UserName.Location = new System.Drawing.Point(122, 86);
+            this.tex_UserName.Margin = new System.Windows.Forms.Padding(2);
+            this.tex_UserName.Name = "tex_UserName";
+            this.tex_UserName.Size = new System.Drawing.Size(116, 21);
+            this.tex_UserName.TabIndex = 59;
+            // 
             // tex_DevPort
             // 
-            this.tex_DevPort.Location = new System.Drawing.Point(122, 38);
+            this.tex_DevPort.Location = new System.Drawing.Point(122, 58);
             this.tex_DevPort.Margin = new System.Windows.Forms.Padding(2);
             this.tex_DevPort.Name = "tex_DevPort";
             this.tex_DevPort.Size = new System.Drawing.Size(116, 21);
             this.tex_DevPort.TabIndex = 58;
+            // 
+            // tex_DevIP
+            // 
+            this.tex_DevIP.Location = new System.Drawing.Point(122, 30);
+            this.tex_DevIP.Margin = new System.Windows.Forms.Padding(2);
+            this.tex_DevIP.Name = "tex_DevIP";
+            this.tex_DevIP.Size = new System.Drawing.Size(116, 21);
+            this.tex_DevIP.TabIndex = 57;
             // 
             // label19
             // 
             this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(77, 72);
+            this.label19.Location = new System.Drawing.Point(77, 84);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(41, 36);
+            this.label19.Size = new System.Drawing.Size(41, 28);
             this.label19.TabIndex = 57;
             this.label19.Text = "用户名";
-            // 
-            // tex_UserName
-            // 
-            this.tex_UserName.Location = new System.Drawing.Point(122, 74);
-            this.tex_UserName.Margin = new System.Windows.Forms.Padding(2);
-            this.tex_UserName.Name = "tex_UserName";
-            this.tex_UserName.Size = new System.Drawing.Size(116, 21);
-            this.tex_UserName.TabIndex = 59;
             // 
             // label17
             // 
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(65, 36);
+            this.label17.Location = new System.Drawing.Point(65, 56);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(53, 36);
+            this.label17.Size = new System.Drawing.Size(53, 28);
             this.label17.TabIndex = 57;
             this.label17.Text = "设备端口";
             // 
-            // tex_UserPwd
+            // label6
             // 
-            this.tex_UserPwd.Location = new System.Drawing.Point(122, 110);
-            this.tex_UserPwd.Margin = new System.Windows.Forms.Padding(2);
-            this.tex_UserPwd.Name = "tex_UserPwd";
-            this.tex_UserPwd.Size = new System.Drawing.Size(116, 21);
-            this.tex_UserPwd.TabIndex = 60;
-            // 
-            // btn_LoginCHC
-            // 
-            this.btn_LoginCHC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_LoginCHC.Location = new System.Drawing.Point(160, 178);
-            this.btn_LoginCHC.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_LoginCHC.Name = "btn_LoginCHC";
-            this.btn_LoginCHC.Size = new System.Drawing.Size(77, 29);
-            this.btn_LoginCHC.TabIndex = 58;
-            this.btn_LoginCHC.Text = "登录";
-            this.btn_LoginCHC.UseVisualStyleBackColor = true;
-            this.btn_LoginCHC.Click += new System.EventHandler(this.btn_LoginCHC_Click);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(77, 28);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 28);
+            this.label6.TabIndex = 57;
+            this.label6.Text = "设备IP";
+            // 
+            // comboBox_DevName
+            // 
+            this.comboBox_DevName.FormattingEnabled = true;
+            this.comboBox_DevName.Location = new System.Drawing.Point(123, 3);
+            this.comboBox_DevName.Name = "comboBox_DevName";
+            this.comboBox_DevName.Size = new System.Drawing.Size(114, 20);
+            this.comboBox_DevName.TabIndex = 64;
+            this.comboBox_DevName.SelectedIndexChanged += new System.EventHandler(this.comboBox_DevName_SelectedIndexChanged);
+            // 
+            // btn_LoginDevice
+            // 
+            this.btn_LoginDevice.Location = new System.Drawing.Point(148, 182);
+            this.btn_LoginDevice.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_LoginDevice.Name = "btn_LoginDevice";
+            this.btn_LoginDevice.Size = new System.Drawing.Size(77, 25);
+            this.btn_LoginDevice.TabIndex = 58;
+            this.btn_LoginDevice.Text = "登录";
+            this.btn_LoginDevice.UseVisualStyleBackColor = true;
+            this.btn_LoginDevice.Click += new System.EventHandler(this.btn_LoginCHC_Click);
             // 
             // tpRegister
             // 
@@ -2421,26 +2632,6 @@
             this.pic_Library_Compare.TabStop = false;
             this.pic_Library_Compare.Click += new System.EventHandler(this.pic_Library_Compare_Click);
             // 
-            // tableLayoutPanel10
-            // 
-            this.tableLayoutPanel10.ColumnCount = 2;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.Controls.Add(this.txt_library_uid, 1, 1);
-            this.tableLayoutPanel10.Controls.Add(this.txt_library_psw, 1, 2);
-            this.tableLayoutPanel10.Controls.Add(this.txt_library_name, 1, 0);
-            this.tableLayoutPanel10.Controls.Add(this.label37, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.label38, 0, 2);
-            this.tableLayoutPanel10.Controls.Add(this.label36, 0, 1);
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(79, 20);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 3;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(292, 100);
-            this.tableLayoutPanel10.TabIndex = 63;
-            // 
             // FormMian
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2465,6 +2656,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvHitAlert)).EndInit();
             this.tabSetting.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.tableLayoutPanel11.ResumeLayout(false);
+            this.tableLayoutPanel11.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
@@ -2476,6 +2670,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudRegisterRollThresh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRegisterYawThresh)).EndInit();
             this.groupBox8.ResumeLayout(false);
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.tableLayoutPanel10.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
@@ -2542,8 +2738,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Library)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Library_Compare)).EndInit();
-            this.tableLayoutPanel10.ResumeLayout(false);
-            this.tableLayoutPanel10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2572,7 +2766,7 @@
         private System.Windows.Forms.Button btnRetriew;
         private System.Windows.Forms.TabPage tabSetting;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button btn_LoginCHC;
+        private System.Windows.Forms.Button btn_LoginDevice;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox tex_UserPwd;
@@ -2733,6 +2927,21 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.Button btn_Device_Register;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
+        private System.Windows.Forms.TextBox txt_device_name;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.TextBox txt_device_password;
+        private System.Windows.Forms.TextBox txt_device_user;
+        private System.Windows.Forms.TextBox txt_device_port;
+        private System.Windows.Forms.TextBox txt_device_ip;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.ComboBox comboBox_DevName;
     }
 }
 

@@ -28,7 +28,7 @@ namespace DataAngine.DAL
         public bool Exists(int id)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select count(1) from frs_database_table.table");
+            strSql.Append("select count(1) from frs_database_set.table");
             strSql.Append(" where id=@id");
             MySqlParameter[] parameters = {
 					new MySqlParameter("@id", MySqlDbType.Int32)
@@ -47,7 +47,7 @@ namespace DataAngine.DAL
             StringBuilder strSql = new StringBuilder();
 
 
-            strSql.Append("insert into frs_database_table.table(");
+            strSql.Append("insert into frs_database_set.table(");
             strSql.Append("name)");
             strSql.Append(" values (");
             strSql.Append("@name)");
@@ -129,7 +129,7 @@ namespace DataAngine.DAL
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("delete from frs_database_table.table ");
+            strSql.Append("delete from frs_database_set.table ");
             strSql.Append(" where id=@id");
             MySqlParameter[] parameters = {
 					new MySqlParameter("@id", MySqlDbType.Int32)
@@ -151,7 +151,7 @@ namespace DataAngine.DAL
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("delete from frs_database_table.table ");
+            strSql.Append("delete from frs_database_set.table ");
             strSql.Append(" where name=@name");
             MySqlParameter[] parameters = {
 					new MySqlParameter("@name", MySqlDbType.Int32)
@@ -177,7 +177,7 @@ namespace DataAngine.DAL
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select id,name from frs_database_table.table ");
+            strSql.Append("select id,name from frs_database_set.table ");
             strSql.Append(" where id=@id");
             MySqlParameter[] parameters = {
 					new MySqlParameter("@id", MySqlDbType.Int32)
@@ -225,7 +225,7 @@ namespace DataAngine.DAL
             StringBuilder strSql = new StringBuilder();
 
             strSql.Append("select id,name ");
-            strSql.Append(" FROM frs_database_table.table ");
+            strSql.Append(" FROM frs_database_set.table ");
            
             return DbHelperMySQL.Query(strSql.ToString(),false);
            

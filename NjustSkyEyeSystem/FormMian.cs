@@ -34,7 +34,9 @@ namespace NjustSkyEyeSystem
         public static FeatureData fa;//数据操作类
         private Capture cap;//视频处理类
 
-        private string library = "";//当前操作数据库
+        private string libraryname = "";//当前操作数据库
+        private string devicename = "";//当前操作摄像头
+        private string loginrtsp = "";//当前操作rtsp流
 
         public static string registerDataDir = "";//注册目录
         private Image imageOnShow;//正在显示中的图片帧
@@ -44,6 +46,7 @@ namespace NjustSkyEyeSystem
         readonly DataAngine.BLL.hitalert hitbll = new DataAngine.BLL.hitalert();
         readonly DataAngine.BLL.user user = new DataAngine.BLL.user();
         readonly DataAngine.BLL.table table = new DataAngine.BLL.table();
+        readonly DataAngine.BLL.device device = new DataAngine.BLL.device();
 
         //底库查询
         int PageSize = 36;
@@ -111,7 +114,8 @@ namespace NjustSkyEyeSystem
         private void InitUI()
         {
             //下拉框
-            ComboxList();
+            ComboxLibraryList();
+            ComboxDevList();
 
             flowLayoutPanel.Controls.Clear();
             lbl_CountCHC.Text = "";
@@ -622,7 +626,7 @@ namespace NjustSkyEyeSystem
                 return;
             }
 
-            fa.LoadData(library);
+            fa.LoadData(libraryname);
 
             if (rdb_CameraCHC.Checked)
             {
@@ -778,7 +782,7 @@ namespace NjustSkyEyeSystem
             picRegisterFace.Image = faceBitmap;
             if (0 == fa.Register(picRegister.Image, hitUserInfo))
             {
-                fa.LoadData(library);
+                fa.LoadData(libraryname);
                 MessageBox.Show("注册成功");
             }
             else
@@ -835,7 +839,7 @@ namespace NjustSkyEyeSystem
         {
             if (registerType == REG_IN_BUILK_FROM_DIR)//从文件夹中注册
                 //fa.RegisterInBulk1(txtRegisterDir.Text);
-                fa.RegisterInBulk1(txtRegisterDir.Text, library);
+                fa.RegisterInBulk1(txtRegisterDir.Text, libraryname);
             else if (registerType == REG_IN_BUILK_FROM_FILE)//从文件中注册
             {
                 fa.RegisterInBulkFromFile(txtRegisterFile.Text);
@@ -978,7 +982,7 @@ namespace NjustSkyEyeSystem
         {
             if (fa.LoadData(combox_DataBaseName.Text.ToString())==0)
             {
-                library = combox_DataBaseName.Text.ToString();
+                libraryname = combox_DataBaseName.Text.ToString();
                 MessageBox.Show("登录成功");
             }
             else
@@ -1006,13 +1010,13 @@ namespace NjustSkyEyeSystem
             chcFaceDetecter.DVRUserName = tex_UserName.Text;
             chcFaceDetecter.DVRPassword = tex_UserPwd.Text;
 
-            if (btn_LoginCHC.Text.Equals("登录"))
+            if (btn_LoginDevice.Text.Equals("登录"))
             {
                 ret = chcFaceDetecter.LoginDVR();
                 if (ret)
                 {
                     ShowMsgInfo("登录成功", null);
-                    btn_LoginCHC.Text = "退出";
+                    btn_LoginDevice.Text = "退出";
                 }
             }
             else
@@ -1021,7 +1025,7 @@ namespace NjustSkyEyeSystem
                 if (ret)
                 {
                     ShowMsgInfo("已退出！", null);
-                    btn_LoginCHC.Text = "登录";
+                    btn_LoginDevice.Text = "登录";
                 }
             }
 
@@ -1030,7 +1034,18 @@ namespace NjustSkyEyeSystem
 
         private void btn_LoginCHC_Click(object sender, EventArgs e)
         {
-            LoginCHC();
+            //LoginCHC();
+
+            devicename = txt_device_name.Text;
+            string DeviceName = txt_device_name.Text;
+            string DeviceIp = tex_DevIP.Text;
+            string DevicePort = tex_DevPort.Text;
+            string DeviceUser = tex_UserName.Text;
+            string DevicePsw = tex_UserPwd.Text;
+
+            loginrtsp = "rtsp://" + DeviceUser + ":" + DevicePsw + "@" + DeviceIp + ":554";
+            txtVideoAddress.Text = loginrtsp;
+            MessageBox.Show("登录成功");
         }
         # endregion
         private void btn_ExportResult_Click(object sender, EventArgs e)
@@ -1339,7 +1354,7 @@ namespace NjustSkyEyeSystem
             {
                 MessageBox.Show("请选择一张图片");
             }
-            fa.LoadData(library);
+            fa.LoadData(libraryname);
             HitAlert[] hits = fa.Search(image_Library_Compare);
             if (hits != null)
             {
@@ -1357,7 +1372,7 @@ namespace NjustSkyEyeSystem
         /// <summary>
         /// 绑定数据到组合框
         /// </summary>
-        public void ComboxList()
+        public void ComboxLibraryList()
         {
             DataSet ds = table.GetAllTable();
             DataTable dt = ds.Tables[0];
@@ -1368,13 +1383,24 @@ namespace NjustSkyEyeSystem
           
         }
 
+        public void ComboxDevList()
+        {
+            DataSet ds = device.GetAllDevice();
+            DataTable dt = ds.Tables[0];
+
+            comboBox_DevName.DataSource = dt;
+            comboBox_DevName.ValueMember = "id";
+            comboBox_DevName.DisplayMember = "name";
+
+        }
+
         private void btn_Library_Register_Click(object sender, EventArgs e)
         {
-            library = txt_library_name.Text;
+            libraryname = txt_library_name.Text;
             string regLibraryUid = txt_library_uid.Text;
             string regLibraryPsw = txt_library_psw.Text;
 
-            if (string.IsNullOrEmpty(library))
+            if (string.IsNullOrEmpty(libraryname))
             {
                 MessageBox.Show("请填写完整相关注册信息！");
                 return;
@@ -1382,18 +1408,64 @@ namespace NjustSkyEyeSystem
 
             DataAngine.Model.table table = new DataAngine.Model.table();
             DataAngine.BLL.table tablebll = new DataAngine.BLL.table();
-            table.name = library;
+            table.name = libraryname;
 
             if (true == tablebll.Add(table))
             {
-                fa.LoadData(library);
-                ComboxList();
+                fa.LoadData(libraryname);
+                ComboxLibraryList();
                 MessageBox.Show("注册成功");
             }
             else
             {
                 MessageBox.Show("注册失败，请检查");
             }
+        }
+
+        private void btn_Device_Register_Click(object sender, EventArgs e)
+        {
+            devicename = txt_device_name.Text;
+            string regDeviceName = txt_device_name.Text;
+            string regDeviceIp = txt_device_ip.Text;
+            string regDevicePort = txt_device_port.Text;
+            string regDeviceUser = txt_device_user.Text;
+            string regDevicePsw = txt_device_password.Text;
+
+            if (string.IsNullOrEmpty(devicename))
+            {
+                MessageBox.Show("请填写完整相关注册信息！");
+                return;
+            }
+
+            DataAngine.Model.device device = new DataAngine.Model.device();
+            DataAngine.BLL.device devicebll = new DataAngine.BLL.device();
+
+            device.name = regDeviceName;
+            device.ip = regDeviceIp;
+            device.port = regDevicePort;
+            device.user = regDeviceUser;
+            device.password = regDevicePsw;
+
+            if (true == devicebll.Add(device))
+            {
+                ComboxDevList();
+                MessageBox.Show("注册成功");
+            }
+            else
+            {
+                MessageBox.Show("注册失败，请检查");
+            }
+        }
+
+        private void comboBox_DevName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataSet ds = device.GetDevice(comboBox_DevName.Text.ToString());
+            DataTable dt = ds.Tables[0];
+
+            tex_DevIP.Text = dt.Rows[0]["ip"].ToString();
+            tex_DevPort.Text = dt.Rows[0]["port"].ToString();
+            tex_UserName.Text = dt.Rows[0]["user"].ToString();
+            tex_UserPwd.Text = dt.Rows[0]["password"].ToString();
         }   
 
     }
