@@ -18,7 +18,7 @@ namespace DataAngine.DBUtility
 
         //数据库连接字符串(web.config来配置)，可以动态更改connectionString支持多数据库.		
         public static string connectionString = PubConstant.ConnectionString;
-        public static string connectionStringtable = "server=127.0.0.1;database=frs_database_table;uid=root;pwd=123456";
+        public static string connectionStringtable = "server=127.0.0.1;database=frs_database_set;uid=root;pwd=123456";
         public DbHelperMySQL()
         {
         }
@@ -708,6 +708,36 @@ namespace DataAngine.DBUtility
         /// <returns>影响的记录数</returns>
         public static int ExecuteSql(string SQLString, params MySqlParameter[] cmdParms)
         {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    try
+                    {
+                        PrepareCommand(cmd, connection, null, SQLString, cmdParms);
+                        int rows = cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                        return rows;
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException e)
+                    {
+                        throw e;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 执行SQL语句，返回影响的记录数
+        /// </summary>
+        /// <param name="SQLString">SQL语句</param>
+        /// <returns>影响的记录数</returns>
+        public static int ExecuteSql(string SQLString, bool isdatabase, string libraryname, params MySqlParameter[] cmdParms)
+        {
+            if (!isdatabase)
+                return ExecuteSql(SQLString, cmdParms);
+            Console.WriteLine(libraryname);
+            connectionString = "server=127.0.0.1;database=" + libraryname + ";uid=root;pwd=123456";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 using (MySqlCommand cmd = new MySqlCommand())

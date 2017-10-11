@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\common">
+      <UniqueIdentifier>{c793e1db-c194-4ad3-b4e2-b007bb4b3170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\netserv">
+      <UniqueIdentifier>{cb34f8f9-de13-4da2-955f-0e87803c661f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common">
+      <UniqueIdentifier>{2c12f590-28e3-4d56-b3c0-db31d5136640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\netserv">
+      <UniqueIdentifier>{44751827-3a28-4907-af7c-389e96968628}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common\common.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\Logger.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="netserv\BaseMsg.h">
+      <Filter>Header Files\netserv</Filter>
+    </ClInclude>
+    <ClInclude Include="netserv\SaveImageReq.h">
+      <Filter>Header Files\netserv</Filter>
+    </ClInclude>
+    <ClInclude Include="netserv\SaveImageResp.h">
+      <Filter>Header Files\netserv</Filter>
+    </ClInclude>
+    <ClInclude Include="netserv\TcpConnectHandler.h">
+      <Filter>Header Files\netserv</Filter>
+    </ClInclude>
+    <ClInclude Include="netserv\TLV.h">
+      <Filter>Header Files\netserv</Filter>
+    </ClInclude>
+    <ClInclude Include="netserv\TLVEncodedObject.h">
+      <Filter>Header Files\netserv</Filter>
+    </ClInclude>
+    <ClInclude Include="INF2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="INF5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="INF4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="common\common.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\Logger.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="netserv\BaseMsg.cpp">
+      <Filter>Source Files\netserv</Filter>
+    </ClCompile>
+    <ClCompile Include="netserv\SaveImageReq.cpp">
+      <Filter>Source Files\netserv</Filter>
+    </ClCompile>
+    <ClCompile Include="netserv\SaveImageResp.cpp">
+      <Filter>Source Files\netserv</Filter>
+    </ClCompile>
+    <ClCompile Include="netserv\TcpConnectHandler.cpp">
+      <Filter>Source Files\netserv</Filter>
+    </ClCompile>
+    <ClCompile Include="netserv\TLV.cpp">
+      <Filter>Source Files\netserv</Filter>
+    </ClCompile>
+    <ClCompile Include="netserv\TLVEncodedObject.cpp">
+      <Filter>Source Files\netserv</Filter>
+    </ClCompile>
+    <ClCompile Include="INF4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

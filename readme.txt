@@ -1,7 +1,8 @@
-init
 环境要求：window系统，，net4.0，mysql数据库
 
-数据库建表文件：FaceAgainMysql.sql
+数据库建表文件：FaceAgainMysql_Set.sql
+		FaceAgainMysql.sql
+必须先执行FaceAgainMysql_Set.sql，后执行FaceAgainMysql.sql
 
 运行：	配置海信网络科技.exe.config，将其中的数据库连接密码改为本地数据库密码
 	运行海信网络科技.exe

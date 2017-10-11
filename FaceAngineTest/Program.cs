@@ -48,18 +48,21 @@ namespace FaceAngineTest
         {
             InitFRS();
             FeatureData fa = new FeatureData();
-            fa.LoadData();
-            getPath("D:/Users/McLarry/Downloads/测试库1(101)/测试库1(100)/测试图像");
-            foreach (string filename in list)
-            {
-                Console.WriteLine(filename);
-                Image image = Image.FromFile(filename);
-                Console.WriteLine("aaa");
-                HitAlert[] hits = fa.Search(image);
-                Console.WriteLine("bbb");
-                //Console.WriteLine(hits[0].Details.Length); 
-                //Console.WriteLine(hits[0].Details[0].Score);
-            }                        
+            fa.LoadData("hello");
+            Image image = Image.FromFile("D:/Users/McLarry/Downloads/测试库3(IDCF)/测试库3(IDCF)/测试库/0b214fdcd6afb9d1d7683e72e0e81c21.jpg");
+            HitAlert[] hits = fa.Search(image);
+            Console.WriteLine("here"+hits.Length);
+            //getPath("D:/Users/McLarry/Downloads/测试库1(101)/测试库1(100)/测试图像");
+            //foreach (string filename in list)
+            //{
+            //    Console.WriteLine(filename);
+            //    Image image = Image.FromFile(filename);
+            //    Console.WriteLine("aaa");
+            //    HitAlert[] hits = fa.Search(image);
+            //    Console.WriteLine("bbb");
+            //    //Console.WriteLine(hits[0].Details.Length); 
+            //    //Console.WriteLine(hits[0].Details[0].Score);
+            //}                        
         }
 
         public static List<string> getPath(string path)

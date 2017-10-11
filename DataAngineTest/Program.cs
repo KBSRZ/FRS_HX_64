@@ -20,6 +20,15 @@ namespace DataAngineTest
             usr.quality_score = 1.2f;
             usrbll.Add(usr);
         }
+
+        static void libraryAddTest()
+        {
+            DataAngine.BLL.table tablebll = new DataAngine.BLL.table();
+            DataAngine.Model.table table = new DataAngine.Model.table();
+            table.name = "test";
+
+            tablebll.Add(table);
+        }
         static void hitrecordAddTest()
         {
             DataAngine.BLL.hitrecord habll = new DataAngine.BLL.hitrecord();

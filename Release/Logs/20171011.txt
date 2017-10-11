@@ -1,0 +1,165 @@
+2017-10-11 14:12:52,218: Application_ThreadException
+MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host '127.0.0.1' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'frsdb' ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'frsdb'
+   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, MySqlParameter[] cmdParms) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DBUtility\DbHelperMySQL.cs:行号 724
+   在 DataAngine.DAL.table.Add(table model) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DAL\table.cs:行号 117
+   在 NjustSkyEyeSystem.FormMian.btn_Library_Register_Click(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1409
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+2017-10-11 14:13:49,387: Application_ThreadException
+MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host '127.0.0.1' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'frsdb' ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'frsdb'
+   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, MySqlParameter[] cmdParms) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DBUtility\DbHelperMySQL.cs:行号 724
+   在 DataAngine.DAL.table.Add(table model) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DAL\table.cs:行号 117
+   在 NjustSkyEyeSystem.FormMian.btn_Library_Register_Click(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1409
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+2017-10-11 14:28:35,917: Application_ThreadException
+MySql.Data.MySqlClient.MySqlException (0x80004005): Column 'ip' cannot be null
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, Boolean isdatabase, MySqlParameter[] cmdParms) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DBUtility\DbHelperMySQL.cs:行号 797
+   在 DataAngine.DAL.device.Add(device model) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DAL\device.cs:行号 58
+   在 NjustSkyEyeSystem.FormMian.btn_Device_Register_Click(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1445
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+2017-10-11 14:32:49,384: Application_ThreadException
+System.Exception: Table 'frsdb.device' doesn't exist
+   在 DataAngine.DBUtility.DbHelperMySQL.Query(String SQLString) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DBUtility\DbHelperMySQL.cs:行号 603
+   在 NjustSkyEyeSystem.FormMian.comboBox_DevName_SelectedIndexChanged(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1460
+   在 System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   在 System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
+   在 System.Windows.Forms.ComboBox.RefreshItems()
+   在 System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
+   在 System.Windows.Forms.ListControl.set_ValueMember(String value)
+   在 NjustSkyEyeSystem.FormMian.ComboxDevList() 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1391
+   在 NjustSkyEyeSystem.FormMian.btn_Device_Register_Click(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1449
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+2017-10-11 14:41:21,441: Application_ThreadException
+System.Exception: Table 'frsdb.device' doesn't exist
+   在 DataAngine.DBUtility.DbHelperMySQL.Query(String SQLString) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DBUtility\DbHelperMySQL.cs:行号 603
+   在 NjustSkyEyeSystem.FormMian.comboBox_DevName_SelectedIndexChanged(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1460
+   在 System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   在 System.Windows.Forms.ComboBox.set_SelectedIndex(Int32 value)
+   在 System.Windows.Forms.ComboBox.RefreshItems()
+   在 System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
+   在 System.Windows.Forms.ListControl.set_ValueMember(String value)
+   在 NjustSkyEyeSystem.FormMian.ComboxDevList() 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1391
+   在 NjustSkyEyeSystem.FormMian.btn_Device_Register_Click(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1449
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+2017-10-11 14:41:28,850: Application_ThreadException
+System.Exception: Table 'frsdb.device' doesn't exist
+   在 DataAngine.DBUtility.DbHelperMySQL.Query(String SQLString) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DBUtility\DbHelperMySQL.cs:行号 603
+   在 NjustSkyEyeSystem.FormMian.comboBox_DevName_SelectedIndexChanged(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1460
+   在 System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   在 System.Windows.Forms.ComboBox.WmReflectCommand(Message& m)
+   在 System.Windows.Forms.ComboBox.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+2017-10-11 14:41:30,530: Application_ThreadException
+System.Exception: Table 'frsdb.device' doesn't exist
+   在 DataAngine.DBUtility.DbHelperMySQL.Query(String SQLString) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DBUtility\DbHelperMySQL.cs:行号 603
+   在 NjustSkyEyeSystem.FormMian.comboBox_DevName_SelectedIndexChanged(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1460
+   在 System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   在 System.Windows.Forms.ComboBox.WmReflectCommand(Message& m)
+   在 System.Windows.Forms.ComboBox.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+2017-10-11 14:41:35,664: Application_ThreadException
+System.Exception: Table 'frsdb.device' doesn't exist
+   在 DataAngine.DBUtility.DbHelperMySQL.Query(String SQLString) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DBUtility\DbHelperMySQL.cs:行号 603
+   在 NjustSkyEyeSystem.FormMian.comboBox_DevName_SelectedIndexChanged(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1460
+   在 System.Windows.Forms.ComboBox.OnSelectedIndexChanged(EventArgs e)
+   在 System.Windows.Forms.ComboBox.WmReflectCommand(Message& m)
+   在 System.Windows.Forms.ComboBox.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+2017-10-11 14:49:49,268: Application_ThreadException
+MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host '127.0.0.1' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'frsdb' ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'frsdb'
+   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, MySqlParameter[] cmdParms) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DBUtility\DbHelperMySQL.cs:行号 724
+   在 DataAngine.DAL.table.Add(table model) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DAL\table.cs:行号 117
+   在 NjustSkyEyeSystem.FormMian.btn_Library_Register_Click(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1411
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+2017-10-11 15:06:14,476: Application_ThreadException
+MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host '127.0.0.1' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'frsdb' ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'frsdb'
+   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, MySqlParameter[] cmdParms) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DBUtility\DbHelperMySQL.cs:行号 724
+   在 DataAngine.DAL.table.Add(table model) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DAL\table.cs:行号 117
+   在 NjustSkyEyeSystem.FormMian.btn_Library_Register_Click(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1411
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+2017-10-11 15:22:24,978: Application_ThreadException
+MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host '127.0.0.1' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'frsdb' ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'frsdb'
+   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, MySqlParameter[] cmdParms) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DBUtility\DbHelperMySQL.cs:行号 724
+   在 DataAngine.DAL.table.Add(table model) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DAL\table.cs:行号 117
+   在 NjustSkyEyeSystem.FormMian.btn_Library_Register_Click(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1411
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+2017-10-11 15:23:32,426: Application_ThreadException
+MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host '127.0.0.1' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'frsdb' ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'frsdb'
+   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, MySqlParameter[] cmdParms) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DBUtility\DbHelperMySQL.cs:行号 724
+   在 DataAngine.DAL.table.Add(table model) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\DataAngine\DAL\table.cs:行号 117
+   在 NjustSkyEyeSystem.FormMian.btn_Library_Register_Click(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_1.6_HX\NjustSkyEyeSystem\FormMian.cs:行号 1411
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)

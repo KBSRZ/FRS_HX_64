@@ -1,0 +1,53 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly INF, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Net, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Class INF.INF4: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Int32 Port 'get set' : 
+    System.String IP 'get set' : 
+  Methods:
+    get_IP(): PrivateScope, Public, HideBySig, SpecialName
+    set_IP(String): PrivateScope, Public, HideBySig, SpecialName
+    get_Port(): PrivateScope, Public, HideBySig, SpecialName
+    set_Port(Int32): PrivateScope, Public, HideBySig, SpecialName
+    Send(Object): PrivateScope, Public, HideBySig
+    SendAsync(String, String, SaveImageType, String, Byte[]): PrivateScope, Public, HideBySig
+Struct INF.INF4+SaveImageType: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    SaveImageType SaveImageType_Normal_Face = 1 : Public, Static, Literal, HasDefault
+    SaveImageType SaveImageType_Alarm_Face = 2 : Public, Static, Literal, HasDefault
+    SaveImageType SaveImageType_Alarm_CapturedImage = 3 : Public, Static, Literal, HasDefault
+    SaveImageType SaveImageType_Alarm_CapturedVideo = 4 : Public, Static, Literal, HasDefault
+Class INF.INF5: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(System.String, System.String, System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String CompanyCode 'get set' : 
+    System.String CameraCode 'get set' : 
+    System.String DefenseCode 'get set' : 
+    System.String RequestUriString 'get set' : 
+  Methods:
+    get_RequestUriString(): PrivateScope, Public, HideBySig, SpecialName
+    set_RequestUriString(String): PrivateScope, Public, HideBySig, SpecialName
+    get_DefenseCode(): PrivateScope, Public, HideBySig, SpecialName
+    set_DefenseCode(String): PrivateScope, Public, HideBySig, SpecialName
+    get_CameraCode(): PrivateScope, Public, HideBySig, SpecialName
+    set_CameraCode(String): PrivateScope, Public, HideBySig, SpecialName
+    get_CompanyCode(): PrivateScope, Public, HideBySig, SpecialName
+    set_CompanyCode(String): PrivateScope, Public, HideBySig, SpecialName
+    ReportAlarmAsync(String, String, String, String, String, String, String): PrivateScope, Public, HideBySig
+    ReportAlarm(Object): PrivateScope, Public, HideBySig

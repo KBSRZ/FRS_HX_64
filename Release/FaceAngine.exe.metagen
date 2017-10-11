@@ -1,0 +1,375 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly FaceAngine, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly DataAngine, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly INF, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class FRS.Util.Utility: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    copymemory(IntPtr, IntPtr, Int32): PrivateScope, Public, Static, HideBySig
+    copymemory(IntPtr, IntPtr, UInt32): PrivateScope, Public, Static, HideBySig
+    copymemory(Void*, Void*, Int32): PrivateScope, Public, Static, HideBySig
+    copymemory(Void*, Void*, UInt32): PrivateScope, Public, Static, HideBySig
+    zeromemory(IntPtr, Int32): PrivateScope, Public, Static, HideBySig
+    zeromemory(IntPtr, UInt32): PrivateScope, Public, Static, HideBySig
+    zeromemory(Void*, Int32): PrivateScope, Public, Static, HideBySig
+    zeromemory(Void*, UInt32): PrivateScope, Public, Static, HideBySig
+    SizeOf(Type): PrivateScope, Public, Static, HideBySig
+Class FRS.Util.BitmapConverter: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    ToMat(Bitmap, Mat*): PrivateScope, Public, Static, HideBySig
+    ToMat(Mat*, Image): PrivateScope, Public, Static, HideBySig
+    ToMat(Mat*, Bitmap): PrivateScope, Public, Static, HideBySig
+    ToBitmap(Mat*, Bitmap): PrivateScope, Public, Static, HideBySig
+    ToBitmap(Mat*, PixelFormat* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    ToBitmap(Mat*): PrivateScope, Public, Static, HideBySig
+Struct FRS.FRSFaceAngle: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Int32 yaw : Public
+    Int32 pitch : Public
+    Int32 roll : Public
+Struct FRS.FRSRECT: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Int32 left IsLong : Public
+    Int32 top IsLong : Public
+    Int32 right IsLong : Public
+    Int32 bottom IsLong : Public
+Struct FRS.FRSPOINT: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Int32 x IsLong : Public
+    Int32 y IsLong : Public
+Struct FRS.FRSFacePos: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    FRS.FRSRECT rcFace : Public
+    FRS.FRSPOINT ptLeftEye : Public
+    FRS.FRSPOINT ptRightEye : Public
+    FRS.FRSPOINT ptMouth : Public
+    FRS.FRSPOINT ptNose : Public
+    FRS.FRSFaceAngle fAngle : Public
+    Int32 nQuality : Public
+Struct FRS.FRSParam: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Int32 nMinFaceSize : Public
+    Int32 nRollAngle : Public
+    Boolean bOnlyDetect : Public
+    UInt32 dwReserved IsLong : Public
+Class FRS.FaceImage: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Create(Int16, ValueType FRSParam IsBoxed): PrivateScope, Public, Static, HideBySig
+    DetectFace(Image, Int32, FRSFacePos[], Int32): PrivateScope, Public, Static, HideBySig
+    DetectFace(Int16, Image, Int32, FRSFacePos[], Int32): PrivateScope, Public, Static, HideBySig
+    Release(): PrivateScope, Public, Static, HideBySig
+Class FRS.Feature: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Init(Int32): PrivateScope, Public, Static, HideBySig
+    Size(): PrivateScope, Public, Static, HideBySig
+    Compare(Byte[], Byte[]): PrivateScope, Public, Static, HideBySig
+    Release(): PrivateScope, Public, Static, HideBySig
+Struct FRS.UserInfo: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Properties:
+    System.String type 'get set' : 
+    System.String imgPath 'get set' : 
+    System.String imageId 'get set' : 
+    System.String cardId 'get set' : 
+    System.String gender 'get set' : 
+    System.String peopleId 'get set' : 
+    System.String name 'get set' : 
+  Methods:
+    get_name(): PrivateScope, Public, HideBySig, SpecialName
+    set_name(String): PrivateScope, Public, HideBySig, SpecialName
+    get_peopleId(): PrivateScope, Public, HideBySig, SpecialName
+    set_peopleId(String): PrivateScope, Public, HideBySig, SpecialName
+    get_gender(): PrivateScope, Public, HideBySig, SpecialName
+    set_gender(String): PrivateScope, Public, HideBySig, SpecialName
+    get_cardId(): PrivateScope, Public, HideBySig, SpecialName
+    set_cardId(String): PrivateScope, Public, HideBySig, SpecialName
+    get_imageId(): PrivateScope, Public, HideBySig, SpecialName
+    set_imageId(String): PrivateScope, Public, HideBySig, SpecialName
+    get_imgPath(): PrivateScope, Public, HideBySig, SpecialName
+    set_imgPath(String): PrivateScope, Public, HideBySig, SpecialName
+    get_type(): PrivateScope, Public, HideBySig, SpecialName
+    set_type(String): PrivateScope, Public, HideBySig, SpecialName
+Struct FRS.HitAlertDetail: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Properties:
+    System.String type 'get set' : 
+    System.String imgPath 'get set' : 
+    System.String imageId 'get set' : 
+    System.String cardId 'get set' : 
+    System.String gender 'get set' : 
+    System.String peopleId 'get set' : 
+    System.String name 'get set' : 
+    Single Score 'get set' : 
+    UInt32 UserId 'get set' : 
+  Methods:
+    get_UserId(): PrivateScope, Public, HideBySig, SpecialName
+    set_UserId(UInt32): PrivateScope, Public, HideBySig, SpecialName
+    get_Score(): PrivateScope, Public, HideBySig, SpecialName
+    set_Score(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_name(): PrivateScope, Public, HideBySig, SpecialName
+    set_name(String): PrivateScope, Public, HideBySig, SpecialName
+    get_peopleId(): PrivateScope, Public, HideBySig, SpecialName
+    set_peopleId(String): PrivateScope, Public, HideBySig, SpecialName
+    get_gender(): PrivateScope, Public, HideBySig, SpecialName
+    set_gender(String): PrivateScope, Public, HideBySig, SpecialName
+    get_cardId(): PrivateScope, Public, HideBySig, SpecialName
+    set_cardId(String): PrivateScope, Public, HideBySig, SpecialName
+    get_imageId(): PrivateScope, Public, HideBySig, SpecialName
+    set_imageId(String): PrivateScope, Public, HideBySig, SpecialName
+    get_imgPath(): PrivateScope, Public, HideBySig, SpecialName
+    set_imgPath(String): PrivateScope, Public, HideBySig, SpecialName
+    get_type(): PrivateScope, Public, HideBySig, SpecialName
+    set_type(String): PrivateScope, Public, HideBySig, SpecialName
+Class FRS.HitAlert: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    FRS.HitAlertDetail[] Details 'get set' : 
+    System.ValueType OccurTime 'get set' DateTime IsBoxed : 
+    System.ValueType Threshold 'get set' Single IsBoxed : 
+    System.Drawing.Image QueryFace 'get set' : 
+  Methods:
+    get_QueryFace(): PrivateScope, Public, HideBySig, SpecialName
+    set_QueryFace(Image): PrivateScope, Public, HideBySig, SpecialName
+    get_Threshold(): PrivateScope, Public, HideBySig, SpecialName
+    set_Threshold(ValueType Single IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    get_OccurTime(): PrivateScope, Public, HideBySig, SpecialName
+    set_OccurTime(ValueType DateTime IsBoxed): PrivateScope, Public, HideBySig, SpecialName
+    get_Details(): PrivateScope, Public, HideBySig, SpecialName
+    set_Details(HitAlertDetail[]): PrivateScope, Public, HideBySig, SpecialName
+Class FRS.CountScore: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Int32, Single): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Int32 count : Public
+    Single score : Public
+    System.String name : Public
+    System.String imgPath : Public
+Class FRS.LocateFaceInfo: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String rectImgInfo : Public
+  Properties:
+    System.Drawing.Image[] FaceImgs 'get set' : 
+  Methods:
+    get_FaceImgs(): PrivateScope, Public, HideBySig, SpecialName
+    set_FaceImgs(Image[]): PrivateScope, Public, HideBySig, SpecialName
+Class FRS.FeatureData: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    Int32 RegisterFaceQualityThresh 'get set' : 
+    Int32 RegisterFaceRollThresh 'get set' : 
+    Int32 RegisterFacePitchThresh 'get set' : 
+    Int32 RegisterFaceYawThresh 'get set' : 
+    Int32 RegisterFaceHeightThresh 'get set' : 
+    Int32 RegisterFaceWidthThresh 'get set' : 
+    Single Times 'get set' : 
+    Int32 SearchFaceQualityThresh 'get set' : 
+    Int32 MaxPersonNum 'get set' : 
+    Int32 TopK 'get set' : 
+    Single ScoreThresh 'get set' : 
+    Int32 SearchFaceRollThresh 'get set' : 
+    Int32 SearchFacePitchThresh 'get set' : 
+    Int32 SearchFaceYawThresh 'get set' : 
+    Int32 SearchFaceHeightThresh 'get set' : 
+    Int32 SearchFaceWidthThresh 'get set' : 
+  Events:
+    ShowMsgCallback ShowMsgEvent: SpecialName
+    RegisterOneFinisedCallback RegisterOneFinisedEvent: SpecialName
+  Methods:
+    get_SearchFaceWidthThresh(): PrivateScope, Public, HideBySig, SpecialName
+    set_SearchFaceWidthThresh(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_SearchFaceHeightThresh(): PrivateScope, Public, HideBySig, SpecialName
+    set_SearchFaceHeightThresh(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_SearchFaceYawThresh(): PrivateScope, Public, HideBySig, SpecialName
+    set_SearchFaceYawThresh(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_SearchFacePitchThresh(): PrivateScope, Public, HideBySig, SpecialName
+    set_SearchFacePitchThresh(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_SearchFaceRollThresh(): PrivateScope, Public, HideBySig, SpecialName
+    set_SearchFaceRollThresh(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_ScoreThresh(): PrivateScope, Public, HideBySig, SpecialName
+    set_ScoreThresh(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_TopK(): PrivateScope, Public, HideBySig, SpecialName
+    set_TopK(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_MaxPersonNum(): PrivateScope, Public, HideBySig, SpecialName
+    set_MaxPersonNum(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_SearchFaceQualityThresh(): PrivateScope, Public, HideBySig, SpecialName
+    set_SearchFaceQualityThresh(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Times(): PrivateScope, Public, HideBySig, SpecialName
+    set_Times(Single): PrivateScope, Public, HideBySig, SpecialName
+    get_RegisterFaceWidthThresh(): PrivateScope, Public, HideBySig, SpecialName
+    set_RegisterFaceWidthThresh(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_RegisterFaceHeightThresh(): PrivateScope, Public, HideBySig, SpecialName
+    set_RegisterFaceHeightThresh(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_RegisterFaceYawThresh(): PrivateScope, Public, HideBySig, SpecialName
+    set_RegisterFaceYawThresh(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_RegisterFacePitchThresh(): PrivateScope, Public, HideBySig, SpecialName
+    set_RegisterFacePitchThresh(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_RegisterFaceRollThresh(): PrivateScope, Public, HideBySig, SpecialName
+    set_RegisterFaceRollThresh(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_RegisterFaceQualityThresh(): PrivateScope, Public, HideBySig, SpecialName
+    set_RegisterFaceQualityThresh(Int32): PrivateScope, Public, HideBySig, SpecialName
+    RegisterInBulk(String): PrivateScope, Public, HideBySig
+    RegisterInBulkFromFile(String): PrivateScope, Public, HideBySig
+    RegisterInBulk1(String): PrivateScope, Public, HideBySig
+    Register(String): PrivateScope, Public, HideBySig
+    Register(String, ValueType UserInfo IsBoxed): PrivateScope, Public, HideBySig
+    Register(Image, ValueType UserInfo IsBoxed): PrivateScope, Public, HideBySig
+    Register(String, String): PrivateScope, Public, HideBySig
+    Unregister(String): PrivateScope, Public, HideBySig
+    LoadData(): PrivateScope, Public, HideBySig
+    Search(Image): PrivateScope, Public, HideBySig
+    Search(Byte[]): PrivateScope, Public, HideBySig
+    SearchBulk(List`1): PrivateScope, Public, HideBySig
+    LocateFace(Mat* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    TagFacePos(Mat* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    BlurrFaceEliminate(Mat* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    BlurrFaceEliminate(Image): PrivateScope, Public, HideBySig
+    RecordHitInfo(HitAlert[]): PrivateScope, Public, HideBySig
+    add_RegisterOneFinisedEvent(RegisterOneFinisedCallback): PrivateScope, Public, HideBySig, SpecialName
+    remove_RegisterOneFinisedEvent(RegisterOneFinisedCallback): PrivateScope, Public, HideBySig, SpecialName
+    add_ShowMsgEvent(ShowMsgCallback): PrivateScope, Public, HideBySig, SpecialName
+    remove_ShowMsgEvent(ShowMsgCallback): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class FRS.FeatureData+RegisterOneFinisedCallback: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(Int32, String): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(Int32, String, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class FRS.FeatureData+ShowMsgCallback: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(String, Exception): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(String, Exception, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class FRS.Capture: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(FRS.FeatureData): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    Int32 MatchFaceCount 'get set' : 
+    Int32 CollectFaceCount 'get set' : 
+    Int32 CatchFaceCount 'get set' : 
+    System.DateTime TimeStart 'get set' : 
+    Int32 Interval 'get set' : 
+    Boolean IsRun 'get ' : 
+  Events:
+    ShowMsgCallback ShowMsgEvent: SpecialName
+    ShowCountCallback ShowCountEvent: SpecialName
+    LocateFaceCallback LocateFaceReturnEvent: SpecialName
+    ImageGrabbedCallback ImageGrabbedEvent: SpecialName
+    HitAlertCallback HitAlertReturnEvent: SpecialName
+  Methods:
+    SetDataPath(String): PrivateScope, Public, HideBySig
+    Start(Int32): PrivateScope, Public, HideBySig
+    Start(String): PrivateScope, Public, HideBySig
+    Start(): PrivateScope, Public, HideBySig
+    Stop(): PrivateScope, Public, HideBySig
+    CatchFaceImg(Image, Int32): PrivateScope, Public, HideBySig
+    LocateFaceImg(Mat*, Int32): PrivateScope, Public, HideBySig
+    MatchFaceImg(Object): PrivateScope, Public, HideBySig
+    DetectFace4CHC(List`1, Int32): PrivateScope, Public, HideBySig
+    DetectFace4CHC(Image, Int32): PrivateScope, Public, HideBySig
+    CollectTrainData4CHC(List`1, List`1, List`1, HitAlert): PrivateScope, Public, HideBySig
+    Retrive(): PrivateScope, Public, HideBySig
+    get_IsRun(): PrivateScope, Public, HideBySig, SpecialName
+    get_Interval(): PrivateScope, Public, HideBySig, SpecialName
+    set_Interval(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_TimeStart(): PrivateScope, Public, HideBySig, SpecialName
+    set_TimeStart(DateTime): PrivateScope, Public, HideBySig, SpecialName
+    get_CatchFaceCount(): PrivateScope, Public, HideBySig, SpecialName
+    set_CatchFaceCount(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_CollectFaceCount(): PrivateScope, Public, HideBySig, SpecialName
+    set_CollectFaceCount(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_MatchFaceCount(): PrivateScope, Public, HideBySig, SpecialName
+    set_MatchFaceCount(Int32): PrivateScope, Public, HideBySig, SpecialName
+    add_HitAlertReturnEvent(HitAlertCallback): PrivateScope, Public, HideBySig, SpecialName
+    remove_HitAlertReturnEvent(HitAlertCallback): PrivateScope, Public, HideBySig, SpecialName
+    add_ImageGrabbedEvent(ImageGrabbedCallback): PrivateScope, Public, HideBySig, SpecialName
+    remove_ImageGrabbedEvent(ImageGrabbedCallback): PrivateScope, Public, HideBySig, SpecialName
+    add_LocateFaceReturnEvent(LocateFaceCallback): PrivateScope, Public, HideBySig, SpecialName
+    remove_LocateFaceReturnEvent(LocateFaceCallback): PrivateScope, Public, HideBySig, SpecialName
+    add_ShowCountEvent(ShowCountCallback): PrivateScope, Public, HideBySig, SpecialName
+    remove_ShowCountEvent(ShowCountCallback): PrivateScope, Public, HideBySig, SpecialName
+    add_ShowMsgEvent(ShowMsgCallback): PrivateScope, Public, HideBySig, SpecialName
+    remove_ShowMsgEvent(ShowMsgCallback): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class FRS.Capture+HitAlertCallback: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(HitAlert[]): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(HitAlert[], AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class FRS.Capture+ImageGrabbedCallback: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class FRS.Capture+LocateFaceCallback: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(Image[]): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(Image[], AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class FRS.Capture+ShowCountCallback: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(Int32, Int32): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(Int32, Int32, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class FRS.Capture+ShowMsgCallback: AutoLayout, AnsiClass, Class, NestedPublic, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(String, Exception): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(String, Exception, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Struct FRS.ReturnCode: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    Int32 SUCCESS IsConst : Public, Static, HasDefault
+    Int32 FILE_NOT_FOUND IsConst : Public, Static, HasDefault
+    Int32 IMAGE_RAED_FAILED IsConst : Public, Static, HasDefault
+    Int32 IMAGE_TOO_SMALL IsConst : Public, Static, HasDefault
+    Int32 WRITE_TO_DATABASE_FAILED IsConst : Public, Static, HasDefault
+    Int32 NO_FACE IsConst : Public, Static, HasDefault
+    Int32 ILLEGAL_FACE_ANGLE IsConst : Public, Static, HasDefault
+    Int32 ILLEGAL_FACE_QUALITY IsConst : Public, Static, HasDefault
+    Int32 ILLEGAL_FACE_SIZE IsConst : Public, Static, HasDefault
+    Int32 UNKOWN_EXCEPTION IsConst : Public, Static, HasDefault
+    Int32 NO_FREE_CHANNEL IsConst : Public, Static, HasDefault
+Class FRS.Util.ImageHelper: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    ImageToBytes(Image): PrivateScope, Public, Static, HideBySig
+    BytesToImage(Byte[]): PrivateScope, Public, Static, HideBySig
