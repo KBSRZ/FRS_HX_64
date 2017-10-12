@@ -633,7 +633,6 @@ namespace NjustSkyEyeSystem
             }
 
             fa.LoadData(libraryname);
-            MessageBox.Show("loadlibrary suc");
             if (rdb_CameraCHC.Checked)
             {
                 startCaptureCHC();
@@ -949,7 +948,7 @@ namespace NjustSkyEyeSystem
         private void UpdateDGVHitAlert(DataTable dt)
         {
             dgvHitAlert.Rows.Clear();
-            for (int i = dt.Rows.Count - 1; i > 0 && dt.Rows.Count - i < 1000; i--)
+            for (int i = dt.Rows.Count - 1; i >= 0 && dt.Rows.Count - i < 1000; i--)
             {
 
                 DataGridViewRow dgvr = new DataGridViewRow();
