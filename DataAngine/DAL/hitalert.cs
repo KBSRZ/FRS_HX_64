@@ -155,6 +155,55 @@ namespace DataAngine.DAL
         }
 
         /// <summary>
+        /// 获得数据列表
+        /// </summary>
+        public DataSet GetList(string strWhere, string library)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select * ");
+            strSql.Append(" FROM hitalert ");
+            if (strWhere.Trim() != "")
+            {
+                strSql.Append(" where " + strWhere);
+            }
+            return DbHelperMySQL.Query(strSql.ToString(), true, library);
+        }
+
+        /// <summary>
+        /// 分页获得数据列表
+        /// </summary>
+        public DataSet GetList(string strWhere, int startIndex, int pageSize)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select * ");
+            strSql.Append(" FROM hitalert ");
+            if (strWhere.Trim() != "")
+            {
+                strSql.Append(" where " + strWhere);
+            }
+            strSql.Append(" limit " + startIndex + ", " + pageSize);
+
+            return DbHelperMySQL.Query(strSql.ToString());
+        }
+
+        /// <summary>
+        /// 分页获得数据列表
+        /// </summary>
+        public DataSet GetList(string strWhere, int startIndex, int pageSize,string library)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select * ");
+            strSql.Append(" FROM hitalert ");
+            if (strWhere.Trim() != "")
+            {
+                strSql.Append(" where " + strWhere);
+            }
+            strSql.Append(" limit " + startIndex + ", " + pageSize);
+
+            return DbHelperMySQL.Query(strSql.ToString(), true, library);
+        }
+
+        /// <summary>
         /// 获取记录总数
         /// </summary>
         public int GetRecordCount(string strWhere)

@@ -110,11 +110,32 @@ namespace DataAngine.BLL
             return DataTableToList(ds.Tables[0]);
 
         }
+
         public DataSet GetListByTime(DateTime startTime, DateTime endTime)
         {
             string strWhere = string.Format("occur_time between '{0}' and '{1}'", startTime.ToString("yyyy-MM-dd HH:mm:ss"), endTime.ToString("yyyy-MM-dd HH:mm:ss"));
             return dal.GetList(strWhere);
         }
+
+        public DataSet GetListByTime(DateTime startTime, DateTime endTime, string library)
+        {
+            string strWhere = string.Format("occur_time between '{0}' and '{1}'", startTime.ToString("yyyy-MM-dd HH:mm:ss"), endTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            return dal.GetList(strWhere,library);
+        }
+
+        //分页时间查询
+        public DataSet GetListByTime(DateTime startTime, DateTime endTime, int startIndex, int pageSize)
+        {
+            string strWhere = string.Format("occur_time between '{0}' and '{1}'", startTime.ToString("yyyy-MM-dd HH:mm:ss"), endTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            return dal.GetList(strWhere, startIndex, pageSize);
+        }
+
+        //分页时间查询
+        public DataSet GetListByTime(DateTime startTime, DateTime endTime, int startIndex, int pageSize, string library)
+        {
+            string strWhere = string.Format("occur_time between '{0}' and '{1}'", startTime.ToString("yyyy-MM-dd HH:mm:ss"), endTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            return dal.GetList(strWhere, startIndex, pageSize, library);
+        }  
         
 		#endregion  ExtensionMethod
 

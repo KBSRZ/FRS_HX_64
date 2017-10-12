@@ -49,10 +49,16 @@ namespace NjustSkyEyeSystem
         readonly DataAngine.BLL.device device = new DataAngine.BLL.device();
 
         //底库查询
-        int PageSize = 36;
-        int CurPage;
-        int Count_Record;
-        int Count_Page;
+        int PageSize_Library = 36;
+        int CurPage_Library;
+        int Count_Record_Library;
+        int Count_Page_Library;
+
+        //HitAlert查询
+        int PageSize_HitAlert = 10;
+        int CurPage_HitAlert;
+        int Count_Record_HitAlert;
+        int Count_Page_HitAlert;
 
         //已告警的用户项
         private Dictionary<uint, HitUserItemInfo> hitUserItemMap = new Dictionary<uint, HitUserItemInfo>();
@@ -627,7 +633,7 @@ namespace NjustSkyEyeSystem
             }
 
             fa.LoadData(libraryname);
-
+            MessageBox.Show("loadlibrary suc");
             if (rdb_CameraCHC.Checked)
             {
                 startCaptureCHC();
@@ -972,8 +978,38 @@ namespace NjustSkyEyeSystem
         }
         private void btnRetriew_Click(object sender, EventArgs e)
         {
-            DataSet ds = hitbll.GetListByTime(dtpStart.Value, dtpend.Value);
-            UpdateDGVHitAlert(ds.Tables[0]);
+                   
+            DataSet ds = hitbll.GetListByTime(dtpStart.Value, dtpend.Value, libraryname);
+
+            if (0 == ds.Tables.Count)
+            {
+                MessageBox.Show("未查询到符合人员");
+                return;
+            }
+
+            Count_Record_HitAlert = ds.Tables[0].Rows.Count;
+            txt_Count_Record_HitAlert.Text = Count_Record_HitAlert.ToString();
+            txt_PageSize_HitAlert.Text = PageSize_HitAlert.ToString();
+            Count_Page_HitAlert = Count_Record_HitAlert % PageSize_HitAlert == 0 ? Count_Record_HitAlert / PageSize_HitAlert : Count_Record_HitAlert / PageSize_HitAlert + 1;
+            txt_Count_Page_HitAlert.Text = Count_Page_HitAlert.ToString();
+
+            try
+            {
+                ds = hitbll.GetListByTime(dtpStart.Value, dtpend.Value, 0, PageSize_HitAlert, libraryname);
+
+                CurPage_HitAlert = 1;
+                txt_Current_Page_HitAlert.Text = CurPage_HitAlert.ToString(); 
+
+                UpdateDGVHitAlert(ds.Tables[0]);
+               
+            }
+            catch (Exception ex)
+            {
+                ShowMsgInfo("LocateFaceLibrary Error", ex);
+            }
+
+            
+           
         }
         #endregion
 
@@ -1143,7 +1179,7 @@ namespace NjustSkyEyeSystem
             listViewLibrary.Items.Clear();
             imageListFaceLibrary.Images.Clear();
 
-            DataSet ds = user.GetPicPathList(null);
+            DataSet ds = user.GetPicPathList(null,libraryname);
 
             if (0 == ds.Tables.Count)
             {
@@ -1151,19 +1187,19 @@ namespace NjustSkyEyeSystem
                 return;
             }
 
-            Count_Record = ds.Tables[0].Rows.Count;
-            txt_Count_Record.Text = Count_Record.ToString();
-            txt_PageSize.Text = PageSize.ToString();
-            Count_Page = Count_Record % PageSize == 0 ? Count_Record / PageSize : Count_Record / PageSize + 1;
-            txt_Count_Page.Text = Count_Page.ToString();
+            Count_Record_Library = ds.Tables[0].Rows.Count;
+            txt_Count_Record.Text = Count_Record_Library.ToString();
+            txt_PageSize.Text = PageSize_Library.ToString();
+            Count_Page_Library = Count_Record_Library % PageSize_Library == 0 ? Count_Record_Library / PageSize_Library : Count_Record_Library / PageSize_Library + 1;
+            txt_Count_Page.Text = Count_Page_Library.ToString();
   
             try
             {
-                ds = user.GetPicPathList(null, 0, PageSize);
+                ds = user.GetPicPathList(null, 0, PageSize_Library, libraryname);
                 DataTable dt = ds.Tables[0];
 
-                CurPage = 1;
-                txt_Current_Page.Text = CurPage.ToString();     
+                CurPage_Library = 1;
+                txt_Current_Page.Text = CurPage_Library.ToString();     
 
                 int faceCount = dt.Rows.Count;
 
@@ -1187,17 +1223,17 @@ namespace NjustSkyEyeSystem
 
         private void btn_PrePage_Click(object sender, EventArgs e)
         {
-            if (CurPage <= 1)
+            if (CurPage_Library <= 1)
             {
                 MessageBox.Show("已经到首页");
                 return;
             }
 
-            CurPage--;
+            CurPage_Library--;
             listViewLibrary.Items.Clear();
             imageListFaceLibrary.Images.Clear();
 
-            DataSet ds = user.GetPicPathList(null, (CurPage - 1) * PageSize, PageSize);
+            DataSet ds = user.GetPicPathList(null, (CurPage_Library - 1) * PageSize_Library, PageSize_Library, libraryname);
 
             if (0 == ds.Tables.Count)
             {
@@ -1209,7 +1245,7 @@ namespace NjustSkyEyeSystem
             {                
                 DataTable dt = ds.Tables[0];
 
-                txt_Current_Page.Text = CurPage.ToString();               
+                txt_Current_Page.Text = CurPage_Library.ToString();               
 
                 int faceCount = dt.Rows.Count;
 
@@ -1233,17 +1269,17 @@ namespace NjustSkyEyeSystem
 
         private void btn_NextPage_Click(object sender, EventArgs e)
         {
-            if (CurPage >= Count_Page)
+            if (CurPage_Library >= Count_Page_Library)
             {
                 MessageBox.Show("已经到末页");
                 return;
             }
 
-            CurPage++;
+            CurPage_Library++;
             listViewLibrary.Items.Clear();
             imageListFaceLibrary.Images.Clear();
 
-            DataSet ds = user.GetPicPathList(null, (CurPage - 1) * PageSize, PageSize);
+            DataSet ds = user.GetPicPathList(null, (CurPage_Library - 1) * PageSize_Library, PageSize_Library, libraryname);
 
             if (0 == ds.Tables.Count)
             {
@@ -1255,7 +1291,7 @@ namespace NjustSkyEyeSystem
             {
                 DataTable dt = ds.Tables[0];
 
-                txt_Current_Page.Text = CurPage.ToString();
+                txt_Current_Page.Text = CurPage_Library.ToString();
 
                 int faceCount = dt.Rows.Count;
 
@@ -1279,10 +1315,10 @@ namespace NjustSkyEyeSystem
 
         private void btn_GoPage_Click(object sender, EventArgs e)
         {
-            int TmpPage = CurPage;
+            int TmpPage = CurPage_Library;
             try
             {
-                CurPage = Convert.ToInt32(txt_Current_Page.Text);
+                CurPage_Library = Convert.ToInt32(txt_Current_Page.Text);
             }
             catch (Exception)
             {
@@ -1290,17 +1326,17 @@ namespace NjustSkyEyeSystem
                 return;
             }
 
-            if (CurPage < 1 || CurPage > Count_Page)
+            if (CurPage_Library < 1 || CurPage_Library > Count_Page_Library)
             {
                 MessageBox.Show("页数错误");
-                CurPage = TmpPage;
+                CurPage_Library = TmpPage;
                 return;
             }
 
             listViewLibrary.Items.Clear();
             imageListFaceLibrary.Images.Clear();
 
-            DataSet ds = user.GetPicPathList(null, (CurPage - 1) * PageSize, PageSize);
+            DataSet ds = user.GetPicPathList(null, (CurPage_Library - 1) * PageSize_Library, PageSize_Library, libraryname);
 
             if (0 == ds.Tables.Count)
             {
@@ -1312,7 +1348,7 @@ namespace NjustSkyEyeSystem
             {
                 DataTable dt = ds.Tables[0];
 
-                txt_Current_Page.Text = CurPage.ToString();
+                txt_Current_Page.Text = CurPage_Library.ToString();
 
                 int faceCount = dt.Rows.Count;
 
@@ -1466,6 +1502,104 @@ namespace NjustSkyEyeSystem
             tex_DevPort.Text = dt.Rows[0]["port"].ToString();
             tex_UserName.Text = dt.Rows[0]["user"].ToString();
             tex_UserPwd.Text = dt.Rows[0]["password"].ToString();
+        }
+
+        private void btn_GoPage_HitAlert_Click(object sender, EventArgs e)
+        {
+            int TmpPage = CurPage_HitAlert;
+            try
+            {
+                CurPage_HitAlert = Convert.ToInt32(txt_Current_Page_HitAlert.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("页数错误");
+                return;
+            }
+
+            if (CurPage_HitAlert < 1 || CurPage_HitAlert > Count_Page_HitAlert)
+            {
+                MessageBox.Show("页数错误");
+                CurPage_HitAlert = TmpPage;
+                return;
+            }
+
+            DataSet ds = hitbll.GetListByTime(dtpStart.Value, dtpend.Value, (CurPage_HitAlert - 1) * PageSize_HitAlert, PageSize_HitAlert, libraryname);
+
+            if (0 == ds.Tables.Count)
+            {
+                MessageBox.Show("未查询到符合人员");
+                return;
+            }
+
+            try
+            {
+                txt_Current_Page_HitAlert.Text = CurPage_HitAlert.ToString();
+                UpdateDGVHitAlert(ds.Tables[0]);
+            }
+            catch (Exception ex)
+            {
+                ShowMsgInfo("LocateFaceLibrary Error", ex);
+            }
+        }
+
+        private void btn_PrePage_HitAlert_Click(object sender, EventArgs e)
+        {
+            if (CurPage_HitAlert <= 1)
+            {
+                MessageBox.Show("已经到首页");
+                return;
+            }
+
+            CurPage_HitAlert--;
+
+            DataSet ds = hitbll.GetListByTime(dtpStart.Value, dtpend.Value, (CurPage_HitAlert - 1) * PageSize_HitAlert, PageSize_HitAlert, libraryname); ;
+
+            if (0 == ds.Tables.Count)
+            {
+                MessageBox.Show("未查询到符合人员");
+                return;
+            }
+
+            try
+            {
+                txt_Current_Page_HitAlert.Text = CurPage_HitAlert.ToString();
+                UpdateDGVHitAlert(ds.Tables[0]);
+            }
+            catch (Exception ex)
+            {
+                ShowMsgInfo("LocateFaceLibrary Error", ex);
+            }
+        }
+
+        private void btn_NextPage_HitAlert_Click(object sender, EventArgs e)
+        {
+
+            if (CurPage_HitAlert >= Count_Page_HitAlert)
+            {
+                MessageBox.Show("已经到末页");
+                return;
+            }
+
+            CurPage_HitAlert++;
+
+            DataSet ds = hitbll.GetListByTime(dtpStart.Value, dtpend.Value, (CurPage_HitAlert - 1) * PageSize_HitAlert, PageSize_HitAlert, libraryname);
+
+            if (0 == ds.Tables.Count)
+            {
+                MessageBox.Show("未查询到符合人员");
+                return;
+            }
+
+            try
+            {
+                txt_Current_Page_HitAlert.Text = CurPage_HitAlert.ToString();
+                UpdateDGVHitAlert(ds.Tables[0]);
+            }
+            catch (Exception ex)
+            {
+                ShowMsgInfo("LocateFaceLibrary Error", ex);
+            }
         }   
 
     }

@@ -34,8 +34,10 @@
             this.imageListFaceLibrary = new System.Windows.Forms.ImageList(this.components);
             this.bwRegisterInBulk = new System.ComponentModel.BackgroundWorker();
             this.tabViewLibrary = new System.Windows.Forms.TabPage();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.btn_ViewLibrary = new System.Windows.Forms.Button();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.txt_Count_Page = new System.Windows.Forms.TextBox();
@@ -51,9 +53,13 @@
             this.btn_NextPage = new System.Windows.Forms.Button();
             this.btn_PrePage = new System.Windows.Forms.Button();
             this.listViewLibrary = new System.Windows.Forms.ListView();
-            this.btn_ViewLibrary = new System.Windows.Forms.Button();
             this.tpView = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.dtpend = new System.Windows.Forms.DateTimePicker();
             this.btn_ExportResult = new System.Windows.Forms.Button();
+            this.btnRetriew = new System.Windows.Forms.Button();
+            this.dtpStart = new System.Windows.Forms.DateTimePicker();
             this.dgvHitAlert = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumnTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumnLive = new System.Windows.Forms.DataGridViewImageColumn();
@@ -62,9 +68,20 @@
             this.dataGridViewTextBoxColumnScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FaceScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hitrecordId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtpend = new System.Windows.Forms.DateTimePicker();
-            this.dtpStart = new System.Windows.Forms.DateTimePicker();
-            this.btnRetriew = new System.Windows.Forms.Button();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.txt_Count_Page_HitAlert = new System.Windows.Forms.TextBox();
+            this.txt_PageSize_HitAlert = new System.Windows.Forms.TextBox();
+            this.txt_Count_Record_HitAlert = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.btn_GoPage_HitAlert = new System.Windows.Forms.Button();
+            this.txt_Current_Page_HitAlert = new System.Windows.Forms.TextBox();
+            this.btn_NextPage_HitAlert = new System.Windows.Forms.Button();
+            this.btn_PrePage_HitAlert = new System.Windows.Forms.Button();
             this.tabSetting = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -229,13 +246,19 @@
             this.pic_Library = new System.Windows.Forms.PictureBox();
             this.pic_Library_Compare = new System.Windows.Forms.PictureBox();
             this.tabViewLibrary.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.tableLayoutPanel13.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel11.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.tpView.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
+            this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHitAlert)).BeginInit();
+            this.panel14.SuspendLayout();
+            this.panel15.SuspendLayout();
+            this.panel16.SuspendLayout();
             this.tabSetting.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -332,9 +355,7 @@
             // 
             // tabViewLibrary
             // 
-            this.tabViewLibrary.Controls.Add(this.pictureBox4);
-            this.tabViewLibrary.Controls.Add(this.panel3);
-            this.tabViewLibrary.Controls.Add(this.btn_ViewLibrary);
+            this.tabViewLibrary.Controls.Add(this.tableLayoutPanel13);
             this.tabViewLibrary.Location = new System.Drawing.Point(4, 22);
             this.tabViewLibrary.Name = "tabViewLibrary";
             this.tabViewLibrary.Padding = new System.Windows.Forms.Padding(3);
@@ -343,36 +364,67 @@
             this.tabViewLibrary.Text = "底库查看";
             this.tabViewLibrary.UseVisualStyleBackColor = true;
             // 
-            // pictureBox4
+            // tableLayoutPanel13
             // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(6, 6);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(333, 51);
-            this.pictureBox4.TabIndex = 1;
-            this.pictureBox4.TabStop = false;
+            this.tableLayoutPanel13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel13.ColumnCount = 1;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel13.Controls.Add(this.panel3, 0, 0);
+            this.tableLayoutPanel13.Controls.Add(this.panel11, 0, 1);
+            this.tableLayoutPanel13.Controls.Add(this.listViewLibrary, 0, 2);
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(-4, 3);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 3;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(1358, 687);
+            this.tableLayoutPanel13.TabIndex = 2;
             // 
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel3.Controls.Add(this.panel11);
-            this.panel3.Controls.Add(this.listViewLibrary);
-            this.panel3.Location = new System.Drawing.Point(3, 63);
+            this.panel3.Controls.Add(this.pictureBox4);
+            this.panel3.Controls.Add(this.btn_ViewLibrary);
+            this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1343, 624);
-            this.panel3.TabIndex = 1;
+            this.panel3.Size = new System.Drawing.Size(1352, 62);
+            this.panel3.TabIndex = 3;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(4, 3);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(333, 51);
+            this.pictureBox4.TabIndex = 1;
+            this.pictureBox4.TabStop = false;
+            // 
+            // btn_ViewLibrary
+            // 
+            this.btn_ViewLibrary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ViewLibrary.Location = new System.Drawing.Point(1274, 31);
+            this.btn_ViewLibrary.Name = "btn_ViewLibrary";
+            this.btn_ViewLibrary.Size = new System.Drawing.Size(75, 23);
+            this.btn_ViewLibrary.TabIndex = 0;
+            this.btn_ViewLibrary.Text = "查询";
+            this.btn_ViewLibrary.UseVisualStyleBackColor = true;
+            this.btn_ViewLibrary.Click += new System.EventHandler(this.btn_ViewLibrary_Click);
             // 
             // panel11
             // 
-            this.panel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel11.Controls.Add(this.panel6);
             this.panel11.Controls.Add(this.panel7);
-            this.panel11.Location = new System.Drawing.Point(661, 6);
+            this.panel11.Location = new System.Drawing.Point(3, 71);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(679, 56);
+            this.panel11.Size = new System.Drawing.Size(1352, 62);
             this.panel11.TabIndex = 11;
             // 
             // panel6
@@ -384,7 +436,7 @@
             this.panel6.Controls.Add(this.label42);
             this.panel6.Controls.Add(this.label39);
             this.panel6.Controls.Add(this.label41);
-            this.panel6.Location = new System.Drawing.Point(3, 14);
+            this.panel6.Location = new System.Drawing.Point(676, 14);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(325, 35);
             this.panel6.TabIndex = 8;
@@ -455,7 +507,7 @@
             this.panel7.Controls.Add(this.txt_Current_Page);
             this.panel7.Controls.Add(this.btn_NextPage);
             this.panel7.Controls.Add(this.btn_PrePage);
-            this.panel7.Location = new System.Drawing.Point(368, 14);
+            this.panel7.Location = new System.Drawing.Point(1048, 14);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(301, 37);
             this.panel7.TabIndex = 10;
@@ -503,30 +555,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewLibrary.LargeImageList = this.imageListFaceLibrary;
-            this.listViewLibrary.Location = new System.Drawing.Point(3, 63);
+            this.listViewLibrary.Location = new System.Drawing.Point(3, 139);
             this.listViewLibrary.Name = "listViewLibrary";
-            this.listViewLibrary.Size = new System.Drawing.Size(1337, 558);
+            this.listViewLibrary.Size = new System.Drawing.Size(1352, 545);
             this.listViewLibrary.TabIndex = 0;
             this.listViewLibrary.UseCompatibleStateImageBehavior = false;
             // 
-            // btn_ViewLibrary
-            // 
-            this.btn_ViewLibrary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ViewLibrary.Location = new System.Drawing.Point(1271, 31);
-            this.btn_ViewLibrary.Name = "btn_ViewLibrary";
-            this.btn_ViewLibrary.Size = new System.Drawing.Size(75, 23);
-            this.btn_ViewLibrary.TabIndex = 0;
-            this.btn_ViewLibrary.Text = "查询";
-            this.btn_ViewLibrary.UseVisualStyleBackColor = true;
-            this.btn_ViewLibrary.Click += new System.EventHandler(this.btn_ViewLibrary_Click);
-            // 
             // tpView
             // 
-            this.tpView.Controls.Add(this.btn_ExportResult);
-            this.tpView.Controls.Add(this.dgvHitAlert);
-            this.tpView.Controls.Add(this.dtpend);
-            this.tpView.Controls.Add(this.dtpStart);
-            this.tpView.Controls.Add(this.btnRetriew);
+            this.tpView.Controls.Add(this.tableLayoutPanel12);
             this.tpView.Location = new System.Drawing.Point(4, 22);
             this.tpView.Name = "tpView";
             this.tpView.Size = new System.Drawing.Size(1354, 690);
@@ -534,9 +571,52 @@
             this.tpView.Text = "查看";
             this.tpView.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel12.ColumnCount = 1;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel12.Controls.Add(this.panel13, 0, 0);
+            this.tableLayoutPanel12.Controls.Add(this.dgvHitAlert, 0, 2);
+            this.tableLayoutPanel12.Controls.Add(this.panel14, 0, 1);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 3;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(1343, 687);
+            this.tableLayoutPanel12.TabIndex = 58;
+            // 
+            // panel13
+            // 
+            this.panel13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel13.Controls.Add(this.dtpend);
+            this.panel13.Controls.Add(this.btn_ExportResult);
+            this.panel13.Controls.Add(this.btnRetriew);
+            this.panel13.Controls.Add(this.dtpStart);
+            this.panel13.Location = new System.Drawing.Point(3, 3);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(1337, 62);
+            this.panel13.TabIndex = 57;
+            // 
+            // dtpend
+            // 
+            this.dtpend.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.dtpend.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpend.Location = new System.Drawing.Point(325, 20);
+            this.dtpend.Name = "dtpend";
+            this.dtpend.Size = new System.Drawing.Size(200, 21);
+            this.dtpend.TabIndex = 54;
+            // 
             // btn_ExportResult
             // 
-            this.btn_ExportResult.Location = new System.Drawing.Point(912, 49);
+            this.btn_ExportResult.Location = new System.Drawing.Point(1229, 21);
             this.btn_ExportResult.Margin = new System.Windows.Forms.Padding(2);
             this.btn_ExportResult.Name = "btn_ExportResult";
             this.btn_ExportResult.Size = new System.Drawing.Size(98, 23);
@@ -545,10 +625,32 @@
             this.btn_ExportResult.UseVisualStyleBackColor = true;
             this.btn_ExportResult.Click += new System.EventHandler(this.btn_ExportResult_Click);
             // 
+            // btnRetriew
+            // 
+            this.btnRetriew.Location = new System.Drawing.Point(577, 18);
+            this.btnRetriew.Name = "btnRetriew";
+            this.btnRetriew.Size = new System.Drawing.Size(110, 23);
+            this.btnRetriew.TabIndex = 52;
+            this.btnRetriew.Text = "检索";
+            this.btnRetriew.UseVisualStyleBackColor = true;
+            this.btnRetriew.Click += new System.EventHandler(this.btnRetriew_Click);
+            // 
+            // dtpStart
+            // 
+            this.dtpStart.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpStart.Location = new System.Drawing.Point(93, 20);
+            this.dtpStart.Name = "dtpStart";
+            this.dtpStart.Size = new System.Drawing.Size(182, 21);
+            this.dtpStart.TabIndex = 53;
+            // 
             // dgvHitAlert
             // 
             this.dgvHitAlert.AllowUserToAddRows = false;
             this.dgvHitAlert.AllowUserToDeleteRows = false;
+            this.dgvHitAlert.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvHitAlert.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHitAlert.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumnTime,
@@ -558,8 +660,7 @@
             this.dataGridViewTextBoxColumnScore,
             this.FaceScore,
             this.hitrecordId});
-            this.dgvHitAlert.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvHitAlert.Location = new System.Drawing.Point(0, 90);
+            this.dgvHitAlert.Location = new System.Drawing.Point(3, 139);
             this.dgvHitAlert.Name = "dgvHitAlert";
             this.dgvHitAlert.ReadOnly = true;
             this.dgvHitAlert.RowHeadersVisible = false;
@@ -567,7 +668,7 @@
             this.dgvHitAlert.RowTemplate.Height = 80;
             this.dgvHitAlert.RowTemplate.ReadOnly = true;
             this.dgvHitAlert.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHitAlert.Size = new System.Drawing.Size(1354, 600);
+            this.dgvHitAlert.Size = new System.Drawing.Size(1337, 545);
             this.dgvHitAlert.TabIndex = 55;
             // 
             // dataGridViewTextBoxColumnTime
@@ -623,33 +724,139 @@
             this.hitrecordId.Name = "hitrecordId";
             this.hitrecordId.ReadOnly = true;
             // 
-            // dtpend
+            // panel14
             // 
-            this.dtpend.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dtpend.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpend.Location = new System.Drawing.Point(277, 23);
-            this.dtpend.Name = "dtpend";
-            this.dtpend.Size = new System.Drawing.Size(200, 21);
-            this.dtpend.TabIndex = 54;
+            this.panel14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel14.Controls.Add(this.panel15);
+            this.panel14.Controls.Add(this.panel16);
+            this.panel14.Location = new System.Drawing.Point(3, 71);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(1337, 62);
+            this.panel14.TabIndex = 58;
             // 
-            // dtpStart
+            // panel15
             // 
-            this.dtpStart.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpStart.Location = new System.Drawing.Point(8, 23);
-            this.dtpStart.Name = "dtpStart";
-            this.dtpStart.Size = new System.Drawing.Size(182, 21);
-            this.dtpStart.TabIndex = 53;
+            this.panel15.Controls.Add(this.txt_Count_Page_HitAlert);
+            this.panel15.Controls.Add(this.txt_PageSize_HitAlert);
+            this.panel15.Controls.Add(this.txt_Count_Record_HitAlert);
+            this.panel15.Controls.Add(this.label49);
+            this.panel15.Controls.Add(this.label50);
+            this.panel15.Controls.Add(this.label51);
+            this.panel15.Controls.Add(this.label52);
+            this.panel15.Location = new System.Drawing.Point(656, 15);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(325, 35);
+            this.panel15.TabIndex = 11;
             // 
-            // btnRetriew
+            // txt_Count_Page_HitAlert
             // 
-            this.btnRetriew.Location = new System.Drawing.Point(521, 21);
-            this.btnRetriew.Name = "btnRetriew";
-            this.btnRetriew.Size = new System.Drawing.Size(110, 23);
-            this.btnRetriew.TabIndex = 52;
-            this.btnRetriew.Text = "检索";
-            this.btnRetriew.UseVisualStyleBackColor = true;
-            this.btnRetriew.Click += new System.EventHandler(this.btnRetriew_Click);
+            this.txt_Count_Page_HitAlert.Location = new System.Drawing.Point(258, 7);
+            this.txt_Count_Page_HitAlert.Name = "txt_Count_Page_HitAlert";
+            this.txt_Count_Page_HitAlert.ReadOnly = true;
+            this.txt_Count_Page_HitAlert.Size = new System.Drawing.Size(35, 21);
+            this.txt_Count_Page_HitAlert.TabIndex = 10;
+            // 
+            // txt_PageSize_HitAlert
+            // 
+            this.txt_PageSize_HitAlert.Location = new System.Drawing.Point(177, 7);
+            this.txt_PageSize_HitAlert.Name = "txt_PageSize_HitAlert";
+            this.txt_PageSize_HitAlert.ReadOnly = true;
+            this.txt_PageSize_HitAlert.Size = new System.Drawing.Size(33, 21);
+            this.txt_PageSize_HitAlert.TabIndex = 9;
+            // 
+            // txt_Count_Record_HitAlert
+            // 
+            this.txt_Count_Record_HitAlert.Location = new System.Drawing.Point(36, 7);
+            this.txt_Count_Record_HitAlert.Name = "txt_Count_Record_HitAlert";
+            this.txt_Count_Record_HitAlert.ReadOnly = true;
+            this.txt_Count_Record_HitAlert.Size = new System.Drawing.Size(52, 21);
+            this.txt_Count_Record_HitAlert.TabIndex = 8;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(94, 12);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(77, 12);
+            this.label49.TabIndex = 5;
+            this.label49.Text = "条记录，每页";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(297, 12);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(17, 12);
+            this.label50.TabIndex = 7;
+            this.label50.Text = "页";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(13, 12);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(17, 12);
+            this.label51.TabIndex = 1;
+            this.label51.Text = "共";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(217, 12);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(41, 12);
+            this.label52.TabIndex = 6;
+            this.label52.Text = "条，共";
+            // 
+            // panel16
+            // 
+            this.panel16.Controls.Add(this.btn_GoPage_HitAlert);
+            this.panel16.Controls.Add(this.txt_Current_Page_HitAlert);
+            this.panel16.Controls.Add(this.btn_NextPage_HitAlert);
+            this.panel16.Controls.Add(this.btn_PrePage_HitAlert);
+            this.panel16.Location = new System.Drawing.Point(1028, 15);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(301, 37);
+            this.panel16.TabIndex = 12;
+            // 
+            // btn_GoPage_HitAlert
+            // 
+            this.btn_GoPage_HitAlert.Location = new System.Drawing.Point(260, 9);
+            this.btn_GoPage_HitAlert.Name = "btn_GoPage_HitAlert";
+            this.btn_GoPage_HitAlert.Size = new System.Drawing.Size(31, 23);
+            this.btn_GoPage_HitAlert.TabIndex = 10;
+            this.btn_GoPage_HitAlert.Text = "GO";
+            this.btn_GoPage_HitAlert.UseVisualStyleBackColor = true;
+            this.btn_GoPage_HitAlert.Click += new System.EventHandler(this.btn_GoPage_HitAlert_Click);
+            // 
+            // txt_Current_Page_HitAlert
+            // 
+            this.txt_Current_Page_HitAlert.Location = new System.Drawing.Point(89, 11);
+            this.txt_Current_Page_HitAlert.Name = "txt_Current_Page_HitAlert";
+            this.txt_Current_Page_HitAlert.Size = new System.Drawing.Size(80, 21);
+            this.txt_Current_Page_HitAlert.TabIndex = 9;
+            // 
+            // btn_NextPage_HitAlert
+            // 
+            this.btn_NextPage_HitAlert.Location = new System.Drawing.Point(175, 9);
+            this.btn_NextPage_HitAlert.Name = "btn_NextPage_HitAlert";
+            this.btn_NextPage_HitAlert.Size = new System.Drawing.Size(75, 23);
+            this.btn_NextPage_HitAlert.TabIndex = 3;
+            this.btn_NextPage_HitAlert.Text = "下一页";
+            this.btn_NextPage_HitAlert.UseVisualStyleBackColor = true;
+            this.btn_NextPage_HitAlert.Click += new System.EventHandler(this.btn_NextPage_HitAlert_Click);
+            // 
+            // btn_PrePage_HitAlert
+            // 
+            this.btn_PrePage_HitAlert.Location = new System.Drawing.Point(8, 9);
+            this.btn_PrePage_HitAlert.Name = "btn_PrePage_HitAlert";
+            this.btn_PrePage_HitAlert.Size = new System.Drawing.Size(75, 23);
+            this.btn_PrePage_HitAlert.TabIndex = 4;
+            this.btn_PrePage_HitAlert.Text = "上一页";
+            this.btn_PrePage_HitAlert.UseVisualStyleBackColor = true;
+            this.btn_PrePage_HitAlert.Click += new System.EventHandler(this.btn_PrePage_HitAlert_Click);
             // 
             // tabSetting
             // 
@@ -2645,15 +2852,23 @@
             this.Text = "海信网络科技";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMian_FormClosing);
             this.tabViewLibrary.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.tableLayoutPanel13.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel11.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.tpView.ResumeLayout(false);
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHitAlert)).EndInit();
+            this.panel14.ResumeLayout(false);
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
+            this.panel16.ResumeLayout(false);
+            this.panel16.PerformLayout();
             this.tabSetting.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
@@ -2748,7 +2963,6 @@
         private System.Windows.Forms.ImageList imageListFace;
         private System.Windows.Forms.ImageList imageListFaceLibrary;
         private System.Windows.Forms.TabPage tabViewLibrary;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ListView listViewLibrary;
         private System.Windows.Forms.Button btn_ViewLibrary;
         private System.Windows.Forms.TabPage tpView;
@@ -2942,6 +3156,24 @@
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.ComboBox comboBox_DevName;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.TextBox txt_Count_Page_HitAlert;
+        private System.Windows.Forms.TextBox txt_PageSize_HitAlert;
+        private System.Windows.Forms.TextBox txt_Count_Record_HitAlert;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Button btn_GoPage_HitAlert;
+        private System.Windows.Forms.TextBox txt_Current_Page_HitAlert;
+        private System.Windows.Forms.Button btn_NextPage_HitAlert;
+        private System.Windows.Forms.Button btn_PrePage_HitAlert;
     }
 }
 
