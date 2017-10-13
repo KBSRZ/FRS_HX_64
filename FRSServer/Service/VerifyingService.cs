@@ -15,28 +15,5 @@ namespace FRSServer.Service
         {
             url = "/verifying";
         }
-        public override void OnOpen()
-        {
-
-        }
-        public override void OnClose()
-        {
-            if (null != socket)
-            {
-                socket.Close();
-            }
-            Console.WriteLine("VerifyingService::OnClose");
-        }
-        public override int OnMessage(string param)
-        {
-            Console.WriteLine("VerifyingService::OnMessage");
-            Console.WriteLine(param);
-            if (null != socket && socket.IsAvailable)
-            {
-                socket.Send("0.6");
-            }
-
-            return ReturnCode.SUCCESS;
-        }
     }
 }

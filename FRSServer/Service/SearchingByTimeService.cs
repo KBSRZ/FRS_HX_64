@@ -15,22 +15,6 @@ namespace FRSServer.Service
         {
             url = "/searching-by-time";
         }
-        public override void OnOpen()
-        {
-
-        }
-        public override void OnClose()
-        {
-            if (null != socket)
-            {
-                socket.Close();
-            }
-            Console.WriteLine("SearchingByTimeService::OnClose");
-        }
-        public override int OnMessage(string param)
-        {
-            Console.WriteLine("SearchingByTimeService::OnMessage");
-            return ReturnCode.SUCCESS;
-        }
+       
     }
 }

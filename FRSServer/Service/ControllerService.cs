@@ -22,41 +22,7 @@ namespace FRSServer.Service
             // TODO: Complete member initialization
             url = "/controlling";
         }
-        public override void OnOpen()
-        {
-
-        }
-        public override void OnClose()
-        {
-            if (null != socket)
-            {
-                socket.Close();
-            }
-            Console.WriteLine("ControllerService::OnClose");
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="param">例如：代表第一个监控停止 ，第二个监控开始</param>
-        /// <returns></returns>
-        public override int OnMessage(string param)
-        {
-            Console.WriteLine("ControllerService::OnMessage");
-            Console.WriteLine(param);
-            ControlData[] contorls = (ControlData[])JsonConvert.DeserializeObject(param, typeof(ControlData[]));
-           ///
-           /// 
-           ///
-            if(contorls[0].Status){
-                if (contorls[0].VideoAdress == "") 
-                cap.Start(0);
-            }
-            else
-            {
-                cap.Stop();
-            }
-            return ReturnCode.SUCCESS;
-        }
+       
     }
 
     

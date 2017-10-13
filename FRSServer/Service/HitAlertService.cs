@@ -30,31 +30,6 @@ namespace FRSServer.Service
             }
             Console.WriteLine("HitAlertService::OnClose");
         }
-        public override int OnMessage(string param)
-        {
-            return ReturnCode.SUCCESS;
-        }
-        /// <summary>
-        /// 每次命中就调用OnHit 发送数据
-        /// </summary>
-        /// <param name="hitalerts"></param>
-        /// <returns></returns>
-        public int OnHit(Data.HitAlert[] hitalerts)
-        {
-            try
-            {
-                if (null != socket && socket.IsAvailable)
-                {
-                    socket.Send(JsonConvert.SerializeObject(hitalerts));
-                }
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace + "" + e.Message);
-                return ReturnCode.FAIL;
-            }
-            return ReturnCode.SUCCESS;
-        }
+        
     }
 }

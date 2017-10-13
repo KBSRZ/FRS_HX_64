@@ -15,7 +15,7 @@ namespace FRSServer
         public static class MessageType
         {
             /// <summary>
-            /// 增
+            /// 增 
             /// </summary>
             public  const string ADD = "ADD";
             /// <summary>
@@ -30,6 +30,11 @@ namespace FRSServer
             /// 读
             /// </summary>
             public  const string READ = "READ";
+
+            /// <summary>
+            /// 选 对内存中系统数据库，设备进行选择,优先使用 UPDATE
+            /// </summary>
+            public const string SET = "SET";
 
             /// <summary>
             /// 用于返回
@@ -67,9 +72,25 @@ namespace FRSServer
         }
         protected string content = string.Empty;
 
+        /// <summary>
+        ///标志同一个序列的ID
+        /// </summary>
+        public string ID
+        {
+            get { return Id; }
+            set { Id = value; }
+        }
+        protected string Id = string.Empty;
+
         public Message(string messageType,string content){
             this.messageType = messageType;
             this.content = content;
+        }
+        public Message(string Id,string messageType, string content)
+        {
+            this.messageType = messageType;
+            this.content = content;
+            this.Id = Id;
         }
         public string ToJson()
         {

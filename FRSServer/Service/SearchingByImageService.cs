@@ -16,23 +16,6 @@ namespace FRSServer.Service
         {
             url = "/searching-by-image";
         }
-        public override void OnOpen()
-        {
-
-        }
-        public override void OnClose()
-        {
-            if (null != socket)
-            {
-                socket.Close();
-            }
-            Console.WriteLine("SearchingByImageService::OnClose");
-        }
-        public override int OnMessage(string param)
-        {
-            Console.WriteLine("SearchingByImageService::OnMessage");
-            return ReturnCode.SUCCESS;
-        }
     }
     
 }

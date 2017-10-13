@@ -108,8 +108,8 @@ namespace FRSServer
                     }
                     
 
-                    if (curService is HitAlertService )
-                        ((HitAlertService)curService).OnHit(hitalerts);
+                    //if (curService is HitAlertService )
+                    //    ((HitAlertService)curService).OnHit(hitalerts);
                 }
 
                 Console.WriteLine("222222222222222222222222");
@@ -136,7 +136,7 @@ namespace FRSServer
                     lock (objlock)
                     {
                         BaseService ser = ServiceHelper.GetService(socket.ConnectionInfo.Path);
-
+                        
                         if (null==ser)//查找服务失败
                         {
                            
@@ -151,8 +151,10 @@ namespace FRSServer
                         }
                         curService = ser;//更新当前服务
                         curService.Socket = socket;
-                        curService.OnOpen();
+                       
                         Console.WriteLine("当前service " + curService.GetType());
+
+                       
                     }
 
                 };

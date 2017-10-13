@@ -89,6 +89,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAngine\DataAngine.csproj">
+      <Project>{dea8e31e-a67f-40a2-900f-127517ced01b}</Project>
+      <Name>DataAngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FaceAngine\FaceAngine.vcxproj">
       <Project>{b9dc1f90-19be-4a91-a290-542be9c75a0f}</Project>
       <Name>FaceAngine</Name>

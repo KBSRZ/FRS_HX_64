@@ -15,22 +15,6 @@ namespace FRSServer.Service
         {
             url = "/register";
         }
-        public override void OnOpen()
-        {
-
-        }
-        public override void OnClose()
-        {
-            if (null != socket)
-            {
-                socket.Close();
-            }
-            Console.WriteLine("RegisterService::OnClose");
-        }
-        public override int OnMessage(string param)
-        {
-            Console.WriteLine("RegisterService::OnMessage");
-            return ReturnCode.SUCCESS;
-        }
+       
     }
 }

@@ -414,6 +414,12 @@ namespace FRSServer
         /// </summary>
         public static string FAIL = "FAIL";
 
+       
+        /// <summary>
+        /// 非法的 消息类型
+        /// </summary>
+        public static string ILLEGAL_MESSAGETYPE = "ILLEGAL_MESSAGETYPE";
+
 
        
         

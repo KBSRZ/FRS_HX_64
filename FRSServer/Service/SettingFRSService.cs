@@ -23,84 +23,37 @@ namespace FRSServer.Service
         {
             url = "/setting-frs";
         }
-        public override void OnOpen()
+
+
+
+        protected override int OnRead(string param)
         {
-           
-
+            Console.WriteLine("SettingService::OnRead");
+            if (null != socket && socket.IsAvailable)
+            {
+                Console.WriteLine(setting.ToJson());
+                socket.Send(new Message(Message.MessageType.READ, setting.ToJson()).ToJson());
+            }
+            return ReturnCode.SUCCESS;
         }
-        public override void OnClose()
+
+        protected override int OnUpdate(string param)
         {
-            if (null != socket)
+            setting = SettingFRS.CreateMessageFromJSON(param);
+            Console.WriteLine("SettingService::OnUpdate");
+            if (Data.Setting.SettingFRS.Save(setting) == ReturnCode.SUCCESS)
             {
-                socket.Close();
+                return ReturnSuccessMessage();
+
             }
-            Console.WriteLine("SettingService::OnClose");
+            else
+            {
+                return ReturnFailMessage();
+            }
         }
-        public override int OnMessage(string param)
-        {
-            Console.WriteLine("SettingService::OnMessage");
-            Console.WriteLine(param);
-            try
-            {
-                
-                Message message = Message.CreateMessageFromJSON(param);
-              
-                if (Message.MessageType.READ == message.Type)//获得
-                {
-                  
-                    if (null != socket && socket.IsAvailable)
-                    {
-                        Console.WriteLine(setting.ToJson());
-                        socket.Send(new Message(Message.MessageType.READ, setting.ToJson()).ToJson());
-                    }
-                }
-                else if (Message.MessageType.UPDATE == message.Type)//设置
-                {
-                   
-                    setting = SettingFRS.CreateMessageFromJSON(message.Content);
-                    
-                    if (Data.Setting.SettingFRS.Save(setting) == ReturnCode.SUCCESS)
-                    {
-                        if (socket.IsAvailable)
-                            socket.Send(new Message(Message.MessageType.RETURN, PubConstant.SUC).ToJson());
-                        Console.WriteLine("设置成功");
-                        return ReturnCode.SUCCESS;
 
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                LogHelper.WriteErrorLog(null, e);
-                if (socket.IsAvailable)
-                    socket.Send(new Message(Message.MessageType.RETURN, PubConstant.FAIL).ToJson());
-            }
-            return ReturnCode.FAIL;
-
-        }
-        //private void Resetting(Data.Setting.SettingFRS setting)
-        //{
-
-        //    fa.MaxPersonNum = setting.MaxPersonNum;
-        //    fa.ScoreThresh = setting.ScoreThresh;
-        //    fa.SearchFaceHeightThresh = setting.SearchFaceHeightThresh;
-        //    fa.SearchFaceWidthThresh = setting.SearchFaceWidthThresh;
-        //    fa.SearchFaceYawThresh = setting.SearchFaceYawThresh;
-        //    fa.SearchFacePitchThresh = setting.SearchFacePitchThresh;
-        //    fa.SearchFaceRollThresh = setting.SearchFaceRollThresh;
-        //    fa.SearchFaceQualityThresh = setting.SearchFaceQualityThresh;
-        //    fa.TopK = setting.TopK;
-
-        //    fa.RegisterFaceHeightThresh = setting.RegisterFaceHeightThresh;
-        //    fa.RegisterFaceWidthThresh = setting.RegisterFaceWidthThresh;
-        //    fa.RegisterFaceYawThresh = setting.RegisterFaceYawThresh;
-        //    fa.RegisterFacePitchThresh = setting.RegisterFacePitchThresh;
-        //    fa.RegisterFaceRollThresh = setting.RegisterFaceRollThresh;
-        //    fa.RegisterFaceQualityThresh = setting.RegisterFaceQualityThresh;
-
-        //    cap.Interval = setting.Interval;
-
-        //}
+      
+       
     }
 
 }
