@@ -19,7 +19,7 @@ namespace FRSServer.Service
         string[] databaseNames=null;
         public SettingDatasetService()
         {
-            url = "setting-dataset";
+            url = "/setting-dataset";
             DataSet ds = table.GetAllTable();
             DataTable dt = ds.Tables[0];
 
@@ -50,7 +50,12 @@ namespace FRSServer.Service
        protected override int OnSet(string param)
        {
            Console.WriteLine("SettingVideoAddressService::OnSet");
-           return  fa.LoadData(param);
+           if(ReturnCode.SUCCESS==  fa.LoadData(param)){
+               return ReturnSuccessMessage();
+           }
+           else{
+                return ReturnFailMessage();
+           }
        }
 
     }

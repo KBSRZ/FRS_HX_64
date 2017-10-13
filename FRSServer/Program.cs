@@ -165,7 +165,7 @@ namespace FRSServer
                     //curService = null;不能直接置空 , OnClose 会在调用Close()函数另一个线程中执行
                     lock (objlock)
                     {
-                        if (curService.Socket == socket)//在关闭之前 curService没有变动 也就是没有新的连接
+                        if (curService!=null&&curService.Socket == socket)//在关闭之前 curService没有变动 也就是没有新的连接
                         {
                             //当前服务设置为无用服务
                             curService = null;

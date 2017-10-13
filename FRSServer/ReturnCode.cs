@@ -8,7 +8,8 @@ namespace FRSServer
 {
     class ReturnCode
     {
-        public static int SUCCESS=0;
-        public static int FAIL = -1;
+        public static readonly  int SUCCESS = 0;
+        public static readonly int FAIL = -1;
+        public static readonly int UNKOWN_EXCEPTION = -99999;
     }
 }
