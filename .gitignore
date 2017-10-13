@@ -10,6 +10,7 @@ feadb.db20
 feadb.db30
 CHCTest/obj/
 CHCTest/bin/
+
 CopyRemoteTest/obj/
 CopyRemoteTest/bin/
 DataAngine/obj/
@@ -39,5 +40,8 @@ Statistics/bin/
 TestFaceAgine/obj/
 TestFaceAgine/bin/
 x64/
+FRSServer/obj/
+FRSServer/bin/
+
 
 
