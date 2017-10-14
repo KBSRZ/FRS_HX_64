@@ -10,7 +10,7 @@ namespace FRSServer.Test
     class Capture
     {
 
-        public delegate void HitAlertCallback(Data.HitAlert[] hitData);
+        public delegate void HitAlertCallback(Data.HitAlert[] Data);
         public event HitAlertCallback HitAlertReturnEvent;
         public void Start()
         {

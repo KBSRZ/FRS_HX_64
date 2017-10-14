@@ -6,57 +6,87 @@ using System.Threading.Tasks;
 using System.Data;
 using DataAngine;
 using Newtonsoft.Json;
+using FRSServer.Data;
 namespace FRSServer.Service
 {
-    
-    class SettingDatasetService:BaseService
+
+    class SettingDatasetService : BaseService
     {
 
         readonly DataAngine.BLL.hitalert hitbll = new DataAngine.BLL.hitalert();
         readonly DataAngine.BLL.user user = new DataAngine.BLL.user();
         readonly DataAngine.BLL.table table = new DataAngine.BLL.table();
         readonly DataAngine.BLL.device device = new DataAngine.BLL.device();
-        string[] databaseNames=null;
+        DatasetData datasetData = new DatasetData();
         public SettingDatasetService()
         {
             url = "/setting-dataset";
             DataSet ds = table.GetAllTable();
             DataTable dt = ds.Tables[0];
 
-            databaseNames = (from r in dt.AsEnumerable() select r.Field<string>("name")).ToArray<string>();
+            datasetData.DatasetNames = (from r in dt.AsEnumerable() select r.Field<string>("name")).ToArray<string>();
+
+
+
         }
 
-       protected override int  OnRead(string param){
-           Console.WriteLine("SettingVideoAddressService::OnRead");
-           if (null != socket && socket.IsAvailable)
-           {
-               socket.Send(new Message(Message.MessageType.READ, JsonConvert.SerializeObject(databaseNames)).ToJson());
-           }
-           return ReturnCode.SUCCESS;
-       }
-       protected override int OnAdd(string param)
-       {
-           Console.WriteLine("SettingVideoAddressService::OnAdd");
-           DataAngine.Model.table table = new DataAngine.Model.table();
-           DataAngine.BLL.table tablebll = new DataAngine.BLL.table();
-           table.name = param;
+        /// <summary>
+        /// 获得数据库的初始状态
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        protected override int OnRead(string param)
+        {
+            Console.WriteLine("SettingDatasetService::OnRead");
+            if (null != socket && socket.IsAvailable)
+            {
+                Console.WriteLine(datasetData.ToJson());
+                socket.Send(new Message(Message.MessageType.READ, datasetData.ToJson()).ToJson());
+            }
+            return ReturnCode.SUCCESS;
+        }
+        // /// <summary>
+        // /// 增加一个数据库
+        // /// </summary>
+        // /// <param name="param">数据库的名字</param>
+        // /// <returns></returns>
+        //protected override int OnAdd(string param)
+        //{
+        //    Console.WriteLine("SettingVideoAddressService::OnAdd");
+        //    DataAngine.Model.table table = new DataAngine.Model.table();
+        //    DataAngine.BLL.table tablebll = new DataAngine.BLL.table();
+        //    table.name = param;
 
-           if (true == tablebll.Add(table))
-           {
-               return ReturnSuccessMessage();
-           }
-           return ReturnFailMessage();
-       }
-       protected override int OnSet(string param)
-       {
-           Console.WriteLine("SettingVideoAddressService::OnSet");
-           if(ReturnCode.SUCCESS==  fa.LoadData(param)){
-               return ReturnSuccessMessage();
-           }
-           else{
+        //    if (true == tablebll.Add(table))
+        //    {
+        //        return ReturnSuccessMessage();
+        //    }
+        //    return ReturnFailMessage();
+        //}
+
+        /// <summary>
+        /// 设置 选择哪个数据库
+        /// </summary>
+        /// <param name="param">DatasetName</param>
+        /// <returns></returns>
+        protected override int OnSet(string param)
+        {
+            Console.WriteLine("SettingDatasetService::OnSet");
+
+
+            if (ReturnCode.SUCCESS == fa.LoadData(param))
+            {
+                DatasetData.SaveSelectedDataSetName(param);
+                return ReturnSuccessMessage();
+            }
+            else
+            {
                 return ReturnFailMessage();
-           }
-       }
+            }
+        }
+
 
     }
+
 }
+

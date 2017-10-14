@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using FRSServer.Data.Setting;
-
+using FRS;
 namespace FRSServer.Service
 {
     /// <summary>
@@ -18,30 +18,29 @@ namespace FRSServer.Service
     /// </summary>
     class SettingFRSService : BaseService
     {
-        private static Data.Setting.SettingFRS setting = new Data.Setting.SettingFRS();
+      
         public SettingFRSService()
         {
             url = "/setting-frs";
+
         }
-
-
 
         protected override int OnRead(string param)
         {
             Console.WriteLine("SettingService::OnRead");
             if (null != socket && socket.IsAvailable)
             {
-                Console.WriteLine(setting.ToJson());
-                socket.Send(new Message(Message.MessageType.READ, setting.ToJson()).ToJson());
+                Console.WriteLine(settingFRS.ToJson());
+                socket.Send(new Message(Message.MessageType.READ, settingFRS.ToJson()).ToJson());
             }
             return ReturnCode.SUCCESS;
         }
 
         protected override int OnUpdate(string param)
         {
-            setting = SettingFRS.CreateMessageFromJSON(param);
+            settingFRS = SettingFRS.CreateMessageFromJSON(param);
             Console.WriteLine("SettingService::OnUpdate");
-            if (Data.Setting.SettingFRS.Save(setting) == ReturnCode.SUCCESS)
+            if (Data.Setting.SettingFRS.Save(settingFRS) == ReturnCode.SUCCESS)
             {
                 return ReturnSuccessMessage();
 

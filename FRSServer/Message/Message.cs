@@ -40,6 +40,10 @@ namespace FRSServer
             /// 用于返回
             /// </summary>
             public  const string RETURN = "RETURN";
+            /// <summary>
+            /// 用于后台推送
+            /// </summary>
+            public const string PUSH = "PUSH";
         }
 
         public Message(string messageType)

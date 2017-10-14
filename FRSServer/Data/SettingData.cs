@@ -308,28 +308,186 @@ namespace FRSServer.Data.Setting
 
 
         public SettingFRS()
-            
         {
 
-            connectionStringMySQL = PubConstant.ConnectionStringMySQL;
-            channelNum = PubConstant.ChannelNum;
+            #region 初始设置
+            try
+            {
+                connectionStringMySQL=ConfigurationManager.AppSettings["ConnectionStringMySQL"];
+            }
+            catch
+            {
+                connectionStringMySQL = "server=127.0.0.1;database=frsdb;uid=root;pwd=12345679";
+            }
 
-            interval = PubConstant.Interval;
-            searchFaceWidthThresh = PubConstant.SearchFaceWidthThresh;
-            searchFaceHeightThresh = PubConstant.SearchFaceHeightThresh;
-            searchFaceYawThresh = PubConstant.SearchFaceYawThresh;
-            searchFaceRollThresh = PubConstant.SearchFaceRollThresh;
-            searchFacePitchThresh = PubConstant.SearchFacePitchThresh;
-            topK = PubConstant.TopK;
-            maxPersonNum = PubConstant.MaxPersonNum;
-            searchFaceQualityThresh = PubConstant.SearchFaceQualityThresh;
-            registerFaceWidthThresh = PubConstant.RegisterFaceWidthThresh;
-            registerFaceYawThresh = PubConstant.RegisterFaceYawThresh;
-            registerFaceRollThresh = PubConstant.RegisterFaceRollThresh;
-            registerFacePitchThresh = PubConstant.RegisterFacePitchThresh;
-            registerFaceQualityThresh = PubConstant.RegisterFaceQualityThresh;
+          
+            try
+            {
+                channelNum = Convert.ToInt16(ConfigurationManager.AppSettings["ChannelNum"]);
+            }
+            catch
+            {
+                channelNum = 4;
+            }
+#endregion
 
-           
+            #region 比对时的设置
+
+
+            try
+            {
+                interval = Convert.ToInt32(ConfigurationManager.AppSettings["Interval"]);
+            }
+            catch
+            {
+                interval = 500;
+            }
+
+            try
+            {
+                searchFaceWidthThresh = Convert.ToInt32(ConfigurationManager.AppSettings["SearchFaceWidthThresh"]);
+            }
+            catch
+            {
+                searchFaceWidthThresh = 80;
+            }
+
+            try
+            {
+                searchFaceHeightThresh = Convert.ToInt32(ConfigurationManager.AppSettings["SearchFaceHeightThresh"]);
+            }
+            catch
+            {
+                searchFaceHeightThresh = 80;
+            }
+
+
+            try
+            {
+                searchFaceYawThresh = Convert.ToInt32(ConfigurationManager.AppSettings["SearchFaceYawThresh"]);
+            }
+            catch
+            {
+                searchFaceYawThresh = 21;
+            }
+
+            try
+            {
+                searchFaceRollThresh = Convert.ToInt32(ConfigurationManager.AppSettings["SearchFaceRollThresh"]);
+            }
+            catch
+            {
+                searchFaceRollThresh = 22;
+            }
+
+
+            try
+            {
+                searchFacePitchThresh = Convert.ToInt32(ConfigurationManager.AppSettings["SearchFacePitchThresh"]);
+            }
+            catch
+            {
+                searchFacePitchThresh = 23;
+            }
+
+            try
+            {
+                searchFaceQualityThresh = Convert.ToInt32(ConfigurationManager.AppSettings["SearchFaceQualityThresh"]);
+            }
+            catch
+            {
+                searchFaceQualityThresh = 30;
+            }
+
+
+            try
+            {
+                scoreThresh = Convert.ToSingle(ConfigurationManager.AppSettings["ScoreThresh"]);
+            }
+            catch
+            {
+                scoreThresh = 0.65f;
+            }
+            try
+            {
+                topK = Convert.ToInt32(ConfigurationManager.AppSettings["TopK"]);
+            }
+            catch
+            {
+                topK = 5;
+            }
+
+            try
+            {
+                maxPersonNum = Convert.ToInt32(ConfigurationManager.AppSettings["MaxPersonNum"]);
+            }
+            catch
+            {
+                maxPersonNum = 5;
+            }
+
+            #endregion
+
+            #region 注册时的设置
+
+            try
+            {
+                registerFaceWidthThresh = Convert.ToInt32(ConfigurationManager.AppSettings["RegisterFaceWidthThresh"]);
+            }
+            catch
+            {
+                registerFaceWidthThresh = 80;
+            }
+
+            try
+            {
+                registerFaceHeightThresh = Convert.ToInt32(ConfigurationManager.AppSettings["RegisterFaceHeightThresh"]);
+            }
+            catch
+            {
+                registerFaceHeightThresh = 80;
+            }
+
+            try
+            {
+                registerFaceYawThresh = Convert.ToInt32(ConfigurationManager.AppSettings["RegisterFaceYawThresh"]);
+            }
+            catch
+            {
+                registerFaceYawThresh = 21;
+            }
+
+            try
+            {
+                registerFaceRollThresh = Convert.ToInt32(ConfigurationManager.AppSettings["RegisterFaceRollThresh"]);
+            }
+            catch
+            {
+                registerFaceRollThresh = 22;
+            }
+
+            try
+            {
+                registerFacePitchThresh = Convert.ToInt32(ConfigurationManager.AppSettings["RegisterFacePitchThresh"]);
+            }
+            catch
+            {
+                registerFacePitchThresh = 23;
+            }
+
+
+
+            try
+            {
+                registerFaceQualityThresh = Convert.ToInt32(ConfigurationManager.AppSettings["RegisterFaceQualityThresh"]);
+            }
+            catch
+            {
+                registerFaceQualityThresh = 30;
+            }
+
+            #endregion
+
 
         }
         /// <summary>
@@ -398,64 +556,9 @@ namespace FRSServer.Data.Setting
 
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    class SettingDataBase
-    {
-        //载入数据库的名字
-       public string DataBaseName { get; set; }
-
-       public string ToJson()
-       {
-           return JsonConvert.SerializeObject(this);
-       }
-       public static SettingDataBase CreateMessageFromJSON(string json)
-       {
-           SettingDataBase msg = null;
-           try
-           {
-               msg = (SettingDataBase)JsonConvert.DeserializeObject(json, typeof(SettingDataBase));
-           }
-           catch
-           {
-
-           }
-           return msg;
-       }
-
-     
-    }
-    class SettingDevice 
-    {
-        
-       public string Name{get;set;}
-        public string IP { get; set; }
-        public string User { get; set; }
-       public string Password { get; set; }
-       public string DeviceType { get; set; }
-
-
-
-       public string ToJson()
-       {
-           return JsonConvert.SerializeObject(this);
-       }
-       public static SettingDevice CreateMessageFromJSON(string json)
-       {
-           SettingDevice msg = null;
-           try
-           {
-               msg = (SettingDevice)JsonConvert.DeserializeObject(json, typeof(SettingDevice));
-           }
-           catch
-           {
-
-           }
-           return msg;
-       }
-
+    
+    
        
 
-    }
+    
 }

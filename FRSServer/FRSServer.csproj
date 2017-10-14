@@ -60,8 +60,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Capture.cs" />
-    <Compile Include="Data\ControlData.cs" />
-    <Compile Include="Data\Data.cs" />
+    <Compile Include="Data\ControllingData.cs" />
+    <Compile Include="Data\DatasetData.cs" />
+    <Compile Include="Data\DeviceData.cs" />
+    <Compile Include="Data\HitData.cs" />
     <Compile Include="Message\Message.cs" />
     <Compile Include="ImageUtils.cs" />
     <Compile Include="LogHelper.cs" />
@@ -76,7 +78,7 @@
     <Compile Include="Service\SearchingByTimeService.cs" />
     <Compile Include="Service\BaseService.cs" />
     <Compile Include="Service\ServiceHelper.cs" />
-    <Compile Include="Data\Setting.cs" />
+    <Compile Include="Data\SettingData.cs" />
     <Compile Include="Service\SettingDatasetService.cs" />
     <Compile Include="Service\SettingFRSService.cs" />
     <Compile Include="Service\SettingDeviceService.cs" />

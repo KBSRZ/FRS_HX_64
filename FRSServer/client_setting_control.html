@@ -6,26 +6,24 @@
 </head>
 <body style="padding:10px;">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<h1>模拟数据库设置</h1>
+	<h1>模拟开始设置</h1>
 	<div style="margin:5px 0px;">
 		Address:
-		<div><input id="address" type="text" value="ws://127.0.0.1/setting-dataset" style="width:400px;"/></div>
+		<div><input id="address" type="text" value="ws://127.0.0.1/controlling" style="width:400px;"/></div>
 	</div>
 	
 	<div>
        
-	   <select id="dataset">
-		  
-		</select>
-		
+	  <select id ="control">
+	  <option value ="false">false</option>
+	  <option value ="true">true</option>
+	</select>
 		
 
 	</div>
 		<button id="connect server" onclick="connect();">连接</button> &nbsp;&nbsp;
 		<button id="disconnect" onclick="quit();">断开</button>&nbsp;&nbsp;
 		<button id="clear" onclick="clearMsg();">清空</button>
-		<button id="read" onclick="read();">读取</button>
-		<button id="add" onclick="add();">增加</button>
 		<button id="set" onclick="set();">设置</button>
 	
 	<div>
@@ -69,12 +67,7 @@
 				if(message.Type=="READ"){
 					init(message.Content);
 				}
-				else{
-					var msg=document.createElement('div');
-					msg.style.color='#fff';
-					msg.innerHTML='Server > '+message.Content;
-					msgContainer.appendChild(msg);
-				}
+				
 			};
 			ws.onerror=function(e){
 			
@@ -105,27 +98,10 @@
 		}
 
 		
-		function init(datasetDataJson){
-			
-			
-			var datasetData= JSON.parse(datasetDataJson);
-			
-			var sltDataset = document.getElementById("dataset"); //获取select对象
-			for(var i=0;i<datasetData.DatasetNames.length;i++){
-				var optionObj = document.createElement("option"); //创建option对象
-				optionObj.value =datasetData.DatasetNames[i];
-				if(datasetData.DatasetNames[i]==datasetData.SelectedDataSetName){
-					optionObj.selected = true; 
-				}
-				optionObj.innerHTML = datasetData.DatasetNames[i];
-				sltDataset.appendChild(optionObj);  //添加到select
-				
-			}
-			
-		}
+		
 		
 		function set(){
-			var sltDataset = document.getElementById("dataset"); //获取select对象
+			var sltDataset = document.getElementById("control"); //获取select对象
 
 			var index = sltDataset.selectedIndex; // 选中索引
 
@@ -133,10 +109,14 @@
 
 			var value = sltDataset.options[index].value; // 选中值
 			
+			var controllingData={
+				Status: value
+			}
+			
 			var message={
 				ID:"",
 				Type:"SET",
-				Content:JSON.stringify(value)
+				Content:JSON.stringify(controllingData)
 			}
 			ws.send(JSON.stringify(message));
 			setTimeout(function(){

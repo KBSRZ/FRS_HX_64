@@ -81,7 +81,7 @@
 			};
 			ws.onmessage=function(e){
 			
-				
+				console.log(e.data);
 				var message= JSON.parse(e.data);
 				if(message.Type=="READ"){
 					init(message.Content);

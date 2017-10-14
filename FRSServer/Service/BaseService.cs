@@ -13,8 +13,50 @@ namespace FRSServer.Service
   
     abstract class BaseService
     {
-        public static FeatureData fa;//数据操作类
-        public static Capture cap;//视频处理类
+        public static FeatureData fa ;
+        public static Capture cap;
+        public static Data.Device selectedDevice = null;
+        public static  Data.Setting.SettingFRS settingFRS = null;
+       
+        public static int initFRS (){
+
+            settingFRS = new Data.Setting.SettingFRS();
+
+            selectedDevice = new Data.Device();
+
+            FRSParam param = new FRSParam();
+
+            param.nMinFaceSize = Math.Min(settingFRS.SearchFaceHeightThresh, settingFRS.MaxPersonNum);
+
+            param.nRollAngle = Math.Min(settingFRS.SearchFaceRollThresh, Math.Min(settingFRS.SearchFaceYawThresh, settingFRS.SearchFacePitchThresh));
+            param.bOnlyDetect = true;
+
+            FaceImage.Create(settingFRS.ChannelNum, param);
+            Feature.Init(settingFRS.ChannelNum);
+            fa = new FeatureData();
+            fa.MaxPersonNum = settingFRS.MaxPersonNum;
+            fa.ScoreThresh = settingFRS.ScoreThresh;
+            fa.SearchFaceHeightThresh = settingFRS.SearchFaceHeightThresh;
+            fa.SearchFaceWidthThresh = settingFRS.SearchFaceWidthThresh;
+            fa.SearchFaceYawThresh = settingFRS.SearchFaceYawThresh;
+            fa.SearchFacePitchThresh = settingFRS.SearchFacePitchThresh;
+            fa.SearchFaceRollThresh = settingFRS.SearchFaceRollThresh;
+            fa.SearchFaceQualityThresh = settingFRS.SearchFaceQualityThresh;
+            fa.TopK = settingFRS.TopK;
+
+            fa.RegisterFaceHeightThresh = settingFRS.RegisterFaceHeightThresh;
+            fa.RegisterFaceWidthThresh = settingFRS.RegisterFaceWidthThresh;
+            fa.RegisterFaceYawThresh = settingFRS.RegisterFaceYawThresh;
+            fa.RegisterFacePitchThresh = settingFRS.RegisterFacePitchThresh;
+            fa.RegisterFaceRollThresh = settingFRS.RegisterFaceRollThresh;
+            fa.RegisterFaceQualityThresh = settingFRS.RegisterFaceQualityThresh;
+            cap = new Capture(fa);
+            cap.Interval = settingFRS.Interval;
+
+            return 0;
+
+        }
+       
         /// <summary>
         /// 访问当前service的URL
         /// </summary>
@@ -26,7 +68,12 @@ namespace FRSServer.Service
             }
         }
         protected   string url=string.Empty;
-        public BaseService() {  }
+        public BaseService() {
+               
+
+                
+
+        }
         public IWebSocketConnection Socket { get { return socket; } set { socket = value; } }
         protected IWebSocketConnection socket;
         /// <summary>

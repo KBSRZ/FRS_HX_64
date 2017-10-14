@@ -685,6 +685,7 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 			hit->QueryFace = imgFace;
 			hit->OccurTime = DateTime::Now;
 			hit->Details = details;
+			hit->Threshold = scoreThresh;
 			result->Add(hit);
 			delete feats;
 		}

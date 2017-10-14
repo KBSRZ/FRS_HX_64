@@ -25,47 +25,9 @@ namespace FRSServer
         /// <summary>
         /// 初始化
         /// </summary>
-        private static void InitFRS()
+        private static void AddCallback()
         {
                         
-            FRSParam param = new FRSParam();
-
-            param.nMinFaceSize = Math.Min (PubConstant.SearchFaceHeightThresh,PubConstant.MaxPersonNum);
-
-            param.nRollAngle = Math.Min (PubConstant.SearchFaceRollThresh,Math.Min (PubConstant.SearchFaceYawThresh,PubConstant.SearchFacePitchThresh));
-            param.bOnlyDetect = true;
-
-            FaceImage.Create(PubConstant.ChannelNum, param);
-            Feature.Init(PubConstant.ChannelNum);
-
-
-            BaseService.fa = new FeatureData();
-
-
-            BaseService.fa.MaxPersonNum = PubConstant.MaxPersonNum;
-            BaseService.fa.ScoreThresh = PubConstant.ScoreThresh;
-            BaseService.fa.SearchFaceHeightThresh = PubConstant.SearchFaceHeightThresh;
-            BaseService.fa.SearchFaceWidthThresh = PubConstant.SearchFaceWidthThresh;
-            BaseService.fa.SearchFaceYawThresh = PubConstant.SearchFaceYawThresh;
-            BaseService.fa.SearchFacePitchThresh = PubConstant.SearchFacePitchThresh;
-            BaseService.fa.SearchFaceRollThresh = PubConstant.SearchFaceRollThresh;
-            BaseService.fa.SearchFaceQualityThresh = PubConstant.SearchFaceQualityThresh;
-            BaseService.fa.TopK = PubConstant.TopK;
-
-            BaseService.fa.RegisterFaceHeightThresh = PubConstant.RegisterFaceHeightThresh;
-            BaseService.fa.RegisterFaceWidthThresh = PubConstant.RegisterFaceWidthThresh;
-            BaseService.fa.RegisterFaceYawThresh = PubConstant.RegisterFaceYawThresh;
-            BaseService.fa.RegisterFacePitchThresh = PubConstant.RegisterFacePitchThresh;
-            BaseService.fa.RegisterFaceRollThresh = PubConstant.RegisterFaceRollThresh;
-            BaseService.fa.RegisterFaceQualityThresh = PubConstant.RegisterFaceQualityThresh;
-
-
-            //fa.RegisterOneFinisedEvent += new FeatureData.RegisterOneFinisedCallback(RegisterOneFinised);
-            BaseService.fa.ShowMsgEvent += new FeatureData.ShowMsgCallback(ShowMsgInfo);
-
-            BaseService.cap = new Capture(BaseService.fa);
-            BaseService.cap.Interval = PubConstant.Interval;
-
             BaseService.cap.HitAlertReturnEvent += new Capture.HitAlertCallback(OnHitAlert);//
 
             BaseService.fa.LoadData();
@@ -101,19 +63,12 @@ namespace FRSServer
             {
                 if (curService is HitAlertService)//当前如果是HitAlertService那么就 发送
                 {
-                    Data.HitAlert[] hitalerts = new Data.HitAlert[result.Length];
-                    for (int i = 0; i < hitalerts.Length; i++)
-                    {
-                        hitalerts[i] = new Data.HitAlert(result[i]);
-                    }
-                    
-
-                    //if (curService is HitAlertService )
-                    //    ((HitAlertService)curService).OnHit(hitalerts);
+                    ((HitAlertService)curService).OnHit(result);
                 }
 
-                Console.WriteLine("222222222222222222222222");
+               
             }
+            Console.WriteLine("222222222222222222222222");
         }
 
         /// <summary>
@@ -190,7 +145,8 @@ namespace FRSServer
         {
             
             main();
-            InitFRS();
+            BaseService.initFRS();
+            AddCallback();
             Console.ReadLine();
         }
     }
