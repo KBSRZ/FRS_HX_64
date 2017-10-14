@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Web Socket Client</title>
+</head>
+<body style="padding:10px;">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<h1>模拟设置</h1>
+	<div style="margin:5px 0px;">
+		Address:
+		<div><input id="address" type="text" value="ws://127.0.0.1/setting-frs" style="width:400px;"/></div>
+	</div>
+	
+	<div>
+       
+	    <input id="ConnectionStringMySQL" type="text" placeholder="数据库连接字符串"  autofocus="autofocus" />
+        <input id="ChannelNum" type="text" placeholder="初始化的通道数"  autofocus="autofocus" />
+	   
+        <input id="Interval" type="text" placeholder="比对间隔/ms"  autofocus="autofocus" />
+        <input id="SearchFaceWidthThresh" type="text" placeholder="比对时人脸宽度阈值"  autofocus="autofocus" />
+        <input id="SearchFaceHeightThresh" type="text" placeholder="比对时人脸高度阈值"  autofocus="autofocus" />
+        <input id="SearchFaceYawThresh" type="text" placeholder="比对时Yaw" autofocus="autofocus" />
+        <input id="SearchFaceRollThresh" type="text" placeholder="比对时Roll" autofocus="autofocus" />
+        <input id="SearchFacePitchThresh" type="text" placeholder="比对时Pitch"  autofocus="autofocus" />
+         <input id="SearchFaceQualityThresh" type="text" placeholder="比对时人脸质量"  autofocus="autofocus" />
+		<input id="ScoreThresh" type="text" placeholder="比对时阈值"  autofocus="autofocus" />
+        <input id="TopK" type="text" placeholder="返回匹配结果数"  autofocus="autofocus" />
+		 <input id="MaxPersonNum" type="text" placeholder="最大人脸数" autofocus="autofocus" />
+		
+		<input id="RegisterFaceWidthThresh" type="text" placeholder="注册时人脸宽度阈值"  autofocus="autofocus" />
+        <input id="RegisterFaceHeightThresh" type="text" placeholder="注册时人脸高度阈值"  autofocus="autofocus" />
+         <input id="RegisterFaceYawThresh" type="text" placeholder="注册时Yaw" autofocus="autofocus" />
+        <input id="RegisterFaceRollThresh" type="text" placeholder="注册时Roll"  autofocus="autofocus" />
+        <input id="RegisterFacePitchThresh" type="text" placeholder="注册时Pitch"  autofocus="autofocus" />
+        <input id="RegisterFaceQualityThresh" type="text" placeholder="比对时人脸质量"  autofocus="autofocus" />
+		
+		
+
+	</div>
+		<button id="connect server" onclick="connect();">连接</button> &nbsp;&nbsp;
+		<button id="disconnect" onclick="quit();">断开</button>&nbsp;&nbsp;
+		<button id="clear" onclick="clearMsg();">清空</button>
+		<button id="read" onclick="read();">读取</button>
+		<button id="set" onclick="setting();">设置</button>
+	
+	<div>
+		
+	</div>
+	<h5 style="margin:4px 0px;">Message:</h5>
+	<div id="content" style="border:solid 1px #333; padding:4px; width:400px; overflow:auto;
+	 	background-color:#404040; height:300px; margin-bottom:8px; font-size:14px;">
+	</div>
+	
+
+	<script type="text/javascript">
+		
+		
+		
+		var msgContainer=document.getElementById('content');
+		function read(){
+		
+			var message= {
+				ID:"",
+				Type:"READ",
+				Content:""
+			};
+			ws.send(JSON.stringify(message));
+		}
+
+		function connect () {
+			var address=document.getElementById('address').value;
+			
+			ws=new WebSocket(address);
+			ws.onopen=function(e){
+				var msg=document.createElement('div');
+				msg.style.color='#0f0';
+				msg.innerHTML="Server > connection open.";
+				msgContainer.appendChild(msg);
+				
+			};
+			ws.onmessage=function(e){
+			
+				console.log(e.data);
+				var message= JSON.parse(e.data);
+				if(message.Type=="READ"){
+					init(message.Content);
+				}
+				else{
+					var msg=document.createElement('div');
+					msg.style.color='#fff';
+					msg.innerHTML='Server > '+message.Content;
+					msgContainer.appendChild(msg);
+				}
+			};
+			ws.onerror=function(e){
+			
+				var msg=document.createElement('div');
+				msg.style.color='#0f0';
+				msg.innerHTML='Server > '+e.data;
+				msgContainer.appendChild(msg);
+			};
+			ws.onclose=function(e){
+				var msg=document.createElement('div');
+				msg.style.color='#0f0';
+				msg.innerHTML="Server > connection closed by server.";
+				msgContainer.appendChild(msg);
+			};
+			
+		}
+
+		function quit(){
+		
+			if(ws){
+				ws.close();
+				var msg=document.createElement('div');
+				msg.style.color='#0f0';
+				msg.innerHTML='Server > connection closed.';
+				msgContainer.appendChild(msg);
+				ws=null;
+			}
+		}
+
+		
+		function init(settingJson){
+			
+			var setting= JSON.parse(settingJson);
+			//document.getElementById('ConnectionStringMySQL').value=setting.ConnectionStringMySQL;
+			document.getElementById('ChannelNum').value=setting.ChannelNum;
+			document.getElementById('MaxPersonNum').value=setting.MaxPersonNum;
+			document.getElementById('Interval').value=setting.Interval;
+			document.getElementById('SearchFaceHeightThresh').value=setting.SearchFaceHeightThresh;
+			document.getElementById('SearchFaceWidthThresh').value=setting.SearchFaceWidthThresh;
+			document.getElementById('SearchFaceYawThresh').value=setting.SearchFaceYawThresh;
+			document.getElementById('SearchFaceRollThresh').value=setting.SearchFaceRollThresh;
+			document.getElementById('SearchFacePitchThresh').value=setting.SearchFacePitchThresh;
+			document.getElementById('SearchFaceQualityThresh').value=setting.SearchFaceQualityThresh;
+			document.getElementById('ScoreThresh').value=setting.ScoreThresh;
+			document.getElementById('TopK').value=setting.TopK;
+			document.getElementById('RegisterFaceWidthThresh').value=setting.RegisterFaceWidthThresh;
+			document.getElementById('RegisterFaceHeightThresh').value=setting.RegisterFaceHeightThresh;
+			document.getElementById('RegisterFaceRollThresh').value=setting.RegisterFaceRollThresh;
+			document.getElementById('RegisterFaceYawThresh').value=setting.RegisterFaceYawThresh;
+			document.getElementById('RegisterFacePitchThresh').value=setting.RegisterFacePitchThresh;
+			document.getElementById('RegisterFaceQualityThresh').value=setting.RegisterFaceQualityThresh;
+			
+		}
+		
+		function setting(){
+			var setting={
+				//ConnectionStringMySQL : document.getElementById('ConnectionStringMySQL').value,
+				ChannelNum : parseInt(document.getElementById('ChannelNum').value),
+				MaxPersonNum : parseInt(document.getElementById('MaxPersonNum').value),
+				Interval : parseInt(document.getElementById('Interval').value),
+				SearchFaceHeightThresh : parseInt(document.getElementById('SearchFaceHeightThresh').value),
+				SearchFaceWidthThresh : parseInt(document.getElementById('SearchFaceWidthThresh').value),
+				SearchFaceYawThresh : parseInt(document.getElementById('SearchFaceYawThresh').value),
+				SearchFaceRollThresh : parseInt(document.getElementById('SearchFaceRollThresh').value),
+				SearchFacePitchThresh : parseInt(document.getElementById('SearchFacePitchThresh').value),
+				SearchFaceQualityThresh : parseInt(document.getElementById('SearchFaceQualityThresh').value),
+				ScoreThresh : parseFloat(document.getElementById('ScoreThresh').value),
+				TopK : parseFloat(document.getElementById('TopK').value),
+				RegisterFaceWidthThresh : parseInt(document.getElementById('RegisterFaceWidthThresh').value),
+				RegisterFaceHeightThresh : parseInt(document.getElementById('RegisterFaceHeightThresh').value),
+				RegisterFaceRollThresh : parseInt(document.getElementById('RegisterFaceRollThresh').value),
+				RegisterFaceYawThresh : parseInt(document.getElementById('RegisterFaceYawThresh').value),
+				RegisterFacePitchThresh : parseInt(document.getElementById('RegisterFacePitchThresh').value),
+				RegisterFaceQualityThresh : parseInt(document.getElementById('RegisterFaceQualityThresh').value),
+				
+			}
+			
+			var message={
+				ID:"",
+				Type:"UPDATE",
+				Content:JSON.stringify(setting)
+			}
+			ws.send(JSON.stringify(message));
+			setTimeout(function(){
+				msgContainer.scrollTop=msgContainer.getBoundingClientRect().height;
+			},100);
+			
+		}
+		
+
+		function clearMsg(){
+			msgContainer.innerHTML="";
+		}
+
+		function enter(event){
+			if(event.keyCode==13){
+			 send(); 
+			} 
+		}
+	</script>
+</body>
+</html>

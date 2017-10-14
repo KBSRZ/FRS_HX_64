@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HitAlert</title>
+</head>
+<body style="padding:10px;">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<h1>HitAlert</h1>
+	
+	
+	
+	<div style="margin:5px 0px;">
+		Address:
+		<div><input id="address" type="text" value="ws://127.0.0.1/hitalert" style="width:400px;"/></div>
+	</div>
+	
+
+	<div>
+		<button id="connect" onclick="connect();">connect server</button> &nbsp;&nbsp;
+		<button id="disconnect" onclick="quit();">disconnect</button>&nbsp;&nbsp;
+		<button id="clear" onclick="clearMsg();">clear</button>
+	</div>
+	<h5 style="margin:4px 0px;">接受hitalert:</h5>
+	<div id="content" style="border:solid 1px #333; padding:4px; width:400px; overflow:auto;
+	 	background-color:#404040; height:300px; margin-bottom:8px; font-size:14px;">
+	</div>
+	
+	<script type="text/javascript">
+		
+		var msgContainer=document.getElementById('content');
+		var text=document.getElementById('text');
+
+		function connect () {
+			var address=document.getElementById('address').value;
+			
+			ws=new WebSocket(address);
+			ws.onopen=function(e){
+				var msg=document.createElement('div');
+				msg.style.color='#0f0';
+				msg.innerHTML="Server > connection open.";
+				msgContainer.appendChild(msg);
+				
+			};
+			ws.onmessage=function(e){
+				var msg=document.createElement('div');
+				msg.style.color='#fff';
+				msg.innerHTML=e.data;
+				//msgContainer.appendChild(msg);
+				
+				
+				var message= JSON.parse(e.data);
+				if(message.Type=="PUSH"){
+					var hitalerts = JSON.parse(message.Content);
+					for(var i=0;i<hitalerts.length;i++){
+					for(var j=0;j<hitalerts[i].Details.length;j++){
+						var image = new Image();
+						image.src="data:image/jpeg;base64,"+hitalerts[i].Details[j].UserInfo.Image;
+						image.width=50;
+						image.width=50;
+						msgContainer.appendChild(image);
+						
+						var name=document.createElement('div');
+						name.style.color='#fff';
+						name.innerHTML=hitalerts[i].Details[j].UserInfo.Name;
+						msgContainer.appendChild(name);
+						}
+					}
+				}
+				
+				
+				
+				
+				
+			};
+			ws.onerror=function(e){
+				var msg=document.createElement('div');
+				msg.style.color='#0f0';
+				msg.innerHTML='Server > '+e.data;
+				msgContainer.appendChild(msg);
+			};
+			ws.onclose=function(e){
+				var msg=document.createElement('div');
+				msg.style.color='#0f0';
+				msg.innerHTML="Server > connection closed by server.";
+				msgContainer.appendChild(msg);
+			};
+			
+		}
+
+		function quit(){
+			if(ws){
+				ws.close();
+				var msg=document.createElement('div');
+				msg.style.color='#0f0';
+				msg.innerHTML='Server > connection closed.';
+				msgContainer.appendChild(msg);
+				ws=null;
+			}
+		}
+
+		
+
+		function clearMsg(){
+			msgContainer.innerHTML="";
+		}
+		
+	</script>
+</body>
+</html>

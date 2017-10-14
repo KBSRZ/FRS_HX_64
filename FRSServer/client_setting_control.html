@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Web Socket Client</title>
+</head>
+<body style="padding:10px;">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<h1>模拟开始设置</h1>
+	<div style="margin:5px 0px;">
+		Address:
+		<div><input id="address" type="text" value="ws://127.0.0.1/controlling" style="width:400px;"/></div>
+	</div>
+	
+	<div>
+       
+	  <select id ="control">
+	  <option value ="false">false</option>
+	  <option value ="true">true</option>
+	</select>
+		
+
+	</div>
+		<button id="connect server" onclick="connect();">连接</button> &nbsp;&nbsp;
+		<button id="disconnect" onclick="quit();">断开</button>&nbsp;&nbsp;
+		<button id="clear" onclick="clearMsg();">清空</button>
+		<button id="set" onclick="set();">设置</button>
+	
+	<div>
+		
+	</div>
+	<h5 style="margin:4px 0px;">Message:</h5>
+	<div id="content" style="border:solid 1px #333; padding:4px; width:400px; overflow:auto;
+	 	background-color:#404040; height:300px; margin-bottom:8px; font-size:14px;">
+	</div>
+	
+
+	<script type="text/javascript">
+		
+		
+		
+		var msgContainer=document.getElementById('content');
+		function read(){
+		
+			var message= {
+				ID:"",
+				Type:"READ",
+				Content:""
+			};
+			ws.send(JSON.stringify(message));
+		}
+
+		function connect () {
+			var address=document.getElementById('address').value;
+			
+			ws=new WebSocket(address);
+			ws.onopen=function(e){
+				var msg=document.createElement('div');
+				msg.style.color='#0f0';
+				msg.innerHTML="Server > connection open.";
+				msgContainer.appendChild(msg);
+				
+			};
+			ws.onmessage=function(e){
+			
+				var message= JSON.parse(e.data);
+				if(message.Type=="READ"){
+					init(message.Content);
+				}
+				
+			};
+			ws.onerror=function(e){
+			
+				var msg=document.createElement('div');
+				msg.style.color='#0f0';
+				msg.innerHTML='Server > '+e.data;
+				msgContainer.appendChild(msg);
+			};
+			ws.onclose=function(e){
+				var msg=document.createElement('div');
+				msg.style.color='#0f0';
+				msg.innerHTML="Server > connection closed by server.";
+				msgContainer.appendChild(msg);
+			};
+			
+		}
+
+		function quit(){
+		
+			if(ws){
+				ws.close();
+				var msg=document.createElement('div');
+				msg.style.color='#0f0';
+				msg.innerHTML='Server > connection closed.';
+				msgContainer.appendChild(msg);
+				ws=null;
+			}
+		}
+
+		
+		
+		
+		function set(){
+			var sltDataset = document.getElementById("control"); //获取select对象
+
+			var index = sltDataset.selectedIndex; // 选中索引
+
+			var text = sltDataset.options[index].text; // 选中文本
+
+			var value = sltDataset.options[index].value; // 选中值
+			
+			var controllingData={
+				Status: value
+			}
+			
+			var message={
+				ID:"",
+				Type:"SET",
+				Content:JSON.stringify(controllingData)
+			}
+			ws.send(JSON.stringify(message));
+			setTimeout(function(){
+				msgContainer.scrollTop=msgContainer.getBoundingClientRect().height;
+			},100);
+			
+		}
+		
+
+		function clearMsg(){
+			msgContainer.innerHTML="";
+		}
+
+		function enter(event){
+			if(event.keyCode==13){
+			 send(); 
+			} 
+		}
+	</script>
+</body>
+</html>
