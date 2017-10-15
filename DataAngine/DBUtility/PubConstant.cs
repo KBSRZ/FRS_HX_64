@@ -32,6 +32,33 @@ namespace DataAngine.DBUtility
         }
 
         /// <summary>
+        /// 获取连接字符串
+        /// </summary>
+        public static string ConnectionTableString
+        {
+            get
+            {
+                try
+                {
+                    string _connectionTableString = ConfigurationManager.AppSettings["ConnectionTableStringMySQL"];
+                    string ConStringEncrypt = ConfigurationManager.AppSettings["ConStringEncrypt"];
+                    if (ConStringEncrypt == "true")
+                    {
+                        _connectionTableString = DESEncrypt.Decrypt(_connectionTableString);
+                    }
+                    if (_connectionTableString == null || _connectionTableString == string.Empty)
+                        return "server=127.0.0.1;database=frs_database_set;uid=root;pwd=123456";
+                    return _connectionTableString;
+                }
+                catch
+                {
+                    return "server=127.0.0.1;database=frsdb;uid=root;pwd=123456";
+                }
+
+            }
+        }
+
+        /// <summary>
         /// 得到web.config里配置项的数据库连接字符串。
         /// </summary>
         /// <param name="configName"></param>

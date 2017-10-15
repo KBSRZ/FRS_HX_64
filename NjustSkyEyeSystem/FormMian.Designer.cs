@@ -863,7 +863,7 @@
             this.tabSetting.Controls.Add(this.tableLayoutPanel3);
             this.tabSetting.Location = new System.Drawing.Point(4, 22);
             this.tabSetting.Name = "tabSetting";
-            this.tabSetting.Size = new System.Drawing.Size(1354, 690);
+            this.tabSetting.Size = new System.Drawing.Size(1346, 690);
             this.tabSetting.TabIndex = 2;
             this.tabSetting.Text = "设置";
             this.tabSetting.UseVisualStyleBackColor = true;
@@ -888,7 +888,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1343, 687);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1335, 687);
             this.tableLayoutPanel3.TabIndex = 58;
             // 
             // groupBox9
@@ -902,7 +902,7 @@
             this.groupBox9.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox9.Size = new System.Drawing.Size(414, 340);
+            this.groupBox9.Size = new System.Drawing.Size(411, 340);
             this.groupBox9.TabIndex = 64;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "摄像头注册";
@@ -1048,9 +1048,9 @@
             // 
             this.panel12.Controls.Add(this.groupBox7);
             this.panel12.Controls.Add(this.btn_DetectParamsUpdate);
-            this.panel12.Location = new System.Drawing.Point(421, 346);
+            this.panel12.Location = new System.Drawing.Point(418, 346);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(500, 338);
+            this.panel12.Size = new System.Drawing.Size(497, 338);
             this.panel12.TabIndex = 63;
             // 
             // groupBox7
@@ -1062,7 +1062,7 @@
             this.groupBox7.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox7.Size = new System.Drawing.Size(486, 167);
+            this.groupBox7.Size = new System.Drawing.Size(483, 167);
             this.groupBox7.TabIndex = 75;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "注册";
@@ -1095,12 +1095,12 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00063F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00063F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(460, 104);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(457, 104);
             this.tableLayoutPanel8.TabIndex = 63;
             // 
             // nudRegisterFaceQualityThresh
             // 
-            this.nudRegisterFaceQualityThresh.Location = new System.Drawing.Point(371, 71);
+            this.nudRegisterFaceQualityThresh.Location = new System.Drawing.Point(368, 71);
             this.nudRegisterFaceQualityThresh.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -1115,7 +1115,7 @@
             this.label35.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(252, 68);
+            this.label35.Location = new System.Drawing.Point(249, 68);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(113, 36);
             this.label35.TabIndex = 84;
@@ -1123,7 +1123,7 @@
             // 
             // nudRegisterFaceHeightThresh
             // 
-            this.nudRegisterFaceHeightThresh.Location = new System.Drawing.Point(371, 37);
+            this.nudRegisterFaceHeightThresh.Location = new System.Drawing.Point(368, 37);
             this.nudRegisterFaceHeightThresh.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -1138,7 +1138,7 @@
             this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(28, 0);
+            this.label27.Location = new System.Drawing.Point(27, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(107, 34);
             this.label27.TabIndex = 81;
@@ -1146,7 +1146,7 @@
             // 
             // nudRegisterFaceWidthThresh
             // 
-            this.nudRegisterFaceWidthThresh.Location = new System.Drawing.Point(371, 3);
+            this.nudRegisterFaceWidthThresh.Location = new System.Drawing.Point(368, 3);
             this.nudRegisterFaceWidthThresh.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -1158,16 +1158,16 @@
             // 
             // nudRegisterPitchThresh
             // 
-            this.nudRegisterPitchThresh.Location = new System.Drawing.Point(141, 71);
+            this.nudRegisterPitchThresh.Location = new System.Drawing.Point(140, 71);
             this.nudRegisterPitchThresh.Name = "nudRegisterPitchThresh";
-            this.nudRegisterPitchThresh.Size = new System.Drawing.Size(86, 21);
+            this.nudRegisterPitchThresh.Size = new System.Drawing.Size(85, 21);
             this.nudRegisterPitchThresh.TabIndex = 75;
             // 
             // nudRegisterRollThresh
             // 
-            this.nudRegisterRollThresh.Location = new System.Drawing.Point(141, 37);
+            this.nudRegisterRollThresh.Location = new System.Drawing.Point(140, 37);
             this.nudRegisterRollThresh.Name = "nudRegisterRollThresh";
-            this.nudRegisterRollThresh.Size = new System.Drawing.Size(86, 21);
+            this.nudRegisterRollThresh.Size = new System.Drawing.Size(85, 21);
             this.nudRegisterRollThresh.TabIndex = 74;
             // 
             // label28
@@ -1175,7 +1175,7 @@
             this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(16, 68);
+            this.label28.Location = new System.Drawing.Point(15, 68);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(119, 36);
             this.label28.TabIndex = 77;
@@ -1183,9 +1183,9 @@
             // 
             // nudRegisterYawThresh
             // 
-            this.nudRegisterYawThresh.Location = new System.Drawing.Point(141, 3);
+            this.nudRegisterYawThresh.Location = new System.Drawing.Point(140, 3);
             this.nudRegisterYawThresh.Name = "nudRegisterYawThresh";
-            this.nudRegisterYawThresh.Size = new System.Drawing.Size(86, 21);
+            this.nudRegisterYawThresh.Size = new System.Drawing.Size(85, 21);
             this.nudRegisterYawThresh.TabIndex = 80;
             this.nudRegisterYawThresh.Value = new decimal(new int[] {
             100,
@@ -1207,7 +1207,7 @@
             this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(264, 0);
+            this.label34.Location = new System.Drawing.Point(261, 0);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(101, 34);
             this.label34.TabIndex = 79;
@@ -1218,7 +1218,7 @@
             this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(264, 34);
+            this.label26.Location = new System.Drawing.Point(261, 34);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(101, 34);
             this.label26.TabIndex = 82;
@@ -1242,9 +1242,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox8.Controls.Add(this.tableLayoutPanel10);
             this.groupBox8.Controls.Add(this.btn_Library_Register);
-            this.groupBox8.Location = new System.Drawing.Point(927, 346);
+            this.groupBox8.Location = new System.Drawing.Point(921, 346);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(413, 338);
+            this.groupBox8.Size = new System.Drawing.Size(411, 338);
             this.groupBox8.TabIndex = 13;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "数据库注册";
@@ -1340,9 +1340,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.tableLayoutPanel9);
             this.groupBox1.Controls.Add(this.btnTestConnection);
-            this.groupBox1.Location = new System.Drawing.Point(927, 3);
+            this.groupBox1.Location = new System.Drawing.Point(921, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(413, 337);
+            this.groupBox1.Size = new System.Drawing.Size(411, 337);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "数据库设置";
@@ -1459,11 +1459,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.groupBox6);
-            this.groupBox2.Location = new System.Drawing.Point(420, 2);
+            this.groupBox2.Location = new System.Drawing.Point(417, 2);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(502, 339);
+            this.groupBox2.Size = new System.Drawing.Size(499, 339);
             this.groupBox2.TabIndex = 56;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "参数";
@@ -1478,7 +1478,7 @@
             this.groupBox6.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox6.Size = new System.Drawing.Size(476, 317);
+            this.groupBox6.Size = new System.Drawing.Size(473, 317);
             this.groupBox6.TabIndex = 74;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "检测";
@@ -1873,7 +1873,7 @@
             this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox5.Size = new System.Drawing.Size(414, 339);
+            this.groupBox5.Size = new System.Drawing.Size(411, 339);
             this.groupBox5.TabIndex = 57;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "摄像头设置";
@@ -2240,7 +2240,7 @@
             this.tpCapture.Location = new System.Drawing.Point(4, 22);
             this.tpCapture.Name = "tpCapture";
             this.tpCapture.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCapture.Size = new System.Drawing.Size(1354, 690);
+            this.tpCapture.Size = new System.Drawing.Size(1346, 690);
             this.tpCapture.TabIndex = 0;
             this.tpCapture.Text = "监控";
             // 
@@ -2265,7 +2265,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1351, 684);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1343, 684);
             this.tableLayoutPanel2.TabIndex = 17;
             // 
             // listViewFace
@@ -2281,7 +2281,7 @@
             this.listViewFace.Margin = new System.Windows.Forms.Padding(2);
             this.listViewFace.MultiSelect = false;
             this.listViewFace.Name = "listViewFace";
-            this.listViewFace.Size = new System.Drawing.Size(1347, 168);
+            this.listViewFace.Size = new System.Drawing.Size(1339, 168);
             this.listViewFace.TabIndex = 16;
             this.listViewFace.UseCompatibleStateImageBehavior = false;
             // 
@@ -2299,10 +2299,10 @@
             this.panel2.Controls.Add(this.lbl_CountCollect);
             this.panel2.Controls.Add(this.lbl_CountMatch);
             this.panel2.Controls.Add(this.label18);
-            this.panel2.Location = new System.Drawing.Point(880, 2);
+            this.panel2.Location = new System.Drawing.Point(874, 2);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(469, 64);
+            this.panel2.Size = new System.Drawing.Size(467, 64);
             this.panel2.TabIndex = 21;
             // 
             // lbl_CountMatchNone
@@ -2359,7 +2359,7 @@
             // 
             this.lbl_CountCollect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_CountCollect.AutoSize = true;
-            this.lbl_CountCollect.Location = new System.Drawing.Point(370, 29);
+            this.lbl_CountCollect.Location = new System.Drawing.Point(368, 29);
             this.lbl_CountCollect.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_CountCollect.Name = "lbl_CountCollect";
             this.lbl_CountCollect.Size = new System.Drawing.Size(65, 12);
@@ -2371,7 +2371,7 @@
             // 
             this.lbl_CountMatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_CountMatch.AutoSize = true;
-            this.lbl_CountMatch.Location = new System.Drawing.Point(370, 10);
+            this.lbl_CountMatch.Location = new System.Drawing.Point(368, 10);
             this.lbl_CountMatch.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_CountMatch.Name = "lbl_CountMatch";
             this.lbl_CountMatch.Size = new System.Drawing.Size(65, 12);
@@ -2400,7 +2400,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(1347, 30);
+            this.groupBox3.Size = new System.Drawing.Size(1339, 30);
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
             // 
@@ -2415,14 +2415,14 @@
             this.panel1.Location = new System.Drawing.Point(6, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1319, 30);
+            this.panel1.Size = new System.Drawing.Size(1311, 30);
             this.panel1.TabIndex = 1;
             // 
             // lbl_CatchFaceCount
             // 
             this.lbl_CatchFaceCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_CatchFaceCount.AutoSize = true;
-            this.lbl_CatchFaceCount.Location = new System.Drawing.Point(1244, 6);
+            this.lbl_CatchFaceCount.Location = new System.Drawing.Point(1236, 6);
             this.lbl_CatchFaceCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_CatchFaceCount.Name = "lbl_CatchFaceCount";
             this.lbl_CatchFaceCount.Size = new System.Drawing.Size(65, 12);
@@ -2450,7 +2450,7 @@
             this.panel9.Controls.Add(this.panel8);
             this.panel9.Location = new System.Drawing.Point(3, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(872, 62);
+            this.panel9.Size = new System.Drawing.Size(866, 62);
             this.panel9.TabIndex = 23;
             // 
             // panel8
@@ -2464,7 +2464,7 @@
             this.panel8.Controls.Add(this.txtVideoAddress);
             this.panel8.Location = new System.Drawing.Point(5, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(853, 39);
+            this.panel8.Size = new System.Drawing.Size(847, 39);
             this.panel8.TabIndex = 22;
             // 
             // rdb_CameraCHC
@@ -2515,9 +2515,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel10.Controls.Add(this.groupBox4);
-            this.panel10.Location = new System.Drawing.Point(881, 71);
+            this.panel10.Location = new System.Drawing.Point(875, 71);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(467, 404);
+            this.panel10.Size = new System.Drawing.Size(465, 404);
             this.panel10.TabIndex = 22;
             // 
             // groupBox4
@@ -2530,7 +2530,7 @@
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(418, 389);
+            this.groupBox4.Size = new System.Drawing.Size(416, 389);
             this.groupBox4.TabIndex = 20;
             this.groupBox4.TabStop = false;
             // 
@@ -2546,7 +2546,7 @@
             this.flowLayoutPanel.Location = new System.Drawing.Point(2, 16);
             this.flowLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(398, 371);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(396, 371);
             this.flowLayoutPanel.TabIndex = 18;
             this.flowLayoutPanel.WrapContents = false;
             // 
@@ -2630,7 +2630,7 @@
             this.picPlayer.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.picPlayer.Location = new System.Drawing.Point(3, 71);
             this.picPlayer.Name = "picPlayer";
-            this.picPlayer.Size = new System.Drawing.Size(872, 404);
+            this.picPlayer.Size = new System.Drawing.Size(866, 404);
             this.picPlayer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picPlayer.TabIndex = 0;
             this.picPlayer.TabStop = false;
@@ -2647,7 +2647,7 @@
             this.tpViewLibrary.Location = new System.Drawing.Point(0, 0);
             this.tpViewLibrary.Name = "tpViewLibrary";
             this.tpViewLibrary.SelectedIndex = 0;
-            this.tpViewLibrary.Size = new System.Drawing.Size(1362, 716);
+            this.tpViewLibrary.Size = new System.Drawing.Size(1354, 716);
             this.tpViewLibrary.TabIndex = 2;
             // 
             // tpCertificate
@@ -2843,7 +2843,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 716);
+            this.ClientSize = new System.Drawing.Size(1354, 716);
             this.Controls.Add(this.tpViewLibrary);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

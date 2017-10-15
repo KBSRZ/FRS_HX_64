@@ -1447,6 +1447,7 @@ namespace NjustSkyEyeSystem
 
             if (true == tablebll.Add(table))
             {
+                combox_DataBaseName.Text = libraryname;
                 fa.LoadData(libraryname);
                 ComboxLibraryList();
                 MessageBox.Show("注册成功");
@@ -1483,6 +1484,7 @@ namespace NjustSkyEyeSystem
 
             if (true == devicebll.Add(device))
             {
+                comboBox_DevName.Text = devicename;
                 ComboxDevList();
                 MessageBox.Show("注册成功");
             }
