@@ -12,8 +12,6 @@ namespace FRSServer.Data.Setting
     /// </summary>
     class SettingFRS
     {
-
-
         #region 初始化参数
         ///// <summary>
         ///// 获取连接字符串
@@ -32,8 +30,6 @@ namespace FRSServer.Data.Setting
             set { channelNum = value; }
         }
         #endregion
-
-
 
         #region 初始化参数
         private string connectionStringMySQL;
@@ -196,8 +192,6 @@ namespace FRSServer.Data.Setting
 
         #endregion
 
-
-
         #region 比对时的设置
 
         /// <summary>
@@ -306,10 +300,8 @@ namespace FRSServer.Data.Setting
         #endregion
 
 
-
         public SettingFRS()
         {
-
             #region 初始设置
             try
             {
@@ -487,8 +479,6 @@ namespace FRSServer.Data.Setting
             }
 
             #endregion
-
-
         }
         /// <summary>
         /// 保存设置
@@ -555,10 +545,5 @@ namespace FRSServer.Data.Setting
 
 
     }
-
-    
-    
-       
-
-    
+   
 }

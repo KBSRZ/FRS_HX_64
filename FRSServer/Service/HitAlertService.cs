@@ -13,8 +13,6 @@ namespace FRSServer.Service
     /// </summary>
     class HitAlertService : BaseService
     {
-
-
         public HitAlertService()
         {
             url = "/hitalert";
