@@ -7,8 +7,6 @@ using System.Configuration;
 using Newtonsoft.Json;
 namespace FRSServer.Data
 {
-
-
     class Device 
     {
         
