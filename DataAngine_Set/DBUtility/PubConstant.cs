@@ -1,33 +1,34 @@
 ﻿using System;
 using System.Configuration;
-namespace DataAngine.DBUtility
+namespace DataAgine_Set.DBUtility
 {
-    
+
     public class PubConstant
-    {        
+    {
         /// <summary>
         /// 获取连接字符串
         /// </summary>
         public static string ConnectionString
-        {           
-            get 
+        {
+            get
             {
                 try
                 {
-                    string _connectionString = ConfigurationManager.AppSettings["ConnectionStringMySQL"];
+                    string _connectionString = ConfigurationManager.AppSettings["ConnectionStringMySQLSet"];
                     string ConStringEncrypt = ConfigurationManager.AppSettings["ConStringEncrypt"];
                     if (ConStringEncrypt == "true")
                     {
                         _connectionString = DESEncrypt.Decrypt(_connectionString);
                     }
-                    if (_connectionString == null || _connectionString==string.Empty)
-                         return "server=127.0.0.1;database=frsdb;uid=root;pwd=123456";
+                    if (_connectionString == null || _connectionString == string.Empty)
+                        return "server=127.0.0.1;database=frs_database_set;uid=root;pwd=123456";
                     return _connectionString;
                 }
-                catch {
-                    return "server=127.0.0.1;database=frsdb;uid=root;pwd=123456";
+                catch
+                {
+                    return "server=127.0.0.1;database=frs_database_set;uid=root;pwd=123456";
                 }
-                
+
             }
         }
 
@@ -47,14 +48,14 @@ namespace DataAngine.DBUtility
                     connectionString = DESEncrypt.Decrypt(connectionString);
                 }
                 if (connectionString == null || connectionString == string.Empty)
-                    return "server=127.0.0.1;database=frsdb;uid=root;pwd=123456";
+                    return "server=127.0.0.1;database=frs_database_set;uid=root;pwd=123456";
                 return connectionString;
             }
             catch
             {
-                return "server=127.0.0.1;database=frsdb;uid=root;pwd=123456";
+                return "server=127.0.0.1;database=frs_database_set;uid=root;pwd=123456";
             }
-           
+
         }
 
 

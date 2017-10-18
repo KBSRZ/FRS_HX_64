@@ -86,19 +86,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\device.cs" />
     <Compile Include="BLL\hitalert.cs" />
     <Compile Include="BLL\hitrecord.cs" />
     <Compile Include="BLL\hitrecord_detail.cs" />
     <Compile Include="BLL\statistics.cs" />
-    <Compile Include="BLL\table.cs" />
     <Compile Include="BLL\user.cs" />
-    <Compile Include="DAL\device.cs" />
     <Compile Include="DAL\hitalert.cs" />
     <Compile Include="DAL\hitrecord.cs" />
     <Compile Include="DAL\hitrecord_detail.cs" />
     <Compile Include="DAL\statistics.cs" />
-    <Compile Include="DAL\table.cs" />
     <Compile Include="DAL\user.cs" />
     <Compile Include="DBUtility\CommandInfo.cs" />
     <Compile Include="DBUtility\DbHelperMySQL.cs" />
@@ -111,12 +107,10 @@
     <Compile Include="DBUtility\PubConstant.cs" />
     <Compile Include="DBUtility\SQLHelper.cs" />
     <Compile Include="DBUtility\TypeConverter.cs" />
-    <Compile Include="Model\device.cs" />
     <Compile Include="Model\hitalert.cs" />
     <Compile Include="Model\hitrecord.cs" />
     <Compile Include="Model\hitrecord_detail.cs" />
     <Compile Include="Model\statistics.cs" />
-    <Compile Include="Model\table.cs" />
     <Compile Include="Model\user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -156,7 +156,7 @@ namespace DataAngine.DAL
             parameters[9].Value = model.modified_time;
             parameters[10].Value = model.quality_score;
 
-            int rows = DbHelperMySQL.ExecuteSql(strSql.ToString(), true, library, parameters);
+            int rows = DbHelperMySQL.ExecuteSql(strSql.ToString(), library, parameters);
            
             if (rows > 0)
             {
@@ -444,7 +444,7 @@ namespace DataAngine.DAL
             {
                 strSql.Append(" where " + strWhere);
             }
-            return DbHelperMySQL.Query(strSql.ToString(), true, libraryname);
+            return DbHelperMySQL.Query(strSql.ToString(), libraryname);
         }
 
         /// <summary>
@@ -478,7 +478,7 @@ namespace DataAngine.DAL
             //{
             //    strSql.Append(" where " + strWhere);
             //}
-            return DbHelperMySQL.Query(strSql.ToString(), true, library);
+            return DbHelperMySQL.Query(strSql.ToString(), library);
         }
 
         /// <summary>
@@ -514,7 +514,7 @@ namespace DataAngine.DAL
             //{
             //    strSql.Append(" where " + strWhere);
             //}
-            return DbHelperMySQL.Query(strSql.ToString(), true, library);
+            return DbHelperMySQL.Query(strSql.ToString(), library);
         }
 
         /// <summary>

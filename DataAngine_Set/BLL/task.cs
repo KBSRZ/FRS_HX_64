@@ -2,16 +2,16 @@
 using System.Data;
 using System.Collections.Generic;
 //using DataAgine_Set.Common;
-using DataAngine.Model;
-namespace DataAngine.BLL
+using DataAgine_Set.Model;
+namespace DataAgine_Set.BLL
 {
 	/// <summary>
-	/// hitrecord_detail
+	/// task
 	/// </summary>
-	public partial class hitrecord_detail
+	public partial class task
 	{
-		private readonly DataAngine.DAL.hitrecord_detail dal=new DataAngine.DAL.hitrecord_detail();
-		public hitrecord_detail()
+		private readonly DataAgine_Set.DAL.task dal=new DataAgine_Set.DAL.task();
+		public task()
 		{}
 		#region  BasicMethod
 
@@ -32,9 +32,17 @@ namespace DataAngine.BLL
 		}
 
 		/// <summary>
+		/// 增加一条数据
+		/// </summary>
+		public bool Add(DataAgine_Set.Model.task model)
+		{
+			return dal.Add(model);
+		}
+
+		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(DataAngine.Model.hitrecord_detail model)
+		public bool Update(DataAgine_Set.Model.task model)
 		{
 			return dal.Update(model);
 		}
@@ -55,11 +63,10 @@ namespace DataAngine.BLL
 			return dal.DeleteList(idlist );
 		}
 
-
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public DataAngine.Model.hitrecord_detail GetModel(int id)
+		public DataAgine_Set.Model.task GetModel(int id)
 		{
 			
 			return dal.GetModel(id);
@@ -68,10 +75,10 @@ namespace DataAngine.BLL
         ///// <summary>
         ///// 得到一个对象实体，从缓存中
         ///// </summary>
-        //public FRS.Model.hitrecord_detail GetModelByCache(int id)
+        //public DataAgine_Set.Model.task GetModelByCache(int id)
         //{
 			
-        //    string CacheKey = "hitrecord_detailModel-" + id;
+        //    string CacheKey = "taskModel-" + id;
         //    object objModel = DataAgine_Set.Common.DataCache.GetCache(CacheKey);
         //    if (objModel == null)
         //    {
@@ -86,7 +93,7 @@ namespace DataAngine.BLL
         //        }
         //        catch{}
         //    }
-        //    return (FRS.Model.hitrecord_detail)objModel;
+        //    return (DataAgine_Set.Model.task)objModel;
         //}
 
 		/// <summary>
@@ -99,7 +106,7 @@ namespace DataAngine.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<DataAngine.Model.hitrecord_detail> GetModelList(string strWhere)
+		public List<DataAgine_Set.Model.task> GetModelList(string strWhere)
 		{
 			DataSet ds = dal.GetList(strWhere);
 			return DataTableToList(ds.Tables[0]);
@@ -107,13 +114,13 @@ namespace DataAngine.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<DataAngine.Model.hitrecord_detail> DataTableToList(DataTable dt)
+		public List<DataAgine_Set.Model.task> DataTableToList(DataTable dt)
 		{
-			List<DataAngine.Model.hitrecord_detail> modelList = new List<DataAngine.Model.hitrecord_detail>();
+			List<DataAgine_Set.Model.task> modelList = new List<DataAgine_Set.Model.task>();
 			int rowsCount = dt.Rows.Count;
 			if (rowsCount > 0)
 			{
-				DataAngine.Model.hitrecord_detail model;
+				DataAgine_Set.Model.task model;
 				for (int n = 0; n < rowsCount; n++)
 				{
 					model = dal.DataRowToModel(dt.Rows[n]);

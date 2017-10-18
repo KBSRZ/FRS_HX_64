@@ -2,16 +2,16 @@
 using System.Data;
 using System.Collections.Generic;
 //using DataAgine_Set.Common;
-using DataAngine.Model;
-namespace DataAngine.BLL
+using DataAgine_Set.Model;
+namespace DataAgine_Set.BLL
 {
 	/// <summary>
-	/// hitrecord_detail
+	/// device
 	/// </summary>
-	public partial class hitrecord_detail
+	public partial class device
 	{
-		private readonly DataAngine.DAL.hitrecord_detail dal=new DataAngine.DAL.hitrecord_detail();
-		public hitrecord_detail()
+		private readonly DataAgine_Set.DAL.device dal=new DataAgine_Set.DAL.device();
+		public device()
 		{}
 		#region  BasicMethod
 
@@ -32,9 +32,17 @@ namespace DataAngine.BLL
 		}
 
 		/// <summary>
+		/// 增加一条数据
+		/// </summary>
+		public bool Add(DataAgine_Set.Model.device model)
+		{
+			return dal.Add(model);
+		}
+
+		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(DataAngine.Model.hitrecord_detail model)
+		public bool Update(DataAgine_Set.Model.device model)
 		{
 			return dal.Update(model);
 		}
@@ -55,23 +63,30 @@ namespace DataAngine.BLL
 			return dal.DeleteList(idlist );
 		}
 
-
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public DataAngine.Model.hitrecord_detail GetModel(int id)
+		public DataAgine_Set.Model.device GetModel(int id)
 		{
 			
 			return dal.GetModel(id);
 		}
 
+        /// <summary>
+        /// 获得数据列表
+        /// </summary>
+        public DataSet GetDevice(string name)
+        {
+            return dal.GetDevice(name);
+        }
+
         ///// <summary>
         ///// 得到一个对象实体，从缓存中
         ///// </summary>
-        //public FRS.Model.hitrecord_detail GetModelByCache(int id)
+        //public DataAgine_Set.Model.device GetModelByCache(int id)
         //{
 			
-        //    string CacheKey = "hitrecord_detailModel-" + id;
+        //    string CacheKey = "deviceModel-" + id;
         //    object objModel = DataAgine_Set.Common.DataCache.GetCache(CacheKey);
         //    if (objModel == null)
         //    {
@@ -86,7 +101,7 @@ namespace DataAngine.BLL
         //        }
         //        catch{}
         //    }
-        //    return (FRS.Model.hitrecord_detail)objModel;
+        //    return (DataAgine_Set.Model.device)objModel;
         //}
 
 		/// <summary>
@@ -99,7 +114,7 @@ namespace DataAngine.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<DataAngine.Model.hitrecord_detail> GetModelList(string strWhere)
+		public List<DataAgine_Set.Model.device> GetModelList(string strWhere)
 		{
 			DataSet ds = dal.GetList(strWhere);
 			return DataTableToList(ds.Tables[0]);
@@ -107,13 +122,13 @@ namespace DataAngine.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<DataAngine.Model.hitrecord_detail> DataTableToList(DataTable dt)
+		public List<DataAgine_Set.Model.device> DataTableToList(DataTable dt)
 		{
-			List<DataAngine.Model.hitrecord_detail> modelList = new List<DataAngine.Model.hitrecord_detail>();
+			List<DataAgine_Set.Model.device> modelList = new List<DataAgine_Set.Model.device>();
 			int rowsCount = dt.Rows.Count;
 			if (rowsCount > 0)
 			{
-				DataAngine.Model.hitrecord_detail model;
+				DataAgine_Set.Model.device model;
 				for (int n = 0; n < rowsCount; n++)
 				{
 					model = dal.DataRowToModel(dt.Rows[n]);

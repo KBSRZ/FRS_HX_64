@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data.Common;
 using System.Collections.Generic;
-namespace DataAngine.DBUtility
+namespace DataAgine_Set.DBUtility
 {
     /// <summary>
     /// 数据访问类，可用于访问不同数据库
@@ -176,7 +176,113 @@ namespace DataAngine.DBUtility
             }
         }
       
-       
+        /// <summary>
+        /// 执行Sql和Oracle滴混合事务
+        /// </summary>
+        /// <param name="list">SQL命令行列表</param>
+        /// <param name="oracleCmdSqlList">Oracle命令行列表</param>
+        /// <returns>执行结果 0-由于SQL造成事务失败 -1 由于Oracle造成事务失败 1-整体事务执行成功</returns>
+        public int ExecuteSqlTran(List<CommandInfo> list, List<CommandInfo> oracleCmdSqlList)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                SqlTransaction tx = conn.BeginTransaction();
+                cmd.Transaction = tx;
+                try
+                {
+                    foreach (CommandInfo myDE in list)
+                    {
+                        string cmdText = myDE.CommandText;
+                        SqlParameter[] cmdParms = (SqlParameter[])myDE.Parameters;
+                        PrepareCommand(cmd, conn, tx, cmdText, cmdParms);
+                        if (myDE.EffentNextType == EffentNextType.SolicitationEvent)
+                        {
+                            if (myDE.CommandText.ToLower().IndexOf("count(") == -1)
+                            {
+                                tx.Rollback();
+                                throw new Exception("违背要求"+myDE.CommandText+"必须符合select count(..的格式");
+                                //return 0;
+                            }
+
+                            object obj = cmd.ExecuteScalar();
+                            bool isHave = false;
+                            if (obj == null && obj == DBNull.Value)
+                            {
+                                isHave = false;
+                            }
+                            isHave = Convert.ToInt32(obj) > 0;
+                            if (isHave)
+                            {
+                                //引发事件
+                                myDE.OnSolicitationEvent();
+                            }
+                        }
+                        if (myDE.EffentNextType == EffentNextType.WhenHaveContine || myDE.EffentNextType == EffentNextType.WhenNoHaveContine)
+                        {
+                            if (myDE.CommandText.ToLower().IndexOf("count(") == -1)
+                            {
+                                tx.Rollback();
+                                throw new Exception("SQL:违背要求" + myDE.CommandText + "必须符合select count(..的格式");
+                                //return 0;
+                            }
+
+                            object obj = cmd.ExecuteScalar();
+                            bool isHave = false;
+                            if (obj == null && obj == DBNull.Value)
+                            {
+                                isHave = false;
+                            }
+                            isHave = Convert.ToInt32(obj) > 0;
+
+                            if (myDE.EffentNextType == EffentNextType.WhenHaveContine && !isHave)
+                            {
+                                tx.Rollback();
+                                throw new Exception("SQL:违背要求" + myDE.CommandText + "返回值必须大于0");
+                                //return 0;
+                            }
+                            if (myDE.EffentNextType == EffentNextType.WhenNoHaveContine && isHave)
+                            {
+                                tx.Rollback();
+                                throw new Exception("SQL:违背要求" + myDE.CommandText + "返回值必须等于0");
+                                //return 0;
+                            }
+                            continue;
+                        }
+                        int val = cmd.ExecuteNonQuery();
+                        if (myDE.EffentNextType == EffentNextType.ExcuteEffectRows && val == 0)
+                        {
+                            tx.Rollback();
+                            throw new Exception("SQL:违背要求" + myDE.CommandText + "必须有影响行");
+                            //return 0;
+                        }
+                        cmd.Parameters.Clear();
+                    }
+                    string oraConnectionString = PubConstant.GetConnectionString("ConnectionStringPPC");
+                    bool res = OracleHelper.ExecuteSqlTran(oraConnectionString, oracleCmdSqlList);
+                    if (!res)
+                    {
+                        tx.Rollback();
+                        throw new Exception("Oracle执行失败");
+                        // return -1;
+                    }
+                    tx.Commit();
+                    return 1;
+                }
+                catch (System.Data.SqlClient.SqlException e)
+                {
+                    tx.Rollback();
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    tx.Rollback();
+                    throw e;
+                }
+            }
+        }        
         /// <summary>
         /// 执行多条SQL语句，实现数据库事务。
         /// </summary>

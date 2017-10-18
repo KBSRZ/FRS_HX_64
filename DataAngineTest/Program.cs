@@ -21,20 +21,20 @@ namespace DataAngineTest
             usrbll.Add(usr);
         }
 
-        static void libraryAddTest()
-        {
-            DataAngine.BLL.table tablebll = new DataAngine.BLL.table();
-            DataAngine.Model.table table = new DataAngine.Model.table();
-            table.name = "test";
+        //static void libraryAddTest()
+        //{
+        //    DataAngine.BLL.table tablebll = new DataAngine.BLL.table();
+        //    DataAngine.Model.table table = new DataAngine.Model.table();
+        //    table.name = "test";
 
-            tablebll.Add(table);
-        }
+        //    tablebll.Add(table);
+        //}
         static void hitrecordAddTest()
         {
             DataAngine.BLL.hitrecord habll = new DataAngine.BLL.hitrecord();
             DataAngine.Model.hitrecord hit = new DataAngine.Model.hitrecord();
             hit.threshold = 0.6f;
-            hit.face_query_image_path = "E:/21231.jpg";
+            hit.face_query_image_path = "D:/1.jpg";
             hit.occur_time = DateTime.Now;
             habll.Add(hit);
 
@@ -48,7 +48,7 @@ namespace DataAngineTest
             DataAngine.Model.hitalert ha = new DataAngine.Model.hitalert();
             DataAngine.Model.hitrecord hit = new DataAngine.Model.hitrecord();
             hit.threshold = 0.6f;
-            hit.face_query_image_path = "E:/21231.jpg";
+            hit.face_query_image_path = "D:/1.jpg";
             hit.occur_time = DateTime.Now;
             hd1.rank = 1;
             hd1.score = 0.867f;

@@ -166,7 +166,7 @@ namespace DataAngine.DAL
             {
                 strSql.Append(" where " + strWhere);
             }
-            return DbHelperMySQL.Query(strSql.ToString(), true, library);
+            return DbHelperMySQL.Query(strSql.ToString(), library);
         }
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace DataAngine.DAL
             }
             strSql.Append(" limit " + startIndex + ", " + pageSize);
 
-            return DbHelperMySQL.Query(strSql.ToString(), true, library);
+            return DbHelperMySQL.Query(strSql.ToString(), library);
         }
 
         /// <summary>
