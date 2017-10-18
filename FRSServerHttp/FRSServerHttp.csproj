@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2D266E1A-3C04-4302-8D98-F27891250AF7}</ProjectGuid>
+    <ProjectGuid>{E48CAB63-B140-4916-9E92-BC8C839F0559}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FRSServer</RootNamespace>
-    <AssemblyName>FRSServer</AssemblyName>
+    <RootNamespace>FRSServerHttp</RootNamespace>
+    <AssemblyName>FRSServerHttp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -23,27 +23,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Release\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup />
-  <PropertyGroup>
-    <NoWin32Manifest>true</NoWin32Manifest>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fleck, Version=0.14.0.59, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fleck.0.14.0.59\lib\net40\Fleck.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -60,51 +48,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Capture.cs" />
-    <Compile Include="Data\ControllingData.cs" />
-    <Compile Include="Data\DatasetData.cs" />
-    <Compile Include="Data\DeviceData.cs" />
-    <Compile Include="Data\HitData.cs" />
-    <Compile Include="Message\Message.cs" />
     <Compile Include="ImageUtils.cs" />
-    <Compile Include="LogHelper.cs" />
+    <Compile Include="Model\Controlling.cs" />
+    <Compile Include="Model\Dataset.cs" />
+    <Compile Include="Model\Device.cs" />
+    <Compile Include="Model\HitData.cs" />
+    <Compile Include="Model\Setting.cs" />
+    <Compile Include="HttpServer\HttpProcessor.cs" />
+    <Compile Include="HttpServer\HttpServer.cs" />
+    <Compile Include="HttpServer\HttpServerImp.cs" />
+    <Compile Include="Model\SurveillanceTask.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PubConstant.cs" />
     <Compile Include="ReturnCode.cs" />
+    <Compile Include="Service\BaseService.cs" />
     <Compile Include="Service\ControllerService.cs" />
     <Compile Include="Service\HitAlertService.cs" />
     <Compile Include="Service\RegisterService.cs" />
     <Compile Include="Service\SearchingByImageService.cs" />
     <Compile Include="Service\SearchingByTimeService.cs" />
-    <Compile Include="Service\BaseService.cs" />
     <Compile Include="Service\ServiceHelper.cs" />
-    <Compile Include="Data\SettingData.cs" />
     <Compile Include="Service\SettingDatasetService.cs" />
-    <Compile Include="Service\SettingFRSService.cs" />
     <Compile Include="Service\SettingDeviceService.cs" />
+    <Compile Include="Service\SettingFRSService.cs" />
+    <Compile Include="Service\SurveillanceTaskService.cs" />
     <Compile Include="Service\VerifyingService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataAngine\DataAngine.csproj">
-      <Project>{dea8e31e-a67f-40a2-900f-127517ced01b}</Project>
-      <Name>DataAngine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataAngine_Set\DataAngine_Set.csproj">
-      <Project>{51ee1964-c866-408b-83ee-827bc2c61ccf}</Project>
-      <Name>DataAngine_Set</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FaceAngine\FaceAngine.vcxproj">
-      <Project>{b9dc1f90-19be-4a91-a290-542be9c75a0f}</Project>
-      <Name>FaceAngine</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

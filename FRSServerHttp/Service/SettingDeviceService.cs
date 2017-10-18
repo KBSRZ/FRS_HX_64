@@ -3,23 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FRSServer.Data;
-using DataAgine_Set;
-using DataAngine;
-namespace FRSServer.Service
+using FRSServerHttp.Model;
+namespace FRSServerHttp.Service
 {
     class SettingDeviceService:BaseService
     {
-        public SettingDeviceService()
+        /// <summary>
+        /// 访问当前service的URL
+        /// </summary>
+        public static string URL
         {
-            url="/setting-device";
+            get
+            {
+                return "/setting-device";
+            }
         }
 
 
-        readonly DataAngine.BLL.hitalert hitbll = new DataAngine.BLL.hitalert();
-        readonly DataAngine.BLL.user user = new DataAngine.BLL.user();
-        readonly DataAgine_Set.BLL.frs_database frs_database = new DataAgine_Set.BLL.frs_database();
-        readonly DataAgine_Set.BLL.device device = new DataAgine_Set.BLL.device();
+        public SettingDeviceService()
+        {
+           
+        }
+
+
+        //readonly DataAngine.BLL.hitalert hitbll = new DataAngine.BLL.hitalert();
+        //readonly DataAngine.BLL.user user = new DataAngine.BLL.user();
+        //readonly DataAngine.BLL.table table = new DataAngine.BLL.table();
+        //readonly DataAngine.BLL.device device = new DataAngine.BLL.device();
         
        
 
@@ -57,20 +67,20 @@ namespace FRSServer.Service
         //    return ReturnFailMessage();
         //}
 
-        /// <summary>
-        /// 设置 选择设备
-        /// </summary>
-        /// <param name="param">Device类型Json</param>
-        /// <returns></returns>
-        protected override int OnSet(string param)
-        {
-            Console.WriteLine("SettingDatasetService::OnSet");
+        ///// <summary>
+        ///// 设置 选择设备
+        ///// </summary>
+        ///// <param name="param">Device类型Json</param>
+        ///// <returns></returns>
+        //protected override int OnSet(string param)
+        //{
+        //    Console.WriteLine("SettingDatasetService::OnSet");
 
-            selectedDevice = Device.CreateDeviceFromJSON(param);
-            DatasetData.SaveSelectedDataSetName(param);
-            return ReturnSuccessMessage();
+        //    selectedDevice = Device.CreateDeviceFromJSON(param);
+        //    DatasetData.SaveSelectedDataSetName(param);
+        //    return ReturnSuccessMessage();
            
-        }
+        //}
 
 
     

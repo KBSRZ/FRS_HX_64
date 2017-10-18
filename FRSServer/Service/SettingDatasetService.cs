@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using DataAngine;
+using DataAgine_Set;
 using Newtonsoft.Json;
 using FRSServer.Data;
+
 namespace FRSServer.Service
 {
 
@@ -15,13 +17,13 @@ namespace FRSServer.Service
 
         readonly DataAngine.BLL.hitalert hitbll = new DataAngine.BLL.hitalert();
         readonly DataAngine.BLL.user user = new DataAngine.BLL.user();
-        readonly DataAngine.BLL.table table = new DataAngine.BLL.table();
-        readonly DataAngine.BLL.device device = new DataAngine.BLL.device();
+        readonly DataAgine_Set.BLL.frs_database frs_database = new DataAgine_Set.BLL.frs_database();
+        readonly DataAgine_Set.BLL.device device = new DataAgine_Set.BLL.device();
         DatasetData datasetData = new DatasetData();
         public SettingDatasetService()
         {
             url = "/setting-dataset";
-            DataSet ds = table.GetAllTable();
+            DataSet ds = frs_database.GetAllList();
             DataTable dt = ds.Tables[0];
 
             datasetData.DatasetNames = (from r in dt.AsEnumerable() select r.Field<string>("name")).ToArray<string>();
