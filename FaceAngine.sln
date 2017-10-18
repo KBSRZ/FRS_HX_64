@@ -27,7 +27,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRSServer", "FRSServer\FRSServer.csproj", "{2D266E1A-3C04-4302-8D98-F27891250AF7}"
 EndProject
 <<<<<<< HEAD
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAngine_Set", "DataAngine_Set\DataAngine_Set.csproj", "{51EE1964-C866-408B-83EE-827BC2C61CCF}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRSServerHttp", "FRSServerHttp\FRSServerHttp.csproj", "{E48CAB63-B140-4916-9E92-BC8C839F0559}"
+>>>>>>> 38134db8d37d2bb7ff90bd22bc87a3e070a15f3a
 =======
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRSServerHttp", "FRSServerHttp\FRSServerHttp.csproj", "{E48CAB63-B140-4916-9E92-BC8C839F0559}"
 >>>>>>> 38134db8d37d2bb7ff90bd22bc87a3e070a15f3a
@@ -175,6 +179,7 @@ Global
 		{2D266E1A-3C04-4302-8D98-F27891250AF7}.Release|Win32.ActiveCfg = Release|Any CPU
 		{2D266E1A-3C04-4302-8D98-F27891250AF7}.Release|x64.ActiveCfg = Release|Any CPU
 <<<<<<< HEAD
+<<<<<<< HEAD
 		{51EE1964-C866-408B-83EE-827BC2C61CCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{51EE1964-C866-408B-83EE-827BC2C61CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51EE1964-C866-408B-83EE-827BC2C61CCF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -188,6 +193,8 @@ Global
 		{51EE1964-C866-408B-83EE-827BC2C61CCF}.Release|Win32.ActiveCfg = Release|Any CPU
 		{51EE1964-C866-408B-83EE-827BC2C61CCF}.Release|x64.ActiveCfg = Release|Any CPU
 =======
+=======
+>>>>>>> 38134db8d37d2bb7ff90bd22bc87a3e070a15f3a
 		{E48CAB63-B140-4916-9E92-BC8C839F0559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E48CAB63-B140-4916-9E92-BC8C839F0559}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E48CAB63-B140-4916-9E92-BC8C839F0559}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -201,6 +208,9 @@ Global
 		{E48CAB63-B140-4916-9E92-BC8C839F0559}.Release|Win32.ActiveCfg = Release|Any CPU
 		{E48CAB63-B140-4916-9E92-BC8C839F0559}.Release|x64.ActiveCfg = Release|Any CPU
 		{E48CAB63-B140-4916-9E92-BC8C839F0559}.Release|x64.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+>>>>>>> 38134db8d37d2bb7ff90bd22bc87a3e070a15f3a
+=======
 >>>>>>> 38134db8d37d2bb7ff90bd22bc87a3e070a15f3a
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution

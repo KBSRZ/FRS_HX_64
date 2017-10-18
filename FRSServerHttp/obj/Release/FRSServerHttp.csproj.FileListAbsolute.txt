@@ -6,6 +6,7 @@ F:\FRS\FRS_HX_64\FRSServerHttp\obj\Release\FRSServerHttp.exe
 F:\FRS\FRS_HX_64\FRSServerHttp\obj\Release\FRSServerHttp.pdb
 F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\Newtonsoft.Json.dll
 F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\Newtonsoft.Json.xml
+<<<<<<< HEAD
 G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\FRSServerHttp.exe.config
 G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\FRSServerHttp.exe
 G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\FRSServerHttp.pdb
@@ -13,3 +14,5 @@ G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Rele
 G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\Newtonsoft.Json.xml
 G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\obj\Release\FRSServerHttp.exe
 G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\obj\Release\FRSServerHttp.pdb
+=======
+>>>>>>> 38134db8d37d2bb7ff90bd22bc87a3e070a15f3a
