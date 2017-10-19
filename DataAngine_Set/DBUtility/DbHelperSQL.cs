@@ -6,22 +6,18 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data.Common;
 using System.Collections.Generic;
-namespace DataAngine.DBUtility
+namespace DataAgine_Set.DBUtility
 {
     /// <summary>
-    /// 数据访问类，可用于访问不同数据库
-    /// Copyright (C) DataAgine_Set
+    /// 数据访问抽象基础类
+    /// Copyright (C) Maticsoft 
     /// </summary>
-    public class DbHelperSQLP
+    public abstract class DbHelperSQL
     {
-        //数据库连接字符串(web.config来配置)，可以动态更改connectionString支持多数据库.		
-        public string connectionString = PubConstant.ConnectionString;     		
-        public DbHelperSQLP()
+        //数据库连接字符串(web.config来配置)，多数据库可使用DbHelperSQLP来实现.
+        public static string connectionString = PubConstant.ConnectionString;     		
+        public DbHelperSQL()
         {            
-        }
-        public DbHelperSQLP(string ConnectionString)
-        {
-            connectionString = ConnectionString;    
         }
 
         #region 公用方法
@@ -31,7 +27,7 @@ namespace DataAngine.DBUtility
         /// <param name="tableName">表名称</param>
         /// <param name="columnName">列名称</param>
         /// <returns>是否存在</returns>
-        public bool ColumnExists(string tableName, string columnName)
+        public static bool ColumnExists(string tableName, string columnName)
         {
             string sql = "select count(1) from syscolumns where [id]=object_id('" + tableName + "') and [name]='" + columnName + "'";
             object res = GetSingle(sql);
@@ -41,7 +37,7 @@ namespace DataAngine.DBUtility
             }
             return Convert.ToInt32(res) > 0;
         }
-        public int GetMaxID(string FieldName, string TableName)
+        public static int GetMaxID(string FieldName, string TableName)
         {
             string strsql = "select max(" + FieldName + ")+1 from " + TableName;
             object obj = GetSingle(strsql);
@@ -54,7 +50,7 @@ namespace DataAngine.DBUtility
                 return int.Parse(obj.ToString());
             }
         }
-        public bool Exists(string strSql)
+        public static bool Exists(string strSql)
         {
             object obj = GetSingle(strSql);
             int cmdresult;
@@ -64,7 +60,7 @@ namespace DataAngine.DBUtility
             }
             else
             {
-                cmdresult = int.Parse(obj.ToString());
+                cmdresult = int.Parse(obj.ToString()); //也可能=0
             }
             if (cmdresult == 0)
             {
@@ -80,7 +76,7 @@ namespace DataAngine.DBUtility
         /// </summary>
         /// <param name="TableName"></param>
         /// <returns></returns>
-        public bool TabExists(string TableName)
+        public static bool TabExists(string TableName)
         {
             string strsql = "select count(*) from sysobjects where id = object_id(N'[" + TableName + "]') and OBJECTPROPERTY(id, N'IsUserTable') = 1";
             //string strsql = "SELECT count(*) FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[" + TableName + "]') AND type in (N'U')";
@@ -103,7 +99,7 @@ namespace DataAngine.DBUtility
                 return true;
             }
         }
-        public bool Exists(string strSql, params SqlParameter[] cmdParms)
+        public static bool Exists(string strSql, params SqlParameter[] cmdParms)
         {
             object obj = GetSingle(strSql, cmdParms);
             int cmdresult;
@@ -133,7 +129,7 @@ namespace DataAngine.DBUtility
         /// </summary>
         /// <param name="SQLString">SQL语句</param>
         /// <returns>影响的记录数</returns>
-        public int ExecuteSql(string SQLString)
+        public static int ExecuteSql(string SQLString)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -154,7 +150,7 @@ namespace DataAngine.DBUtility
             }
         }
 
-        public int ExecuteSqlByTime(string SQLString, int Times)
+        public static int ExecuteSqlByTime(string SQLString, int Times)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -176,12 +172,118 @@ namespace DataAngine.DBUtility
             }
         }
       
-       
+        /// <summary>
+        /// 执行Sql和Oracle滴混合事务
+        /// </summary>
+        /// <param name="list">SQL命令行列表</param>
+        /// <param name="oracleCmdSqlList">Oracle命令行列表</param>
+        /// <returns>执行结果 0-由于SQL造成事务失败 -1 由于Oracle造成事务失败 1-整体事务执行成功</returns>
+        public static int ExecuteSqlTran(List<CommandInfo> list, List<CommandInfo> oracleCmdSqlList)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                SqlTransaction tx = conn.BeginTransaction();
+                cmd.Transaction = tx;
+                try
+                {
+                    foreach (CommandInfo myDE in list)
+                    {
+                        string cmdText = myDE.CommandText;
+                        SqlParameter[] cmdParms = (SqlParameter[])myDE.Parameters;
+                        PrepareCommand(cmd, conn, tx, cmdText, cmdParms);
+                        if (myDE.EffentNextType == EffentNextType.SolicitationEvent)
+                        {
+                            if (myDE.CommandText.ToLower().IndexOf("count(") == -1)
+                            {
+                                tx.Rollback();
+                                throw new Exception("违背要求"+myDE.CommandText+"必须符合select count(..的格式");
+                                //return 0;
+                            }
+
+                            object obj = cmd.ExecuteScalar();
+                            bool isHave = false;
+                            if (obj == null && obj == DBNull.Value)
+                            {
+                                isHave = false;
+                            }
+                            isHave = Convert.ToInt32(obj) > 0;
+                            if (isHave)
+                            {
+                                //引发事件
+                                myDE.OnSolicitationEvent();
+                            }
+                        }
+                        if (myDE.EffentNextType == EffentNextType.WhenHaveContine || myDE.EffentNextType == EffentNextType.WhenNoHaveContine)
+                        {
+                            if (myDE.CommandText.ToLower().IndexOf("count(") == -1)
+                            {
+                                tx.Rollback();
+                                throw new Exception("SQL:违背要求" + myDE.CommandText + "必须符合select count(..的格式");
+                                //return 0;
+                            }
+
+                            object obj = cmd.ExecuteScalar();
+                            bool isHave = false;
+                            if (obj == null && obj == DBNull.Value)
+                            {
+                                isHave = false;
+                            }
+                            isHave = Convert.ToInt32(obj) > 0;
+
+                            if (myDE.EffentNextType == EffentNextType.WhenHaveContine && !isHave)
+                            {
+                                tx.Rollback();
+                                throw new Exception("SQL:违背要求" + myDE.CommandText + "返回值必须大于0");
+                                //return 0;
+                            }
+                            if (myDE.EffentNextType == EffentNextType.WhenNoHaveContine && isHave)
+                            {
+                                tx.Rollback();
+                                throw new Exception("SQL:违背要求" + myDE.CommandText + "返回值必须等于0");
+                                //return 0;
+                            }
+                            continue;
+                        }
+                        int val = cmd.ExecuteNonQuery();
+                        if (myDE.EffentNextType == EffentNextType.ExcuteEffectRows && val == 0)
+                        {
+                            tx.Rollback();
+                            throw new Exception("SQL:违背要求" + myDE.CommandText + "必须有影响行");
+                            //return 0;
+                        }
+                        cmd.Parameters.Clear();
+                    }
+                    string oraConnectionString = PubConstant.GetConnectionString("ConnectionStringPPC");
+                    bool res = OracleHelper.ExecuteSqlTran(oraConnectionString, oracleCmdSqlList);
+                    if (!res)
+                    {
+                        tx.Rollback();
+                        throw new Exception("Oracle执行失败");
+                        // return -1;
+                    }
+                    tx.Commit();
+                    return 1;
+                }
+                catch (System.Data.SqlClient.SqlException e)
+                {
+                    tx.Rollback();
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    tx.Rollback();
+                    throw e;
+                }
+            }
+        }        
         /// <summary>
         /// 执行多条SQL语句，实现数据库事务。
         /// </summary>
         /// <param name="SQLStringList">多条SQL语句</param>		
-        public int ExecuteSqlTran(List<String> SQLStringList)
+        public static int ExecuteSqlTran(List<String> SQLStringList)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -218,7 +320,7 @@ namespace DataAngine.DBUtility
         /// <param name="SQLString">SQL语句</param>
         /// <param name="content">参数内容,比如一个字段是格式复杂的文章，有特殊符号，可以通过这个方式添加</param>
         /// <returns>影响的记录数</returns>
-        public int ExecuteSql(string SQLString, string content)
+        public static int ExecuteSql(string SQLString, string content)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -249,7 +351,7 @@ namespace DataAngine.DBUtility
         /// <param name="SQLString">SQL语句</param>
         /// <param name="content">参数内容,比如一个字段是格式复杂的文章，有特殊符号，可以通过这个方式添加</param>
         /// <returns>影响的记录数</returns>
-        public object ExecuteSqlGet(string SQLString, string content)
+        public static object ExecuteSqlGet(string SQLString, string content)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -287,7 +389,7 @@ namespace DataAngine.DBUtility
         /// <param name="strSQL">SQL语句</param>
         /// <param name="fs">图像字节,数据库的字段类型为image的情况</param>
         /// <returns>影响的记录数</returns>
-        public int ExecuteSqlInsertImg(string strSQL, byte[] fs)
+        public static int ExecuteSqlInsertImg(string strSQL, byte[] fs)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -318,7 +420,7 @@ namespace DataAngine.DBUtility
         /// </summary>
         /// <param name="SQLString">计算查询结果语句</param>
         /// <returns>查询结果（object）</returns>
-        public object GetSingle(string SQLString)
+        public static object GetSingle(string SQLString)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -345,7 +447,7 @@ namespace DataAngine.DBUtility
                 }
             }
         }
-        public object GetSingle(string SQLString, int Times)
+        public static object GetSingle(string SQLString, int Times)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -378,7 +480,7 @@ namespace DataAngine.DBUtility
         /// </summary>
         /// <param name="strSQL">查询语句</param>
         /// <returns>SqlDataReader</returns>
-        public SqlDataReader ExecuteReader(string strSQL)
+        public static SqlDataReader ExecuteReader(string strSQL)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(strSQL, connection);
@@ -399,7 +501,7 @@ namespace DataAngine.DBUtility
         /// </summary>
         /// <param name="SQLString">查询语句</param>
         /// <returns>DataSet</returns>
-        public DataSet Query(string SQLString)
+        public static DataSet Query(string SQLString)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -417,7 +519,7 @@ namespace DataAngine.DBUtility
                 return ds;
             }
         }
-        public DataSet Query(string SQLString, int Times)
+        public static DataSet Query(string SQLString, int Times)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -448,7 +550,7 @@ namespace DataAngine.DBUtility
         /// </summary>
         /// <param name="SQLString">SQL语句</param>
         /// <returns>影响的记录数</returns>
-        public int ExecuteSql(string SQLString, params SqlParameter[] cmdParms)
+        public static int ExecuteSql(string SQLString, params SqlParameter[] cmdParms)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -474,7 +576,7 @@ namespace DataAngine.DBUtility
         /// 执行多条SQL语句，实现数据库事务。
         /// </summary>
         /// <param name="SQLStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
-        public void ExecuteSqlTran(Hashtable SQLStringList)
+        public static void ExecuteSqlTran(Hashtable SQLStringList)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -507,7 +609,7 @@ namespace DataAngine.DBUtility
         /// 执行多条SQL语句，实现数据库事务。
         /// </summary>
         /// <param name="SQLStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
-        public int ExecuteSqlTran(System.Collections.Generic.List<CommandInfo> cmdList)
+        public static int ExecuteSqlTran(System.Collections.Generic.List<CommandInfo> cmdList)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -576,7 +678,7 @@ namespace DataAngine.DBUtility
         /// 执行多条SQL语句，实现数据库事务。
         /// </summary>
         /// <param name="SQLStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
-        public void ExecuteSqlTranWithIndentity(System.Collections.Generic.List<CommandInfo> SQLStringList)
+        public static void ExecuteSqlTranWithIndentity(System.Collections.Generic.List<CommandInfo> SQLStringList)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -624,7 +726,7 @@ namespace DataAngine.DBUtility
         /// 执行多条SQL语句，实现数据库事务。
         /// </summary>
         /// <param name="SQLStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
-        public void ExecuteSqlTranWithIndentity(Hashtable SQLStringList)
+        public static void ExecuteSqlTranWithIndentity(Hashtable SQLStringList)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -673,7 +775,7 @@ namespace DataAngine.DBUtility
         /// </summary>
         /// <param name="SQLString">计算查询结果语句</param>
         /// <returns>查询结果（object）</returns>
-        public object GetSingle(string SQLString, params SqlParameter[] cmdParms)
+        public static object GetSingle(string SQLString, params SqlParameter[] cmdParms)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -706,7 +808,7 @@ namespace DataAngine.DBUtility
         /// </summary>
         /// <param name="strSQL">查询语句</param>
         /// <returns>SqlDataReader</returns>
-        public SqlDataReader ExecuteReader(string SQLString, params SqlParameter[] cmdParms)
+        public static SqlDataReader ExecuteReader(string SQLString, params SqlParameter[] cmdParms)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand();
@@ -734,7 +836,7 @@ namespace DataAngine.DBUtility
         /// </summary>
         /// <param name="SQLString">查询语句</param>
         /// <returns>DataSet</returns>
-        public DataSet Query(string SQLString, params SqlParameter[] cmdParms)
+        public static DataSet Query(string SQLString, params SqlParameter[] cmdParms)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -788,22 +890,21 @@ namespace DataAngine.DBUtility
         #region 存储过程操作
 
         /// <summary>
-        /// 执行存储过程，返回SqlDataReader  ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
+        /// 执行存储过程，返回SqlDataReader ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
         /// </summary>
         /// <param name="storedProcName">存储过程名</param>
         /// <param name="parameters">存储过程参数</param>
         /// <returns>SqlDataReader</returns>
-        public SqlDataReader RunProcedure(string storedProcName, IDataParameter[] parameters)
+        public static SqlDataReader RunProcedure(string storedProcName, IDataParameter[] parameters)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlDataReader returnReader;
-                connection.Open();
-                SqlCommand command = BuildQueryCommand(connection, storedProcName, parameters);
-                command.CommandType = CommandType.StoredProcedure;
-                returnReader = command.ExecuteReader(CommandBehavior.CloseConnection);
-                return returnReader;
-            }
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlDataReader returnReader;
+            connection.Open();
+            SqlCommand command = BuildQueryCommand(connection, storedProcName, parameters);
+            command.CommandType = CommandType.StoredProcedure;
+            returnReader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            return returnReader;
+            
         }
 
 
@@ -814,7 +915,7 @@ namespace DataAngine.DBUtility
         /// <param name="parameters">存储过程参数</param>
         /// <param name="tableName">DataSet结果中的表名</param>
         /// <returns>DataSet</returns>
-        public DataSet RunProcedure(string storedProcName, IDataParameter[] parameters, string tableName)
+        public static DataSet RunProcedure(string storedProcName, IDataParameter[] parameters, string tableName)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -827,7 +928,7 @@ namespace DataAngine.DBUtility
                 return dataSet;
             }
         }
-        public DataSet RunProcedure(string storedProcName, IDataParameter[] parameters, string tableName, int Times)
+        public static DataSet RunProcedure(string storedProcName, IDataParameter[] parameters, string tableName, int Times)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -878,7 +979,7 @@ namespace DataAngine.DBUtility
         /// <param name="parameters">存储过程参数</param>
         /// <param name="rowsAffected">影响的行数</param>
         /// <returns></returns>
-        public int RunProcedure(string storedProcName, IDataParameter[] parameters, out int rowsAffected)
+        public static int RunProcedure(string storedProcName, IDataParameter[] parameters, out int rowsAffected)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

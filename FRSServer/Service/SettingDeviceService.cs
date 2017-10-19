@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FRSServer.Data;
+using DataAgine_Set;
+using DataAngine;
 namespace FRSServer.Service
 {
     class SettingDeviceService:BaseService
@@ -16,8 +18,8 @@ namespace FRSServer.Service
 
         readonly DataAngine.BLL.hitalert hitbll = new DataAngine.BLL.hitalert();
         readonly DataAngine.BLL.user user = new DataAngine.BLL.user();
-        readonly DataAngine.BLL.table table = new DataAngine.BLL.table();
-        readonly DataAngine.BLL.device device = new DataAngine.BLL.device();
+        readonly DataAgine_Set.BLL.frs_database frs_database = new DataAgine_Set.BLL.frs_database();
+        readonly DataAgine_Set.BLL.device device = new DataAgine_Set.BLL.device();
         
        
 

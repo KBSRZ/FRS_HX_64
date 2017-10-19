@@ -7,7 +7,7 @@ using System.Data.SQLite;
 namespace DataAngine.DBUtility
 {
     /// <summary>
-    /// Copyright (C) 2011 Maticsoft 
+    /// Copyright (C) 2011 DataAgine_Set 
     /// 数据访问基础类(基于SQLite)
     /// 可以用户可以修改满足自己项目的需要。
     /// </summary>

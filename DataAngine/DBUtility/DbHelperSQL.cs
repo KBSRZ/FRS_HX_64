@@ -10,7 +10,7 @@ namespace DataAngine.DBUtility
 {
     /// <summary>
     /// 数据访问抽象基础类
-    /// Copyright (C) Maticsoft
+    /// Copyright (C) DataAgine_Set
     /// </summary>
     public abstract class DbHelperSQL
     {

@@ -12,7 +12,7 @@ using System.IO;
 using System.Configuration;
 using FRS;
 using DataAngine;
-
+using DataAgine_Set;
 
 namespace NjustSkyEyeSystem
 {
@@ -45,8 +45,8 @@ namespace NjustSkyEyeSystem
         private Image image_Library_Compare;//底库比对图片
         readonly DataAngine.BLL.hitalert hitbll = new DataAngine.BLL.hitalert();
         readonly DataAngine.BLL.user user = new DataAngine.BLL.user();
-        readonly DataAngine.BLL.table table = new DataAngine.BLL.table();
-        readonly DataAngine.BLL.device device = new DataAngine.BLL.device();
+        readonly DataAgine_Set.BLL.frs_database frs_database = new DataAgine_Set.BLL.frs_database();
+        readonly DataAgine_Set.BLL.device device = new DataAgine_Set.BLL.device();
 
         //底库查询
         int PageSize_Library = 36;
@@ -1409,7 +1409,7 @@ namespace NjustSkyEyeSystem
         /// </summary>
         public void ComboxLibraryList()
         {
-            DataSet ds = table.GetAllTable();
+            DataSet ds = frs_database.GetAllList();
             DataTable dt = ds.Tables[0];
 
             combox_DataBaseName.DataSource = dt;
@@ -1420,7 +1420,7 @@ namespace NjustSkyEyeSystem
 
         public void ComboxDevList()
         {
-            DataSet ds = device.GetAllDevice();
+            DataSet ds = device.GetAllList();
             DataTable dt = ds.Tables[0];
 
             comboBox_DevName.DataSource = dt;
@@ -1441,11 +1441,11 @@ namespace NjustSkyEyeSystem
                 return;
             }
 
-            DataAngine.Model.table table = new DataAngine.Model.table();
-            DataAngine.BLL.table tablebll = new DataAngine.BLL.table();
-            table.name = libraryname;
+            DataAgine_Set.Model.frs_database frs_database = new DataAgine_Set.Model.frs_database();
+            DataAgine_Set.BLL.frs_database frs_databasebll = new DataAgine_Set.BLL.frs_database();
+            frs_database.name = libraryname;
 
-            if (true == tablebll.Add(table))
+            if (true == frs_databasebll.Add(frs_database))
             {
                 combox_DataBaseName.Text = libraryname;
                 fa.LoadData(libraryname);
@@ -1473,8 +1473,8 @@ namespace NjustSkyEyeSystem
                 return;
             }
 
-            DataAngine.Model.device device = new DataAngine.Model.device();
-            DataAngine.BLL.device devicebll = new DataAngine.BLL.device();
+            DataAgine_Set.Model.device device = new DataAgine_Set.Model.device();
+            DataAgine_Set.BLL.device devicebll = new DataAgine_Set.BLL.device();
 
             device.name = regDeviceName;
             device.ip = regDeviceIp;

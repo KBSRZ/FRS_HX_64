@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Collections.Generic;
-//using Maticsoft.Common;
+//using DataAgine_Set.Common;
 using DataAngine.Model;
 namespace DataAngine.BLL
 {
@@ -79,7 +79,7 @@ namespace DataAngine.BLL
         //{
 			
         //    string CacheKey = "hitrecordModel-" + id;
-        //    object objModel = Maticsoft.Common.DataCache.GetCache(CacheKey);
+        //    object objModel = DataAgine_Set.Common.DataCache.GetCache(CacheKey);
         //    if (objModel == null)
         //    {
         //        try
@@ -87,8 +87,8 @@ namespace DataAngine.BLL
         //            objModel = dal.GetModel(id);
         //            if (objModel != null)
         //            {
-        //                int ModelCache = Maticsoft.Common.ConfigHelper.GetConfigInt("ModelCache");
-        //                Maticsoft.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
+        //                int ModelCache = DataAgine_Set.Common.ConfigHelper.GetConfigInt("ModelCache");
+        //                DataAgine_Set.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
         //            }
         //        }
         //        catch{}

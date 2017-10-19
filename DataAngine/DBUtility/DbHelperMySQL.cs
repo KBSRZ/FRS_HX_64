@@ -11,14 +11,13 @@ namespace DataAngine.DBUtility
 {
     /// <summary>
     /// 数据访问抽象基础类
-    /// Copyright (C) Maticsoft
+    /// Copyright (C) DataAgine_Set
     /// </summary>
     public abstract class DbHelperMySQL
     {
 
         //数据库连接字符串(web.config来配置)，可以动态更改connectionString支持多数据库.		
         public static string connectionString = PubConstant.ConnectionString;
-        public static string connectionStringtable = PubConstant.ConnectionTableString;
         public DbHelperMySQL()
         {
         }
@@ -65,7 +64,7 @@ namespace DataAngine.DBUtility
         public static int GetMaxID(string FieldName, string TableName)
         {
             string strsql = "select max(" + FieldName + ")+1 from " + TableName;
-            object obj = GetSingle(strsql, true);
+            object obj = GetSingle(strsql);
             if (obj == null)
             {
                 return 1;
@@ -76,35 +75,7 @@ namespace DataAngine.DBUtility
             }
 
         }
-        public static int GetMaxID(string FieldName, string TableName, bool isdatabase)
-        {
-            if (isdatabase)
-            {
-                string strsql = "select max(" + FieldName + ")+1 from " + TableName;
-                object obj = GetSingle(strsql, true);
-                if (obj == null)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return int.Parse(obj.ToString());
-                }
-            }
-            else
-            {
-                string strsql = "select max(" + FieldName + ")+1 from " + TableName;
-                object obj = GetSingle(strsql, false);
-                if (obj == null)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return int.Parse(obj.ToString());
-                }
-            }
-        }
+       
         /// <summary>
         /// 是否存在
         /// </summary>
@@ -113,7 +84,7 @@ namespace DataAngine.DBUtility
         public static bool Exists(string strSql)
         {
 
-            object obj = GetSingle(strSql, true);
+            object obj = GetSingle(strSql);
             int cmdresult;
             if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
             {
@@ -133,51 +104,7 @@ namespace DataAngine.DBUtility
             }
 
         }
-        public static bool Exists(string strSql, bool isdatabase)
-        {
-            if (isdatabase)
-            {
-                object obj = GetSingle(strSql, true);
-                int cmdresult;
-                if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
-                {
-                    cmdresult = 0;
-                }
-                else
-                {
-                    cmdresult = int.Parse(obj.ToString());
-                }
-                if (cmdresult == 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                object obj = GetSingle(strSql, false);
-                int cmdresult;
-                if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
-                {
-                    cmdresult = 0;
-                }
-                else
-                {
-                    cmdresult = int.Parse(obj.ToString());
-                }
-                if (cmdresult == 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-        }
+        
         /// <summary>
         /// 是否存在（基于MySqlParameter）
         /// </summary>
@@ -205,52 +132,7 @@ namespace DataAngine.DBUtility
                 return true;
             }
         }
-        public static bool Exists(string strSql, bool isdatabase, params MySqlParameter[] cmdParms)
-        {
-            if (isdatabase)
-            {
-                object obj = GetSingle(strSql, true, cmdParms);
-                int cmdresult;
-                if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
-                {
-                    cmdresult = 0;
-                }
-                else
-                {
-                    cmdresult = int.Parse(obj.ToString());
-                }
-                if (cmdresult == 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                object obj = GetSingle(strSql, false, cmdParms);
-                int cmdresult;
-                if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
-                {
-                    cmdresult = 0;
-                }
-                else
-                {
-                    cmdresult = int.Parse(obj.ToString());
-                }
-                if (cmdresult == 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-
-            }
-        }
+       
         #endregion
 
         #region  执行简单SQL语句
@@ -473,64 +355,7 @@ namespace DataAngine.DBUtility
             }
 
         }
-        public static object GetSingle(string SQLString, bool isdatabase)
-        {
-            if (isdatabase)
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    using (MySqlCommand cmd = new MySqlCommand(SQLString, connection))
-                    {
-                        try
-                        {
-                            connection.Open();
-                            object obj = cmd.ExecuteScalar();
-                            if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
-                            {
-                                return null;
-                            }
-                            else
-                            {
-                                return obj;
-                            }
-                        }
-                        catch (MySql.Data.MySqlClient.MySqlException e)
-                        {
-                            connection.Close();
-                            throw e;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionStringtable))
-                {
-                    using (MySqlCommand cmd = new MySqlCommand(SQLString, connection))
-                    {
-                        try
-                        {
-                            connection.Open();
-                            object obj = cmd.ExecuteScalar();
-                            if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
-                            {
-                                return null;
-                            }
-                            else
-                            {
-                                return obj;
-                            }
-                        }
-                        catch (MySql.Data.MySqlClient.MySqlException e)
-                        {
-                            connection.Close();
-                            throw e;
-                        }
-                    }
-                }
-            }
-
-        }
+        
         public static object GetSingle(string SQLString, int Times)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -606,55 +431,9 @@ namespace DataAngine.DBUtility
             }
         }
 
-        public static DataSet Query(string SQLString, bool isdatabase)
-        {
-            if (isdatabase)
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    DataSet ds = new DataSet();
-                    try
-                    {
-                        connection.Open();
-                        MySqlDataAdapter command = new MySqlDataAdapter(SQLString, connection);
-                        command.Fill(ds, "ds");
-                        //
-                        connection.Close();
-                    }
-                    catch (MySql.Data.MySqlClient.MySqlException ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
-                    return ds;
-                }
-            }
-            else
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionStringtable))
-                {
-                    DataSet ds = new DataSet();
-                    try
-                    {
-                        connection.Open();
-                        MySqlDataAdapter command = new MySqlDataAdapter(SQLString, connection);
-                        command.Fill(ds, "ds");
-                        //
-                        connection.Close();
-                    }
-                    catch (MySql.Data.MySqlClient.MySqlException ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
-                    return ds;
-                }
-            }
-        }
-
-
-        public static DataSet Query(string SQLString, bool isdatabase, string libraryname)
-        {
-            if (!isdatabase)
-                return Query(SQLString, false);
+        
+        public static DataSet Query(string SQLString, string libraryname)
+        {          
             Console.WriteLine(libraryname);
             connectionString = "server=127.0.0.1;database=" + libraryname + ";uid=root;pwd=123456";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -732,10 +511,8 @@ namespace DataAngine.DBUtility
         /// </summary>
         /// <param name="SQLString">SQL语句</param>
         /// <returns>影响的记录数</returns>
-        public static int ExecuteSql(string SQLString, bool isdatabase, string libraryname, params MySqlParameter[] cmdParms)
-        {
-            if (!isdatabase)
-                return ExecuteSql(SQLString, cmdParms);
+        public static int ExecuteSql(string SQLString, string libraryname, params MySqlParameter[] cmdParms)
+        {           
             Console.WriteLine(libraryname);
             connectionString = "server=127.0.0.1;database=" + libraryname + ";uid=root;pwd=123456";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -757,50 +534,7 @@ namespace DataAngine.DBUtility
             }
         }
 
-        public static int ExecuteSql(string SQLString, bool isdatabase, params MySqlParameter[] cmdParms)
-        {
-            if (isdatabase)
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    using (MySqlCommand cmd = new MySqlCommand())
-                    {
-                        try
-                        {
-                            PrepareCommand(cmd, connection, null, SQLString, cmdParms);
-                            int rows = cmd.ExecuteNonQuery();
-                            cmd.Parameters.Clear();
-                            return rows;
-                        }
-                        catch (MySql.Data.MySqlClient.MySqlException e)
-                        {
-                            throw e;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionStringtable))
-                {
-                    using (MySqlCommand cmd = new MySqlCommand())
-                    {
-                        try
-                        {
-                            PrepareCommand(cmd, connection, null, SQLString, cmdParms);
-                            int rows = cmd.ExecuteNonQuery();
-                            cmd.Parameters.Clear();
-                            return rows;
-                        }
-                        catch (MySql.Data.MySqlClient.MySqlException e)
-                        {
-                            throw e;
-                        }
-                    }
-                }
-            }
-        }
-
+        
 
         /// <summary>
         /// 执行多条SQL语句，实现数据库事务。
@@ -1034,64 +768,7 @@ namespace DataAngine.DBUtility
             }
         }
 
-        public static object GetSingle(string SQLString, bool isdatabase, params MySqlParameter[] cmdParms)
-        {
-            if (isdatabase)
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    using (MySqlCommand cmd = new MySqlCommand())
-                    {
-                        try
-                        {
-                            PrepareCommand(cmd, connection, null, SQLString, cmdParms);
-                            object obj = cmd.ExecuteScalar();
-                            cmd.Parameters.Clear();
-                            if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
-                            {
-                                return null;
-                            }
-                            else
-                            {
-                                return obj;
-                            }
-                        }
-                        catch (MySql.Data.MySqlClient.MySqlException e)
-                        {
-                            throw e;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionStringtable))
-                {
-                    using (MySqlCommand cmd = new MySqlCommand())
-                    {
-                        try
-                        {
-                            PrepareCommand(cmd, connection, null, SQLString, cmdParms);
-                            object obj = cmd.ExecuteScalar();
-                            cmd.Parameters.Clear();
-                            if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
-                            {
-                                return null;
-                            }
-                            else
-                            {
-                                return obj;
-                            }
-                        }
-                        catch (MySql.Data.MySqlClient.MySqlException e)
-                        {
-                            throw e;
-                        }
-                    }
-                }
-
-            }
-        }
+        
         /// <summary>
         /// 执行查询语句，返回MySqlDataReader ( 注意：调用该方法后，一定要对MySqlDataReader进行Close )
         /// </summary>
@@ -1148,53 +825,7 @@ namespace DataAngine.DBUtility
             }
         }
 
-        public static DataSet Query(string SQLString, bool isdatabase, params MySqlParameter[] cmdParms)
-        {
-            if (isdatabase)
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    MySqlCommand cmd = new MySqlCommand();
-                    PrepareCommand(cmd, connection, null, SQLString, cmdParms);
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
-                    {
-                        DataSet ds = new DataSet();
-                        try
-                        {
-                            da.Fill(ds, "ds");
-                            cmd.Parameters.Clear();
-                        }
-                        catch (MySql.Data.MySqlClient.MySqlException ex)
-                        {
-                            throw new Exception(ex.Message);
-                        }
-                        return ds;
-                    }
-                }
-            }
-            else
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionStringtable))
-                {
-                    MySqlCommand cmd = new MySqlCommand();
-                    PrepareCommand(cmd, connection, null, SQLString, cmdParms);
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
-                    {
-                        DataSet ds = new DataSet();
-                        try
-                        {
-                            da.Fill(ds, "ds");
-                            cmd.Parameters.Clear();
-                        }
-                        catch (MySql.Data.MySqlClient.MySqlException ex)
-                        {
-                            throw new Exception(ex.Message);
-                        }
-                        return ds;
-                    }
-                }
-            }
-        }
+        
 
 
         private static void PrepareCommand(MySqlCommand cmd, MySqlConnection conn, MySqlTransaction trans, string cmdText, System.Data.Common.DbParameter[] cmdParms)

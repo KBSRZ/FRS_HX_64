@@ -10,7 +10,7 @@ namespace DataAngine.DBUtility
     /// <summary>
     /// 数据访问基础类(基于OleDb) 
     /// 可以用户可以修改满足自己项目的需要。
-    /// Copyright (C) Maticsoft
+    /// Copyright (C) DataAgine_Set
     /// </summary>
     public abstract class DbHelperOleDb
     {
