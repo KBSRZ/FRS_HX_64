@@ -5,7 +5,7 @@ using System.Data.OracleClient;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace DataAgine_Set.DBUtility
+namespace DataAngine_Set.DBUtility
 {
 
     /// <summary>

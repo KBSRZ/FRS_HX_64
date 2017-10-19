@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
-namespace DataAgine_Set.DBUtility
+namespace DataAngine_Set.DBUtility
 {
     public enum EffentNextType
     {

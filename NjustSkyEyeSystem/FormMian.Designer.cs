@@ -87,16 +87,18 @@
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.btn_Device_Register = new System.Windows.Forms.Button();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.label54 = new System.Windows.Forms.Label();
             this.txt_device_name = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
-            this.txt_device_password = new System.Windows.Forms.TextBox();
-            this.txt_device_user = new System.Windows.Forms.TextBox();
-            this.txt_device_port = new System.Windows.Forms.TextBox();
-            this.txt_device_ip = new System.Windows.Forms.TextBox();
+            this.txt_device_latitude = new System.Windows.Forms.TextBox();
+            this.txt_device_longitude = new System.Windows.Forms.TextBox();
+            this.txt_device_department = new System.Windows.Forms.TextBox();
+            this.txt_device_address = new System.Windows.Forms.TextBox();
             this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
+            this.comboBox_LocationType = new System.Windows.Forms.ComboBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
@@ -166,16 +168,18 @@
             this.nudClarityThresh = new System.Windows.Forms.NumericUpDown();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.label53 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.tex_UserPwd = new System.Windows.Forms.TextBox();
-            this.tex_UserName = new System.Windows.Forms.TextBox();
-            this.tex_DevPort = new System.Windows.Forms.TextBox();
-            this.tex_DevIP = new System.Windows.Forms.TextBox();
+            this.tex_Latitude = new System.Windows.Forms.TextBox();
+            this.tex_Longitude = new System.Windows.Forms.TextBox();
+            this.tex_Department = new System.Windows.Forms.TextBox();
+            this.tex_DevAddress = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox_DevName = new System.Windows.Forms.ComboBox();
+            this.tex_LocationType = new System.Windows.Forms.TextBox();
             this.btn_LoginDevice = new System.Windows.Forms.Button();
             this.tpRegister = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -359,7 +363,7 @@
             this.tabViewLibrary.Location = new System.Drawing.Point(4, 22);
             this.tabViewLibrary.Name = "tabViewLibrary";
             this.tabViewLibrary.Padding = new System.Windows.Forms.Padding(3);
-            this.tabViewLibrary.Size = new System.Drawing.Size(1354, 690);
+            this.tabViewLibrary.Size = new System.Drawing.Size(1346, 690);
             this.tabViewLibrary.TabIndex = 5;
             this.tabViewLibrary.Text = "底库查看";
             this.tabViewLibrary.UseVisualStyleBackColor = true;
@@ -566,7 +570,7 @@
             this.tpView.Controls.Add(this.tableLayoutPanel12);
             this.tpView.Location = new System.Drawing.Point(4, 22);
             this.tpView.Name = "tpView";
-            this.tpView.Size = new System.Drawing.Size(1354, 690);
+            this.tpView.Size = new System.Drawing.Size(1346, 690);
             this.tpView.TabIndex = 3;
             this.tpView.Text = "查看";
             this.tpView.UseVisualStyleBackColor = true;
@@ -922,27 +926,41 @@
             this.tableLayoutPanel11.ColumnCount = 2;
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.Controls.Add(this.label54, 0, 5);
             this.tableLayoutPanel11.Controls.Add(this.txt_device_name, 1, 0);
             this.tableLayoutPanel11.Controls.Add(this.label44, 0, 0);
             this.tableLayoutPanel11.Controls.Add(this.label45, 0, 4);
-            this.tableLayoutPanel11.Controls.Add(this.txt_device_password, 1, 4);
-            this.tableLayoutPanel11.Controls.Add(this.txt_device_user, 1, 3);
-            this.tableLayoutPanel11.Controls.Add(this.txt_device_port, 1, 2);
-            this.tableLayoutPanel11.Controls.Add(this.txt_device_ip, 1, 1);
+            this.tableLayoutPanel11.Controls.Add(this.txt_device_latitude, 1, 4);
+            this.tableLayoutPanel11.Controls.Add(this.txt_device_longitude, 1, 3);
+            this.tableLayoutPanel11.Controls.Add(this.txt_device_department, 1, 2);
+            this.tableLayoutPanel11.Controls.Add(this.txt_device_address, 1, 1);
             this.tableLayoutPanel11.Controls.Add(this.label46, 0, 3);
             this.tableLayoutPanel11.Controls.Add(this.label47, 0, 2);
             this.tableLayoutPanel11.Controls.Add(this.label48, 0, 1);
+            this.tableLayoutPanel11.Controls.Add(this.comboBox_LocationType, 1, 5);
             this.tableLayoutPanel11.Location = new System.Drawing.Point(69, 19);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
-            this.tableLayoutPanel11.RowCount = 5;
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel11.RowCount = 6;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel11.Size = new System.Drawing.Size(240, 144);
             this.tableLayoutPanel11.TabIndex = 62;
+            // 
+            // label54
+            // 
+            this.label54.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(65, 115);
+            this.label54.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(53, 29);
+            this.label54.TabIndex = 66;
+            this.label54.Text = "位置类型";
             // 
             // txt_device_name
             // 
@@ -960,7 +978,7 @@
             this.label44.Location = new System.Drawing.Point(65, 0);
             this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(53, 28);
+            this.label44.Size = new System.Drawing.Size(53, 23);
             this.label44.TabIndex = 63;
             this.label44.Text = "设备名称";
             // 
@@ -969,80 +987,88 @@
             this.label45.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(89, 112);
+            this.label45.Location = new System.Drawing.Point(89, 92);
             this.label45.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(29, 32);
+            this.label45.Size = new System.Drawing.Size(29, 23);
             this.label45.TabIndex = 61;
-            this.label45.Text = "密码";
+            this.label45.Text = "纬度";
             // 
-            // txt_device_password
+            // txt_device_latitude
             // 
-            this.txt_device_password.Location = new System.Drawing.Point(122, 114);
-            this.txt_device_password.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_device_password.Name = "txt_device_password";
-            this.txt_device_password.Size = new System.Drawing.Size(116, 21);
-            this.txt_device_password.TabIndex = 60;
+            this.txt_device_latitude.Location = new System.Drawing.Point(122, 94);
+            this.txt_device_latitude.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_device_latitude.Name = "txt_device_latitude";
+            this.txt_device_latitude.Size = new System.Drawing.Size(116, 21);
+            this.txt_device_latitude.TabIndex = 60;
             // 
-            // txt_device_user
+            // txt_device_longitude
             // 
-            this.txt_device_user.Location = new System.Drawing.Point(122, 86);
-            this.txt_device_user.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_device_user.Name = "txt_device_user";
-            this.txt_device_user.Size = new System.Drawing.Size(116, 21);
-            this.txt_device_user.TabIndex = 59;
+            this.txt_device_longitude.Location = new System.Drawing.Point(122, 71);
+            this.txt_device_longitude.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_device_longitude.Name = "txt_device_longitude";
+            this.txt_device_longitude.Size = new System.Drawing.Size(116, 21);
+            this.txt_device_longitude.TabIndex = 59;
             // 
-            // txt_device_port
+            // txt_device_department
             // 
-            this.txt_device_port.Location = new System.Drawing.Point(122, 58);
-            this.txt_device_port.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_device_port.Name = "txt_device_port";
-            this.txt_device_port.Size = new System.Drawing.Size(116, 21);
-            this.txt_device_port.TabIndex = 58;
+            this.txt_device_department.Location = new System.Drawing.Point(122, 48);
+            this.txt_device_department.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_device_department.Name = "txt_device_department";
+            this.txt_device_department.Size = new System.Drawing.Size(116, 21);
+            this.txt_device_department.TabIndex = 58;
             // 
-            // txt_device_ip
+            // txt_device_address
             // 
-            this.txt_device_ip.Location = new System.Drawing.Point(122, 30);
-            this.txt_device_ip.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_device_ip.Name = "txt_device_ip";
-            this.txt_device_ip.Size = new System.Drawing.Size(116, 21);
-            this.txt_device_ip.TabIndex = 57;
+            this.txt_device_address.Location = new System.Drawing.Point(122, 25);
+            this.txt_device_address.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_device_address.Name = "txt_device_address";
+            this.txt_device_address.Size = new System.Drawing.Size(116, 21);
+            this.txt_device_address.TabIndex = 57;
             // 
             // label46
             // 
             this.label46.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(77, 84);
+            this.label46.Location = new System.Drawing.Point(89, 69);
             this.label46.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(41, 28);
+            this.label46.Size = new System.Drawing.Size(29, 23);
             this.label46.TabIndex = 57;
-            this.label46.Text = "用户名";
+            this.label46.Text = "经度";
             // 
             // label47
             // 
             this.label47.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(65, 56);
+            this.label47.Location = new System.Drawing.Point(41, 46);
             this.label47.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(53, 28);
+            this.label47.Size = new System.Drawing.Size(77, 23);
             this.label47.TabIndex = 57;
-            this.label47.Text = "设备端口";
+            this.label47.Text = "公安机关代码";
             // 
             // label48
             // 
             this.label48.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(77, 28);
+            this.label48.Location = new System.Drawing.Point(65, 23);
             this.label48.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(41, 28);
+            this.label48.Size = new System.Drawing.Size(53, 23);
             this.label48.TabIndex = 57;
-            this.label48.Text = "设备IP";
+            this.label48.Text = "设备地址";
+            // 
+            // comboBox_LocationType
+            // 
+            this.comboBox_LocationType.FormattingEnabled = true;
+            this.comboBox_LocationType.Location = new System.Drawing.Point(123, 118);
+            this.comboBox_LocationType.Name = "comboBox_LocationType";
+            this.comboBox_LocationType.Size = new System.Drawing.Size(114, 20);
+            this.comboBox_LocationType.TabIndex = 67;
             // 
             // panel12
             // 
@@ -1883,27 +1909,41 @@
             this.tableLayoutPanel6.ColumnCount = 2;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.label53, 0, 5);
             this.tableLayoutPanel6.Controls.Add(this.label43, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.label20, 0, 4);
-            this.tableLayoutPanel6.Controls.Add(this.tex_UserPwd, 1, 4);
-            this.tableLayoutPanel6.Controls.Add(this.tex_UserName, 1, 3);
-            this.tableLayoutPanel6.Controls.Add(this.tex_DevPort, 1, 2);
-            this.tableLayoutPanel6.Controls.Add(this.tex_DevIP, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.tex_Latitude, 1, 4);
+            this.tableLayoutPanel6.Controls.Add(this.tex_Longitude, 1, 3);
+            this.tableLayoutPanel6.Controls.Add(this.tex_Department, 1, 2);
+            this.tableLayoutPanel6.Controls.Add(this.tex_DevAddress, 1, 1);
             this.tableLayoutPanel6.Controls.Add(this.label19, 0, 3);
             this.tableLayoutPanel6.Controls.Add(this.label17, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.label6, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.comboBox_DevName, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.tex_LocationType, 1, 5);
             this.tableLayoutPanel6.Location = new System.Drawing.Point(69, 19);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 5;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.RowCount = 6;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(240, 144);
             this.tableLayoutPanel6.TabIndex = 62;
+            // 
+            // label53
+            // 
+            this.label53.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(65, 115);
+            this.label53.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(53, 29);
+            this.label53.TabIndex = 65;
+            this.label53.Text = "位置类型";
             // 
             // label43
             // 
@@ -1913,7 +1953,7 @@
             this.label43.Location = new System.Drawing.Point(65, 0);
             this.label43.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(53, 28);
+            this.label43.Size = new System.Drawing.Size(53, 23);
             this.label43.TabIndex = 63;
             this.label43.Text = "设备名称";
             // 
@@ -1922,80 +1962,80 @@
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(89, 112);
+            this.label20.Location = new System.Drawing.Point(89, 92);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(29, 32);
+            this.label20.Size = new System.Drawing.Size(29, 23);
             this.label20.TabIndex = 61;
-            this.label20.Text = "密码";
+            this.label20.Text = "纬度";
             // 
-            // tex_UserPwd
+            // tex_Latitude
             // 
-            this.tex_UserPwd.Location = new System.Drawing.Point(122, 114);
-            this.tex_UserPwd.Margin = new System.Windows.Forms.Padding(2);
-            this.tex_UserPwd.Name = "tex_UserPwd";
-            this.tex_UserPwd.Size = new System.Drawing.Size(116, 21);
-            this.tex_UserPwd.TabIndex = 60;
+            this.tex_Latitude.Location = new System.Drawing.Point(122, 94);
+            this.tex_Latitude.Margin = new System.Windows.Forms.Padding(2);
+            this.tex_Latitude.Name = "tex_Latitude";
+            this.tex_Latitude.Size = new System.Drawing.Size(116, 21);
+            this.tex_Latitude.TabIndex = 60;
             // 
-            // tex_UserName
+            // tex_Longitude
             // 
-            this.tex_UserName.Location = new System.Drawing.Point(122, 86);
-            this.tex_UserName.Margin = new System.Windows.Forms.Padding(2);
-            this.tex_UserName.Name = "tex_UserName";
-            this.tex_UserName.Size = new System.Drawing.Size(116, 21);
-            this.tex_UserName.TabIndex = 59;
+            this.tex_Longitude.Location = new System.Drawing.Point(122, 71);
+            this.tex_Longitude.Margin = new System.Windows.Forms.Padding(2);
+            this.tex_Longitude.Name = "tex_Longitude";
+            this.tex_Longitude.Size = new System.Drawing.Size(116, 21);
+            this.tex_Longitude.TabIndex = 59;
             // 
-            // tex_DevPort
+            // tex_Department
             // 
-            this.tex_DevPort.Location = new System.Drawing.Point(122, 58);
-            this.tex_DevPort.Margin = new System.Windows.Forms.Padding(2);
-            this.tex_DevPort.Name = "tex_DevPort";
-            this.tex_DevPort.Size = new System.Drawing.Size(116, 21);
-            this.tex_DevPort.TabIndex = 58;
+            this.tex_Department.Location = new System.Drawing.Point(122, 48);
+            this.tex_Department.Margin = new System.Windows.Forms.Padding(2);
+            this.tex_Department.Name = "tex_Department";
+            this.tex_Department.Size = new System.Drawing.Size(116, 21);
+            this.tex_Department.TabIndex = 58;
             // 
-            // tex_DevIP
+            // tex_DevAddress
             // 
-            this.tex_DevIP.Location = new System.Drawing.Point(122, 30);
-            this.tex_DevIP.Margin = new System.Windows.Forms.Padding(2);
-            this.tex_DevIP.Name = "tex_DevIP";
-            this.tex_DevIP.Size = new System.Drawing.Size(116, 21);
-            this.tex_DevIP.TabIndex = 57;
+            this.tex_DevAddress.Location = new System.Drawing.Point(122, 25);
+            this.tex_DevAddress.Margin = new System.Windows.Forms.Padding(2);
+            this.tex_DevAddress.Name = "tex_DevAddress";
+            this.tex_DevAddress.Size = new System.Drawing.Size(116, 21);
+            this.tex_DevAddress.TabIndex = 57;
             // 
             // label19
             // 
             this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(77, 84);
+            this.label19.Location = new System.Drawing.Point(89, 69);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(41, 28);
+            this.label19.Size = new System.Drawing.Size(29, 23);
             this.label19.TabIndex = 57;
-            this.label19.Text = "用户名";
+            this.label19.Text = "经度";
             // 
             // label17
             // 
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(65, 56);
+            this.label17.Location = new System.Drawing.Point(41, 46);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(53, 28);
+            this.label17.Size = new System.Drawing.Size(77, 23);
             this.label17.TabIndex = 57;
-            this.label17.Text = "设备端口";
+            this.label17.Text = "公安机关代码";
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(77, 28);
+            this.label6.Location = new System.Drawing.Point(65, 23);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 28);
+            this.label6.Size = new System.Drawing.Size(53, 23);
             this.label6.TabIndex = 57;
-            this.label6.Text = "设备IP";
+            this.label6.Text = "设备地址";
             // 
             // comboBox_DevName
             // 
@@ -2005,6 +2045,14 @@
             this.comboBox_DevName.Size = new System.Drawing.Size(114, 20);
             this.comboBox_DevName.TabIndex = 64;
             this.comboBox_DevName.SelectedIndexChanged += new System.EventHandler(this.comboBox_DevName_SelectedIndexChanged);
+            // 
+            // tex_LocationType
+            // 
+            this.tex_LocationType.Location = new System.Drawing.Point(122, 117);
+            this.tex_LocationType.Margin = new System.Windows.Forms.Padding(2);
+            this.tex_LocationType.Name = "tex_LocationType";
+            this.tex_LocationType.Size = new System.Drawing.Size(116, 21);
+            this.tex_LocationType.TabIndex = 66;
             // 
             // btn_LoginDevice
             // 
@@ -2023,7 +2071,7 @@
             this.tpRegister.Location = new System.Drawing.Point(4, 22);
             this.tpRegister.Name = "tpRegister";
             this.tpRegister.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRegister.Size = new System.Drawing.Size(1354, 690);
+            this.tpRegister.Size = new System.Drawing.Size(1346, 690);
             this.tpRegister.TabIndex = 1;
             this.tpRegister.Text = "注册";
             this.tpRegister.UseVisualStyleBackColor = true;
@@ -2060,8 +2108,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.btnRegisterInBulk);
             this.splitContainer1.Panel2.Margin = new System.Windows.Forms.Padding(3);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(3);
-            this.splitContainer1.Size = new System.Drawing.Size(1348, 684);
-            this.splitContainer1.SplitterDistance = 582;
+            this.splitContainer1.Size = new System.Drawing.Size(1340, 684);
+            this.splitContainer1.SplitterDistance = 578;
             this.splitContainer1.TabIndex = 2;
             // 
             // cb_RegUserGender
@@ -2201,7 +2249,7 @@
             this.rtxRegisterLog.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rtxRegisterLog.Location = new System.Drawing.Point(3, 276);
             this.rtxRegisterLog.Name = "rtxRegisterLog";
-            this.rtxRegisterLog.Size = new System.Drawing.Size(754, 403);
+            this.rtxRegisterLog.Size = new System.Drawing.Size(750, 403);
             this.rtxRegisterLog.TabIndex = 3;
             this.rtxRegisterLog.Text = "";
             // 
@@ -2656,7 +2704,7 @@
             this.tpCertificate.Location = new System.Drawing.Point(4, 22);
             this.tpCertificate.Name = "tpCertificate";
             this.tpCertificate.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCertificate.Size = new System.Drawing.Size(1354, 690);
+            this.tpCertificate.Size = new System.Drawing.Size(1346, 690);
             this.tpCertificate.TabIndex = 4;
             this.tpCertificate.Text = "证件查询";
             this.tpCertificate.UseVisualStyleBackColor = true;
@@ -2983,12 +3031,12 @@
         private System.Windows.Forms.Button btn_LoginDevice;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox tex_UserPwd;
+        private System.Windows.Forms.TextBox tex_Latitude;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox tex_UserName;
-        private System.Windows.Forms.TextBox tex_DevPort;
+        private System.Windows.Forms.TextBox tex_Longitude;
+        private System.Windows.Forms.TextBox tex_Department;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tex_DevIP;
+        private System.Windows.Forms.TextBox tex_DevAddress;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Label label35;
@@ -3147,10 +3195,10 @@
         private System.Windows.Forms.TextBox txt_device_name;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.TextBox txt_device_password;
-        private System.Windows.Forms.TextBox txt_device_user;
-        private System.Windows.Forms.TextBox txt_device_port;
-        private System.Windows.Forms.TextBox txt_device_ip;
+        private System.Windows.Forms.TextBox txt_device_latitude;
+        private System.Windows.Forms.TextBox txt_device_longitude;
+        private System.Windows.Forms.TextBox txt_device_department;
+        private System.Windows.Forms.TextBox txt_device_address;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label48;
@@ -3174,6 +3222,10 @@
         private System.Windows.Forms.TextBox txt_Current_Page_HitAlert;
         private System.Windows.Forms.Button btn_NextPage_HitAlert;
         private System.Windows.Forms.Button btn_PrePage_HitAlert;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.ComboBox comboBox_LocationType;
+        private System.Windows.Forms.TextBox tex_LocationType;
     }
 }
 

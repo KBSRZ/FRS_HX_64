@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Data;
 using System.Collections.Generic;
-//using DataAgine_Set.Common;
-using DataAgine_Set.Model;
-namespace DataAgine_Set.BLL
+//using Maticsoft.Common;
+using DataAngine_Set.Model;
+namespace DataAngine_Set.BLL
 {
 	/// <summary>
-	/// frs_database
+	/// dataset
 	/// </summary>
-	public partial class frs_database
+	public partial class dataset
 	{
-		private readonly DataAgine_Set.DAL.frs_database dal=new DataAgine_Set.DAL.frs_database();
-		public frs_database()
+		private readonly DataAngine_Set.DAL.dataset dal=new DataAngine_Set.DAL.dataset();
+		public dataset()
 		{}
 		#region  BasicMethod
 
@@ -34,7 +34,7 @@ namespace DataAgine_Set.BLL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public bool Add(DataAgine_Set.Model.frs_database model)
+		public bool Add(DataAngine_Set.Model.dataset model)
 		{
 			return dal.Add(model);
 		}
@@ -42,7 +42,7 @@ namespace DataAgine_Set.BLL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(DataAgine_Set.Model.frs_database model)
+		public bool Update(DataAngine_Set.Model.dataset model)
 		{
 			return dal.Update(model);
 		}
@@ -66,7 +66,7 @@ namespace DataAgine_Set.BLL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public DataAgine_Set.Model.frs_database GetModel(int id)
+		public DataAngine_Set.Model.dataset GetModel(int id)
 		{
 			
 			return dal.GetModel(id);
@@ -75,11 +75,11 @@ namespace DataAgine_Set.BLL
         ///// <summary>
         ///// 得到一个对象实体，从缓存中
         ///// </summary>
-        //public DataAgine_Set.Model.frs_database GetModelByCache(int id)
+        //public DataAngine_Set.Model.dataset GetModelByCache(int id)
         //{
 			
-        //    string CacheKey = "frs_databaseModel-" + id;
-        //    object objModel = DataAgine_Set.Common.DataCache.GetCache(CacheKey);
+        //    string CacheKey = "datasetModel-" + id;
+        //    object objModel = Maticsoft.Common.DataCache.GetCache(CacheKey);
         //    if (objModel == null)
         //    {
         //        try
@@ -87,13 +87,13 @@ namespace DataAgine_Set.BLL
         //            objModel = dal.GetModel(id);
         //            if (objModel != null)
         //            {
-        //                int ModelCache = DataAgine_Set.Common.ConfigHelper.GetConfigInt("ModelCache");
-        //                DataAgine_Set.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
+        //                int ModelCache = Maticsoft.Common.ConfigHelper.GetConfigInt("ModelCache");
+        //                Maticsoft.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
         //            }
         //        }
         //        catch{}
         //    }
-        //    return (DataAgine_Set.Model.frs_database)objModel;
+        //    return (DataAngine_Set.Model.dataset)objModel;
         //}
 
 		/// <summary>
@@ -106,7 +106,7 @@ namespace DataAgine_Set.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<DataAgine_Set.Model.frs_database> GetModelList(string strWhere)
+		public List<DataAngine_Set.Model.dataset> GetModelList(string strWhere)
 		{
 			DataSet ds = dal.GetList(strWhere);
 			return DataTableToList(ds.Tables[0]);
@@ -114,13 +114,13 @@ namespace DataAgine_Set.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<DataAgine_Set.Model.frs_database> DataTableToList(DataTable dt)
+		public List<DataAngine_Set.Model.dataset> DataTableToList(DataTable dt)
 		{
-			List<DataAgine_Set.Model.frs_database> modelList = new List<DataAgine_Set.Model.frs_database>();
+			List<DataAngine_Set.Model.dataset> modelList = new List<DataAngine_Set.Model.dataset>();
 			int rowsCount = dt.Rows.Count;
 			if (rowsCount > 0)
 			{
-				DataAgine_Set.Model.frs_database model;
+				DataAngine_Set.Model.dataset model;
 				for (int n = 0; n < rowsCount; n++)
 				{
 					model = dal.DataRowToModel(dt.Rows[n]);

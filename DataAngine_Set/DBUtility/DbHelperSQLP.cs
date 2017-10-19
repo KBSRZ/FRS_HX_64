@@ -6,11 +6,11 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data.Common;
 using System.Collections.Generic;
-namespace DataAgine_Set.DBUtility
+namespace DataAngine_Set.DBUtility
 {
     /// <summary>
     /// 数据访问类，可用于访问不同数据库
-    /// Copyright (C) DataAgine_Set
+    /// Copyright (C) DataAngine_Set
     /// </summary>
     public class DbHelperSQLP
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FRSServer.Data;
-using DataAgine_Set;
+using DataAngine_Set;
 using DataAngine;
 namespace FRSServer.Service
 {
@@ -18,8 +18,8 @@ namespace FRSServer.Service
 
         readonly DataAngine.BLL.hitalert hitbll = new DataAngine.BLL.hitalert();
         readonly DataAngine.BLL.user user = new DataAngine.BLL.user();
-        readonly DataAgine_Set.BLL.frs_database frs_database = new DataAgine_Set.BLL.frs_database();
-        readonly DataAgine_Set.BLL.device device = new DataAgine_Set.BLL.device();
+        readonly DataAngine_Set.BLL.frs_database frs_database = new DataAngine_Set.BLL.frs_database();
+        readonly DataAngine_Set.BLL.device device = new DataAngine_Set.BLL.device();
         
        
 

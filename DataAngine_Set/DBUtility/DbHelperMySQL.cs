@@ -6,11 +6,11 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data.Common;
 using System.Collections.Generic;
-namespace DataAgine_Set.DBUtility
+namespace DataAngine_Set.DBUtility
 {
     /// <summary>
     /// 数据访问抽象基础类
-    /// Copyright (C) DataAgine_Set
+    /// Copyright (C) DataAngine_Set
     /// </summary>
     public abstract class DbHelperMySQL
     {

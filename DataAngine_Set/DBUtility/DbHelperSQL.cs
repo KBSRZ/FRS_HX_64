@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data.Common;
 using System.Collections.Generic;
-namespace DataAgine_Set.DBUtility
+namespace DataAngine_Set.DBUtility
 {
     /// <summary>
     /// 数据访问抽象基础类

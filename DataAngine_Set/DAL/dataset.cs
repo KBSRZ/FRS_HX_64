@@ -3,15 +3,15 @@ using System.Data;
 using System.Text;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
-using DataAgine_Set.DBUtility;//Please add references
-namespace DataAgine_Set.DAL
+using DataAngine_Set.DBUtility;//Please add references
+namespace DataAngine_Set.DAL
 {
 	/// <summary>
-	/// 数据访问类:frs_database
+	/// 数据访问类:dataset
 	/// </summary>
-	public partial class frs_database
+	public partial class dataset
 	{
-		public frs_database()
+		public dataset()
 		{}
 		#region  BasicMethod
 
@@ -20,7 +20,7 @@ namespace DataAgine_Set.DAL
 		/// </summary>
 		public int GetMaxId()
 		{
-		return DbHelperMySQL.GetMaxID("id", "frs_database"); 
+		return DbHelperMySQL.GetMaxID("id", "dataset"); 
 		}
 
 		/// <summary>
@@ -29,7 +29,7 @@ namespace DataAgine_Set.DAL
 		public bool Exists(int id)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select count(1) from frs_database");
+			strSql.Append("select count(1) from dataset");
 			strSql.Append(" where id=@id");
 			MySqlParameter[] parameters = {
 					new MySqlParameter("@id", MySqlDbType.Int32)
@@ -43,29 +43,30 @@ namespace DataAgine_Set.DAL
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public bool Add(DataAgine_Set.Model.frs_database model)
+		public bool Add(DataAngine_Set.Model.dataset model)
 		{
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("insert into frs_database(");
-            strSql.Append("name,type,user,password,address,info)");
-            strSql.Append(" values (");
-            strSql.Append("@name,@type,@user,@password,@address,@info)");
-            MySqlParameter[] parameters = {
-					new MySqlParameter("@name", MySqlDbType.VarChar,50),
-					new MySqlParameter("@type", MySqlDbType.VarChar,8),
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("insert into dataset(");
+			strSql.Append("datasetname,type,user,password,ip,port,remark)");
+			strSql.Append(" values (");
+			strSql.Append("@datasetname,@type,@user,@password,@ip,@port,@remark)");
+			MySqlParameter[] parameters = {
+					new MySqlParameter("@datasetname", MySqlDbType.VarChar,50),
+					new MySqlParameter("@type", MySqlDbType.Int32,11),
 					new MySqlParameter("@user", MySqlDbType.VarChar,20),
 					new MySqlParameter("@password", MySqlDbType.VarChar,20),
-					new MySqlParameter("@address", MySqlDbType.VarChar,20),
-					new MySqlParameter("@info", MySqlDbType.VarChar,50)};
-            parameters[0].Value = model.name;
-            parameters[1].Value = model.type;
-            parameters[2].Value = model.user;
-            parameters[3].Value = model.password;
-            parameters[4].Value = model.address;
-            parameters[5].Value = model.info;
+					new MySqlParameter("@ip", MySqlDbType.VarChar,20),
+					new MySqlParameter("@port", MySqlDbType.VarChar,20),
+					new MySqlParameter("@remark", MySqlDbType.VarChar,50)};
+			parameters[0].Value = model.datasetname;
+			parameters[1].Value = model.type;
+			parameters[2].Value = model.user;
+			parameters[3].Value = model.password;
+			parameters[4].Value = model.ip;
+			parameters[5].Value = model.port;
+			parameters[6].Value = model.remark;
 
-            int rows = DbHelperMySQL.ExecuteSql(strSql.ToString(), parameters);
-
+			int rows=DbHelperMySQL.ExecuteSql(strSql.ToString(),parameters);
             if (rows > 0)
             {
                 MessageBox.Show("新建数据库");
@@ -73,10 +74,10 @@ namespace DataAgine_Set.DAL
                 StringBuilder strlibrarySql = new StringBuilder();
 
 
-                strlibrarySql.Append("CREATE DATABASE `" + model.name + "`;");
-                strlibrarySql.Append("USE `" + model.name + "`;");
+                strlibrarySql.Append("CREATE DATABASE `" + model.datasetname + "`;");
+                strlibrarySql.Append("USE `" + model.datasetname + "`;");
 
-                strlibrarySql.Append("create table `" + model.name + "`.`user`");
+                strlibrarySql.Append("create table `" + model.datasetname + "`.`user`");
                 strlibrarySql.Append("(");
                 strlibrarySql.Append("`id` int(11) AUTO_INCREMENT,");
                 strlibrarySql.Append("`people_id` varchar(50) NULL,");
@@ -94,7 +95,7 @@ namespace DataAgine_Set.DAL
                 strlibrarySql.Append("UNIQUE KEY `id` (`id`)");
                 strlibrarySql.Append(")ENGINE=InnoDB DEFAULT CHARSET=utf8;");
 
-                strlibrarySql.Append("create table `" + model.name + "`.`hitrecord`");
+                strlibrarySql.Append("create table `" + model.datasetname + "`.`hitrecord`");
                 strlibrarySql.Append("(");
                 strlibrarySql.Append("`id` int(11) AUTO_INCREMENT,");
                 strlibrarySql.Append("`face_query_image_path` varchar(200) NOT NULL,");
@@ -104,7 +105,7 @@ namespace DataAgine_Set.DAL
                 strlibrarySql.Append("UNIQUE KEY `id` (`id`)");
                 strlibrarySql.Append(")ENGINE=InnoDB DEFAULT CHARSET=utf8;");
 
-                strlibrarySql.Append("create table `" + model.name + "`.`hitrecord_detail`");
+                strlibrarySql.Append("create table `" + model.datasetname + "`.`hitrecord_detail`");
                 strlibrarySql.Append("(");
                 strlibrarySql.Append("`id` int(11) AUTO_INCREMENT,");
                 strlibrarySql.Append("`hit_record_id` int(11) NOT NULL,");
@@ -115,13 +116,13 @@ namespace DataAgine_Set.DAL
                 strlibrarySql.Append("UNIQUE KEY `id` (`id`)");
                 strlibrarySql.Append(")ENGINE=InnoDB DEFAULT CHARSET=utf8;");
 
-                strlibrarySql.Append("create view `" + model.name + "`.`hitalert` as ");
+                strlibrarySql.Append("create view `" + model.datasetname + "`.`hitalert` as ");
                 strlibrarySql.Append("select ");
                 strlibrarySql.Append("hit.id,hit.face_query_image_path,hit.threshold,hit.occur_time,detail.id as detail_id,detail.rank,detail.score,usr.id as user_id,usr.name as user_name,usr.gender as user_gender,usr.card_id as user_card_id,usr.people_id as user_people_id,usr.image_id as user_image_id,usr.face_image_path as user_face_image_path,usr.type as user_type,usr.create_time as user_create_time,usr.modified_time as user_modified_time,usr.quality_score as user_quality_score ");
                 strlibrarySql.Append("FROM ");
-                strlibrarySql.Append("(`" + model.name + "`.`hitrecord_detail` as detail ");
-                strlibrarySql.Append("left join `" + model.name + "`.`hitrecord` as hit on detail.hit_record_id=hit.id) ");
-                strlibrarySql.Append("left join `" + model.name + "`.`user` as usr on detail.user_id = usr.id;");
+                strlibrarySql.Append("(`" + model.datasetname + "`.`hitrecord_detail` as detail ");
+                strlibrarySql.Append("left join `" + model.datasetname + "`.`hitrecord` as hit on detail.hit_record_id=hit.id) ");
+                strlibrarySql.Append("left join `" + model.datasetname + "`.`user` as usr on detail.user_id = usr.id;");
 
                 rows = DbHelperMySQL.ExecuteSql(strlibrarySql.ToString(), parameters);
                 return true;
@@ -134,32 +135,35 @@ namespace DataAgine_Set.DAL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(DataAgine_Set.Model.frs_database model)
+		public bool Update(DataAngine_Set.Model.dataset model)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("update frs_database set ");
-			strSql.Append("name=@name,");
+			strSql.Append("update dataset set ");
+			strSql.Append("datasetname=@datasetname,");
 			strSql.Append("type=@type,");
 			strSql.Append("user=@user,");
 			strSql.Append("password=@password,");
-			strSql.Append("address=@address,");
-			strSql.Append("info=@info");
+			strSql.Append("ip=@ip,");
+			strSql.Append("port=@port,");
+			strSql.Append("remark=@remark");
 			strSql.Append(" where id=@id");
 			MySqlParameter[] parameters = {
-					new MySqlParameter("@name", MySqlDbType.VarChar,50),
-					new MySqlParameter("@type", MySqlDbType.VarChar,8),
+					new MySqlParameter("@datasetname", MySqlDbType.VarChar,50),
+					new MySqlParameter("@type", MySqlDbType.Int32,11),
 					new MySqlParameter("@user", MySqlDbType.VarChar,20),
 					new MySqlParameter("@password", MySqlDbType.VarChar,20),
-					new MySqlParameter("@address", MySqlDbType.VarChar,20),
-					new MySqlParameter("@info", MySqlDbType.VarChar,50),
+					new MySqlParameter("@ip", MySqlDbType.VarChar,20),
+					new MySqlParameter("@port", MySqlDbType.VarChar,20),
+					new MySqlParameter("@remark", MySqlDbType.VarChar,50),
 					new MySqlParameter("@id", MySqlDbType.Int32,11)};
-			parameters[0].Value = model.name;
+			parameters[0].Value = model.datasetname;
 			parameters[1].Value = model.type;
 			parameters[2].Value = model.user;
 			parameters[3].Value = model.password;
-			parameters[4].Value = model.address;
-			parameters[5].Value = model.info;
-			parameters[6].Value = model.id;
+			parameters[4].Value = model.ip;
+			parameters[5].Value = model.port;
+			parameters[6].Value = model.remark;
+			parameters[7].Value = model.id;
 
 			int rows=DbHelperMySQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -179,7 +183,7 @@ namespace DataAgine_Set.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("delete from frs_database ");
+			strSql.Append("delete from dataset ");
 			strSql.Append(" where id=@id");
 			MySqlParameter[] parameters = {
 					new MySqlParameter("@id", MySqlDbType.Int32)
@@ -202,7 +206,7 @@ namespace DataAgine_Set.DAL
 		public bool DeleteList(string idlist )
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("delete from frs_database ");
+			strSql.Append("delete from dataset ");
 			strSql.Append(" where id in ("+idlist + ")  ");
 			int rows=DbHelperMySQL.ExecuteSql(strSql.ToString());
 			if (rows > 0)
@@ -219,18 +223,18 @@ namespace DataAgine_Set.DAL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public DataAgine_Set.Model.frs_database GetModel(int id)
+		public DataAngine_Set.Model.dataset GetModel(int id)
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select id,name,type,user,password,address,info from frs_database ");
+			strSql.Append("select id,datasetname,type,user,password,ip,port,remark from dataset ");
 			strSql.Append(" where id=@id");
 			MySqlParameter[] parameters = {
 					new MySqlParameter("@id", MySqlDbType.Int32)
 			};
 			parameters[0].Value = id;
 
-			DataAgine_Set.Model.frs_database model=new DataAgine_Set.Model.frs_database();
+			DataAngine_Set.Model.dataset model=new DataAngine_Set.Model.dataset();
 			DataSet ds=DbHelperMySQL.Query(strSql.ToString(),parameters);
 			if(ds.Tables[0].Rows.Count>0)
 			{
@@ -246,22 +250,22 @@ namespace DataAgine_Set.DAL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public DataAgine_Set.Model.frs_database DataRowToModel(DataRow row)
+		public DataAngine_Set.Model.dataset DataRowToModel(DataRow row)
 		{
-			DataAgine_Set.Model.frs_database model=new DataAgine_Set.Model.frs_database();
+			DataAngine_Set.Model.dataset model=new DataAngine_Set.Model.dataset();
 			if (row != null)
 			{
 				if(row["id"]!=null && row["id"].ToString()!="")
 				{
 					model.id=int.Parse(row["id"].ToString());
 				}
-				if(row["name"]!=null)
+				if(row["datasetname"]!=null)
 				{
-					model.name=row["name"].ToString();
+					model.datasetname=row["datasetname"].ToString();
 				}
-				if(row["type"]!=null)
+				if(row["type"]!=null && row["type"].ToString()!="")
 				{
-					model.type=row["type"].ToString();
+					model.type=int.Parse(row["type"].ToString());
 				}
 				if(row["user"]!=null)
 				{
@@ -271,13 +275,17 @@ namespace DataAgine_Set.DAL
 				{
 					model.password=row["password"].ToString();
 				}
-				if(row["address"]!=null)
+				if(row["ip"]!=null)
 				{
-					model.address=row["address"].ToString();
+					model.ip=row["ip"].ToString();
 				}
-				if(row["info"]!=null)
+				if(row["port"]!=null)
 				{
-					model.info=row["info"].ToString();
+					model.port=row["port"].ToString();
+				}
+				if(row["remark"]!=null)
+				{
+					model.remark=row["remark"].ToString();
 				}
 			}
 			return model;
@@ -289,8 +297,8 @@ namespace DataAgine_Set.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select id,name,type,user,password,address,info ");
-			strSql.Append(" FROM frs_database ");
+			strSql.Append("select id,datasetname,type,user,password,ip,port,remark ");
+			strSql.Append(" FROM dataset ");
 			if(strWhere.Trim()!="")
 			{
 				strSql.Append(" where "+strWhere);
@@ -304,7 +312,7 @@ namespace DataAgine_Set.DAL
 		public int GetRecordCount(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select count(1) FROM frs_database ");
+			strSql.Append("select count(1) FROM dataset ");
 			if(strWhere.Trim()!="")
 			{
 				strSql.Append(" where "+strWhere);
@@ -335,7 +343,7 @@ namespace DataAgine_Set.DAL
 			{
 				strSql.Append("order by T.id desc");
 			}
-			strSql.Append(")AS Row, T.*  from frs_database T ");
+			strSql.Append(")AS Row, T.*  from dataset T ");
 			if (!string.IsNullOrEmpty(strWhere.Trim()))
 			{
 				strSql.Append(" WHERE " + strWhere);
@@ -360,7 +368,7 @@ namespace DataAgine_Set.DAL
 					new MySqlParameter("@OrderType", MySqlDbType.Bit),
 					new MySqlParameter("@strWhere", MySqlDbType.VarChar,1000),
 					};
-			parameters[0].Value = "frs_database";
+			parameters[0].Value = "dataset";
 			parameters[1].Value = "id";
 			parameters[2].Value = PageSize;
 			parameters[3].Value = PageIndex;
