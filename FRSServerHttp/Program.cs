@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-
+using FRSServerHttp.Server;
 namespace FRSServerHttp
 {
     class Program
@@ -14,6 +14,7 @@ namespace FRSServerHttp
             if (args.GetLength(0) > 0)
             {
                 httpServer = new HttpServerImp(Convert.ToInt16(args[0]));
+                
             }
             else
             {

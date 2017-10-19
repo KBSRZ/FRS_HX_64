@@ -8,6 +8,7 @@ using FRSServerHttp.Model;
 using System.IO;
 //using FRS;
 using Newtonsoft.Json;
+using FRSServerHttp.Server;
 namespace FRSServerHttp.Service
 {
    
@@ -67,15 +68,14 @@ namespace FRSServerHttp.Service
         /// <summary>
         /// Post时调用
         /// </summary>
-        public virtual void OnGet(HttpProcessor p) { }
+        public virtual void OnGet(HttpProcessor p) {
+
+        }
         /// <summary>
         /// Get时调用
         /// </summary>
         public virtual void OnPost (HttpProcessor p, StreamReader inputData) { }
-        /// <summary>
-        ///  Post时调用
-        /// </summary>
-        /// <param name="param">参数为json</param>
+        
        
     }
    

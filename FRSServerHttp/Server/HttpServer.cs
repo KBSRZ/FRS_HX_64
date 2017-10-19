@@ -5,22 +5,32 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace FRSServerHttp
+namespace FRSServerHttp.Server
 {
     public abstract class HttpServer
     {
 
+        public string  ServerRoot{get{return serverRoot;  }}
+        public int Port { get { return port; } }
+        public string IP { get { return ip; } }
+
+        /// <summary>
+        /// 服务器目录
+        /// </summary>
+        protected string serverRoot;
         protected int port;
         protected string ip = "127.0.0.1";
         TcpListener listener;
         bool is_active = true;
         //用于线程同步，初始状态设为非终止状态，使用手动重置方式
         private EventWaitHandle allDone = new EventWaitHandle(false, EventResetMode.ManualReset);
-        public HttpServer(int port,string ip="127.0.0.1")
+        public HttpServer(int port, string ip = "127.0.0.1", string root =".")
         {
             this.port = port;
             this.ip = ip;
-           
+            if (!Directory.Exists(root))
+                this.serverRoot = AppDomain.CurrentDomain.BaseDirectory;
+            this.serverRoot = root;
         }
         void DoAcceptTcpClientCallback(IAsyncResult ar)
         {
@@ -55,6 +65,8 @@ namespace FRSServerHttp
             }
         }
 
+
+      
         public abstract void HandleGETRequest(HttpProcessor p);
         public abstract void HandlePOSTRequest(HttpProcessor p, StreamReader inputData);
     }

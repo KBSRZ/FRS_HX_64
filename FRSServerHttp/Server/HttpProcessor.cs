@@ -5,11 +5,12 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-
-namespace FRSServerHttp
+using System.Text;
+namespace FRSServerHttp.Server
 {
     public class HttpProcessor
     {
+      
         public TcpClient socket;
         public HttpServer srv;
 
@@ -20,7 +21,15 @@ namespace FRSServerHttp
         public String httpUrl;
         public String httpProtocolVersionString;
         public Hashtable httpHeaders = new Hashtable();
-
+        /// <summary>
+        /// 是否是静态资源
+        /// </summary>
+        public bool isStatic = false;
+       //http(s)://server.com/{version}/{domain}/{rest-convention}
+        public string version=string.Empty;//version 
+        public string domain = string.Empty;//是一个你可以用来定义任何技术的区域 
+        public string restConvention = string.Empty;//代表这个域(domain)下，约定的rest接口集合。
+        public string operation = string.Empty;//操作。
         /// <summary>
         /// 请求参数
         /// </summary>
@@ -50,11 +59,17 @@ namespace FRSServerHttp
             }
             return data;
         }
+
+
+
+
         public void Process()
         {
+
             // we can't use a StreamReader for input, because it buffers up extra data on us inside it's
             // "processed" view of the world, and we want the data raw after the headers
             inputStream = new BufferedStream(socket.GetStream());
+
 
             // we probably shouldn't be using a streamwriter for all output from handlers either
             outputStream = new StreamWriter(new BufferedStream(socket.GetStream()));
@@ -62,39 +77,194 @@ namespace FRSServerHttp
             {
                 ParseRequest();
                 ReadHeaders();
+
+
                 if (httpMethod.Equals("GET"))
                 {
+
                     if (this.httpUrl.Contains("?"))
                     {
                         this.Params = GetRequestParams(this.httpUrl.Split('?')[1]);
                         this.httpUrl = this.httpUrl.Split('?')[0];
-                       
+
                     }
-                   
+                    if (!isStatic)//如果是动态请求
+                    {
+                        string[] urls = this.httpUrl.Trim(new char[] { '/' }).Split('/');
+                        if (urls.Length > 0)
+                        {
+                            version = urls[0];
+                        }
+                        if (urls.Length > 1)
+                        {
+                            domain = urls[1];
+                        }
+                        if (urls.Length > 2)
+                        {
+                            restConvention = urls[2];
+                        }
+                        if (urls.Length > 3)
+                        {
+                            operation = urls[3];
+                        }
+                    }
                     HandleGETRequest();
 
-                    
-                    
+
+
                 }
                 else if (httpMethod.Equals("POST"))
                 {
+
+                    string[] urls = this.httpUrl.Trim(new char[] { '/' }).Split('/');
+                    if (!isStatic)//如果是动态请求
+                    {
+                        if (urls.Length > 0)
+                        {
+                            version = urls[0];
+                        }
+                        if (urls.Length > 1)
+                        {
+                            domain = urls[1];
+                        }
+                        if (urls.Length > 2)
+                        {
+                            restConvention = urls[2];
+                        }
+                        if (urls.Length > 3)
+                        {
+                            operation = urls[3];
+                        }
+
+                    }
                     HandlePOSTRequest();
                     //this.Params = GetRequestParams(lines[lines.Length - 1]);
                 }
             }
             catch (Exception e)
             {
+
                 Console.WriteLine("Exception: " + e.ToString());
                 WriteFailure();
             }
-            if (socket.Connected) 
-            outputStream.Flush();
+            if (socket.Connected)
+                outputStream.Flush();
             // bs.Flush(); // flush any remaining output
-            inputStream = null; 
+            inputStream = null;
             outputStream = null; // bs = null;            
             socket.Close();
         }
 
+
+
+
+
+
+
+
+
+
+        
+        //public void Process()
+        //{
+
+
+
+
+
+
+        //    // we can't use a StreamReader for input, because it buffers up extra data on us inside it's
+        //    // "processed" view of the world, and we want the data raw after the headers
+        //    inputStream = new BufferedStream(socket.GetStream());
+
+
+        //    // we probably shouldn't be using a streamwriter for all output from handlers either
+        //    outputStream = new StreamWriter(new BufferedStream(socket.GetStream()));
+        //    try
+        //    {
+        //        ParseRequest();
+        //        ReadHeaders();
+
+
+        //        if (httpMethod.Equals("GET"))
+        //        {
+                    
+        //            if (this.httpUrl.Contains("?"))
+        //            {
+        //                this.Params = GetRequestParams(this.httpUrl.Split('?')[1]);
+        //                this.httpUrl = this.httpUrl.Split('?')[0];
+                       
+        //            }
+        //            if (!isStatic)//如果是动态请求
+        //            {
+        //                string[] urls = this.httpUrl.Trim(new char[] { '/' }).Split('/');
+        //                if (urls.Length > 0)
+        //                {
+        //                    version = urls[0];
+        //                }
+        //                if (urls.Length > 1)
+        //                {
+        //                    domain = urls[1];
+        //                }
+        //                if (urls.Length > 2)
+        //                {
+        //                    restConvention = urls[2];
+        //                }
+        //                if (urls.Length > 3)
+        //                {
+        //                    operation = urls[3];
+        //                }
+        //            }
+        //            HandleGETRequest();
+
+                    
+                    
+        //        }
+        //        else if (httpMethod.Equals("POST"))
+        //        {
+
+        //            string[] urls = this.httpUrl.Trim(new char[] { '/' }).Split('/');
+        //            if (!isStatic)//如果是动态请求
+        //            {
+        //                if (urls.Length > 0)
+        //                {
+        //                    version = urls[0];
+        //                }
+        //                if (urls.Length > 1)
+        //                {
+        //                    domain = urls[1];
+        //                }
+        //                if (urls.Length > 2)
+        //                {
+        //                    restConvention = urls[2];
+        //                }
+        //                if (urls.Length > 3)
+        //                {
+        //                    operation = urls[3];
+        //                }
+
+        //            }
+        //            HandlePOSTRequest();
+        //            //this.Params = GetRequestParams(lines[lines.Length - 1]);
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+                
+        //        Console.WriteLine("Exception: " + e.ToString());
+        //        WriteFailure();
+        //    }
+        //    if (socket.Connected) 
+        //    outputStream.Flush();
+        //    // bs.Flush(); // flush any remaining output
+        //    inputStream = null; 
+        //    outputStream = null; // bs = null;            
+        //    socket.Close();
+        //}
+
+        private bool  GetRequestTpe(string httpUrl){
+            return File.Exists(Path.Combine(srv.ServerRoot,httpUrl));
+        }
         public void ParseRequest()
         {
             String request = StreamReadLine(inputStream);
@@ -105,20 +275,25 @@ namespace FRSServerHttp
             }
             httpMethod = tokens[0].ToUpper();
             httpUrl = tokens[1];
-            httpProtocolVersionString = tokens[2];
 
+            this.isStatic = GetRequestTpe(httpUrl);
+
+            httpProtocolVersionString = tokens[2];
             Console.WriteLine("starting: " + request);
+            
         }
+
 
         public void ReadHeaders()
         {
-            Console.WriteLine("ReadHeaders()");
+            //Console.WriteLine("ReadHeaders()");
             String line;
             while ((line = StreamReadLine(inputStream)) != null)
             {
                 if (line.Equals(""))
                 {
                     Console.WriteLine("got headers");
+                    
                     return;
                 }
 
@@ -135,7 +310,9 @@ namespace FRSServerHttp
                 }
 
                 string value = line.Substring(pos, line.Length - pos);
-                Console.WriteLine("header: {0}:{1}", name, value);
+
+                Console.WriteLine(string.Format("header: {0}:{1}", name, value));
+                
                 httpHeaders[name] = value;
             }
         }
@@ -154,7 +331,7 @@ namespace FRSServerHttp
             // we hand him needs to let him see the "end of the stream" at this content 
             // length, because otherwise he won't know when he's seen it all! 
 
-            Console.WriteLine("get post data start");
+           
             int content_len = 0;
             MemoryStream ms = new MemoryStream();
             if (this.httpHeaders.ContainsKey("Content-Length"))
@@ -170,10 +347,10 @@ namespace FRSServerHttp
                 int to_read = content_len;
                 while (to_read > 0)
                 {
-                    Console.WriteLine("starting Read, to_read={0}", to_read);
+                    //Console.WriteLine("starting Read, to_read={0}", to_read);
 
                     int numread = this.inputStream.Read(buf, 0, Math.Min(BUF_SIZE, to_read));
-                    Console.WriteLine("read finished, numread={0}", numread);
+                   // Console.WriteLine("read finished, numread={0}", numread);
                     if (numread == 0)
                     {
                         if (to_read == 0)
@@ -190,7 +367,7 @@ namespace FRSServerHttp
                 }
                 ms.Seek(0, SeekOrigin.Begin);
             }
-            Console.WriteLine("get post data end");
+            //Console.WriteLine("get post data end");
             srv.HandlePOSTRequest(this, new StreamReader(ms));
 
         }
