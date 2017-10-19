@@ -18,7 +18,7 @@ namespace FRSServerHttp
             }
             else
             {
-                httpServer = new HttpServerImp(8080);
+                httpServer = new HttpServerImp(8080,"127.0.0.1","D:\\");
             }
             httpServer.Start();
            

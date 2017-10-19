@@ -65,7 +65,7 @@
     <Compile Include="Server\HttpRequest.cs" />
     <Compile Include="Service\BaseService.cs" />
     <Compile Include="Service\DatasetService.cs" />
-    <Compile Include="Service\DefualtService.cs" />
+    <Compile Include="Service\FileService.cs" />
     <Compile Include="Service\DeviceService.cs" />
     <Compile Include="Service\HitAlertService.cs" />
     <Compile Include="Service\UserService.cs" />

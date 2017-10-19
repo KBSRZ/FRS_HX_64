@@ -29,7 +29,7 @@ namespace FRSServerHttp.Server
             }
             else
             {
-              service= new  DefualtService();
+              service= new  FileService(serverRoot);
             }
             if (null != service)
                 service.OnGet( request, response);
@@ -48,7 +48,7 @@ namespace FRSServerHttp.Server
             }
             else
             {
-                service = new DefualtService();
+                service = new FileService(serverRoot);
             }
             if(null!=service)
                 service.OnPost( request,  response);
