@@ -10,7 +10,7 @@ feadb.db20
 feadb.db30
 CHCTest/obj/
 CHCTest/bin/
-
+*.suo
 CopyRemoteTest/obj/
 CopyRemoteTest/bin/
 DataAngine/obj/
