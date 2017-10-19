@@ -12,7 +12,7 @@ using System.IO;
 using System.Configuration;
 using FRS;
 using DataAngine;
-using DataAgine_Set;
+using DataAngine_Set;
 
 namespace NjustSkyEyeSystem
 {
@@ -45,9 +45,17 @@ namespace NjustSkyEyeSystem
         private Image image_Library_Compare;//底库比对图片
         readonly DataAngine.BLL.hitalert hitbll = new DataAngine.BLL.hitalert();
         readonly DataAngine.BLL.user user = new DataAngine.BLL.user();
-        readonly DataAgine_Set.BLL.frs_database frs_database = new DataAgine_Set.BLL.frs_database();
-        readonly DataAgine_Set.BLL.device device = new DataAgine_Set.BLL.device();
+        readonly DataAngine_Set.BLL.dataset dataset = new DataAngine_Set.BLL.dataset();
+        readonly DataAngine_Set.BLL.device device = new DataAngine_Set.BLL.device();
 
+        private class LocationType
+        {
+            public int Id { get; set; }
+            public string Location { get; set; }
+        }
+
+        private IList<LocationType> locationList = new List<LocationType>();
+            
         //底库查询
         int PageSize_Library = 36;
         int CurPage_Library;
@@ -117,11 +125,38 @@ namespace NjustSkyEyeSystem
 
         }
 
+        private void LocationBounding()
+        {
+            LocationType info1 = new LocationType() { Id = 0, Location = "汽车站" };
+            LocationType info2 = new LocationType() { Id = 1, Location = "公交站" };
+            LocationType info3 = new LocationType() { Id = 2, Location = "火车站" };
+            LocationType info4 = new LocationType() { Id = 3, Location = "街道" };
+            LocationType info5 = new LocationType() { Id = 4, Location = "酒吧" };
+            LocationType info6 = new LocationType() { Id = 5, Location = "酒店" };
+            LocationType info7 = new LocationType() { Id = 6, Location = "宾馆" };
+            LocationType info8 = new LocationType() { Id = 7, Location = "商场" };
+            LocationType info9 = new LocationType() { Id = 8, Location = "其他" };
+
+            locationList.Add(info1);
+            locationList.Add(info2);
+            locationList.Add(info3);
+            locationList.Add(info4);
+            locationList.Add(info5);
+            locationList.Add(info6);
+            locationList.Add(info7);
+            locationList.Add(info8);
+            locationList.Add(info9);
+        }
+
         private void InitUI()
         {
+            //Location绑定
+            LocationBounding();
+
             //下拉框
             ComboxLibraryList();
             ComboxDevList();
+            ComboxLocationTypeList();
 
             flowLayoutPanel.Controls.Clear();
             lbl_CountCHC.Text = "";
@@ -165,10 +200,10 @@ namespace NjustSkyEyeSystem
 
             string connectionStringCHC = ConfigurationManager.AppSettings["ConnectionStringCHC"];
             string[] consCHC = connectionStringCHC.Split(new char[] { ';' });
-            tex_DevIP.Text = consCHC[0].Split(new char[] { '=' })[1];
-            tex_DevPort.Text = consCHC[1].Split(new char[] { '=' })[1];
-            tex_UserName.Text = consCHC[2].Split(new char[] { '=' })[1];
-            tex_UserPwd.Text = consCHC[3].Split(new char[] { '=' })[1];
+            tex_DevAddress.Text = consCHC[0].Split(new char[] { '=' })[1];
+            tex_Department.Text = consCHC[1].Split(new char[] { '=' })[1];
+            tex_Longitude.Text = consCHC[2].Split(new char[] { '=' })[1];
+            tex_Latitude.Text = consCHC[3].Split(new char[] { '=' })[1];
 
 
             string connectionStringMySQL = ConfigurationManager.AppSettings["ConnectionStringMySQL"];
@@ -1040,10 +1075,10 @@ namespace NjustSkyEyeSystem
         {
             bool ret = false;
 
-            chcFaceDetecter.DVRIPAddress = tex_DevIP.Text;
-            chcFaceDetecter.DVRPortNumber = Int16.Parse(tex_DevPort.Text);
-            chcFaceDetecter.DVRUserName = tex_UserName.Text;
-            chcFaceDetecter.DVRPassword = tex_UserPwd.Text;
+            chcFaceDetecter.DVRIPAddress = tex_DevAddress.Text;
+            chcFaceDetecter.DVRPortNumber = Int16.Parse(tex_Department.Text);
+            chcFaceDetecter.DVRUserName = tex_Longitude.Text;
+            chcFaceDetecter.DVRPassword = tex_Latitude.Text;
 
             if (btn_LoginDevice.Text.Equals("登录"))
             {
@@ -1069,16 +1104,8 @@ namespace NjustSkyEyeSystem
 
         private void btn_LoginCHC_Click(object sender, EventArgs e)
         {
-            //LoginCHC();
-
-            devicename = txt_device_name.Text;
-            string DeviceName = txt_device_name.Text;
-            string DeviceIp = tex_DevIP.Text;
-            string DevicePort = tex_DevPort.Text;
-            string DeviceUser = tex_UserName.Text;
-            string DevicePsw = tex_UserPwd.Text;
-
-            loginrtsp = "rtsp://" + DeviceUser + ":" + DevicePsw + "@" + DeviceIp + ":554";
+            //LoginCHC();         
+            loginrtsp = tex_DevAddress.Text.ToString();
             txtVideoAddress.Text = loginrtsp;
             MessageBox.Show("登录成功");
         }
@@ -1409,12 +1436,12 @@ namespace NjustSkyEyeSystem
         /// </summary>
         public void ComboxLibraryList()
         {
-            DataSet ds = frs_database.GetAllList();
+            DataSet ds = dataset.GetAllList();
             DataTable dt = ds.Tables[0];
 
             combox_DataBaseName.DataSource = dt;
             combox_DataBaseName.ValueMember = "id";
-            combox_DataBaseName.DisplayMember = "name";
+            combox_DataBaseName.DisplayMember = "datasetname";
           
         }
 
@@ -1426,6 +1453,13 @@ namespace NjustSkyEyeSystem
             comboBox_DevName.DataSource = dt;
             comboBox_DevName.ValueMember = "id";
             comboBox_DevName.DisplayMember = "name";
+        }
+
+        public void ComboxLocationTypeList()
+        {     
+            comboBox_LocationType.DataSource = locationList;
+            comboBox_LocationType.ValueMember = "Id";
+            comboBox_LocationType.DisplayMember = "Location";
 
         }
 
@@ -1441,11 +1475,11 @@ namespace NjustSkyEyeSystem
                 return;
             }
 
-            DataAgine_Set.Model.frs_database frs_database = new DataAgine_Set.Model.frs_database();
-            DataAgine_Set.BLL.frs_database frs_databasebll = new DataAgine_Set.BLL.frs_database();
-            frs_database.name = libraryname;
+            DataAngine_Set.Model.dataset dataset = new DataAngine_Set.Model.dataset();
+            DataAngine_Set.BLL.dataset datasetbll = new DataAngine_Set.BLL.dataset();
+            dataset.datasetname = libraryname;
 
-            if (true == frs_databasebll.Add(frs_database))
+            if (true == datasetbll.Add(dataset))
             {
                 combox_DataBaseName.Text = libraryname;
                 fa.LoadData(libraryname);
@@ -1462,10 +1496,11 @@ namespace NjustSkyEyeSystem
         {
             devicename = txt_device_name.Text;
             string regDeviceName = txt_device_name.Text;
-            string regDeviceIp = txt_device_ip.Text;
-            string regDevicePort = txt_device_port.Text;
-            string regDeviceUser = txt_device_user.Text;
-            string regDevicePsw = txt_device_password.Text;
+            string regDeviceAddress = txt_device_address.Text;
+            string regDeviceDepartment = txt_device_department.Text;
+            string regDeviceLongitude = txt_device_longitude.Text;
+            string regDeviceLatitude = txt_device_latitude.Text;
+            int regDeviceLocationIndex = this.comboBox_LocationType.SelectedIndex;
 
             if (string.IsNullOrEmpty(devicename))
             {
@@ -1473,14 +1508,15 @@ namespace NjustSkyEyeSystem
                 return;
             }
 
-            DataAgine_Set.Model.device device = new DataAgine_Set.Model.device();
-            DataAgine_Set.BLL.device devicebll = new DataAgine_Set.BLL.device();
+            DataAngine_Set.Model.device device = new DataAngine_Set.Model.device();
+            DataAngine_Set.BLL.device devicebll = new DataAngine_Set.BLL.device();
 
             device.name = regDeviceName;
-            device.ip = regDeviceIp;
-            device.port = regDevicePort;
-            device.user = regDeviceUser;
-            device.password = regDevicePsw;
+            device.address = regDeviceAddress;
+            device.departmentmentid = regDeviceDepartment;
+            device.longitude = System.Convert.ToDouble(regDeviceLongitude);
+            device.latitude = System.Convert.ToDouble(regDeviceLatitude);
+            device.locationtype = regDeviceLocationIndex;
 
             if (true == devicebll.Add(device))
             {
@@ -1497,12 +1533,26 @@ namespace NjustSkyEyeSystem
         private void comboBox_DevName_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataSet ds = device.GetDevice(comboBox_DevName.Text.ToString());
-            DataTable dt = ds.Tables[0];
-
-            tex_DevIP.Text = dt.Rows[0]["ip"].ToString();
-            tex_DevPort.Text = dt.Rows[0]["port"].ToString();
-            tex_UserName.Text = dt.Rows[0]["user"].ToString();
-            tex_UserPwd.Text = dt.Rows[0]["password"].ToString();
+            DataTable dt = ds.Tables[0];        
+            tex_DevAddress.Text = dt.Rows[0]["address"].ToString();
+            tex_Department.Text = dt.Rows[0]["departmentmentid"].ToString();
+            tex_Longitude.Text = dt.Rows[0]["longitude"].ToString();
+            tex_Latitude.Text = dt.Rows[0]["latitude"].ToString();
+            string type="";
+            switch(dt.Rows[0]["locationtype"].ToString())
+            {
+                case "0": type="汽车站";break;
+                case "1": type="公交站";break;
+                case "2": type="火车站";break;
+                case "3": type="街道";break;
+                case "4": type="酒吧";break;
+                case "5": type="酒店";break;
+                case "6": type="宾馆";break;
+                case "7": type="商场";break;
+                case "8": type="其他";break;
+               
+            }
+            tex_LocationType.Text = type;
         }
 
         private void btn_GoPage_HitAlert_Click(object sender, EventArgs e)

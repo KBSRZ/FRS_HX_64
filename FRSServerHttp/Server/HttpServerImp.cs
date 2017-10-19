@@ -9,48 +9,53 @@ namespace FRSServerHttp.Server
 {
     public class HttpServerImp : HttpServer
     {
+
+
+       
+
+
         private BaseService service = null; 
         public HttpServerImp(int port,string  ip= "127.0.0.1",string root=".")
             :  base( port,  ip ,  root )
        
         {
         }
-        public override void HandleGETRequest(HttpProcessor p)
+        public override void OnGet(HttpRequest request, HttpResponse response)
         {
-            Console.WriteLine("request: {0}", p.httpUrl);
-            if (!p.isStatic)
+            Console.WriteLine("request: {0}", request.URL);
+            if (!request.IsStatic)
             {
-                service = ServiceHelper.GetService(p.domain);
+                service = ServiceHelper.GetService(request.Domain);
             }
             else
             {
               service= new  DefualtService();
             }
             if (null != service)
-                service.OnGet(p);
+                service.OnGet( request, response);
 
 
         }
-
-        public override void HandlePOSTRequest(HttpProcessor p, StreamReader inputData)
+        
+        public override void OnPost(HttpRequest request, HttpResponse response)
         {
-            Console.WriteLine("POST request: {0}", p.httpUrl);
+            Console.WriteLine("POST request: {0}", request.URL);
 
 
-            if (!p.isStatic)
+            if (!request.IsStatic)
             {
-                service = ServiceHelper.GetService(p.domain);
+                service = ServiceHelper.GetService(request.Domain);
             }
             else
             {
                 service = new DefualtService();
             }
             if(null!=service)
-                service.OnPost(p, inputData);
+                service.OnPost( request,  response);
 
 
         }
-
+        
        
     }
 }

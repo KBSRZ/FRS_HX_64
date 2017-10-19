@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;  
 using System.Text;
-namespace DataAgine_Set.DBUtility
+namespace DataAngine_Set.DBUtility
 {
 	/// <summary>
 	/// DES加密/解密类。

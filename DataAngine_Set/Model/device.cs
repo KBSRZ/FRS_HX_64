@@ -1,5 +1,5 @@
 ﻿using System;
-namespace DataAgine_Set.Model
+namespace DataAngine_Set.Model
 {
 	/// <summary>
 	/// device:实体类(属性说明自动提取数据库字段的描述信息)
@@ -12,11 +12,12 @@ namespace DataAgine_Set.Model
 		#region Model
 		private int _id;
 		private string _name;
-		private string _ip;
-		private string _port;
-		private string _user;
-		private string _password;
-		private string _info;
+		private string _address;
+		private string _departmentmentid;
+		private double? _longitude;
+		private double? _latitude;
+		private int? _locationtype;
+		private string _remark;
 		/// <summary>
 		/// auto_increment
 		/// </summary>
@@ -36,42 +37,50 @@ namespace DataAgine_Set.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public string ip
+		public string address
 		{
-			set{ _ip=value;}
-			get{return _ip;}
+			set{ _address=value;}
+			get{return _address;}
 		}
 		/// <summary>
 		/// 
 		/// </summary>
-		public string port
+		public string departmentmentid
 		{
-			set{ _port=value;}
-			get{return _port;}
+			set{ _departmentmentid=value;}
+			get{return _departmentmentid;}
 		}
 		/// <summary>
 		/// 
 		/// </summary>
-		public string user
+		public double? longitude
 		{
-			set{ _user=value;}
-			get{return _user;}
+			set{ _longitude=value;}
+			get{return _longitude;}
 		}
 		/// <summary>
 		/// 
 		/// </summary>
-		public string password
+		public double? latitude
 		{
-			set{ _password=value;}
-			get{return _password;}
+			set{ _latitude=value;}
+			get{return _latitude;}
 		}
 		/// <summary>
 		/// 
 		/// </summary>
-		public string info
+		public int? locationtype
 		{
-			set{ _info=value;}
-			get{return _info;}
+			set{ _locationtype=value;}
+			get{return _locationtype;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public string remark
+		{
+			set{ _remark=value;}
+			get{return _remark;}
 		}
 		#endregion Model
 

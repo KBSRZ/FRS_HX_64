@@ -68,13 +68,14 @@ namespace FRSServerHttp.Service
         /// <summary>
         /// Post时调用
         /// </summary>
-        public virtual void OnGet(HttpProcessor p) {
+        public virtual void OnGet(HttpRequest request, HttpResponse response)
+        {
 
         }
         /// <summary>
         /// Get时调用
         /// </summary>
-        public virtual void OnPost (HttpProcessor p, StreamReader inputData) { }
+        public virtual void OnPost(HttpRequest request, HttpResponse response) { }
         
        
     }

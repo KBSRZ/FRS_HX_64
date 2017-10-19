@@ -30,9 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\FaceAngineNew_x64_1.3_HX\Release\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data">
+      <HintPath>..\dll\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -47,12 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\dataset.cs" />
     <Compile Include="BLL\device.cs" />
-    <Compile Include="BLL\frs_database.cs" />
-    <Compile Include="BLL\task.cs" />
+    <Compile Include="BLL\surveillancetask.cs" />
+    <Compile Include="DAL\dataset.cs" />
     <Compile Include="DAL\device.cs" />
-    <Compile Include="DAL\frs_database.cs" />
-    <Compile Include="DAL\task.cs" />
+    <Compile Include="DAL\surveillancetask.cs" />
     <Compile Include="DBUtility\CommandInfo.cs" />
     <Compile Include="DBUtility\DbHelperMySQL.cs" />
     <Compile Include="DBUtility\DbHelperSQL.cs" />
@@ -61,9 +60,9 @@
     <Compile Include="DBUtility\OracleHelper.cs" />
     <Compile Include="DBUtility\PubConstant.cs" />
     <Compile Include="DBUtility\SQLHelper.cs" />
+    <Compile Include="Model\dataset.cs" />
     <Compile Include="Model\device.cs" />
-    <Compile Include="Model\frs_database.cs" />
-    <Compile Include="Model\task.cs" />
+    <Compile Include="Model\surveillancetask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

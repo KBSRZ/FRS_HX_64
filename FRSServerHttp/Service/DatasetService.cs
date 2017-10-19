@@ -18,24 +18,25 @@ namespace FRSServerHttp.Service
             }
         }
 
-        public override void OnGet(HttpProcessor p)
+        public override void OnGet(HttpRequest request, HttpResponse response)
         {
-            if (p.restConvention != string.Empty)//根据ID获得数据库
+            if (request.RestConvention != string.Empty)//根据ID获得数据库
             {
 
-                Console.WriteLine("返回ID{0}的数据库信息", p.restConvention);
+                Console.WriteLine("返回ID{0}的数据库信息", request.RestConvention);
                 Dataset d = new Dataset();
-                d.ID = Int32.Parse(p.restConvention);
+                d.ID = Int32.Parse(request.RestConvention);
                 d.Password = "1231";
                 d.Port = "664";
                 d.IP = "127.0.0.1";
                 d.User = "sa";
                 d.Type = "mysql";
-                p.outputStream.Write(d.ToJson());
+                response.SetContent(d.ToJson());
+                response.Send();
                 
 
             }
-            else if (p.domain!=null)//获得所有数据库
+            else if (request.Domain != null)//获得所有数据库
             {
                 Console.WriteLine("返回所有数据库信息");
             }
@@ -43,29 +44,30 @@ namespace FRSServerHttp.Service
         /// <summary>
         /// Post时调用
         /// </summary>
-        public override void OnPost(HttpProcessor p, StreamReader inputData) {
+        public override void OnPost(HttpRequest request, HttpResponse response)
+        {
 
-            if (p.operation == string.Empty)//添加一条数据
-            {
-                Dataset device = Dataset.CreateDatasetFromJSON(inputData.ReadToEnd());
-                if (null != device)
-                {
-                    //添加到数据库
-                    Console.WriteLine("添加数据库信息");
-                }
-            }
-         else
-            {
-                if (p.operation == "update")//更新
-                {
-                    Console.WriteLine("更新数据库信息");
-                    Dataset device = Dataset.CreateDatasetFromJSON(inputData.ReadToEnd());
-                }
-                else if (p.operation == "delete")//删除
-                {
+         //   if (p.operation == string.Empty)//添加一条数据
+         //   {
+         //       Dataset device = Dataset.CreateDatasetFromJSON(inputData.ReadToEnd());
+         //       if (null != device)
+         //       {
+         //           //添加到数据库
+         //           Console.WriteLine("添加数据库信息");
+         //       }
+         //   }
+         //else
+         //   {
+         //       if (p.operation == "update")//更新
+         //       {
+         //           Console.WriteLine("更新数据库信息");
+         //           Dataset device = Dataset.CreateDatasetFromJSON(inputData.ReadToEnd());
+         //       }
+         //       else if (p.operation == "delete")//删除
+         //       {
 
-                }
-            }
+         //       }
+         //   }
            
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Configuration;
-namespace DataAgine_Set.DBUtility
+namespace DataAngine_Set.DBUtility
 {
 
     public class PubConstant

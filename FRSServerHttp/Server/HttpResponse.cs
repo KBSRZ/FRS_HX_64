@@ -48,6 +48,8 @@ namespace FRSServerHttp.Server
         /// <summary>
         /// 数据流
         /// </summary>
+        /// 
+        public Stream WriterStream { get { return handler; } }
         private Stream handler;
 
 
@@ -232,6 +234,20 @@ namespace FRSServerHttp.Server
             {
                 handler.Close();
             }
+        }
+
+
+        /// <summary>
+        /// 发送无http头的数据
+        /// </summary>
+        public void SendOnLongConnetion()
+        {
+           
+            //发送内容
+            handler.Write(Content, 0, Content.Length);
+            handler.Flush();
+
+
         }
 
     }

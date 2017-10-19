@@ -15,12 +15,17 @@ namespace FRSServerHttp.Server
         public string IP { get { return ip; } }
 
         /// <summary>
+        /// 是否运行
+        /// </summary>
+        public bool IsRunning { get; private set; }
+
+        /// <summary>
         /// 服务器目录
         /// </summary>
         protected string serverRoot;
         protected int port;
         protected string ip = "127.0.0.1";
-        TcpListener listener;
+        TcpListener serverListener;
         bool is_active = true;
         //用于线程同步，初始状态设为非终止状态，使用手动重置方式
         private EventWaitHandle allDone = new EventWaitHandle(false, EventResetMode.ManualReset);
@@ -32,43 +37,102 @@ namespace FRSServerHttp.Server
                 this.serverRoot = AppDomain.CurrentDomain.BaseDirectory;
             this.serverRoot = root;
         }
-        void DoAcceptTcpClientCallback(IAsyncResult ar)
-        {
-           
+      
 
-            TcpListener listener = (TcpListener)ar.AsyncState;
-            TcpClient client = listener.EndAcceptTcpClient(ar);
-            HttpProcessor processor = new HttpProcessor(client, this);
-            Thread thread = new Thread(new ThreadStart(processor.Process));
-            thread.Start();
-            Console.WriteLine("-------------------------------------------");
-            //将事件状态设置为终止状态，允许一个或多个等待线程继续
-            allDone.Set();
-        }
-        public void Listen()
+
+        /// <summary>
+        /// 开启服务器
+        /// </summary>
+        public void Start()
         {
-            IPAddress localaddr = IPAddress.Parse(ip);
-            listener = new TcpListener(localaddr, port);
-            listener.Start();
-            while (is_active)
+            if (IsRunning) return;
+
+            //创建服务端Socket
+            this.serverListener = new TcpListener(IPAddress.Parse(ip), port);
+          
+            this.IsRunning = true;
+            this.serverListener.Start();
+
+            try
             {
-                //TcpClient s = listener.AcceptTcpClient();
-                //HttpProcessor processor = new HttpProcessor(s, this);
-                //Thread thread = new Thread(new ThreadStart(processor.process));
-                //thread.Start();
+                while (IsRunning)
+                {
+                    TcpClient client = serverListener.AcceptTcpClient();
+                    Thread requestThread = new Thread(() => { ProcessRequest(client); });
+                    requestThread.Start();
+                }
+            }
+            catch (Exception e)
+            {
+               Console.WriteLine(e.Message);
+            }
+        }
+        /// <summary>
+        /// 处理客户端请求
+        /// </summary>
+        /// <param name="handler">客户端Socket</param>
+        private void ProcessRequest(TcpClient handler)
+        {
+            //处理请求
+            Stream clientStream = handler.GetStream();
 
-                //将事件的状态设置为非终止,非终止状态 WaitOne 将会阻塞
-                allDone.Reset();
-                listener.BeginAcceptTcpClient(new AsyncCallback(DoAcceptTcpClientCallback),listener);
-                allDone.WaitOne();
-                
+            if (clientStream == null) return;
+
+            //构造HTTP请求
+            HttpRequest request = new HttpRequest(clientStream);
+            
+
+            //构造HTTP响应
+            HttpResponse response = new HttpResponse(clientStream);
+          
+
+            //处理请求类型
+            switch (request.Method)
+            {
+                case "GET":
+                    OnGet(request, response);
+                    break;
+                case "POST":
+                    OnPost(request, response);
+                    break;
+                default:
+                    OnDefault(request, response);
+                    break;
             }
         }
 
 
-      
-        public abstract void HandleGETRequest(HttpProcessor p);
-        public abstract void HandlePOSTRequest(HttpProcessor p, StreamReader inputData);
+
+        #region 虚方法
+
+        /// <summary>
+        /// 响应Get请求
+        /// </summary>
+        /// <param name="request">请求报文</param>
+        public virtual void OnGet(HttpRequest request, HttpResponse response)
+        {
+
+        }
+
+        /// <summary>
+        /// 响应Post请求
+        /// </summary>
+        /// <param name="request"></param>
+        public virtual void OnPost(HttpRequest request, HttpResponse response)
+        {
+
+        }
+
+        /// <summary>
+        /// 响应默认请求
+        /// </summary>
+
+        public virtual void OnDefault(HttpRequest request, HttpResponse response)
+        {
+
+        }
+
+        #endregion
     }
 
 }

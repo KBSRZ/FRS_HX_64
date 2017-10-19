@@ -15,7 +15,7 @@ namespace FRSServerHttp.Service
         /// <summary>
         /// Post时调用
         /// </summary>
-        public override void OnGet(HttpProcessor p) 
+        public override void OnGet(HttpRequest request, HttpResponse response) 
         {
             //当文件不存在时应返回404状态码
             //string requestFile = Path.Combine(p.srv.ServerRoot, requestURL);
@@ -51,6 +51,6 @@ namespace FRSServerHttp.Service
         /// <summary>
         /// Get时调用
         /// </summary>
-        public override void OnPost(HttpProcessor p, StreamReader inputData) { }
+        public override void OnPost(HttpRequest request, HttpResponse response) { }
     }
 }

@@ -11,7 +11,7 @@ namespace DataAngine.DBUtility
 {
     /// <summary>
     /// 数据访问抽象基础类
-    /// Copyright (C) DataAgine_Set
+    /// Copyright (C) DataAngine_Set
     /// </summary>
     public abstract class DbHelperMySQL
     {

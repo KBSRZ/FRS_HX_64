@@ -102,9 +102,14 @@ namespace FRSServerHttp.Server
         public string URL { get; private set; }
 
         /// <summary>
-        /// 请求参数
+        /// Get请求参数
         /// </summary>
-        public Dictionary<string, string> Params { get; private set; }
+        public Dictionary<string, string> GetParams { get; private set; }
+
+        /// <summary>
+        /// Post请求参数
+        /// </summary>
+        public string PostParams { get; private set; }
 
         const int MAXSIZE = 1024 * 1024 * 2;
 
@@ -117,6 +122,24 @@ namespace FRSServerHttp.Server
         /// 客户端请求报文
         /// </summary>
         private string content = "";
+
+
+
+
+
+        /// <summary>
+        /// 是否是静态资源
+        /// </summary>
+        public bool IsStatic {get ;private set;}
+        //http(s)://server.com/{version}/{domain}/{rest-convention}
+        public string Version { get; private set; }
+        public string Domain { get; private set; }//是一个你可以用来定义任何技术的区域 
+        public string RestConvention { get; private set; }//代表这个域(domain)下，约定的rest接口集合。
+        public string Operation { get; private set; }//操作。
+
+
+
+
 
         
         /// <summary>
@@ -132,7 +155,7 @@ namespace FRSServerHttp.Server
                 //缓存客户端请求报文
                 length = handler.Read(bytes, 0, MAXSIZE);
                 content += Encoding.UTF8.GetString(bytes, 0, length);
-            } while (length > 0);
+            } while (length == 0);
 
             if (string.IsNullOrEmpty(content)) return;
 
@@ -155,12 +178,37 @@ namespace FRSServerHttp.Server
             //获取请求参数
             if (this.Method == "GET" && this.URL.Contains('?'))
             {
-                this.Params = GetRequestParams(URL.Split('?')[1]);
+                this.GetParams = GetGetRequestParams(URL.Split('?')[1]);
             }
             else if (this.Method == "POST")
             {
-                this.Params = GetRequestParams(lines[lines.Length - 1]);
+                this.PostParams = lines[lines.Length - 1];
             }
+
+
+            IsStatic = GetRequestType(URL);
+
+            if (!IsStatic)//如果是动态请求
+            {
+                string[] urls = this.URL.Split('?')[0].Trim(new char[] { '/' }).Split('/');
+                if (urls.Length > 0)
+                {
+                    Version = urls[0];
+                }
+                if (urls.Length > 1)
+                {
+                    Domain = urls[1];
+                }
+                if (urls.Length > 2)
+                {
+                    RestConvention = urls[2];
+                }
+                if (urls.Length > 3)
+                {
+                    Operation = urls[3];
+                }
+            }
+
 
             //获取各种请求报文参数
             this.AcceptTypes = GetKeyValueArrayByKey(content, "Accept");
@@ -217,6 +265,23 @@ namespace FRSServerHttp.Server
         public TValue From<TValue>() where TValue : new()
         {
             return default(TValue);
+        }
+
+        /// <summary>
+        /// 判断是否是静态资源
+        /// </summary>
+        /// <param name="URL"></param>
+        /// <returns></returns>
+        private bool GetRequestType(string URL)
+        {
+            if (URL.Split('.').Length >1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

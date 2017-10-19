@@ -30,10 +30,10 @@ namespace FRSServerHttp.Service
 
 
        static Test.Capture cap;
-       static  HttpProcessor httpProcessorGet = null;
+       static HttpResponse response = null;
 
         //用于线程同步，初始状态设为非终止状态，使用手动重置方式
-        static private EventWaitHandle allDone=null;
+       private static EventWaitHandle allDone = null;
         public HitAlertService()
         {
           
@@ -41,15 +41,15 @@ namespace FRSServerHttp.Service
         private void  OnHit(Model.HitAlert []hit){
             try
             {
-                if (!httpProcessorGet.socket.Connected)
+                if (!response.WriterStream.CanWrite)
                 {
                     allDone.Set();//可以继续执行了
                     cap.Stop();
                 }
-                if (null != httpProcessorGet)
+                else
                 {
-                    httpProcessorGet.outputStream.Write(JsonConvert.SerializeObject(hit));
-                    httpProcessorGet.outputStream.Flush();
+                    response.SetContent(JsonConvert.SerializeObject(hit));
+                    response.SendOnLongConnetion();
                    
                 }
             }
@@ -66,16 +66,17 @@ namespace FRSServerHttp.Service
         /// <summary>
         /// 关闭前一个 HttpProcessor
         /// </summary>
-        private void ClosePreviousHttpProcessor(){
+        private void ClosePreviousStream()
+        {
             if (null != cap && cap.IsRun)
             {
                 cap.Stop();
-                if (null != httpProcessorGet)
+                if (null != response)
                 {
-                    if (httpProcessorGet.socket.Connected)
+                    if (response.WriterStream.CanWrite)
                     {
-                        httpProcessorGet.outputStream.Flush();
-                        httpProcessorGet.socket.Close();
+                        response.WriterStream.Flush();
+                        response.WriterStream.Close();
                     }
                 }
                 if (null!=allDone)
@@ -84,34 +85,35 @@ namespace FRSServerHttp.Service
             }
             
         }
-        public override void OnGet(HttpProcessor p) 
+        public override void OnGet(HttpRequest request, HttpResponse response)
         {
-            Console.WriteLine("开始布控任务{0}",p.restConvention);
-            if(p.restConvention!=string.Empty){
+            Console.WriteLine("开始布控任务 布控ID{0}", request.RestConvention);
+            if (request.RestConvention != string.Empty)
+            {
                 //更具p.restConvention（taskID）进行
                 //SurveillanceTask task = ;
             }
-           
-            ClosePreviousHttpProcessor();
+
+            ClosePreviousStream();
 
             cap = new Test.Capture();
             cap.HitAlertReturnEvent += new Test.Capture.HitAlertCallback(OnHit);
             cap.Start();
 
-            httpProcessorGet = p;
+            HitAlertService.response = response;
             allDone = new EventWaitHandle(false, EventResetMode.ManualReset);
           
             //阻塞当前进程,以便事件不停的发送信息
             allDone.WaitOne();
-            ClosePreviousHttpProcessor();
+            ClosePreviousStream();
 
-            httpProcessorGet = null;
+            HitAlertService.response = null;
             //Console.WriteLine("线程{0}关闭", Thread.CurrentThread.ManagedThreadId.ToString());
         }
         /// <summary>
         /// Get时调用
         /// </summary>
-        public override void OnPost(HttpProcessor p, StreamReader inputData) { }
+        public override void OnPost(HttpRequest request, HttpResponse response) { }
 
         /// <summary>
         /// 命中时发送消息

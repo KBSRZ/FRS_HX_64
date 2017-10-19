@@ -18,45 +18,47 @@ namespace FRSServerHttp.Service
         {
             get
             {
-                return "surveillance-task-service";
+                return "surveillance-task";
             }
         }
         /// <summary>
         /// Get时调用
         /// </summary>
-        public override void OnGet(HttpProcessor p)
+        public override void OnGet(HttpRequest request, HttpResponse response)
         {
 
 
-            if (p.restConvention != string.Empty)//根据ID获布控的任务
+            if (request.RestConvention != null)//根据ID获布控的任务
             {
-                
 
+                //构造响应报文
+               
+                SurveillanceTask t = new SurveillanceTask();
+                t.ID = 1;
+                t.Name = "布控1";
+                t.DatasetID = 1;
+                t.DeviceID = 2;
+
+                response.SetContent(t.ToJson());
+                response.Send();
 
             }
-            else if(p.domain!= string.Empty){//获得所有布控的任务
+            else if (request.Domain != null)
+            {//获得所有布控的任务
 
                 SurveillanceTask[] surveillanceTasks = new SurveillanceTask[2] { new SurveillanceTask(), new SurveillanceTask() };
                 SurveillanceTask t = new SurveillanceTask();
-                Device d1 = new Device();
 
-                d1.Address = "rtsp://192.168.1.109:554";
-                d1.Name = "d1";
-                Dataset da1 = new Dataset();
-                da1.DatasetName = "da1";
-
-
-                Device d2 = new Device();
-                d2.Name = "d2";
-                d2.Address = "rtsp://192.168.1.109:554";
-                Dataset da2 = new Dataset();
-                da2.DatasetName = "da1";
 
                 surveillanceTasks[0].DatasetID = 1;
                 surveillanceTasks[0].DeviceID = 2;
                 surveillanceTasks[1].DeviceID = 2;
                 surveillanceTasks[1].DeviceID = 3;
-                p.outputStream.Write(JsonConvert.SerializeObject(surveillanceTasks));
+                
+                //构造响应报文
+
+                response.SetContent(JsonConvert.SerializeObject(surveillanceTasks));
+                response.Send();
 
             }
            
@@ -64,11 +66,12 @@ namespace FRSServerHttp.Service
         /// <summary>
         /// Post时调用
         /// </summary>
-        public override void OnPost(HttpProcessor p, StreamReader inputData) {
+        public override void OnPost(HttpRequest request, HttpResponse response)
+        {
 
-           if (p.operation == string.Empty)//添加一条数据
+           if (request.Operation == string.Empty)//添加一条数据
            {
-               SurveillanceTask task = SurveillanceTask.CreateSurveillanceTaskFromJson(inputData.ReadToEnd());
+               SurveillanceTask task = SurveillanceTask.CreateSurveillanceTaskFromJson(request.PostParams);
                if (null != task)
                {
                    //添加到数据库
@@ -76,11 +79,11 @@ namespace FRSServerHttp.Service
            }
            else
            {
-               if (p.operation == "update")//更新
+               if (request.Operation == "update")//更新
                {
 
                }
-               else if (p.operation == "delete")//删除
+               else if (request.Operation == "delete")//删除
                {
 
                }

@@ -190,7 +190,7 @@ namespace FRSServerHttp.Server
         /// </summary>
         /// <param name="content">使用&连接的参数字符串</param>
         /// <returns>如果存在参数则返回参数否则返回null</returns>
-        protected Dictionary<string, string> GetRequestParams(string content)
+        protected Dictionary<string, string> GetGetRequestParams(string content)
         {
             //防御编程
             if (string.IsNullOrEmpty(content))

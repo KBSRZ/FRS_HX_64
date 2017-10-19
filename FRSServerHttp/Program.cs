@@ -20,8 +20,8 @@ namespace FRSServerHttp
             {
                 httpServer = new HttpServerImp(8080);
             }
-            Thread thread = new Thread(new ThreadStart(httpServer.Listen));
-            thread.Start();
+            httpServer.Start();
+           
             
         }
 
