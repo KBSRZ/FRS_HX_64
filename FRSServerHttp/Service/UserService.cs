@@ -9,20 +9,20 @@ namespace FRSServerHttp.Service
     /// <summary>
     /// 注册
     /// </summary>
-    class RegisterService : BaseService
+    class UserService : BaseService
     {
         /// <summary>
         /// 访问当前service的URL
         /// </summary>
-        public static string URL
+        public static string Domain
         {
             get
             {
-                return "/register";
+                return "user";
             }
         }
 
-        public RegisterService()
+        public UserService()
         {
            
         }

@@ -6,6 +6,7 @@ using System.Threading;
 using Newtonsoft.Json;
 using FRSServerHttp.Model;
 using System.IO;
+using FRSServerHttp.Server;
 namespace FRSServerHttp.Service
 {
     /// <summary>
@@ -18,11 +19,11 @@ namespace FRSServerHttp.Service
         /// <summary>
         /// 访问当前service的URL
         /// </summary>
-        public static string URL
+        public static string Domain
         {
             get
             {
-                return "/hitalert";
+                return "hitalert";
             }
         }
 
@@ -54,7 +55,8 @@ namespace FRSServerHttp.Service
             }
             catch (Exception e)//客户端主动关闭
             {
-                Console.WriteLine(e.Message + e.StackTrace);
+                Console.WriteLine("客户端主动关闭");
+                //Console.WriteLine(e.Message + e.StackTrace);
                 cap.Stop();
                 allDone.Set();//可以继续执行了
                 
@@ -84,9 +86,10 @@ namespace FRSServerHttp.Service
         }
         public override void OnGet(HttpProcessor p) 
         {
-
-            if(p.Params.ContainsKey("SurveillanceTask")){
-                SurveillanceTask task = SurveillanceTask.CreateSurveillanceTaskFromJson(p.Params["SurveillanceTask"]);
+            Console.WriteLine("开始布控任务{0}",p.restConvention);
+            if(p.restConvention!=string.Empty){
+                //更具p.restConvention（taskID）进行
+                //SurveillanceTask task = ;
             }
            
             ClosePreviousHttpProcessor();

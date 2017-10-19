@@ -8,14 +8,19 @@ using Newtonsoft.Json;
 namespace FRSServerHttp.Model
 {
 
-
+    /// <summary>
+    /// 摄像地址
+    /// </summary>
     class Device 
     {
-        
-       public string DeviceName{get;set;}
-       public string VideoAddress { get; set; }
-       public string Info { get; set; }
-
+       public int ID { get; set; }
+       public string Name { get; set; }
+       public string Address{get;set;}//视频地址
+       public string DepartmentID { get; set; }
+       public double Longitude { get; set; }//经度
+       public double Latitude { get; set; }//纬度
+       public string LocationType { get; set; }//区域类型，汽车站，公交站，酒吧
+       public string Remark { get; set; }//备注
 
        public string ToJson()
        {
@@ -29,9 +34,9 @@ namespace FRSServerHttp.Model
            {
                msg = (Device)JsonConvert.DeserializeObject(json, typeof(Device));
            }
-           catch
+           catch (Exception e)
            {
-
+               Console.WriteLine(e.StackTrace + e.Message);
            }
            return msg;
        }

@@ -9,20 +9,20 @@ namespace FRSServerHttp.Service
     /// <summary>
     /// 以图搜图
     /// </summary>
-    class SearchingByImageService : BaseService
+    class RecordingService : BaseService
     {
 
         /// <summary>
         /// 访问当前service的URL
         /// </summary>
-        public static string URL
+        public static string Domain
         {
             get
             {
-                return "/searching-by-image";
+                return "recording";
             }
         }
-        public SearchingByImageService()
+        public RecordingService()
         {
             
         }

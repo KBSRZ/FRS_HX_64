@@ -18,7 +18,7 @@ namespace FRSServer.Service
 
         readonly DataAngine.BLL.hitalert hitbll = new DataAngine.BLL.hitalert();
         readonly DataAngine.BLL.user user = new DataAngine.BLL.user();
-        readonly DataAngine_Set.BLL.frs_database frs_database = new DataAngine_Set.BLL.frs_database();
+        readonly DataAngine_Set.BLL.dataset dataset = new DataAngine_Set.BLL.dataset();
         readonly DataAngine_Set.BLL.device device = new DataAngine_Set.BLL.device();
         
        
