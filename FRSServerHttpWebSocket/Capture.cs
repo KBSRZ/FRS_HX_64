@@ -25,14 +25,14 @@ namespace FRSServerHttp.Test
             user1.Gender = "男";
             user1.FaceImagePath = "RegFaces/1.jpg";
             user1.Name = "小明";
-            user1.Type = 'v';
+            user1.Type = "v";
 
             User user2 = new User();
             user2.CardId = "2";
             user2.Gender = "男";
             user2.FaceImagePath = "RegFaces/2.jpg";
             user2.Name = "小华";
-            user2.Type = 'c';
+            user2.Type = "c";
 
             HitAlertDetail hd1 = new HitAlertDetail();
             hd1.Score = 0.9f;

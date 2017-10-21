@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using System.Drawing;
+using FRS;
 namespace FRSServerHttp.Model
 {
    /// <summary>
@@ -33,7 +32,7 @@ namespace FRSServerHttp.Model
             public string CreateTime { get; set; }
             public string ModifiedTime { get; set; }
             private float? QualityScore;
-            public char Type { get; set; }
+            public string Type { get; set; }
 
 
 
@@ -54,16 +53,17 @@ namespace FRSServerHttp.Model
             public User UserInfo { get; set; }
 
 
-            //public HitAlertDetail(FRS.HitAlertDetail hd){
-            //    this.Score = hd.Score;
-            //    this.UserInfo=new User() ;
-            //    this.UserInfo.CardId = hd.cardId;
-            //    this.UserInfo.Gender = hd.gender;
-            //    this.UserInfo.Image = ImageUtils.ImageToBase64(Image.FromFile(hd.imgPath));
-              
-            //    this.UserInfo.Name = hd.name;
-            //    this.UserInfo.Type = hd.type;
-            //}
+            public HitAlertDetail(FRS.HitAlertDetail hd)
+            {
+                this.Score = hd.Score;
+                this.UserInfo = new User();
+                this.UserInfo.CardId = hd.cardId;
+                this.UserInfo.Gender = hd.gender;
+                this.UserInfo.FaceImagePath = hd.imgPath;
+
+                this.UserInfo.Name = hd.name;
+                this.UserInfo.Type = hd.type;
+            }
 
             public HitAlertDetail()
             {
@@ -80,25 +80,25 @@ namespace FRSServerHttp.Model
         class HitAlert
         {
            public HitAlert() { }
-           //public  HitAlert(FRS.HitAlert hitAlert)
-           // {
+           public HitAlert(FRS.HitAlert hitAlert)
+           {
 
-           //     this.OccurTime=((DateTime)(hitAlert.OccurTime)).ToString("yyyy-MM-dd HH:mm:ss");
-                
-           //     this.QueryFace = ImageUtils.ImageToBase64(hitAlert.QueryFace);
-               
-               
-           //     this.Threshold = ((float)(hitAlert.Threshold));
-             
-           //     this.Details = new HitAlertDetail[hitAlert.Details.Length];
-                
-              
-           //     for (int i = 0; i < this.Details.Length; i++)
-           //     {
-           //         this.Details[i] = new HitAlertDetail(hitAlert.Details[i]);
-           //     }
-                
-           // }
+               this.OccurTime = ((DateTime)(hitAlert.OccurTime)).ToString("yyyy-MM-dd HH:mm:ss");
+
+               //this.FaceQueryImagePath = hitAlert.QueryFace;
+
+
+               this.Threshold = ((float)(hitAlert.Threshold));
+
+               this.Details = new HitAlertDetail[hitAlert.Details.Length];
+
+
+               for (int i = 0; i < this.Details.Length; i++)
+               {
+                   this.Details[i] = new HitAlertDetail(hitAlert.Details[i]);
+               }
+
+           }
            public string FaceQueryImagePath { get; set; }//base64 形式存储
 
             public float Threshold { get; set; }
@@ -106,6 +106,19 @@ namespace FRSServerHttp.Model
             public string OccurTime { get; set; }//yyyy-MM-dd HH:mm:ss
 
             public HitAlertDetail[] Details { get; set; }
+
+            public static HitAlert[] CreateInstanceFromFRSHitAlert(FRS.HitAlert[] result)
+            {
+                if(null==result) return null;
+                HitAlert[] hits=new HitAlert[result.Length];
+                for (int i = 0; i < result.Length; i++)
+                {
+                    hits[i] = new HitAlert(result[i]);
+                }
+                return hits;
+            }
+
+
     }
 
 

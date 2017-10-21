@@ -7,13 +7,13 @@ using FRSServerHttp.Model;
 using System.IO;
 using Newtonsoft.Json;
 using FRSServerHttp.Server;
-
+using DataAngine_Set.BLL;
 namespace FRSServerHttp.Service
 {
-    class DatasetService:BaseService
+    class DatasetService : BaseService
     {
 
-     
+        dataset bll = new dataset();
         public static string Domain
         {
             get
@@ -26,38 +26,28 @@ namespace FRSServerHttp.Service
         {
             if (request.RestConvention != null)//根据ID获得数据库
             {
-                
-               Log.Debug(string.Format("返回ID{0}的数据库信息", request.RestConvention));
-                int id=-1;
-                try{
-                 id =Convert.ToInt32(request.RestConvention);
+
+                Console.WriteLine("返回ID{0}的数据库信息", request.RestConvention);
+                int id = -1;
+                try
+                {
+                    id = Convert.ToInt32(request.RestConvention);
                 }
-                catch {
+                catch
+                {
 
                 }
-
-                Dataset ds = new Dataset();
-                ds.DatasetName = "frsdb1";
-                ds.ID = 1;
-                ds.IP = "127.0.0.1";
-                ds.Port = "212";
-                response.SetContent(JsonConvert.SerializeObject(ds));
+                Dataset da = Dataset.CreateInstanceFromDataAngineModel(bll.GetModel(id));
+                if (null != da)
+                {
+                    response.SetContent(da.ToJson());
+                }
 
             }
             else if (request.Domain != null)//获得所有数据库
             {
-                Log.Debug(string.Format("所有数据库信息", request.RestConvention));
-                Dataset[] ds = new Dataset[2]{new Dataset (),new Dataset()};
-                ds[0].DatasetName = "frsdb1";
-                ds[0].ID = 1;
-                ds[0].IP = "127.0.0.1";
-                ds[0].Port = "212";
-                ds[1].DatasetName = "frsdb2";
-                ds[1].ID = 2;
-                ds[1].IP = "127.0.0.1";
-                ds[1].Port = "2112";
-
-                response.SetContent(JsonConvert.SerializeObject(ds));
+                List<DataAngine_Set.Model.dataset> datasets = bll.DataTableToList(bll.GetAllList().Tables[0]);
+                response.SetContent(JsonConvert.SerializeObject(Dataset.CreateInstanceFromDataAngineModel(datasets.ToArray())));
 
             }
             response.Send();
@@ -68,16 +58,16 @@ namespace FRSServerHttp.Service
         public override void OnPost(HttpRequest request, HttpResponse response)
         {
 
-            bool status = true;
+            bool status = false;
             if (request.Operation == null)//添加一条数据
             {
                 Dataset da = Dataset.CreateInstanceFromJSON(request.PostParams);
-               
+
                 if (null != da)
                 {
                     //添加到数据库
-                   Log.Debug("添加数据库信息");
-                   Log.Debug(request.PostParams);
+                    Console.WriteLine("添加数据库信息");
+                    status = bll.Add(da.ToDataAngineModel());
 
                 }
             }
@@ -85,18 +75,30 @@ namespace FRSServerHttp.Service
             {
                 if (request.Operation == "update")//更新
                 {
-                   Log.Debug("更新数据库信息");
-                    Log.Debug(request.PostParams);
+                    Console.WriteLine("更新数据库信息");
+                    Dataset da = Dataset.CreateInstanceFromJSON(request.PostParams);
+                    if (null != da)
+                    {
+                        status = bll.Update(da.ToDataAngineModel());
+                    }
                 }
                 else if (request.Operation == "delete")//删除
                 {
+                    int id = -1;
+                    try
+                    {
+                        id = Convert.ToInt32(request.RestConvention);
+                    }
+                    catch
+                    {
 
-                    Log.Debug(string.Format("删除ID:{0}数据库", request.RestConvention));
+                    }
+                    status = bll.Delete(id);
                 }
             }
             response.SetContent(status.ToString());
             response.Send();
-           
+
         }
     }
 }

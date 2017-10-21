@@ -11,7 +11,6 @@ using namespace System::Text;
 using namespace System::Threading;
 using namespace System::Collections::Concurrent;
 
-using namespace INF;
 
 namespace FRS {
 	public ref class Capture {
@@ -224,14 +223,6 @@ namespace FRS {
 
 		String^ trainingDataDir = "";
 		
-#pragma region 上传云的平台用
-		INF4^ inf4 = gcnew INF4();
-		INF5^ inf5 = gcnew INF5();
-		String^ defenseCode = "102";
-		String^ cameraCode =  "1008";
-		INF4::SaveImageType imageType = INF4::SaveImageType::SaveImageType_Alarm_Face;
-		
 
-#pragma endregion
 	};
 }

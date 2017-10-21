@@ -17,8 +17,8 @@ namespace FRSServerHttp.Service
     {
         //public static FeatureData fa ;
         //public static Capture cap;
-        public static Dataset selectedDevice = null;
-        public static Model.Setting.SettingFRS settingFRS = null;
+        
+       
        
         public static int initFRS (){
 

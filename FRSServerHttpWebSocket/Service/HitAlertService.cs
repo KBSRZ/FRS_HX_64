@@ -8,6 +8,8 @@ using FRSServerHttp.Model;
 using System.IO;
 using FRSServerHttp.Server;
 using FRSServerHttp.Server.Websocket;
+using DataAngine_Set.BLL;
+using FRS;
 namespace FRSServerHttp.Service
 {
     /// <summary>
@@ -17,6 +19,11 @@ namespace FRSServerHttp.Service
     /// </summary>
     class HitAlertService : BaseService
     {
+
+        surveillancetask taskBll = new surveillancetask();
+        device deviceBll = new device();
+        dataset datasetBll = new dataset();
+
         /// <summary>
         /// 访问当前service的URL
         /// </summary>
@@ -30,7 +37,8 @@ namespace FRSServerHttp.Service
 
 
 
-       static Test.Capture cap;
+       static Capture cap;
+       static FeatureData fa;
        static HttpResponse response = null;
        static bool IsOnSurveillance = false;
        static Object objLock = new Object();
@@ -40,23 +48,19 @@ namespace FRSServerHttp.Service
           
         }
        
-        private void  OnHit(Model.HitAlert []hit){
+        private void  OnHit(FRS.HitAlert []hits){
+            if (hits == null || hits.Length==0) return;
+            Log.Debug("OnHit");
             try
             {
-                if (!response.WriterStream.CanWrite)
-                {
-                    
-                    cap.Stop();
-                }
-                else
-                {
-                    response.SetContent("11111");
+                
                     //response.SetContent(JsonConvert.SerializeObject(hit));
                     //response.SendOnLongConnetion();
-                    string msg = JsonConvert.SerializeObject(hit);
-                    response.SendWebsocketData();
+                string msg = JsonConvert.SerializeObject(Model.HitAlert.CreateInstanceFromFRSHitAlert(hits));
+                response.SetContent(JsonConvert.SerializeObject(msg));
+                response.SendWebsocketData();
                     
-                }
+                
             }
             catch (Exception e)//客户端主动关闭
             {
@@ -82,6 +86,57 @@ namespace FRSServerHttp.Service
             cap.Stop();
            
            
+        }
+        bool  InitFRS(int taskID)
+        {
+
+
+
+            DataAngine_Set.Model.surveillancetask task=taskBll.GetModel(taskID);
+            if (null == task) return false;
+            DataAngine_Set.Model.device device = deviceBll.GetModel(task.deviceid);
+            if (null == device) return false;
+            DataAngine_Set.Model.dataset dataset = datasetBll.GetModel(task.databaseid);
+            if (null == dataset) return false;
+
+           
+            fa = new FeatureData();
+           var setting = new Model.Setting.SettingFRS();
+
+
+          
+
+           FRSParam param = new FRSParam();
+
+           param.nMinFaceSize = Math.Min(setting.SearchFaceHeightThresh, setting.MaxPersonNum);
+
+           param.nRollAngle = Math.Min(setting.SearchFaceRollThresh, Math.Min(setting.SearchFaceYawThresh, setting.SearchFacePitchThresh));
+           param.bOnlyDetect = true;
+
+           FaceImage.Create(setting.ChannelNum, param);
+           Feature.Init(setting.ChannelNum);
+
+           fa.MaxPersonNum = setting.MaxPersonNum;
+           fa.RegisterFaceHeightThresh = setting.RegisterFaceHeightThresh;
+           fa.RegisterFacePitchThresh = setting.RegisterFacePitchThresh;
+           fa.RegisterFaceQualityThresh = setting.RegisterFaceQualityThresh;
+           fa.RegisterFaceRollThresh = setting.RegisterFaceRollThresh;
+           fa.RegisterFaceWidthThresh = setting.RegisterFaceWidthThresh;
+           fa.RegisterFaceYawThresh = setting.RegisterFaceYawThresh;
+           fa.ScoreThresh = setting.ScoreThresh;
+           fa.SearchFaceHeightThresh = setting.SearchFacePitchThresh;
+           fa.SearchFacePitchThresh = setting.SearchFacePitchThresh;
+           fa.SearchFaceQualityThresh = setting.SearchFaceQualityThresh;
+           fa.SearchFaceRollThresh = setting.SearchFaceRollThresh;
+           fa.SearchFaceWidthThresh = setting.SearchFaceWidthThresh;
+           fa.SearchFaceYawThresh = setting.SearchFaceYawThresh;
+           fa.TopK = setting.TopK;
+           fa.LoadData(dataset.datasetname);
+           cap = new Capture(fa);
+           cap.HitAlertReturnEvent += new Capture.HitAlertCallback(OnHit);
+           cap.Start();
+           cap.Interval = setting.Interval;
+           return true;
         }
         public override void OnGet(HttpRequest request, HttpResponse response)
         {
@@ -117,13 +172,19 @@ namespace FRSServerHttp.Service
                 //SurveillanceTask task = ;
             }
 
-            
-            cap = new Test.Capture();
-            cap.HitAlertReturnEvent += new Test.Capture.HitAlertCallback(OnHit);
-            cap.Start();
+          
 
             HitAlertService.response = response;
+            int id = -1;
+            try {
+               id= Convert.ToInt32(request.RestConvention);
+            }
+            catch
+            {
+                return;
+            }
 
+            if (!InitFRS(id)) return;
 
             byte[] buffer = new byte[1024];
             FrameType type = FrameType.Continuation;

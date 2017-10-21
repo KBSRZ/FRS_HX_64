@@ -317,7 +317,7 @@ namespace FRSServerHttp.Model.Setting
             }
             catch
             {
-                connectionStringMySQL = "server=127.0.0.1;database=frsdb;uid=root;pwd=12345679";
+                connectionStringMySQL = "server=127.0.0.1;database=frsdb;uid=root;pwd=123456";
             }
 
           

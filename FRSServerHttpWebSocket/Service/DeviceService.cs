@@ -7,11 +7,15 @@ using System.IO;
 using FRSServerHttp.Model;
 using FRSServerHttp.Server;
 using Newtonsoft.Json;
-
+using DataAngine_Set.BLL;
 namespace FRSServerHttp.Service
 {
-    class DeviceService:BaseService
+    class DeviceService : BaseService
     {
+        /// <summary>
+        /// 数据操作类
+        /// </summary>
+        device bll = new device();
 
         /// <summary>
         /// 访问当前service的URL
@@ -28,50 +32,48 @@ namespace FRSServerHttp.Service
             if (request.RestConvention != null)
             {
                 Console.WriteLine("返回ID:{0}设备信息", request.RestConvention);
-                //根据ID获得 设备
-                Device d = new Device();
-                d.ID = Int32.Parse(request.RestConvention);
-                d.Latitude = 1.0d;
-                d.Latitude = 1.0d;
-                d.Address = "rtsp://192.168.1.64:556";
-                d.Name = "摄像头1";
-                d.DepartmentID = "1";
-                d.LocationType = 1;
-                response.SetContent(d.ToJson());
-                
-                
+                ////根据ID获得 设备
+                //Device d = new Device();
+                //d.ID = Int32.Parse(request.RestConvention);
+                //d.Latitude = 1.0d;
+                //d.Latitude = 1.0d;
+                //d.Name = "3131";
+                //d.Remark = "2131";
+                //response.SetContent(d.ToJson());
+                //response.Send();
+                int id = -1;
+                try
+                {
+                    id = Convert.ToInt32(request.RestConvention);
+                }
+                catch
+                {
+
+                }
+                Device da = Device.CreateInstanceFromDataAngineModel(bll.GetModel(id));
+                if (null != da)
+                {
+                    response.SetContent(da.ToJson());
+                }
 
 
             }
             else if (request.Domain != string.Empty)
             {
                 Console.WriteLine("返回所有设备信息");
-                Device []ds = new Device[2]{new Device(),new Device ()};
-                ds[0].ID = 1;
-                ds[0].Latitude = 1.0d;
-                ds[0].Longitude = 1.0d;
-                ds[0].Name = "摄像头1";
-                ds[0].DepartmentID = "1";
-                ds[0].LocationType = 1;
 
-                ds[1].ID = 2;
-                ds[1].Latitude = 1.0d;
-                ds[1].Longitude = 1.0d;
-                ds[1].Name = "摄像头2";
-                ds[1].DepartmentID = "1";
-                ds[1].LocationType = 2;
-                response.SetContent(JsonConvert.SerializeObject(ds));
-               
+                List<DataAngine_Set.Model.device> devices = bll.DataTableToList(bll.GetAllList().Tables[0]);
+                response.SetContent(JsonConvert.SerializeObject(Device.CreateInstanceFromDataAngineModel(devices.ToArray())));
             }
             response.Send();
-            
+
         }
         /// <summary>
         /// Post时调用
         /// </summary>
         public override void OnPost(HttpRequest request, HttpResponse response)
         {
-            bool status = true;
+            bool status = false;
             if (request.Operation == null)//添加一条数据
             {
                 Console.WriteLine("添加一个设备");
@@ -79,8 +81,8 @@ namespace FRSServerHttp.Service
                 if (null != device)
                 {
                     //添加到数据库
-                    Console.WriteLine(request.PostParams);
-                 
+
+                    status = bll.Add(device.ToDataAngineModel());
                 }
             }
             else
@@ -91,18 +93,29 @@ namespace FRSServerHttp.Service
                     Device device = Device.CreateInstanceFromJSON(request.PostParams);
                     if (null != device)
                     {
-                        Console.WriteLine(request.PostParams);
+                        status = bll.Update(device.ToDataAngineModel());
                     }
                 }
                 else if (request.Operation == "delete")//删除
                 {
-                    Console.WriteLine("删除设备ID:{0}",request.RestConvention);
-                  
+                    Console.WriteLine("删除设备");
+
+                    int id = -1;
+                    try
+                    {
+                        id = Convert.ToInt32(request.RestConvention);
+                    }
+                    catch
+                    {
+
+                    }
+                    status = bll.Delete(id);
+                    //删除设备
                 }
             }
             response.SetContent(status.ToString());
             response.Send();
-            
+
         }
     }
 }

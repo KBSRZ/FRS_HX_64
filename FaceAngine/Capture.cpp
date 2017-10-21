@@ -272,11 +272,12 @@ void Capture::OnSearch(Object^ o)
 		*/
 		/*array<HitAlert^>^ result = featureData->Search(img, scoreThresh, qualityThresh, faceRectScale, topK, maxPersonNum,);*/
 		array<HitAlert^>^ result = featureData->Search(mat);
-
+		
 		if (nullptr == result)
 		{
 			continue;
 		}
+		
 		featureData->RecordHitInfo(result);
 		try{
 			HitAlertReturnEvent(result);
@@ -501,39 +502,39 @@ bool Capture::DetectFace4CHC(List<Image^>^ faceImgSet, int detectChannel)
 	}
 	
 	featureData->RecordHitInfo(hitResult->ToArray());//纪录结果
-#pragma region 上传至云平台
-	int sequenceCode=0;
-	for each(Image^ im in faceImgSet)
-	{
-		String^ faceFileName = String::Format("{0}_{1}_{2}_face.jpg", cameraCode, DateTime::Now.ToString("yyyy_MM_dd_HH_mm_ss"), sequenceCode);
-		//inf4->SendAsync(defenseCode, cameraCode, INF4::SaveImageType::SaveImageType_Normal_Face, faceFileName, ImageHelper::ImageToBytes(im));
-	}
-	for each(auto hit in hitResult){
-		if (nullptr != hit->Details&&hit->Details->Length > 0){
-			long sequenceNumber = 0;
-			String^ faceFileName = String::Format("{0}_{1}_{2}_alarm_face.jpg", cameraCode, DateTime::Now.ToString("yyyy_MM_dd_HH_mm_ss"), 1);
-			//inf4->SendAsync(defenseCode, cameraCode, INF4::SaveImageType::SaveImageType_Alarm_Face, faceFileName, ImageHelper::ImageToBytes(hit->QueryFace));
-			String^ captFileName = String::Format("{0}_{1}_{2}_alarm_capt.jpg", cameraCode, DateTime::Now.ToString("yyyy_MM_dd_HH_mm_ss"), 1);
-			//inf4->SendAsync(defenseCode, cameraCode, INF4::SaveImageType::SaveImageType_Alarm_CapturedImage, captFileName, ImageHelper::ImageToBytes(faceImgSet[0]));
-
-			/*inf5->ReportAlarmAsync(
-				DateTime::Now.ToString("yyyy-MM-dd HH:mm:ss"),
-				captFileName, String::Empty, faceFileName,
-				safe_cast<HitAlertDetail>(hit->Details[0]).peopleId,
-				safe_cast<HitAlertDetail>(hit->Details[0]).imageId,
-				safe_cast<HitAlertDetail>(hit->Details[0]).Score.ToString("F4"));*/
-			ShowMsgEvent(
-				"capture_Time:"+DateTime::Now.ToString("yyyy-MM-dd HH:mm:ss") +
-				" capture_image:"+captFileName + 
-				" capture_video："+String::Empty + 
-				" face_image:"+faceFileName +
-				" people_id："+safe_cast<HitAlertDetail>(hit->Details[0]).peopleId +
-				" image_id:"+safe_cast<HitAlertDetail>(hit->Details[0]).imageId +
-				" match_degree："+safe_cast<HitAlertDetail>(hit->Details[0]).Score.ToString("F4"),nullptr);
-		}
-		
-	}
-#pragma endregion
+//#pragma region 上传至云平台
+//	int sequenceCode=0;
+//	for each(Image^ im in faceImgSet)
+//	{
+//		String^ faceFileName = String::Format("{0}_{1}_{2}_face.jpg", cameraCode, DateTime::Now.ToString("yyyy_MM_dd_HH_mm_ss"), sequenceCode);
+//		//inf4->SendAsync(defenseCode, cameraCode, INF4::SaveImageType::SaveImageType_Normal_Face, faceFileName, ImageHelper::ImageToBytes(im));
+//	}
+//	for each(auto hit in hitResult){
+//		if (nullptr != hit->Details&&hit->Details->Length > 0){
+//			long sequenceNumber = 0;
+//			String^ faceFileName = String::Format("{0}_{1}_{2}_alarm_face.jpg", cameraCode, DateTime::Now.ToString("yyyy_MM_dd_HH_mm_ss"), 1);
+//			//inf4->SendAsync(defenseCode, cameraCode, INF4::SaveImageType::SaveImageType_Alarm_Face, faceFileName, ImageHelper::ImageToBytes(hit->QueryFace));
+//			String^ captFileName = String::Format("{0}_{1}_{2}_alarm_capt.jpg", cameraCode, DateTime::Now.ToString("yyyy_MM_dd_HH_mm_ss"), 1);
+//			//inf4->SendAsync(defenseCode, cameraCode, INF4::SaveImageType::SaveImageType_Alarm_CapturedImage, captFileName, ImageHelper::ImageToBytes(faceImgSet[0]));
+//
+//			/*inf5->ReportAlarmAsync(
+//				DateTime::Now.ToString("yyyy-MM-dd HH:mm:ss"),
+//				captFileName, String::Empty, faceFileName,
+//				safe_cast<HitAlertDetail>(hit->Details[0]).peopleId,
+//				safe_cast<HitAlertDetail>(hit->Details[0]).imageId,
+//				safe_cast<HitAlertDetail>(hit->Details[0]).Score.ToString("F4"));*/
+//			ShowMsgEvent(
+//				"capture_Time:"+DateTime::Now.ToString("yyyy-MM-dd HH:mm:ss") +
+//				" capture_image:"+captFileName + 
+//				" capture_video："+String::Empty + 
+//				" face_image:"+faceFileName +
+//				" people_id："+safe_cast<HitAlertDetail>(hit->Details[0]).peopleId +
+//				" image_id:"+safe_cast<HitAlertDetail>(hit->Details[0]).imageId +
+//				" match_degree："+safe_cast<HitAlertDetail>(hit->Details[0]).Score.ToString("F4"),nullptr);
+//		}
+//		
+//	}
+//#pragma endregion
 
 	
 	return CollectTrainData4CHC(detectFaceImgSet, locateFaceImgSet, idxLocate2Detect, hit);
