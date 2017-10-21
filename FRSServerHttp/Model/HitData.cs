@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Drawing;
-
+using DataAngine;
 namespace FRSServerHttp.Model
 {
    /// <summary>
@@ -24,9 +24,13 @@ namespace FRSServerHttp.Model
             public string CardId { get; set; }
 
 
-            public string Image { get; set; } //base64 形式存储 图片
+            public string Image { get; set; } 
 
             public string Type { get; set; }
+
+
+
+
 
         };
         /// <summary>

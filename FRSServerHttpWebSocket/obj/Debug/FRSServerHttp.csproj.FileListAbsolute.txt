@@ -1,0 +1,8 @@
+F:\FRS\FRSServerHttp\bin\Debug\FRSServerHttp.exe.config
+F:\FRS\FRSServerHttp\bin\Debug\FRSServerHttp.exe
+F:\FRS\FRSServerHttp\bin\Debug\FRSServerHttp.pdb
+F:\FRS\FRSServerHttp\bin\Debug\Newtonsoft.Json.dll
+F:\FRS\FRSServerHttp\bin\Debug\Newtonsoft.Json.xml
+F:\FRS\FRSServerHttp\obj\Debug\FRSServerHttp.exe
+F:\FRS\FRSServerHttp\obj\Debug\FRSServerHttp.pdb
+F:\FRS\FRSServerHttp\obj\Debug\FRSServerHttp.csprojResolveAssemblyReference.cache

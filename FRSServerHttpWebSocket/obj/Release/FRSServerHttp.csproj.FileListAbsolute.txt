@@ -1,0 +1,7 @@
+F:\FRS\FRSServerHttp\bin\Release\FRSServerHttp.exe.config
+F:\FRS\FRSServerHttp\bin\Release\FRSServerHttp.exe
+F:\FRS\FRSServerHttp\bin\Release\FRSServerHttp.pdb
+F:\FRS\FRSServerHttp\bin\Release\Newtonsoft.Json.dll
+F:\FRS\FRSServerHttp\bin\Release\Newtonsoft.Json.xml
+F:\FRS\FRSServerHttp\obj\Release\FRSServerHttp.exe
+F:\FRS\FRSServerHttp\obj\Release\FRSServerHttp.pdb

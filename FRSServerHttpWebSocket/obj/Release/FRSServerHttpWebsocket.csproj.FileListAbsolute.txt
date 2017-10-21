@@ -1,0 +1,7 @@
+F:\FRS\FRS_HX_64\FRSServerHttpWebSocket\bin\Release\FRSServerHttp.exe.config
+F:\FRS\FRS_HX_64\FRSServerHttpWebSocket\bin\Release\FRSServerHttp.exe
+F:\FRS\FRS_HX_64\FRSServerHttpWebSocket\bin\Release\FRSServerHttp.pdb
+F:\FRS\FRS_HX_64\FRSServerHttpWebSocket\bin\Release\Newtonsoft.Json.xml
+F:\FRS\FRS_HX_64\FRSServerHttpWebSocket\obj\Release\FRSServerHttpWebsocket.csprojResolveAssemblyReference.cache
+F:\FRS\FRS_HX_64\FRSServerHttpWebSocket\obj\Release\FRSServerHttp.exe
+F:\FRS\FRS_HX_64\FRSServerHttpWebSocket\obj\Release\FRSServerHttp.pdb

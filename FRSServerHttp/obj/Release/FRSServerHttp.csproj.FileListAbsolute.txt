@@ -6,3 +6,13 @@ F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\Newtonsoft.Json.xml
 F:\FRS\FRS_HX_64\FRSServerHttp\obj\Release\FRSServerHttp.csprojResolveAssemblyReference.cache
 F:\FRS\FRS_HX_64\FRSServerHttp\obj\Release\FRSServerHttp.exe
 F:\FRS\FRS_HX_64\FRSServerHttp\obj\Release\FRSServerHttp.pdb
+F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\DataAngine.dll
+F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\DataAngine_Set.dll
+F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\FaceAngine.dll
+F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\MySql.Data.dll
+F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\System.Data.SQLite.dll
+F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\INF.dll
+F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\DataAngine.pdb
+F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\FaceAngine.pdb
+F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\DataAngine_Set.pdb
+F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\INF.pdb

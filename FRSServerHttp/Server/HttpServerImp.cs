@@ -12,8 +12,6 @@ namespace FRSServerHttp.Server
 
 
        
-
-
         private BaseService service = null; 
         public HttpServerImp(int port,string  ip= "127.0.0.1",string root=".")
             :  base( port,  ip ,  root )

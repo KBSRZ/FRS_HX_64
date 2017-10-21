@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 using System.IO;
 using FRSServerHttp.Model;
 using FRSServerHttp.Server;
+using Newtonsoft.Json;
+using DataAngine_Set.BLL;
 namespace FRSServerHttp.Service
 {
     class DeviceService:BaseService
     {
+        /// <summary>
+        /// 数据操作类
+        /// </summary>
+       device bll=new device();
+
         /// <summary>
         /// 访问当前service的URL
         /// </summary>
@@ -25,20 +32,40 @@ namespace FRSServerHttp.Service
             if (request.RestConvention != null)
             {
                 Console.WriteLine("返回ID:{0}设备信息", request.RestConvention);
-                //根据ID获得 设备
-                Device d = new Device();
-                d.ID = Int32.Parse(request.RestConvention);
-                d.Latitude = 1.0d;
-                d.Latitude = 1.0d;
-                d.Name = "3131";
-                d.Remark = "2131";
-                response.SetContent(d.ToJson());
-                response.Send();
+                ////根据ID获得 设备
+                //Device d = new Device();
+                //d.ID = Int32.Parse(request.RestConvention);
+                //d.Latitude = 1.0d;
+                //d.Latitude = 1.0d;
+                //d.Name = "3131";
+                //d.Remark = "2131";
+                //response.SetContent(d.ToJson());
+                //response.Send();
+                int id = -1;
+                try
+                {
+                    id = Convert.ToInt32(request.RestConvention);
+                }
+                catch
+                {
+
+                }
+                Device da = Device.CreateInstanceFromDataAngineModel(bll.GetModel(id));
+                if (null != da)
+                {
+                    response.SetContent(da.ToJson());
+                }
+
+
             }
             else if (request.Domain != string.Empty)
             {
                 Console.WriteLine("返回所有设备信息");
+
+                List<DataAngine_Set.Model.device> devices = bll.DataTableToList(bll.GetAllList().Tables[0]);
+                response.SetContent(JsonConvert.SerializeObject(Device.CreateInstanceFromDataAngineModel(devices.ToArray())));
             }
+            response.Send();
             
         }
         /// <summary>
@@ -46,14 +73,16 @@ namespace FRSServerHttp.Service
         /// </summary>
         public override void OnPost(HttpRequest request, HttpResponse response)
         {
-
+            bool status = false;
             if (request.Operation == null)//添加一条数据
             {
                 Console.WriteLine("添加一个设备");
-                Device device = Device.CreateDeviceFromJSON(request.PostParams);
+                Device device = Device.CreateInstanceFromJSON(request.PostParams);
                 if (null != device)
                 {
                     //添加到数据库
+
+                   status= bll.Add(device.ToDataAngineModel());
                 }
             }
             else
@@ -61,18 +90,31 @@ namespace FRSServerHttp.Service
                 if (request.Operation == "update")//更新
                 {
                     Console.WriteLine("更新一个设备");
-                    Device device = Device.CreateDeviceFromJSON(request.PostParams);
+                    Device device = Device.CreateInstanceFromJSON(request.PostParams);
                     if (null != device)
                     {
-                        //添加到数据库
+                        status = bll.Update(device.ToDataAngineModel());
                     }
                 }
                 else if (request.Operation == "delete")//删除
                 {
                     Console.WriteLine("删除设备");
+
+                    int id = -1;
+                    try
+                    {
+                        id = Convert.ToInt32(request.RestConvention);
+                    }
+                    catch
+                    {
+
+                    }
+                    status = bll.Delete(id);
                     //删除设备
                 }
             }
+            response.SetContent(status.ToString());
+            response.Send();
             
         }
     }
