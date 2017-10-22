@@ -6,6 +6,7 @@ F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\Newtonsoft.Json.xml
 F:\FRS\FRS_HX_64\FRSServerHttp\obj\Release\FRSServerHttp.csprojResolveAssemblyReference.cache
 F:\FRS\FRS_HX_64\FRSServerHttp\obj\Release\FRSServerHttp.exe
 F:\FRS\FRS_HX_64\FRSServerHttp\obj\Release\FRSServerHttp.pdb
+<<<<<<< HEAD
 F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\DataAngine.dll
 F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\DataAngine_Set.dll
 F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\FaceAngine.dll
@@ -16,3 +17,13 @@ F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\DataAngine.pdb
 F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\FaceAngine.pdb
 F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\DataAngine_Set.pdb
 F:\FRS\FRS_HX_64\FRSServerHttp\bin\Release\INF.pdb
+=======
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\FRSServerHttp.exe.config
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\obj\Release\FRSServerHttp.exe
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\obj\Release\FRSServerHttp.pdb
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\FRSServerHttp.exe
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\FRSServerHttp.pdb
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\Newtonsoft.Json.dll
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\Newtonsoft.Json.xml
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\obj\Release\FRSServerHttp.csprojResolveAssemblyReference.cache
+>>>>>>> 3eb37ec28da44643690adfbf8aa05445383edf7e

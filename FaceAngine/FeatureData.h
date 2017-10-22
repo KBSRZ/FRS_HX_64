@@ -45,6 +45,7 @@ namespace FRS {
 	{
 	public:
 		HitAlert(){};
+		property String^ QueryFacePath;
 		property Image ^QueryFace;
 		property float ^Threshold;
 		property DateTime^ OccurTime;
