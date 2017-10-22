@@ -586,6 +586,7 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 		MessageBox::Show("allUsers == nullptr");
 		return nullptr;
 	}
+	
 
 	if (cvImg.channels() < 3)
 	{

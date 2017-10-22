@@ -49,12 +49,23 @@ Capture::!Capture()
 
 Int32 Capture::Start(Int32 deviceId)
 {
-	MessageBox::Show("Start(Int32 deviceId)");
+	Console::WriteLine("开启设备{0}", deviceId);
 
-	Thread ^thread = gcnew Thread(gcnew ParameterizedThreadStart(this,&Capture::Begin));
+	beginThread = gcnew Thread(gcnew ParameterizedThreadStart(this, &Capture::Begin));
 	
-	thread->Start(deviceId);
-	return 0;
+	beginThread->Start(deviceId);
+
+	int count = 10;
+	while (count > 0 && isRun == false){ //等待1秒钟
+		Thread::Sleep(100);
+		count--;
+	}
+	if (isRun){
+		return ReturnCode::SUCCESS;
+	}
+	else{
+		return ReturnCode::OPEN_VIDEO_DEVICE_FAILED;
+	}
 }
 Int32 Capture::Start()
 {
@@ -64,11 +75,22 @@ Int32 Capture::Start(String ^streamAddress)
 {
 	
 
-	Thread ^thread = gcnew Thread(gcnew ParameterizedThreadStart(this, &Capture::Begin));
+	beginThread = gcnew Thread(gcnew ParameterizedThreadStart(this, &Capture::Begin));
 
-	thread->Start(streamAddress);
+	beginThread->Start(streamAddress);
+
+	int count = 10;
+	while (count > 0&& isRun==false){ //等待1秒钟
+		Thread::Sleep(100);
+		count--;
+	}
+	if (isRun){
+		return ReturnCode::SUCCESS;
+	}
+	else{
+		return ReturnCode::OPEN_VIDEO_STREAM_FAILED;
+	}
 	
-	return ReturnCode::SUCCESS;
 }
 Int32 Capture::Stop()
 {
@@ -91,13 +113,14 @@ void Capture::Begin(Object^ o)
 		return;
 	}
 
-	isRun = true;
+	
 	control = true;
 	bool isvideoFile = false;
 	double fps;
 	cap = new cv::VideoCapture();
 
-	if (o->GetType() == Int32::typeid) cap->open((Int32)o);//本地摄像头
+	if (o->GetType() == Int32::typeid) 
+		cap->open((Int32)o);//本地摄像头
 	else
 	{
 		//本地视频文件
@@ -105,7 +128,10 @@ void Capture::Begin(Object^ o)
 		if (extention->Equals(".avi") || extention->Equals(".mpg") || extention->Equals(".mp4"))
 		{
 			isvideoFile = true;
-			cap->open((char*)(void*)Marshal::StringToHGlobalAnsi((String^)o));
+			if (false == cap->open((char*)(void*)Marshal::StringToHGlobalAnsi((String^)o)))//打开失败
+			{
+				return;
+			}
 			fps = cap->get(CV_CAP_PROP_FPS);
 			//double fps = 50;
 
@@ -114,15 +140,19 @@ void Capture::Begin(Object^ o)
 		{
 			//视频流		
 			vp = new VlcOpenCV((char*)(void*)Marshal::StringToHGlobalAnsi((String^)o), VIDEO_WIDTH, VIDEO_HEIGHT);
+			if (vp->Start() != 0){//打开失败
+				return;
+			}
+
 		}
 	}
 
 	if (cap->isOpened())
 	{
 		//开一个线程用来人脸识别
-		Thread ^searchThread = gcnew Thread(gcnew ParameterizedThreadStart(this, &Capture::OnSearch));
+		 searchThread = gcnew Thread(gcnew ParameterizedThreadStart(this, &Capture::OnSearch));
 		searchThread->Start(1);
-
+		isRun = true;
 		while (control)
 		{
 			cv::Mat frame;
@@ -144,13 +174,15 @@ void Capture::Begin(Object^ o)
 		}
 	}
 
-	else if (vp->Start() == 0){
+	else if (vp->IsOpen() ){
+		isRun = true;
 		//开一个线程用来人脸识别
-		Thread ^searchThread = gcnew Thread(gcnew ParameterizedThreadStart(this, &Capture::OnSearch));
+		searchThread = gcnew Thread(gcnew ParameterizedThreadStart(this, &Capture::OnSearch));
 		searchThread->Start(1);
 
 		while (control)
 		{
+
 			cv::Mat frame;
 
 			/*capMutex->WaitOne();
@@ -161,7 +193,7 @@ void Capture::Begin(Object^ o)
 			capMutex->ReleaseMutex();
 			if (frame.empty())
 				continue;
-
+			
 			ImageGrabbedEvent();//调用retirive 函数用来显示
 
 		}
@@ -169,10 +201,20 @@ void Capture::Begin(Object^ o)
 	else{
 		ShowMsgEvent("Video Error", nullptr);
 	}
-
+	isRun = false;
 	catchImage = nullptr;
 	cap->release();
-	delete cap;
+	if (cap){
+		delete cap;
+		cap = NULL;
+	}
+	if (vp){
+		delete vp;
+		vp = NULL;
+	}
+	
+	
+
 }
 
 
@@ -187,10 +229,10 @@ Bitmap^  Capture::Retrive()
 		capMutex->ReleaseMutex();
 		GC::Collect();
 	}
-	else if (vp->Start() == 0){
-		capMutex->WaitOne();
+	else if (vp->IsOpen()){
+		//capMutex->WaitOne();
 		matframe = vp->frame();
-		capMutex->ReleaseMutex();
+		//capMutex->ReleaseMutex();
 		GC::Collect();
 
 	}
@@ -247,11 +289,11 @@ void Capture::OnSearch(Object^ o)
 			*cap >> mat;
 			capMutex->ReleaseMutex();
 		}
-		else if (vp->Start() == 0)
+		else if (vp->IsOpen() )
 		{
-			capMutex->WaitOne();
+			//capMutex->WaitOne();
 			mat = vp->frame();
-			capMutex->ReleaseMutex();
+			//capMutex->ReleaseMutex();
 		}
 
 		if (nullptr == featureData) {

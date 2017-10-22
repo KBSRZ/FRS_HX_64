@@ -56,20 +56,39 @@ VlcOpenCV::VlcOpenCV(const char *url, unsigned int width, unsigned int height)
 
 VlcOpenCV::~VlcOpenCV()
 {
-	if (mp)
+	if (mp){
 		libvlc_media_player_release(mp);
+		mp = NULL;
+	}
 	libvlc_release(vlcInstance);
-	delete param;
+	if (param->mat)
+	{
+		delete param->mat;
+		param->mat = NULL;
+	}
+	if (param){
+		delete param;
+		param = NULL;
+	}
 }
 
 int VlcOpenCV::Start()
 {
-	bool isStop = true;
-	return libvlc_media_player_play(mp);	
+	int code = libvlc_media_player_play(mp);
+	if (0 == code){
+		 isStart = true;
+	}
+	else{
+		isStart = false;
+	}
+	return code;
+	
 }
-
+bool VlcOpenCV::IsOpen(){
+	return isStart;
+}
 void VlcOpenCV::Stop()
 {
 	libvlc_media_player_stop(mp);
-	isStop = true;	
+	isStart = false;
 }

@@ -28,9 +28,11 @@ public:
 	//返回 0 如果开始
 	//返回-1 表示错误
 	int Start();
-
+	
 	void Stop();
 	cv::Mat frame();
+	//判断是否正在运行
+	bool IsOpen();
 	
 private:
 	TCallBackParam* param;
@@ -42,7 +44,7 @@ private:
 
 	HANDLE  mat_mutex;
 
-	bool isStop = false;
+	bool isStart = false;
 	const char *url;//图像地址
 	unsigned int width;//图像宽
 	unsigned int height;//图像高

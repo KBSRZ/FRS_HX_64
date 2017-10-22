@@ -80,7 +80,7 @@ namespace FRSServerHttp.Service
             {
                 IsOnSurveillance = false;
             }
-            Log.Debug(string.Format("布控任务"));
+            Log.Debug(string.Format("布控任务停止"));
             response.TcpClient.Close();
             HitAlertService.response = null;
             cap.Stop();
@@ -134,8 +134,12 @@ namespace FRSServerHttp.Service
            fa.LoadData(dataset.datasetname);
            cap = new Capture(fa);
            cap.HitAlertReturnEvent += new Capture.HitAlertCallback(OnHit);
-           cap.Start();
            cap.Interval = setting.Interval;
+           if (cap.Start(device.address) != ReturnCode.SUCCESS)
+           {
+               return false;
+           }
+           
            return true;
         }
         public override void OnGet(HttpRequest request, HttpResponse response)
@@ -167,7 +171,7 @@ namespace FRSServerHttp.Service
             if (request.RestConvention != null)
             {
 
-               Log.Debug(string.Format("开始布控任务 布控ID{0}", request.RestConvention));
+               Log.Debug(string.Format("准备开始布控任务 布控ID{0}", request.RestConvention));
                 //更具p.restConvention（taskID）进行
                 //SurveillanceTask task = ;
             }
@@ -184,7 +188,15 @@ namespace FRSServerHttp.Service
                 return;
             }
 
-            if (!InitFRS(id)) return;
+            if (!InitFRS(id)) {//开启监控失败
+                Log.Debug("开启布控任务失败");
+                response.SetContent("False");
+                
+                response.SendWebsocketData();
+
+                response.TcpClient.Close();
+                return;
+            };
 
             byte[] buffer = new byte[1024];
             FrameType type = FrameType.Continuation;

@@ -27,7 +27,7 @@ namespace FRSServerHttp.Service
             if (request.RestConvention != null)//根据ID获得数据库
             {
 
-                Console.WriteLine("返回ID{0}的数据库信息", request.RestConvention);
+               Log.Debug(string.Format("返回ID{0}的数据库信息", request.RestConvention));
                 int id = -1;
                 try
                 {
@@ -46,6 +46,7 @@ namespace FRSServerHttp.Service
             }
             else if (request.Domain != null)//获得所有数据库
             {
+                Log.Debug(string.Format("返回所哟数据库信息", request.RestConvention));
                 List<DataAngine_Set.Model.dataset> datasets = bll.DataTableToList(bll.GetAllList().Tables[0]);
                 response.SetContent(JsonConvert.SerializeObject(Dataset.CreateInstanceFromDataAngineModel(datasets.ToArray())));
 

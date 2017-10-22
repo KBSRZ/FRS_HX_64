@@ -85,9 +85,7 @@ namespace FRSServerHttp.Model
 
                this.OccurTime = ((DateTime)(hitAlert.OccurTime)).ToString("yyyy-MM-dd HH:mm:ss");
 
-               //this.FaceQueryImagePath = hitAlert.QueryFace;
-
-
+               this.FaceQueryImagePath = hitAlert.QueryFacePath;
                this.Threshold = ((float)(hitAlert.Threshold));
 
                this.Details = new HitAlertDetail[hitAlert.Details.Length];

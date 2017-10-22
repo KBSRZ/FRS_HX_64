@@ -215,7 +215,7 @@ namespace FRS {
 		cv::VideoCapture *cap;
 		VlcOpenCV *vp;
 
-		unsigned int VIDEO_WIDTH = 1024;
+		unsigned int VIDEO_WIDTH = 1280;
 		unsigned int VIDEO_HEIGHT = 720;
 
 
@@ -223,6 +223,10 @@ namespace FRS {
 
 		String^ trainingDataDir = "";
 		
+
+		Thread^ beginThread = nullptr;
+		//开一个线程用来人脸识别
+		Thread ^searchThread;
 
 	};
 }
