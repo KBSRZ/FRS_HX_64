@@ -692,30 +692,31 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 
 
 #pragma region 保存至数据库
-		//	for (int n = 0; n < result->Count; n++){
-		//		HitAlert ^frsha = result[n];
-		//		Model::hitalert ^ha = gcnew Model::hitalert();
-		//		ha->details = gcnew array<Model::hitrecord_detail^>(frsha->Details->Length);
-		//		String ^savePath = queryFaceDir + System::Guid::NewGuid().ToString() + L".jpg";
-		//		frsha->QueryFace->Save(savePath);
-		//
-		//		ha->hit = gcnew Model::hitrecord();
-		//		ha->hit->face_query_image_path = savePath;
-		//		ha->hit->occur_time = DateTime::Now;
-		//		ha->hit->threshold = scoreThresh;
-		//
-		//		for (int i = 0; i < frsha->Details->Length; i++)
-		//		{
-		//			Model::hitrecord_detail ^hd = gcnew Model::hitrecord_detail();
-		//			hd->rank = i;
-		//			hd->score = safe_cast<HitAlertDetail^>(frsha->Details[i])->Score;
-		//			hd->user_id = safe_cast<HitAlertDetail^>(frsha->Details[i])->UserId;
-		//			ha->details[i] = hd;
-		//		}
-		//
-		//		habll->Add(ha);
-		//	}
-		//
+			for (int n = 0; n < result->Count; n++){
+				HitAlert ^frsha = result[n];
+				Model::hitalert ^ha = gcnew Model::hitalert();
+				ha->details = gcnew array<Model::hitrecord_detail^>(frsha->Details->Length);
+				String ^savePath = queryFaceDir + System::Guid::NewGuid().ToString() + L".jpg";
+				frsha->QueryFace->Save(savePath);
+				frsha->QueryFacePath = savePath;
+		
+				ha->hit = gcnew Model::hitrecord();
+				ha->hit->face_query_image_path = savePath;
+				ha->hit->occur_time = DateTime::Now;
+				ha->hit->threshold = scoreThresh;
+		
+				for (int i = 0; i < frsha->Details->Length; i++)
+				{
+					Model::hitrecord_detail ^hd = gcnew Model::hitrecord_detail();
+					hd->rank = i;
+					hd->score = safe_cast<HitAlertDetail^>(frsha->Details[i])->Score;
+					hd->user_id = safe_cast<HitAlertDetail^>(frsha->Details[i])->UserId;
+					ha->details[i] = hd;
+				}
+		
+				habll->Add(ha);
+			}
+		
 #pragma endregion
 
 #pragma region 上传至云平台
