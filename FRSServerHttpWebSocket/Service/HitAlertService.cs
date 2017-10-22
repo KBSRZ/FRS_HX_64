@@ -84,7 +84,7 @@ namespace FRSServerHttp.Service
             response.TcpClient.Close();
             HitAlertService.response = null;
             cap.Stop();
-           
+            System.GC.Collect();
            
         }
         bool  InitFRS(int taskID)

@@ -688,7 +688,8 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 			hit->Details = details;
 			hit->Threshold = scoreThresh;
 			result->Add(hit);
-			delete feats;
+			delete []feats;
+			delete[]faces;
 		}
 
 
@@ -1115,6 +1116,10 @@ float FeatureData::Compare(cv::Mat& src_img, cv::Mat& dst_img)
 	int dst_ret = Feature::Extract(0, dst_img.data, dst_img.cols, dst_img.rows, 3, (THFI_FacePos*)&dst_faces[0], dst_feats);
 
 	float score = Feature::Compare(src_feats, dst_feats);
+	delete[]src_feats;
+	delete[]dst_feats;
+	delete[]src_faces;
+	delete[]dst_faces;
 	return score;
 }
 

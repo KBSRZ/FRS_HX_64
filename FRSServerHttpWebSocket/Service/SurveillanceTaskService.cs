@@ -80,11 +80,12 @@ namespace FRSServerHttp.Service
         {
             bool status = false;
 
-            if (request.Operation == string.Empty)//添加一条数据
+            if (request.Operation == null)//添加一条数据
             {
                 SurveillanceTask task = SurveillanceTask.CreateInstanceFromJson(request.PostParams);
                 if (null != task)
                 {
+                    Log.Debug("添加布控任务");
                     //添加到数据库
                     status = bll.Add(task.ToDataAngineModel());
                 }
@@ -93,6 +94,7 @@ namespace FRSServerHttp.Service
             {
                 if (request.Operation == "update")//更新
                 {
+                    Log.Debug("更新布控任务");
                     SurveillanceTask task = SurveillanceTask.CreateInstanceFromJson(request.PostParams);
                     if (null != task)
                     {
@@ -102,7 +104,7 @@ namespace FRSServerHttp.Service
                 }
                 else if (request.Operation == "delete")//删除
                 {
-
+                    Log.Debug("删除布控任务");
                     int id = -1;
                     try
                     {
