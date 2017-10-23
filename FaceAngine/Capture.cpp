@@ -64,6 +64,7 @@ Int32 Capture::Start(Int32 deviceId)
 		return ReturnCode::SUCCESS;
 	}
 	else{
+		Stop();
 		return ReturnCode::OPEN_VIDEO_DEVICE_FAILED;
 	}
 }
@@ -88,6 +89,7 @@ Int32 Capture::Start(String ^streamAddress)
 		return ReturnCode::SUCCESS;
 	}
 	else{
+		Stop();
 		return ReturnCode::OPEN_VIDEO_STREAM_FAILED;
 	}
 	

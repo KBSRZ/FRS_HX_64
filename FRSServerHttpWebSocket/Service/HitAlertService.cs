@@ -42,6 +42,7 @@ namespace FRSServerHttp.Service
        static HttpResponse response = null;
        static bool IsOnSurveillance = false;
        static Object objLock = new Object();
+       static bool IsInit = false;
 
         public HitAlertService()
         {
@@ -104,18 +105,20 @@ namespace FRSServerHttp.Service
            var setting = new Model.Setting.SettingFRS();
 
 
-          
+           if (!IsInit)
+           {
 
-           FRSParam param = new FRSParam();
+               FRSParam param = new FRSParam();
 
-           param.nMinFaceSize = Math.Min(setting.SearchFaceHeightThresh, setting.MaxPersonNum);
+               param.nMinFaceSize = Math.Min(setting.SearchFaceHeightThresh, setting.MaxPersonNum);
 
-           param.nRollAngle = Math.Min(setting.SearchFaceRollThresh, Math.Min(setting.SearchFaceYawThresh, setting.SearchFacePitchThresh));
-           param.bOnlyDetect = true;
+               param.nRollAngle = Math.Min(setting.SearchFaceRollThresh, Math.Min(setting.SearchFaceYawThresh, setting.SearchFacePitchThresh));
+               param.bOnlyDetect = true;
 
-           FaceImage.Create(setting.ChannelNum, param);
-           Feature.Init(setting.ChannelNum);
-
+               FaceImage.Create(setting.ChannelNum, param);
+               Feature.Init(setting.ChannelNum);
+               IsInit = true;
+           }
            fa.MaxPersonNum = setting.MaxPersonNum;
            fa.RegisterFaceHeightThresh = setting.RegisterFaceHeightThresh;
            fa.RegisterFacePitchThresh = setting.RegisterFacePitchThresh;
