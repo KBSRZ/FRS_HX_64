@@ -16,3 +16,5 @@ G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\Release\FRSServerHttp.
 G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttpWebSocket\obj\Release\FRSServerHttp.exe
 G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttpWebSocket\obj\Release\FRSServerHttp.pdb
 G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttpWebSocket\obj\Release\FRSServerHttpWebsocket.csprojResolveAssemblyReference.cache
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\Release\FRSServerHttp.exe
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\Release\FRSServerHttp.pdb

@@ -62,13 +62,13 @@ namespace FRSServerHttp.Model
                 hitalertdata.id = Convert.ToInt32(dt.Rows[i]["id"]);
                 hitalertdata.FaceQueryImagePath = dt.Rows[i]["face_query_image_path"].ToString();
                 hitalertdata.Threshold = Convert.ToSingle(dt.Rows[i]["Threshold"]);
-                hitalertdata.OccurTime = dt.Rows[i]["OccurTime"].ToString();
+                hitalertdata.OccurTime = dt.Rows[i]["occur_time"].ToString();
                 hitalertdata.detail_id = Convert.ToInt32(dt.Rows[i]["detail_id"]);
                 hitalertdata.rank = Convert.ToInt32(dt.Rows[i]["rank"]);
                 hitalertdata.score = Convert.ToSingle(dt.Rows[i]["score"]);
                 hitalertdata.user_id = Convert.ToInt32(dt.Rows[i]["user_id"]);
                 hitalertdata.user_name = dt.Rows[i]["user_name"].ToString();
-                hitalertdata.user_gander = dt.Rows[i]["user_gander"].ToString();
+                hitalertdata.user_gander = dt.Rows[i]["user_gender"].ToString();
                 hitalertdata.user_people_id = dt.Rows[i]["user_people_id"].ToString();
                 hitalertdata.user_card_id = dt.Rows[i]["user_card_id"].ToString();
                 hitalertdata.user_image_id = dt.Rows[i]["user_image_id"].ToString();

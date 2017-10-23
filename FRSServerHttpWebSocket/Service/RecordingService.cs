@@ -34,15 +34,11 @@ namespace FRSServerHttp.Service
             {
                 Log.Debug(string.Format("返回数据库{0}的信息", request.RestConvention));
                 string library = "frsdb";
-                try
-                {
-                    library = request.RestConvention;
-                }
-                catch
-                {
-                }
 
-                if(request.PostParams!=null)
+                library = request.RestConvention;
+
+
+                if(request.GetParams!=null)
                 {
                     DateTime starttime=new DateTime(); 
                     DateTime endtime=new DateTime();
