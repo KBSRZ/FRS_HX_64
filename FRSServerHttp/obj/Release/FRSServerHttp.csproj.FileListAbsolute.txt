@@ -27,3 +27,9 @@ G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Rele
 G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\Newtonsoft.Json.xml
 G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\obj\Release\FRSServerHttp.csprojResolveAssemblyReference.cache
 >>>>>>> 3eb37ec28da44643690adfbf8aa05445383edf7e
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\DataAngine.dll
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\DataAngine_Set.dll
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\MySql.Data.dll
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\System.Data.SQLite.dll
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\DataAngine.pdb
+G:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\FRSServerHttp\bin\Release\DataAngine_Set.pdb

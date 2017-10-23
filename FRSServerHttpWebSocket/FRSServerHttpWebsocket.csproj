@@ -55,6 +55,7 @@
     <Compile Include="ImageUtils.cs" />
     <Compile Include="Model\Dataset.cs" />
     <Compile Include="Model\Device.cs" />
+    <Compile Include="Model\HitAlertData.cs" />
     <Compile Include="Model\HitData.cs" />
     <Compile Include="Model\Setting.cs" />
     <Compile Include="Server\BaseHeader.cs" />
