@@ -581,13 +581,12 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 #if USE_EXPIRE
 	if (IsExpired()) throw gcnew Exception("software has been expired");;
 #endif
-	if (allUsers == nullptr)
+	if (cvImg.empty()&&allUsers == nullptr)
 	{
 		MessageBox::Show("allUsers == nullptr");
 		return nullptr;
 	}
-	cv::imshow("", cvImg);
-	cv::waitKey(30);
+	
 
 	if (cvImg.channels() < 3)
 	{
@@ -608,45 +607,45 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 		THFI_FacePos *faces = new THFI_FacePos[maxPersonNum];
 
 		int face_num = FaceImage::DetectFace(0, cvImg.data, 24, cvImg.cols, cvImg.rows, faces, maxPersonNum);
-
+		
 		if (face_num <= 0)
 		{
 			return nullptr;
 		}
 
-		List < Image^>^ facesimg = gcnew  List<Image^>();
-		
-		for (int i = 0; i < MIN(maxPersonNum, face_num); i++)
-		{
-			if (searchFaceQualityThresh > faces[i].nQuality){
-				ShowMsgEvent("searchFaceQualityThresh:" + faces[i].nQuality, nullptr);
-				continue;
-			}
-			if (abs(faces[i].fAngle.yaw) > searchFaceYawThresh || abs(faces[i].fAngle.pitch) > searchFacePitchThresh || abs(faces[i].fAngle.roll) > searchFaceRollThresh)
-			{
-				ShowMsgEvent("angle" + faces[i].fAngle.yaw + ",roll:" + faces[i].fAngle.roll + ",pitch:" + faces[i].fAngle.pitch, nullptr);
-				continue;
-			}
-			if (faces[i].rcFace.bottom - faces[i].rcFace.top < searchFaceHeightThresh || faces[i].rcFace.right - faces[i].rcFace.left < searchFaceWidthThresh)
-			{
-				ShowMsgEvent("size,height:" + (faces[i].rcFace.bottom - faces[i].rcFace.top) + ",width:" + (faces[i].rcFace.bottom - faces[i].rcFace.top), nullptr);
-				continue;
-			}
+		//List < Image^>^ facesimg = gcnew  List<Image^>();
+		//
+		//for (int i = 0; i < MIN(maxPersonNum, face_num); i++)
+		//{
+		//	if (searchFaceQualityThresh > faces[i].nQuality){
+		//		ShowMsgEvent("searchFaceQualityThresh:" + faces[i].nQuality, nullptr);
+		//		continue;
+		//	}
+		//	if (abs(faces[i].fAngle.yaw) > searchFaceYawThresh || abs(faces[i].fAngle.pitch) > searchFacePitchThresh || abs(faces[i].fAngle.roll) > searchFaceRollThresh)
+		//	{
+		//		ShowMsgEvent("angle" + faces[i].fAngle.yaw + ",roll:" + faces[i].fAngle.roll + ",pitch:" + faces[i].fAngle.pitch, nullptr);
+		//		continue;
+		//	}
+		//	if (faces[i].rcFace.bottom - faces[i].rcFace.top < searchFaceHeightThresh || faces[i].rcFace.right - faces[i].rcFace.left < searchFaceWidthThresh)
+		//	{
+		//		ShowMsgEvent("size,height:" + (faces[i].rcFace.bottom - faces[i].rcFace.top) + ",width:" + (faces[i].rcFace.bottom - faces[i].rcFace.top), nullptr);
+		//		continue;
+		//	}
 
-			System::Drawing::Rectangle retFaceRect = GetScaleFaceRect(nWidth, nHeight, faces[i].rcFace, faceRectScale);
+		//	System::Drawing::Rectangle retFaceRect = GetScaleFaceRect(nWidth, nHeight, faces[i].rcFace, faceRectScale);
 
-			Image^ imgFace = srcImage->Clone(retFaceRect, srcImage->PixelFormat);
+		//	Image^ imgFace = srcImage->Clone(retFaceRect, srcImage->PixelFormat);
 
-			facesimg->Add(imgFace);
+		//	facesimg->Add(imgFace);
 
-			/*cv::Rect rect(faces[i].rcFace.left, faces[i].rcFace.top, faces[i].rcFace.right - faces[i].rcFace.left, faces[i].rcFace.bottom - faces[i].rcFace.top);
-			cv::Mat faceimg = cvImg(rect);
-			facesimg->Add((Image^)BitmapConverter::ToBitmap(&faceimg));		*/
+		//	/*cv::Rect rect(faces[i].rcFace.left, faces[i].rcFace.top, faces[i].rcFace.right - faces[i].rcFace.left, faces[i].rcFace.bottom - faces[i].rcFace.top);
+		//	cv::Mat faceimg = cvImg(rect);
+		//	facesimg->Add((Image^)BitmapConverter::ToBitmap(&faceimg));		*/
 
-		}
+		//}
 
-		if (facesimg->Count > 0)
-			FaceDetectedEvent(facesimg->ToArray());
+		/*if (facesimg->Count > 0)
+			FaceDetectedEvent(facesimg->ToArray());*/
 
 		//array<HitAlert^>^ resultNoThresh = gcnew array<HitAlert^> (MIN(maxPersonNum, face_num));
 		List<HitAlert^>^ result = gcnew List<HitAlert^>();
@@ -681,7 +680,7 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 
 			//std::cout << faces[i].bbox.x<<"," << faces[i].bbox.y <<","<< faces[i].bbox.width <<","<< faces[i].bbox.height << std::endl;
 	
-			printf("%d\n", details->Length);
+			//printf("%d\n", details->Length);
 			System::Drawing::Rectangle retFaceRect = GetScaleFaceRect(nWidth, nHeight, faces[i].rcFace, faceRectScale);
 			Image^ imgFace = srcImage->Clone(retFaceRect, srcImage->PixelFormat);
 			hit->QueryFace = imgFace;
@@ -690,7 +689,7 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 			hit->Threshold = scoreThresh;
 			result->Add(hit);
 			delete []feats;
-			delete[]faces;
+			
 		}
 
 
@@ -791,8 +790,9 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 		//}
 #pragma endregion
 		//保存识别数据
-		CollectTrainData(result);
+		//CollectTrainData(result);
 		System::GC::Collect();
+		delete[]faces;
 		return result->ToArray();
 	
 }
@@ -883,7 +883,7 @@ array<HitAlertDetail>^ FeatureData::Search (BYTE* feat_src)
 	{
 		pin_ptr<Byte> feat_dst = &((safe_cast<array<Byte>^>(user->feature_data))[0]);
 		float score = Feature::Compare(feat_src, feat_dst);
-		printf("%f \n", score);
+		//printf("%f \n", score);
 		/*only add the record which score >scoreThresh*/
 		if (scoreThresh > score) continue;
 		HitAlertDetail detail;
@@ -910,7 +910,7 @@ array<HitAlertDetail>^ FeatureData::Search (BYTE* feat_src)
 			details->Add(detail);
 		}
 	}
-	printf("%d\n", details->Count);
+	//printf("%d\n", details->Count);
 	return details->ToArray();
 }
 

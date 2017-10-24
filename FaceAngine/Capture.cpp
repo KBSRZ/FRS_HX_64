@@ -288,6 +288,7 @@ void Capture::OnSearch(Object^ o)
 		if (cap->isOpened())
 		{
 			capMutex->WaitOne();
+			if (cap)
 			*cap >> mat;
 			capMutex->ReleaseMutex();
 		}
@@ -322,7 +323,7 @@ void Capture::OnSearch(Object^ o)
 			continue;
 		}
 		
-		featureData->RecordHitInfo(result);
+		//featureData->RecordHitInfo(result);
 		try{
 			HitAlertReturnEvent(result);
 		}

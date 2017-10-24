@@ -58,7 +58,7 @@ namespace FRSServerHttp.Service
                     //response.SetContent(JsonConvert.SerializeObject(hit));
                     //response.SendOnLongConnetion();
                 string msg = JsonConvert.SerializeObject(Model.HitAlert.CreateInstanceFromFRSHitAlert(hits));
-                response.SetContent(JsonConvert.SerializeObject(msg));
+                response.SetContent(msg);
                 response.SendWebsocketData();
                     
                 
@@ -138,7 +138,7 @@ namespace FRSServerHttp.Service
            cap = new Capture(fa);
            cap.HitAlertReturnEvent += new Capture.HitAlertCallback(OnHit);
            cap.Interval = setting.Interval;
-           if (cap.Start(device.address) != ReturnCode.SUCCESS)
+           if (cap.Start() != ReturnCode.SUCCESS)
            {
                return false;
            }
