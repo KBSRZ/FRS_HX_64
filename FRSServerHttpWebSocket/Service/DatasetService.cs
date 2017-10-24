@@ -12,7 +12,6 @@ namespace FRSServerHttp.Service
 {
     class DatasetService : BaseService
     {
-
         dataset bll = new dataset();
         public static string Domain
         {
