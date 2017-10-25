@@ -522,6 +522,9 @@ Int32 FeatureData::Unregister(String^ name)
 		return ReturnCode::UNKOWN_EXCEPTION;
 
 }
+
+#pragma region Load data into stack
+
 Int32 FeatureData::LoadData()
 {
 #if USE_EXPIRE
@@ -553,6 +556,9 @@ Int32 FeatureData::LoadData(String^ libraryname)
 	}
 	return ReturnCode::SUCCESS;
 }
+
+#pragma endregion
+
 
 
 array<HitAlertDetail>^ FeatureData::Search(array<BYTE> ^feats)
@@ -613,6 +619,8 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 			return nullptr;
 		}
 
+#pragma region CS架构主界面下侧显示抓拍人脸
+
 		//List < Image^>^ facesimg = gcnew  List<Image^>();
 		//
 		//for (int i = 0; i < MIN(maxPersonNum, face_num); i++)
@@ -644,8 +652,9 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 
 		//}
 
-		/*if (facesimg->Count > 0)
-			FaceDetectedEvent(facesimg->ToArray());*/
+		//if (facesimg->Count > 0)
+		//	FaceDetectedEvent(facesimg->ToArray());
+#pragma endregion
 
 		//array<HitAlert^>^ resultNoThresh = gcnew array<HitAlert^> (MIN(maxPersonNum, face_num));
 		List<HitAlert^>^ result = gcnew List<HitAlert^>();
@@ -755,7 +764,7 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 		//	}
 #pragma endregion
 
-#pragma region 保存识别数据
+#pragma region 保存识别数据C版本 
 		//String^ GenDir = "record\\";
 		////std::cout << "Record_hitResult=" << hitResult->Count << std::endl;
 		//for each(auto hit in result){

@@ -1,0 +1,28 @@
+2017-10-25 10:25:23,850: Application_ThreadException
+System.ArgumentNullException: 值不能为 null。
+参数名: src
+   在 FRS.Util.BitmapConverter.ToMat(Mat* , Bitmap src) 位置 g:\科研项目\新街口\frs_chc_64\faceanginenew_x64_hx\faceangine\bitmapconverter.cpp:行号 30
+   在 FRS.FeatureData.Compare(Image src_image, Image dst_image) 位置 g:\科研项目\新街口\frs_chc_64\faceanginenew_x64_hx\faceangine\featuredata.cpp:行号 1090
+   在 NjustSkyEyeSystem.FormMian.btn_PicCompare_Click(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\NjustSkyEyeSystem\FormMian.cs:行号 1170
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+2017-10-25 10:25:28,529: Application_ThreadException
+System.ArgumentNullException: 值不能为 null。
+参数名: src
+   在 FRS.Util.BitmapConverter.ToMat(Mat* , Bitmap src) 位置 g:\科研项目\新街口\frs_chc_64\faceanginenew_x64_hx\faceangine\bitmapconverter.cpp:行号 30
+   在 FRS.FeatureData.Compare(Image src_image, Image dst_image) 位置 g:\科研项目\新街口\frs_chc_64\faceanginenew_x64_hx\faceangine\featuredata.cpp:行号 1090
+   在 NjustSkyEyeSystem.FormMian.btn_PicCompare_Click(Object sender, EventArgs e) 位置 g:\科研项目\新街口\FRS_CHC_64\FaceAngineNew_x64_HX\NjustSkyEyeSystem\FormMian.cs:行号 1170
+   在 System.Windows.Forms.Control.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnClick(EventArgs e)
+   在 System.Windows.Forms.Button.OnMouseUp(MouseEventArgs mevent)
+   在 System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   在 System.Windows.Forms.Control.WndProc(Message& m)
+   在 System.Windows.Forms.ButtonBase.WndProc(Message& m)
+   在 System.Windows.Forms.Button.WndProc(Message& m)
+   在 System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
