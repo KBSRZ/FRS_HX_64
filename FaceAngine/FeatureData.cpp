@@ -342,10 +342,14 @@ Int32 FeatureData::RegisterInBulk1(String^ fileDirPath, String^ library)
 		String ^savePath = Path::Combine(regFaceDir, fileName);
 
 		usr->face_image_path = savePath;
-	
+
+		//缩放
+		cv::Mat Registerface;
+		cv::resize(cvImg, Registerface, cv::Size(100, cvImg.rows * 100 / cvImg.cols));
+		
 		if (usrbll->Add(usr))
 		{	
-			cv::imwrite(((char*)(void*)Marshal::StringToHGlobalAnsi(savePath)), cvImg);
+			cv::imwrite(((char*)(void*)Marshal::StringToHGlobalAnsi(savePath)), Registerface);
 			return ReturnCode::SUCCESS;
 		}
 		else
@@ -417,9 +421,13 @@ Int32 FeatureData::RegisterInBulk1(String^ fileDirPath, String^ library)
 
 		 usr->face_image_path = savePath;
 
-		 if (usrbll->Add(usr, library))
+		 //缩放
+		 cv::Mat Registerface;
+		 cv::resize(cvImg, Registerface, cv::Size(100, cvImg.rows * 100 / cvImg.cols));
+
+		 if (usrbll->Add(usr,library))
 		 {
-			 cv::imwrite(((char*)(void*)Marshal::StringToHGlobalAnsi(savePath)), cvImg);
+			 cv::imwrite(((char*)(void*)Marshal::StringToHGlobalAnsi(savePath)), Registerface);
 			 return ReturnCode::SUCCESS;
 		 }
 		 else
@@ -692,7 +700,16 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 			//printf("%d\n", details->Length);
 			System::Drawing::Rectangle retFaceRect = GetScaleFaceRect(nWidth, nHeight, faces[i].rcFace, faceRectScale);
 			Image^ imgFace = srcImage->Clone(retFaceRect, srcImage->PixelFormat);
-			hit->QueryFace = imgFace;
+
+			//缩放
+			Int32 width = 100;
+			Int32 height = imgFace->Height * 100 / imgFace->Width;
+			Bitmap^ faceBitmap = gcnew Bitmap(width, height);
+			Graphics^ g = Graphics::FromImage(faceBitmap);
+			g->DrawImage(imgFace, System::Drawing::Rectangle(0, 0, width, height), System::Drawing::Rectangle(0, 0, imgFace->Width, imgFace->Height), GraphicsUnit::Pixel);
+			
+
+			hit->QueryFace = faceBitmap;
 			hit->OccurTime = DateTime::Now;
 			hit->Details = details;
 			hit->Threshold = scoreThresh;
@@ -709,7 +726,8 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 				ha->details = gcnew array<Model::hitrecord_detail^>(frsha->Details->Length);
 				String ^savePath = queryFaceDir + System::Guid::NewGuid().ToString() + L".jpg";
 				frsha->QueryFace->Save(savePath);
-				frsha->QueryFacePath = savePath;
+
+				
 		
 				ha->hit = gcnew Model::hitrecord();
 				ha->hit->face_query_image_path = savePath;
@@ -799,7 +817,7 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 		//}
 #pragma endregion
 		//保存识别数据
-		//CollectTrainData(result);
+		CollectTrainData(result);
 		System::GC::Collect();
 		delete[]faces;
 		return result->ToArray();

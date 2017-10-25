@@ -9,9 +9,6 @@ namespace FRSServerHttp.Server
 {
     public class HttpServerImp : HttpServer
     {
-
-
-       
         private BaseService service = null; 
         public HttpServerImp(int port,string  ip= "127.0.0.1",string root=".")
             :  base( port,  ip ,  root )
@@ -22,7 +19,6 @@ namespace FRSServerHttp.Server
         }
         public override void OnGet(HttpRequest request, HttpResponse response)
         {
-
             Log.Debug(string.Format("GET request: {0} {1}", request.URL, request.Upgrade==null?"":request.Upgrade.Trim()));
             if (!request.IsStatic)
             {

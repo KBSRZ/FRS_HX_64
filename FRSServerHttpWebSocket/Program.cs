@@ -20,8 +20,6 @@ namespace FRSServerHttp
         {
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
-
-
             Log.Level = LogLevel.Debug;
             HttpServer httpServer;
             if (args.GetLength(0) > 0)
@@ -31,12 +29,9 @@ namespace FRSServerHttp
             }
             else
             {
-                httpServer = new HttpServerImp(8080, "192.168.1.2", System.Environment.CurrentDirectory);
+                httpServer = new HttpServerImp(8080, "127.0.0.1", System.Environment.CurrentDirectory);
             }
-            httpServer.Start();
-           
-            
+            httpServer.Start();            
         }
-
     }
 }
