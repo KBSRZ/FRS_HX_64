@@ -11,8 +11,11 @@ function connect()
     try
     {
         var readyState = new Array("正在连接","已建立连接","正在关闭连接","已关闭连接");
+<<<<<<< HEAD
         var host = "ws://localhost:8080/v1/hitalert/3";
-
+=======
+        var host = "ws://192.168.1.2:8080/v1/hitalert/1";
+>>>>>>> 97ba654dcebb69647a50e91581f0b52d1fd79dc3
         webSocket = new WebSocket(host);
         var message = document.getElementById("message");
         message.innerHTML +="<p>Socket状态：" + readyState[webSocket.readyState] + "</p>";
