@@ -11,17 +11,32 @@ function connect()
     try
     {
         var readyState = new Array("正在连接","已建立连接","正在关闭连接","已关闭连接");
-        var host = "ws://localhost:8080/v1/hitalert/1";
+        var host = "ws://localhost:8080/v1/hitalert/3";
         webSocket = new WebSocket(host);
         var message = document.getElementById("message");
         message.innerHTML +="<p>Socket状态：" + readyState[webSocket.readyState] + "</p>";
         webSocket.onopen = function()
         {
+		  
             message.innerHTML += "<p>Socket状态：" + readyState[webSocket.readyState] + "</p>";
         }
         webSocket.onmessage = function(msg)
         {
-            message.innerHTML +="<p>接收信息：" + msg.data + "</p>";
+		   // message.innerHTML +="<p>接收信息：" + msg.data + "</p>";
+		    var imageLive = document.getElementById("imageLive");  
+			var imageCan = document.getElementById("imageCan");  			
+			var hitalerts = JSON.parse(msg.data);
+			imageLive.src="http://localhost:8080/"+hitalerts[0].FaceQueryImagePath;
+			imageLive.width=100;
+			if(hitalerts[0].Details.length>0){
+				imageCan.src="http://localhost:8080/"+hitalerts[0].Details[0].UserInfo.FaceImagePath;
+				imageCan.width=100;
+			}
+			else{
+			imageCan.src=null;
+			}
+			
+			
         }
         webSocket.onclose=function()
         {
@@ -66,5 +81,7 @@ function disconnect()
 <button id="connect" onClick="connect();">建立连接</button>
 <button id="send" onClick="send();">发送数据</button>
 <button id="disconnect" onClick="disconnect();">断开连接</button>
+<img id=imageLive></img>
+<img id=imageCan></img> 	
 </body>
 </html>
