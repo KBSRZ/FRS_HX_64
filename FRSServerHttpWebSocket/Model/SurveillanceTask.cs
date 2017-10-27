@@ -61,7 +61,7 @@ namespace FRSServerHttp.Model
                 SurveillanceTask s = new SurveillanceTask();
                 s.DatasetID = sts[i].databaseid;
                 s.DeviceID = sts[i].deviceid;
-                s.ID = sts[i].deviceid;
+                s.ID = sts[i].id;
                 s.Name = sts[i].name;
                 s.Remark = sts[i].remark;
                 ss[i] = s;

@@ -727,7 +727,7 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 				String ^savePath = queryFaceDir + System::Guid::NewGuid().ToString() + L".jpg";
 				frsha->QueryFace->Save(savePath);
 
-				
+				frsha->QueryFacePath = savePath;
 		
 				ha->hit = gcnew Model::hitrecord();
 				ha->hit->face_query_image_path = savePath;

@@ -95,11 +95,11 @@ namespace FRSServerHttp.Service
 
 
             DataAngine_Set.Model.surveillancetask task=taskBll.GetModel(taskID);
-            if (null == task) return false;
+            if (null == task) { Log.Debug("检索任务失败"); return false; }
             DataAngine_Set.Model.device device = deviceBll.GetModel(task.deviceid);
-            if (null == device) return false;
+            if (null == device) { Log.Debug("检索设备失败"); return false; }
             DataAngine_Set.Model.dataset dataset = datasetBll.GetModel(task.databaseid);
-            if (null == dataset) return false;
+            if (null == dataset) { Log.Debug("检索库失败"); return false; }
 
            
             fa = new FeatureData();
@@ -139,9 +139,32 @@ namespace FRSServerHttp.Service
            cap = new Capture(fa);
            cap.HitAlertReturnEvent += new Capture.HitAlertCallback(OnHit);
            cap.Interval = setting.Interval;
-           if (cap.Start() != ReturnCode.SUCCESS)
+           int id=-1;
+           try
            {
-               return false;
+              id= Convert.ToInt32(device.address);
+           }
+           catch
+           {
+
+           }
+           if (id == -1)
+           {
+
+
+               if (cap.Start(device.address) != ReturnCode.SUCCESS)
+               {
+                   Log.Debug("打开摄像头失败");
+                   return false;
+               }
+           }
+           else
+           {
+               if (cap.Start(id) != ReturnCode.SUCCESS)
+               {
+                   Log.Debug("打开摄像头失败");
+                   return false;
+               }
            }
            
            return true;
@@ -158,6 +181,7 @@ namespace FRSServerHttp.Service
             {
                 if (IsOnSurveillance)//已经用客户端连接了
                 {
+                    Log.Debug(string.Format("已经用在监控", request.RestConvention));
                     response.SetContent("False");
                     //response.SetContent(JsonConvert.SerializeObject(hit));
                     //response.SendOnLongConnetion();
@@ -199,6 +223,7 @@ namespace FRSServerHttp.Service
                 response.SendWebsocketData();
 
                 response.TcpClient.Close();
+                IsOnSurveillance = false;
                 return;
             };
 
