@@ -139,7 +139,7 @@ namespace FRSServerHttp.Service
            cap = new Capture(fa);
            cap.HitAlertReturnEvent += new Capture.HitAlertCallback(OnHit);
            cap.Interval = setting.Interval;
-           if (cap.Start() != ReturnCode.SUCCESS)
+           if (cap.Start(device.address) != ReturnCode.SUCCESS)
            {
                return false;
            }

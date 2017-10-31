@@ -1452,7 +1452,7 @@ namespace NjustSkyEyeSystem
 
             comboBox_DevName.DataSource = dt;
             comboBox_DevName.ValueMember = "id";
-            comboBox_DevName.DisplayMember = "name";
+            comboBox_DevName.DisplayMember = "name";           
         }
 
         public void ComboxLocationTypeList()
