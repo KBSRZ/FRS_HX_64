@@ -1,0 +1,96 @@
+2017-10-26 10:28:05,574: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:28:05,843: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:28:06,404: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:28:06,881: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:28:07,175: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:28:07,446: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:28:07,766: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:28:07,998: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:34:50,418: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:34:50,703: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:34:50,903: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:34:51,271: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:34:51,599: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:34:51,859: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:34:52,133: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428
+2017-10-26 10:34:52,347: Register Error:
+MySql.Data.MySqlClient.MySqlException (0x80004005): No database selected
+   在 DataAngine.DBUtility.DbHelperMySQL.ExecuteSql(String SQLString, String libraryname, MySqlParameter[] cmdParms)
+   在 DataAngine.DAL.user.Add(user model, String library)
+   在 DataAngine.BLL.user.Add(user model, String library)
+   在 FRS.FeatureData.Register(Mat* img_color, user usr, String library) 位置 f:\frs\frs_hx_64\faceangine\featuredata.cpp:行号 428

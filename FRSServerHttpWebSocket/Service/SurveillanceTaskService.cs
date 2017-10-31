@@ -82,10 +82,11 @@ namespace FRSServerHttp.Service
 
             if (request.Operation == null)//添加一条数据
             {
+                Log.Debug("添加布控任务");
                 SurveillanceTask task = SurveillanceTask.CreateInstanceFromJson(request.PostParams);
                 if (null != task)
                 {
-                    Log.Debug("添加布控任务");
+                   
                     //添加到数据库
                     status = bll.Add(task.ToDataAngineModel());
                 }

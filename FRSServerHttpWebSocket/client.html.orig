@@ -11,8 +11,11 @@ function connect()
     try
     {
         var readyState = new Array("正在连接","已建立连接","正在关闭连接","已关闭连接");
-        var host = "ws://localhost:8080/v1/hitalert/1";
-
+<<<<<<< HEAD
+        var host = "ws://localhost:8080/v1/hitalert/3";
+=======
+        var host = "ws://192.168.1.2:8080/v1/hitalert/1";
+>>>>>>> 97ba654dcebb69647a50e91581f0b52d1fd79dc3
         webSocket = new WebSocket(host);
         var message = document.getElementById("message");
         message.innerHTML +="<p>Socket状态：" + readyState[webSocket.readyState] + "</p>";
@@ -27,10 +30,10 @@ function connect()
 		    var imageLive = document.getElementById("imageLive");  
 			var imageCan = document.getElementById("imageCan");  			
 			var hitalerts = JSON.parse(msg.data);
-			imageLive.src="http://192.168.1.2:8080/"+hitalerts[0].FaceQueryImagePath;
+			imageLive.src="http://localhost:8080/"+hitalerts[0].FaceQueryImagePath;
 			imageLive.width=100;
 			if(hitalerts[0].Details.length>0){
-				imageCan.src="http://192.168.1.2:8080/"+hitalerts[0].Details[0].UserInfo.FaceImagePath;
+				imageCan.src="http://localhost:8080/"+hitalerts[0].Details[0].UserInfo.FaceImagePath;
 				imageCan.width=100;
 			}
 			else{

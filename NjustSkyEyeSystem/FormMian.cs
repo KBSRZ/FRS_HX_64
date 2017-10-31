@@ -1450,7 +1450,10 @@ namespace NjustSkyEyeSystem
             DataSet ds = device.GetAllList();
             DataTable dt = ds.Tables[0];
 
-            comboBox_DevName.DataSource = dt;
+            foreach(DataRow row in dt.Rows){
+                comboBox_DevName.Items.Add(row["name"]);
+            }
+            
             comboBox_DevName.ValueMember = "id";
             comboBox_DevName.DisplayMember = "name";           
         }
@@ -1532,6 +1535,7 @@ namespace NjustSkyEyeSystem
 
         private void comboBox_DevName_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (comboBox_DevName.Items.Count == 0) return ;
             DataSet ds = device.GetDevice(comboBox_DevName.Text.ToString());
             DataTable dt = ds.Tables[0];        
             tex_DevAddress.Text = dt.Rows[0]["address"].ToString();

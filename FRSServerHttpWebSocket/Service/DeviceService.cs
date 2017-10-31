@@ -31,7 +31,7 @@ namespace FRSServerHttp.Service
         {
             if (request.RestConvention != null)
             {
-                Console.WriteLine("返回ID:{0}设备信息", request.RestConvention);
+                Log.Debug(string.Format("返回ID:{0}设备信息", request.RestConvention));
                 ////根据ID获得 设备
                 //Device d = new Device();
                 //d.ID = Int32.Parse(request.RestConvention);
@@ -60,8 +60,8 @@ namespace FRSServerHttp.Service
             }
             else if (request.Domain != string.Empty)
             {
-                Console.WriteLine("返回所有设备信息");
-
+                
+                Log.Debug(string.Format("返回所有设备信息"));
                 List<DataAngine_Set.Model.device> devices = bll.DataTableToList(bll.GetAllList().Tables[0]);
                 response.SetContent(JsonConvert.SerializeObject(Device.CreateInstanceFromDataAngineModel(devices.ToArray())));
             }

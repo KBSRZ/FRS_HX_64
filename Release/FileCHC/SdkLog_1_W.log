@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 [2017-10-31 17:57:47.012][INF] The COM:Core ver is 5.2.3.3, 2016_06_23. Async:1.
 [2017-10-31 17:57:47.012][INF] This hcnetsdk ver is 5.2.3.3 Ver 2016_06_23.
+=======
+[2017-10-26 10:34:39.229][INF] The COM:Core ver is 5.2.3.3, 2016_06_23. Async:1.
+[2017-10-26 10:34:39.229][INF] This hcnetsdk ver is 5.2.3.3 Ver 2016_06_23.
+>>>>>>> fd287f3ba17483fecbe91cb838a564e2eeee055d
