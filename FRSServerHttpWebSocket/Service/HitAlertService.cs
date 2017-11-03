@@ -38,12 +38,11 @@ namespace FRSServerHttp.Service
 
 
 
-       static Capture cap;
-       static FeatureData fa;
+     
        static HttpResponse response = null;
        static bool IsOnSurveillance = false;
        static Object objLock = new Object();
-       static bool IsInit = false;
+       
 
         public HitAlertService()
         {
@@ -89,7 +88,7 @@ namespace FRSServerHttp.Service
             System.GC.Collect();
            
         }
-        bool  InitFRS(int taskID)
+        bool  Init(int taskID)
         {
 
 
@@ -100,45 +99,13 @@ namespace FRSServerHttp.Service
             if (null == device) { Log.Debug("检索设备失败"); return false; }
             DataAngine_Set.Model.dataset dataset = datasetBll.GetModel(task.databaseid);
             if (null == dataset) { Log.Debug("检索库失败"); return false; }
+            
+            InitFRS();
 
-           
-            fa = new FeatureData();
-           var setting = new Model.Setting.SettingFRS();
+            fa.LoadData(dataset.datasetname);
+            cap.HitAlertReturnEvent += new Capture.HitAlertCallback(OnHit);
 
 
-           if (!IsInit)
-           {
-
-               FRSParam param = new FRSParam();
-
-               param.nMinFaceSize = Math.Min(setting.SearchFaceHeightThresh, setting.MaxPersonNum);
-
-               param.nRollAngle = Math.Min(setting.SearchFaceRollThresh, Math.Min(setting.SearchFaceYawThresh, setting.SearchFacePitchThresh));
-               param.bOnlyDetect = true;
-
-               FaceImage.Create(setting.ChannelNum, param);
-               Feature.Init(setting.ChannelNum);
-               IsInit = true;
-           }
-           fa.MaxPersonNum = setting.MaxPersonNum;
-           fa.RegisterFaceHeightThresh = setting.RegisterFaceHeightThresh;
-           fa.RegisterFacePitchThresh = setting.RegisterFacePitchThresh;
-           fa.RegisterFaceQualityThresh = setting.RegisterFaceQualityThresh;
-           fa.RegisterFaceRollThresh = setting.RegisterFaceRollThresh;
-           fa.RegisterFaceWidthThresh = setting.RegisterFaceWidthThresh;
-           fa.RegisterFaceYawThresh = setting.RegisterFaceYawThresh;
-           fa.ScoreThresh = setting.ScoreThresh;
-           fa.SearchFaceHeightThresh = setting.SearchFacePitchThresh;
-           fa.SearchFacePitchThresh = setting.SearchFacePitchThresh;
-           fa.SearchFaceQualityThresh = setting.SearchFaceQualityThresh;
-           fa.SearchFaceRollThresh = setting.SearchFaceRollThresh;
-           fa.SearchFaceWidthThresh = setting.SearchFaceWidthThresh;
-           fa.SearchFaceYawThresh = setting.SearchFaceYawThresh;
-           fa.TopK = setting.TopK;
-           fa.LoadData(dataset.datasetname);
-           cap = new Capture(fa);
-           cap.HitAlertReturnEvent += new Capture.HitAlertCallback(OnHit);
-           cap.Interval = setting.Interval;
            int id=-1;
            try
            {
@@ -171,7 +138,7 @@ namespace FRSServerHttp.Service
         }
         public override void OnGet(HttpRequest request, HttpResponse response)
         {
-            if (request.Upgrade == null || request.Upgrade.Trim() != "websocket")
+            if (request.Upgrade == null || request.Upgrade.Trim().ToLower() != "websocket")
             {
                 response.Send();
                 return;
@@ -216,7 +183,7 @@ namespace FRSServerHttp.Service
                 return;
             }
 
-            if (!InitFRS(id)) {//开启监控失败
+            if (!Init(id)) {//开启监控失败
                 Log.Debug("开启布控任务失败");
                 response.SetContent("False");
                 

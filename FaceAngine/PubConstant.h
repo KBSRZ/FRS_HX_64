@@ -25,12 +25,15 @@ namespace FRS {
 		static const Int32  ILLEGAL_FACE_QUALITY = -7;
 		//人脸大小不符合
 		static const Int32  ILLEGAL_FACE_SIZE = -8;
-		//未知异常
-		static const Int32  UNKOWN_EXCEPTION = -99999;
 		//打开视频流失败
 		static const Int32 OPEN_VIDEO_STREAM_FAILED = -9;
 		//打开设备失败
 		static const Int32 OPEN_VIDEO_DEVICE_FAILED = -10;
+		//文件加不存在
+		static const Int32 DIR_NOT_EXITS = -11;
+		//未知异常
+		static const Int32  UNKOWN_EXCEPTION = -99999;
+		
 		//没有空闲通道
 		static const Int32 NO_FREE_CHANNEL = -1;
 

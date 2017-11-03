@@ -9,62 +9,65 @@ using System.IO;
 //using FRS;
 using Newtonsoft.Json;
 using FRSServerHttp.Server;
+using FRS;
 namespace FRSServerHttp.Service
 {
    
   
     abstract class BaseService
     {
-        //public static FeatureData fa ;
-        //public static Capture cap;
-        
-       
-       
-        public static int initFRS (){
+        protected static Capture cap;
+        protected static FeatureData fa;
+        protected static bool IsInit = false;
 
-            //settingFRS = new Data.Setting.SettingFRS();
-
-            //selectedDevice = new Data.Device();
-
-            //FRSParam param = new FRSParam();
-
-            //param.nMinFaceSize = Math.Min(settingFRS.SearchFaceHeightThresh, settingFRS.MaxPersonNum);
-
-            //param.nRollAngle = Math.Min(settingFRS.SearchFaceRollThresh, Math.Min(settingFRS.SearchFaceYawThresh, settingFRS.SearchFacePitchThresh));
-            //param.bOnlyDetect = true;
-
-            //FaceImage.Create(settingFRS.ChannelNum, param);
-            //Feature.Init(settingFRS.ChannelNum);
-            //fa = new FeatureData();
-            //fa.MaxPersonNum = settingFRS.MaxPersonNum;
-            //fa.ScoreThresh = settingFRS.ScoreThresh;
-            //fa.SearchFaceHeightThresh = settingFRS.SearchFaceHeightThresh;
-            //fa.SearchFaceWidthThresh = settingFRS.SearchFaceWidthThresh;
-            //fa.SearchFaceYawThresh = settingFRS.SearchFaceYawThresh;
-            //fa.SearchFacePitchThresh = settingFRS.SearchFacePitchThresh;
-            //fa.SearchFaceRollThresh = settingFRS.SearchFaceRollThresh;
-            //fa.SearchFaceQualityThresh = settingFRS.SearchFaceQualityThresh;
-            //fa.TopK = settingFRS.TopK;
-
-            //fa.RegisterFaceHeightThresh = settingFRS.RegisterFaceHeightThresh;
-            //fa.RegisterFaceWidthThresh = settingFRS.RegisterFaceWidthThresh;
-            //fa.RegisterFaceYawThresh = settingFRS.RegisterFaceYawThresh;
-            //fa.RegisterFacePitchThresh = settingFRS.RegisterFacePitchThresh;
-            //fa.RegisterFaceRollThresh = settingFRS.RegisterFaceRollThresh;
-            //fa.RegisterFaceQualityThresh = settingFRS.RegisterFaceQualityThresh;
-            //cap = new Capture(fa);
-            //cap.Interval = settingFRS.Interval;
-
-            return 0;
-
-        }
-       
-        
         public BaseService() {
               
 
         }
        
+        protected void  InitFRS()
+        {
+            
+           if (!IsInit)
+           {
+
+               fa = new FeatureData();
+               var setting = new Model.Setting.SettingFRS();
+
+               fa.MaxPersonNum = setting.MaxPersonNum;
+               fa.RegisterFaceHeightThresh = setting.RegisterFaceHeightThresh;
+               fa.RegisterFacePitchThresh = setting.RegisterFacePitchThresh;
+               fa.RegisterFaceQualityThresh = setting.RegisterFaceQualityThresh;
+               fa.RegisterFaceRollThresh = setting.RegisterFaceRollThresh;
+               fa.RegisterFaceWidthThresh = setting.RegisterFaceWidthThresh;
+               fa.RegisterFaceYawThresh = setting.RegisterFaceYawThresh;
+               fa.ScoreThresh = setting.ScoreThresh;
+               fa.SearchFaceHeightThresh = setting.SearchFacePitchThresh;
+               fa.SearchFacePitchThresh = setting.SearchFacePitchThresh;
+               fa.SearchFaceQualityThresh = setting.SearchFaceQualityThresh;
+               fa.SearchFaceRollThresh = setting.SearchFaceRollThresh;
+               fa.SearchFaceWidthThresh = setting.SearchFaceWidthThresh;
+               fa.SearchFaceYawThresh = setting.SearchFaceYawThresh;
+               fa.TopK = setting.TopK;
+               
+               cap = new Capture(fa);
+             
+               cap.Interval = setting.Interval;
+
+
+               FRSParam param = new FRSParam();
+
+               param.nMinFaceSize = Math.Min(setting.SearchFaceHeightThresh, setting.MaxPersonNum);
+
+               param.nRollAngle = Math.Min(setting.SearchFaceRollThresh, Math.Min(setting.SearchFaceYawThresh, setting.SearchFacePitchThresh));
+               param.bOnlyDetect = true;
+
+               FaceImage.Create(setting.ChannelNum, param);
+               Feature.Init(setting.ChannelNum);
+               IsInit = true;
+
+           }
+        }
         /// <summary>
         /// Post时调用
         /// </summary>

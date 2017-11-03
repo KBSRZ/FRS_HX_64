@@ -42,6 +42,10 @@ namespace FRSServerHttp
            {
                return new RecordingService();
            }
+           else if (PersonDatabaseService.Domain == domain)
+           {
+               return new PersonDatabaseService();
+           }
            
            return null;
        }

@@ -76,7 +76,7 @@ namespace FRSServerHttp.Service
             bool status = false;
             if (request.Operation == null)//添加一条数据
             {
-                Console.WriteLine("添加一个设备");
+                Log.Debug("添加一个设备");
                 Device device = Device.CreateInstanceFromJSON(request.PostParams);
                 if (null != device)
                 {
@@ -89,7 +89,7 @@ namespace FRSServerHttp.Service
             {
                 if (request.Operation == "update")//更新
                 {
-                    Console.WriteLine("更新一个设备");
+                    Log.Debug("更新一个设备");
                     Device device = Device.CreateInstanceFromJSON(request.PostParams);
                     if (null != device)
                     {
@@ -98,7 +98,7 @@ namespace FRSServerHttp.Service
                 }
                 else if (request.Operation == "delete")//删除
                 {
-                    Console.WriteLine("删除设备");
+                    Log.Debug("删除设备");
 
                     int id = -1;
                     try

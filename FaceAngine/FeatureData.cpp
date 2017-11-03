@@ -122,6 +122,9 @@ Int32 FeatureData::RegisterInBulk(String^ fileDirPath)
 	if (IsExpired()) throw gcnew Exception("software has been expired");;
 #endif
 	
+	if (Directory::Exists(fileDirPath)){
+		return ReturnCode::DIR_NOT_EXITS;
+	}
 	if (allUsers == nullptr) allUsers = gcnew List<Model::user^>();
 
 	DirectoryInfo^ dir = gcnew DirectoryInfo(fileDirPath);
@@ -136,6 +139,13 @@ Int32 FeatureData::RegisterInBulk(String^ fileDirPath)
 			if (!cvImg.empty())
 			{
 				UserInfo^ userInfo = gcnew UserInfo();
+				array<String^> ^items = files[i]->Name->Split('_');
+				userInfo->name = items[0];
+
+				////
+				////填入其他信息
+				///
+
 				userInfo->name = System::IO::Path::GetFileNameWithoutExtension(files[i]->Name);
 
 				status = Register(cvImg, userInfo);
@@ -252,6 +262,9 @@ Int32 FeatureData::RegisterInBulk1(String^ fileDirPath, String^ library)
 	if (IsExpired()) throw gcnew Exception("software has been expired");;
 #endif
 
+	if (!Directory::Exists(fileDirPath)){
+		return ReturnCode::DIR_NOT_EXITS;
+	}
 	if (allUsers == nullptr) allUsers = gcnew List<Model::user^>();
 
 	DirectoryInfo^ dir = gcnew DirectoryInfo(fileDirPath);

@@ -382,9 +382,10 @@ Struct FRS.ReturnCode: AutoLayout, AnsiClass, Class, Public, SequentialLayout, S
     Int32 ILLEGAL_FACE_ANGLE IsConst : Public, Static, HasDefault
     Int32 ILLEGAL_FACE_QUALITY IsConst : Public, Static, HasDefault
     Int32 ILLEGAL_FACE_SIZE IsConst : Public, Static, HasDefault
-    Int32 UNKOWN_EXCEPTION IsConst : Public, Static, HasDefault
     Int32 OPEN_VIDEO_STREAM_FAILED IsConst : Public, Static, HasDefault
     Int32 OPEN_VIDEO_DEVICE_FAILED IsConst : Public, Static, HasDefault
+    Int32 DIR_NOT_EXITS IsConst : Public, Static, HasDefault
+    Int32 UNKOWN_EXCEPTION IsConst : Public, Static, HasDefault
     Int32 NO_FREE_CHANNEL IsConst : Public, Static, HasDefault
 Class FRS.Util.ImageHelper: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
