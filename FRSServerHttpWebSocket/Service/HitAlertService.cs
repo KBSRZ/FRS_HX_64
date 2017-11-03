@@ -139,10 +139,10 @@ namespace FRSServerHttp.Service
            cap = new Capture(fa);
            cap.HitAlertReturnEvent += new Capture.HitAlertCallback(OnHit);
            cap.Interval = setting.Interval;
-           if (cap.Start() != ReturnCode.SUCCESS)
            int id=-1;
            try
            {
+               Log.Debug(device.address);
               id= Convert.ToInt32(device.address);
            }
            catch
@@ -171,18 +171,17 @@ namespace FRSServerHttp.Service
            return true;
         }
         public override void OnGet(HttpRequest request, HttpResponse response)
-        {
-            if (request.Upgrade == null || request.Upgrade.Trim() != "websocket")
-            {
+        {      
+            if (request.Upgrade == null || request.Upgrade.Trim().ToLower() != "websocket")
+            {            
                 response.Send();
                 return;
             }
                 
             lock (objLock)
-            {
+            {              
                 if (IsOnSurveillance)//已经用客户端连接了
-                {
-                    Log.Debug(string.Format("已经用在监控", request.RestConvention));
+                {                 
                     response.SetContent("False");
                     //response.SetContent(JsonConvert.SerializeObject(hit));
                     //response.SendOnLongConnetion();

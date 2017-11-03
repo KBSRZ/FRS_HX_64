@@ -29,7 +29,7 @@ namespace FRSServerHttp
             }
             else
             {
-                httpServer = new HttpServerImp(8080, "192.168.1.2", System.Environment.CurrentDirectory);
+                httpServer = new HttpServerImp(8080, "127.0.0.1", System.Environment.CurrentDirectory);
             }
             httpServer.Start();            
         }

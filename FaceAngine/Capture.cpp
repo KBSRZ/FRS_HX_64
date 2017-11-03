@@ -140,9 +140,11 @@ void Capture::Begin(Object^ o)
 		}
 		else
 		{
+			Console::WriteLine((String^)o);
 			//视频流		
 			vp = new VlcOpenCV((char*)(void*)Marshal::StringToHGlobalAnsi((String^)o), VIDEO_WIDTH, VIDEO_HEIGHT);
 			if (vp->Start() != 0){//打开失败
+				Console::WriteLine("open false");
 				return;
 			}
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+    </startup>
+
+  <appSettings>
+    <add key="ConnectionStringMySQL" value="server=127.0.0.1;database=frsdb;uid=root;pwd=123456"/>
+    <add key="ConStringEncrypt" value="false"/>
+
+    <!--同时支持的视频路数-->
+    <add key="ChannelNum" value="4"/>
+    <!--比对间隔，单位毫秒-->
+    <add key="Interval" value="0"/>
+
+    <!--比对时人脸宽度阈值-->
+    <add key="SearchFaceWidthThresh" value="80"/>
+    <!--比对时人脸高度阈值-->
+    <add key="SearchFaceHeightThresh" value="80"/>
+    <!--比对时人脸角度阈值-->
+    <add key="SearchFaceYawThresh" value="90"/>
+    <add key="SearchFaceRollThresh" value=" 90"/>
+    <add key="SearchFacePitchThresh" value="90"/>
+
+    <!--比对阈值-->
+    <add key="ScoreThresh" value="0.6"/>
+    <!--每个人脸返回的最大结果数-->
+    <add key="TopK" value="3"/>
+    <!--单帧画面最大人脸数-->
+    <add key="MaxPersonNum" value="5"/>
+    <add key="SearchFaceQualityThresh" value="0"/>
+
+
+    <!--注册时人脸宽度阈值-->
+    <add key="RegisterFaceWidthThresh" value="80"/>
+    <!--注册时人脸高度阈值-->
+    <add key="RegisterFaceHeightThresh" value="80"/>
+    <!--注册时人脸角度阈值-->
+    <add key="RegisterFaceYawThresh" value="10"/>
+    <add key="RegisterFaceRollThresh" value="11"/>
+    <add key="RegisterFacePitchThresh" value="12"/>
+    <add key="RegisterFaceQualityThresh" value="20"/>
+
+  </appSettings>
+</configuration>

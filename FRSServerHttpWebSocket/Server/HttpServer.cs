@@ -46,10 +46,10 @@ namespace FRSServerHttp.Server
         public void Start()
         {
             if (IsRunning) return;
-
+            IPAddress localAddr = IPAddress.Any;
             //创建服务端Socket
-            this.serverListener = new TcpListener(IPAddress.Parse(ip), port);
-          
+            //this.serverListener = new TcpListener(IPAddress.Parse(ip), port);
+            this.serverListener = new TcpListener(localAddr, port);
             this.IsRunning = true;
             this.serverListener.Start();
 
