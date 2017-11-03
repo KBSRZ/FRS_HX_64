@@ -1,3 +1,4 @@
+C/S架构：
 环境要求：window系统，，net4.0，mysql数据库
 
 数据库建表文件：FaceAgainMysql_Set.sql
@@ -17,3 +18,16 @@
 
 监控：	进入设置见面，选择要录入的底库以及对应的摄像头，点击登录，选择人脸监控参数，包括三个人脸角度，人脸质量阈值以及告警阈值
 	选择视频流选项，在右侧地址栏写入视频地址，点击开始按钮开始监控，抓拍的人脸会显示在下方人脸显示框，当监控到人脸相似度超过告警阈值时，会在右侧显示告警人脸以及相应的底库人脸
+
+
+
+
+
+B/S架构：
+环境要求：window系统，，net4.0，mysql数据库
+
+数据库建表文件：FaceAgainMysql_Set.sql
+		FaceAgainMysql.sql
+必须先执行FaceAgainMysql_Set.sql，后执行FaceAgainMysql.sql
+
+运行：	FRSServerHttp.exe启动服务端
