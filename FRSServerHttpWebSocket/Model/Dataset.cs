@@ -8,6 +8,32 @@ using Newtonsoft.Json;
 using DataAngine_Set.Model;
 namespace FRSServerHttp.Model
 {
+    /// <summary>
+    /// 添加人员库时所用的结构
+    /// </summary>
+    class AddInfo
+    {
+        public string DatasetName { get; set; }
+        public string Path { get; set; }
+        public string Type { get; set; }
+        public string Remark { get; set; }
+
+        public static AddInfo CreateInstanceFromJSON(string json)
+        {
+            AddInfo msg = null;
+            try
+            {
+                msg = (AddInfo)JsonConvert.DeserializeObject(json, typeof(AddInfo));
+            }
+            catch
+            {
+
+            }
+            return msg;
+        }
+
+    }
+
     class Dataset
     {
         public int ID { get; set; }

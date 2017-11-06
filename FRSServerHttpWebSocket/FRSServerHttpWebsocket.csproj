@@ -79,6 +79,8 @@
     <Compile Include="Service\FileService.cs" />
     <Compile Include="Service\DeviceService.cs" />
     <Compile Include="Service\HitAlertService.cs" />
+    <Compile Include="Service\PersonDatabaseService.cs" />
+    <Compile Include="Service\RegisterService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="Service\RecordingService.cs" />
     <Compile Include="ServiceHelper.cs" />

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FaceAngine", "FaceAngine\FaceAngine.vcxproj", "{B9DC1F90-19BE-4A91-A290-542BE9C75A0F}"
 EndProject
@@ -21,8 +21,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHCTest", "CHCTest\CHCTest.csproj", "{3DC5D62B-B81D-49A6-839D-E742D42F7048}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRSystemProtecter", "FRSystemProtecter\FRSystemProtecter.csproj", "{61B9D0E0-99BC-4682-A82A-A67F8D395EC6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceRecognition", "FaceRecognition\FaceRecognition.csproj", "{7D1A9B07-7172-4F56-BF05-CC85A843388C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRSServer", "FRSServer\FRSServer.csproj", "{2D266E1A-3C04-4302-8D98-F27891250AF7}"
 EndProject
@@ -150,18 +148,6 @@ Global
 		{61B9D0E0-99BC-4682-A82A-A67F8D395EC6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{61B9D0E0-99BC-4682-A82A-A67F8D395EC6}.Release|Win32.ActiveCfg = Release|Any CPU
 		{61B9D0E0-99BC-4682-A82A-A67F8D395EC6}.Release|x64.ActiveCfg = Release|Any CPU
-		{7D1A9B07-7172-4F56-BF05-CC85A843388C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D1A9B07-7172-4F56-BF05-CC85A843388C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D1A9B07-7172-4F56-BF05-CC85A843388C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{7D1A9B07-7172-4F56-BF05-CC85A843388C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{7D1A9B07-7172-4F56-BF05-CC85A843388C}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{7D1A9B07-7172-4F56-BF05-CC85A843388C}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{7D1A9B07-7172-4F56-BF05-CC85A843388C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D1A9B07-7172-4F56-BF05-CC85A843388C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D1A9B07-7172-4F56-BF05-CC85A843388C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{7D1A9B07-7172-4F56-BF05-CC85A843388C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{7D1A9B07-7172-4F56-BF05-CC85A843388C}.Release|Win32.ActiveCfg = Release|Any CPU
-		{7D1A9B07-7172-4F56-BF05-CC85A843388C}.Release|x64.ActiveCfg = Release|Any CPU
 		{2D266E1A-3C04-4302-8D98-F27891250AF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2D266E1A-3C04-4302-8D98-F27891250AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D266E1A-3C04-4302-8D98-F27891250AF7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

@@ -138,11 +138,15 @@ namespace FRSServerHttp.Service
            return true;
         }
         public override void OnGet(HttpRequest request, HttpResponse response)
-
+<<<<<<< HEAD
         {
             if (request.Upgrade == null || request.Upgrade.Trim().ToLower() != "websocket")
             {
-
+=======
+        {      
+            if (request.Upgrade == null || request.Upgrade.Trim().ToLower() != "websocket")
+            {            
+>>>>>>> b4fc67f7c400af54f5dd16900ad014082c3493ae
                 response.Send();
                 return;
             }

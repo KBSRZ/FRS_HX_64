@@ -9,6 +9,7 @@ create table `frsdb`.`user`
 	`name` nvarchar(50) NULL,
 	`gender` char(1) NULL,
 	`card_id` varchar(50) NULL,
+	`bitrhday` datetime NULL,
 	`image_id` varchar(60) NULL,
 	`face_image_path` varchar(200) NOT NULL,
 	`feature_data` LongBlob NOT NULL,

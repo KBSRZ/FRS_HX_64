@@ -1,16 +1,12 @@
-CREATE DATABASE `frs_database_set`;
+CREATE DATABASE `frs_set`;
 
-USE `frs_database_set`;
+USE `frs_set`;
 
-create table `frs_database_set`.`dataset`
+create table `frs_person_database`.`dataset`
 (
 	`id` int(11) AUTO_INCREMENT,	
 	`name` nvarchar(50) NOT NULL,--数据库名称，暂时只有它有用
 	`type` nvarchar(50) NULL,--类型
-	`user` nvarchar(20) NULL,--用户名
-	`password` nvarchar(20) NULL,--密码
-	`ip` nvarchar(20) NULL,--ip地址
-	`port` nvarchar(20) NULL,--端口
 	`source` nvarchar(50) NULL,--来源
 	`create_time` datetime NOT NULL,--创建时间
 	`remark` nvarchar(50) NULL,--备注
@@ -18,11 +14,11 @@ create table `frs_database_set`.`dataset`
 	UNIQUE KEY `datasetname` (`datasetname`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table `frs_database_set`.`device`
+create table `frs_set`.`device`
 (
 	`id` int(11) AUTO_INCREMENT,	
 	`name` nvarchar(50) NOT NULL,  --数据库名称，暂时只有它有用
-	`address` nvarchar(50) NOT NULL,--视频流地址
+	`video_address` nvarchar(200) NOT NULL,--视频流地址
 	`departmentment_id` nvarchar(50) NULL,--公安部门ID
 	`longitude` double(5,2) NULL,--经度
 	`latitude` double(5,2) NULL,--纬度
@@ -33,7 +29,7 @@ create table `frs_database_set`.`device`
 	UNIQUE KEY `id` (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table `frs_database_set`.`surveillancetask`
+create table `frs_set`.`surveillancetask`
 (
 	`id` int(11) AUTO_INCREMENT,
 	`name` nvarchar(50) NOT NULL,--名称
@@ -43,11 +39,11 @@ create table `frs_database_set`.`surveillancetask`
 	`remark` nvarchar(50) NULL,--备注
 	`create_time` datetime NOT NULL,--创建时间
 	`start_time` datetime ,--开始时间
-	`end_time` datetime ,--结束时间
+	`end_time` datetime NULL,--结束时间
 	PRIMARY KEY (`id`),
 	UNIQUE KEY `id` (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `frs_database_set`.`dataset` (`datasetname`) VALUES ('frsdb');
+INSERT INTO `frs_set`.`dataset` (`datasetname`) VALUES ('frsdb');
 
