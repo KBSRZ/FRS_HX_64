@@ -182,7 +182,6 @@ namespace DataAngine_Set.DAL
         /// </summary>
         public bool Delete(int id)
         {
-
             StringBuilder strSql = new StringBuilder();
             strSql.Append("delete from dataset ");
             strSql.Append(" where id=@id");

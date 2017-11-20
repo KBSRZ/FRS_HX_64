@@ -20,7 +20,7 @@ create table `frs_database_set`.`device`
 (
 	`id` int(11) AUTO_INCREMENT,	
 	`name` nvarchar(50) NOT NULL,  --数据库名称，暂时只有它有用
-	`address` nvarchar(80) NOT NULL,--视频流地址
+	`address` nvarchar(50) NOT NULL,--视频流地址
 	`departmentmentid` nvarchar(50) NULL,--公安部门ID
 	`longitude` double(5,2) NULL,--经度
 	`latitude` double(5,2) NULL,--纬度

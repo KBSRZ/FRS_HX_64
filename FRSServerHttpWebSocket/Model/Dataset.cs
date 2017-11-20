@@ -14,7 +14,7 @@ namespace FRSServerHttp.Model
     class AddInfo
     {
         public string DatasetName { get; set; }
-        public string Path { get; set; }
+        //public string Path { get; set; }
         public string Type { get; set; }
         public string Remark { get; set; }
 
@@ -27,11 +27,29 @@ namespace FRSServerHttp.Model
             }
             catch
             {
-
             }
             return msg;
         }
 
+    }
+
+    class RegisterInfo
+    {
+        public string DatasetName { get; set; }
+        public string Path { get; set; }
+
+        public static RegisterInfo CreateInstanceFromJSON(string json)
+        {
+            RegisterInfo msg = null;
+            try
+            {
+                msg = (RegisterInfo)JsonConvert.DeserializeObject(json, typeof(RegisterInfo));
+            }
+            catch
+            {
+            }
+            return msg;
+        }
     }
 
     class Dataset

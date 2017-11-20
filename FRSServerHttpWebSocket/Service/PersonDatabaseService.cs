@@ -10,8 +10,8 @@ using FRS;
 namespace FRSServerHttp.Service
 {
 
-  
-    class PersonDatabaseService:BaseService
+
+    class PersonDatabaseService : BaseService
     {
         dataset bll = new dataset();
         public static string Domain
@@ -28,7 +28,7 @@ namespace FRSServerHttp.Service
             if (request.RestConvention != null)
             {
                 Log.Debug(string.Format("返回ID:{0}人员库", request.RestConvention));
-              
+
                 int id = -1;
                 try
                 {
@@ -62,12 +62,10 @@ namespace FRSServerHttp.Service
         public override void OnPost(HttpRequest request, HttpResponse response)
         {
 
-
-            bool status = false;
+            bool status = false;        
             if (request.Operation == null)//添加一条数据
             {
                 Log.Debug("添加一个人员库");
-               
 
                 AddInfo addinfo = AddInfo.CreateInstanceFromJSON(request.PostParams);
                 if (addinfo != null)
@@ -80,19 +78,29 @@ namespace FRSServerHttp.Service
                     {
                         Log.Debug(string.Format("创建人员库成功"));
                         //初始化
-                        InitFRS();
-                        int num = fa.RegisterInBulk1(addinfo.Path, ds.datasetname);
-                        Log.Debug(string.Format("共注册{0}人", num));
+                        //InitFRS();
+                        //int num = fa.RegisterInBulk1(addinfo.Path, ds.datasetname);
+                        //Log.Debug(string.Format("共注册{0}人", num));
                     }
                 }
-                
+
             }
             else
             {
                 if (request.Operation == "update")//更新
                 {
                     Log.Debug("更新一个人员库");
-                   
+                    RegisterInfo registerInfo = RegisterInfo.CreateInstanceFromJSON(request.PostParams);
+                    if (registerInfo != null)
+                    {
+                        //初始化
+                        InitFRS();
+                        int num = fa.RegisterInBulk1(registerInfo.Path, registerInfo.DatasetName);
+                        if (num > 0)
+                            status = true;
+                        Log.Debug(string.Format("共注册{0}人", num));
+                    }
+
                 }
                 else if (request.Operation == "delete")//删除
                 {
@@ -113,7 +121,6 @@ namespace FRSServerHttp.Service
             }
             response.SetContent(status.ToString());
             response.Send();
-
         }
     }
 }
