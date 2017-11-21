@@ -35,7 +35,7 @@ namespace FRSServerHttp.Model
 
     class RegisterInfo
     {
-        public string DatasetName { get; set; }
+        public int DatasetId { get; set; }
         public string Path { get; set; }
 
         public static RegisterInfo CreateInstanceFromJSON(string json)

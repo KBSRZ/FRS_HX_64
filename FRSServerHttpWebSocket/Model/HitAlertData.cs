@@ -8,6 +8,29 @@ using Newtonsoft.Json;
 
 namespace FRSServerHttp.Model
 {
+
+    class SearchInfo
+    {       
+        public DateTime StartTime { get; set; }    
+        public DateTime EndTime { get; set; }
+        public int StartIndex { get; set; } 
+        public int PageSize { get; set; } 
+
+        public static SearchInfo CreateInstanceFromJSON(string json)
+        {
+            SearchInfo msg = null;
+            try
+            {
+                msg = (SearchInfo)JsonConvert.DeserializeObject(json, typeof(SearchInfo));
+            }
+            catch
+            {
+            }
+            return msg;
+        }
+
+    }
+
     class HitAlertData
     {
         public int id { get; set; }
