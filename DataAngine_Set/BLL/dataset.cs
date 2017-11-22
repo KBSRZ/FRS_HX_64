@@ -47,14 +47,25 @@ namespace DataAngine_Set.BLL
 			return dal.Update(model);
 		}
 
-		/// <summary>
-		/// 删除一条数据
-		/// </summary>
-		public bool Delete(int id)
-		{
+        ///// <summary>
+        ///// 删除一条数据
+        ///// </summary>
+        //public bool Delete(int id)
+        //{
 			
-			return dal.Delete(id);
-		}
+        //    return dal.Delete(id);
+        //}
+
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool Delete(int id)
+        {
+            Model.dataset ds = new DataAngine_Set.Model.dataset();
+            dataset datasetbll = new dataset();
+            ds = datasetbll.GetModel(id);
+            return dal.Delete(ds);
+        }
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>

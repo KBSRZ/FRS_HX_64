@@ -42,7 +42,6 @@ namespace FRSServerHttp.Service
                 }
                 catch
                 {
-
                 }
                
                 SearchInfo searchinfo = SearchInfo.CreateInstanceFromJSON(request.PostParams);
@@ -71,7 +70,7 @@ namespace FRSServerHttp.Service
             response.Send();
         }
         /// <summary>
-        /// Post时调用
+        /// Get时调用
         /// </summary>
         public override void OnGet(HttpRequest request, HttpResponse response)
         {         

@@ -200,6 +200,41 @@ namespace DataAngine_Set.DAL
                 return false;
             }
         }
+
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool Delete(Model.dataset model)
+        {
+            //删除相关数据库
+            StringBuilder strlibrarySql = new StringBuilder();
+            strlibrarySql.Append("DROP DATABASE " + model.datasetname + ";");
+            int rows = DbHelperMySQL.ExecuteSql(strlibrarySql.ToString());
+            if (rows > 0)
+            {
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("delete from dataset ");
+                strSql.Append(" where id=@id");
+                MySqlParameter[] parameters = {
+					new MySqlParameter("@id", MySqlDbType.Int32)
+			};
+                parameters[0].Value = model.id;
+
+                rows = DbHelperMySQL.ExecuteSql(strSql.ToString(), parameters);
+                if (rows > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
         /// <summary>
         /// 批量删除数据
         /// </summary>
