@@ -58,6 +58,7 @@
     <Compile Include="Model\HitAlertData.cs" />
     <Compile Include="Model\HitData.cs" />
     <Compile Include="Model\Setting.cs" />
+    <Compile Include="Model\Verify.cs" />
     <Compile Include="Server\BaseHeader.cs" />
     <Compile Include="Server\HttpResponse.cs" />
     <Compile Include="Server\HttpServer.cs" />

@@ -93,7 +93,7 @@ namespace FRSServerHttp.Service
                     RegisterInfo registerInfo = RegisterInfo.CreateInstanceFromJSON(request.PostParams);
                     if (registerInfo != null)
                     {
-                        int DatasetId = registerInfo.DatasetId;
+                        int DatasetId = Convert.ToInt32(request.RestConvention);
                         DataAngine_Set.Model.dataset ds = new DataAngine_Set.Model.dataset();
                         ds=bll.GetModel(DatasetId);
                         //初始化                   
