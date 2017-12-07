@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>WebSockets Pic Test</title>
+</head>
+<script>
+var webSocket;
+function connect()
+{
+    try
+    {
+        var readyState = new Array("正在连接","已建立连接","正在关闭连接","已关闭连接");
+        var host = "ws://localhost:8080/v1/hitalert/1";
+
+        webSocket = new WebSocket(host);
+        var message = document.getElementById("message");
+        message.innerHTML +="<p>Socket状态：" + readyState[webSocket.readyState] + "</p>";
+        webSocket.onopen = function()
+        {
+		  
+            message.innerHTML += "<p>Socket状态：" + readyState[webSocket.readyState] + "</p>";
+        }
+        webSocket.onmessage = function(msg)
+        {
+		   // message.innerHTML +="<p>接收信息：" + msg.data + "</p>";
+		    var imageLive = document.getElementById("imageLive");  
+			var imageCan = document.getElementById("imageCan");  			
+			var hitalerts = JSON.parse(msg.data);
+			imageLive.src="http://192.168.1.2:8080/"+hitalerts[0].FaceQueryImagePath;
+			imageLive.width=100;
+			if(hitalerts[0].Details.length>0){
+				imageCan.src="http://192.168.1.2:8080/"+hitalerts[0].Details[0].UserInfo.FaceImagePath;
+				imageCan.width=100;
+			}
+			else{
+			imageCan.src=null;
+			}
+			
+			
+        }
+        webSocket.onclose=function()
+        {
+            message.innerHTML +="<p>Socket状态：" + readyState[webSocket.readyState] + "</p>";
+        }
+    }
+    catch(exception)
+    {
+        message.innerHTML += "<p>有错误发生</p>";
+    }
+}
+function send()
+{
+    var text = document.getElementById("text").value;
+    var message = document.getElementById("message");
+    if(text == "")
+    {
+        message.innerHTML += "<p>请输入一些文字</p>";
+        return ;
+    }
+    try
+    {
+        webSocket.send(text);
+        message.innerHTML += "<p>发送数据：" +text + "</p>";
+    }
+    catch(exception)
+    {
+        message.innerHTML += "<p>发送数据出错</p>";
+    }
+    document.getElementById("text").value="";
+}
+function disconnect()
+{
+    webSocket.close();
+}
+</script>
+<body>
+<h1>WebSocket客户端示例</h1>
+ <div class="ai-item upload-id-img">
+                <p>upload pic</p>
+                <div class="img-box">
+                    <div class="positive-img">
+                        <input type="file" id="img1" name="zm" class="inputFile">
+                        <label for="img1">
+                            <img src="http://pic.biyabi.com/h5/images/fm-img.png" id="preview">
+                        </label>
+                    </div>
+                    <div class="opposite-img">
+                        <input type="file" id="img2" name="fm" class="inputFile">
+                        <label for="img2">
+                            <img src="http://pic.biyabi.com/h5/images/zm-img.png" id="preview2">
+                        </label>
+                    </div>
+                </div>
+            </div>
+</body>
+</html>

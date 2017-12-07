@@ -642,39 +642,39 @@ array<HitAlert^>^ FeatureData::Search(cv::Mat& cvImg)
 
 #pragma region CS架构主界面下侧显示抓拍人脸
 
-		//List < Image^>^ facesimg = gcnew  List<Image^>();
-		//
-		//for (int i = 0; i < MIN(maxPersonNum, face_num); i++)
-		//{
-		//	if (searchFaceQualityThresh > faces[i].nQuality){
-		//		ShowMsgEvent("searchFaceQualityThresh:" + faces[i].nQuality, nullptr);
-		//		continue;
-		//	}
-		//	if (abs(faces[i].fAngle.yaw) > searchFaceYawThresh || abs(faces[i].fAngle.pitch) > searchFacePitchThresh || abs(faces[i].fAngle.roll) > searchFaceRollThresh)
-		//	{
-		//		ShowMsgEvent("angle" + faces[i].fAngle.yaw + ",roll:" + faces[i].fAngle.roll + ",pitch:" + faces[i].fAngle.pitch, nullptr);
-		//		continue;
-		//	}
-		//	if (faces[i].rcFace.bottom - faces[i].rcFace.top < searchFaceHeightThresh || faces[i].rcFace.right - faces[i].rcFace.left < searchFaceWidthThresh)
-		//	{
-		//		ShowMsgEvent("size,height:" + (faces[i].rcFace.bottom - faces[i].rcFace.top) + ",width:" + (faces[i].rcFace.bottom - faces[i].rcFace.top), nullptr);
-		//		continue;
-		//	}
+		List < Image^>^ facesimg = gcnew  List<Image^>();
+		
+		for (int i = 0; i < MIN(maxPersonNum, face_num); i++)
+		{
+			if (searchFaceQualityThresh > faces[i].nQuality){
+				ShowMsgEvent("searchFaceQualityThresh:" + faces[i].nQuality, nullptr);
+				continue;
+			}
+			if (abs(faces[i].fAngle.yaw) > searchFaceYawThresh || abs(faces[i].fAngle.pitch) > searchFacePitchThresh || abs(faces[i].fAngle.roll) > searchFaceRollThresh)
+			{
+				ShowMsgEvent("angle" + faces[i].fAngle.yaw + ",roll:" + faces[i].fAngle.roll + ",pitch:" + faces[i].fAngle.pitch, nullptr);
+				continue;
+			}
+			if (faces[i].rcFace.bottom - faces[i].rcFace.top < searchFaceHeightThresh || faces[i].rcFace.right - faces[i].rcFace.left < searchFaceWidthThresh)
+			{
+				ShowMsgEvent("size,height:" + (faces[i].rcFace.bottom - faces[i].rcFace.top) + ",width:" + (faces[i].rcFace.bottom - faces[i].rcFace.top), nullptr);
+				continue;
+			}
 
-		//	System::Drawing::Rectangle retFaceRect = GetScaleFaceRect(nWidth, nHeight, faces[i].rcFace, faceRectScale);
+			System::Drawing::Rectangle retFaceRect = GetScaleFaceRect(nWidth, nHeight, faces[i].rcFace, faceRectScale);
 
-		//	Image^ imgFace = srcImage->Clone(retFaceRect, srcImage->PixelFormat);
+			Image^ imgFace = srcImage->Clone(retFaceRect, srcImage->PixelFormat);
 
-		//	facesimg->Add(imgFace);
+			facesimg->Add(imgFace);
 
-		//	/*cv::Rect rect(faces[i].rcFace.left, faces[i].rcFace.top, faces[i].rcFace.right - faces[i].rcFace.left, faces[i].rcFace.bottom - faces[i].rcFace.top);
-		//	cv::Mat faceimg = cvImg(rect);
-		//	facesimg->Add((Image^)BitmapConverter::ToBitmap(&faceimg));		*/
+			/*cv::Rect rect(faces[i].rcFace.left, faces[i].rcFace.top, faces[i].rcFace.right - faces[i].rcFace.left, faces[i].rcFace.bottom - faces[i].rcFace.top);
+			cv::Mat faceimg = cvImg(rect);
+			facesimg->Add((Image^)BitmapConverter::ToBitmap(&faceimg));		*/
 
-		//}
+		}
 
-		//if (facesimg->Count > 0)
-		//	FaceDetectedEvent(facesimg->ToArray());
+		if (facesimg->Count > 0)
+			FaceDetectedEvent(facesimg->ToArray());
 #pragma endregion
 
 		//array<HitAlert^>^ resultNoThresh = gcnew array<HitAlert^> (MIN(maxPersonNum, face_num));
