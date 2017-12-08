@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using Newtonsoft.Json;
 using DataAngine_Set.Model;
+using System.Data;
 namespace FRSServerHttp.Model
 {
     /// <summary>
@@ -49,6 +50,65 @@ namespace FRSServerHttp.Model
             {
             }
             return msg;
+        }
+    }
+
+    class ViewInfo
+    {
+        public int StartIndex { get; set; }
+        public int PageSize { get; set; }
+
+        public static ViewInfo CreateInstanceFromJSON(string json)
+        {
+            ViewInfo msg = null;
+            try
+            {
+                msg = (ViewInfo)JsonConvert.DeserializeObject(json, typeof(ViewInfo));
+            }
+            catch
+            {
+            }
+            return msg;
+        }
+
+    }
+
+    class UserData
+    {
+        public int id { get; set; }
+        public string people_id { get; set; }
+        public string name { get; set; }
+        public string gender { get; set; }
+        public string card_id { get; set; }
+        public string image_id { get; set; }
+        public string face_image_path { get; set; }
+
+
+
+        public static UserData[] CreateInstanceFromDataAngineDataSet(DataSet ds)
+        {
+            if (0 == ds.Tables.Count)
+            {
+                return null;
+            }
+
+            DataTable dt = ds.Tables[0];
+            int UserCount = dt.Rows.Count;
+            UserData[] users = new UserData[UserCount];
+
+            for (int i = 0; i < UserCount; ++i)
+            {
+                UserData userdata = new UserData();
+                userdata.id = Convert.ToInt32(dt.Rows[i]["id"]);
+                userdata.people_id = dt.Rows[i]["people_id"].ToString();
+                userdata.name = dt.Rows[i]["name"].ToString();
+                userdata.gender = dt.Rows[i]["gender"].ToString();
+                userdata.card_id = dt.Rows[i]["card_id"].ToString();
+                userdata.image_id = dt.Rows[i]["image_id"].ToString();
+                userdata.face_image_path = dt.Rows[i]["face_image_path"].ToString();
+                users[i] = userdata;
+            }
+            return users;
         }
     }
 
@@ -131,6 +191,6 @@ namespace FRSServerHttp.Model
             d.type = this.Type;
             d.user = this.User;
             return d;
-        }
+        }     
     }
 }

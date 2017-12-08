@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FRSServerHttp.Server;
 using DataAngine_Set.BLL;
+using DataAngine.BLL;
 using FRSServerHttp.Model;
 using Newtonsoft.Json;
 using FRS;
@@ -14,6 +15,7 @@ namespace FRSServerHttp.Service
     class PersonDatabaseService : BaseService
     {
         dataset bll = new dataset();
+        user userbll = new user();
         public static string Domain
         {
             get
@@ -36,8 +38,8 @@ namespace FRSServerHttp.Service
                 }
                 catch
                 {
-
                 }
+
                 Dataset da = Dataset.CreateInstanceFromDataAngineModel(bll.GetModel(id));
                 if (null != da)
                 {
@@ -62,7 +64,7 @@ namespace FRSServerHttp.Service
         public override void OnPost(HttpRequest request, HttpResponse response)
         {
 
-            bool status = false;        
+            bool status = false;
             if (request.Operation == null)//添加一条数据
             {
                 Log.Debug("添加一个人员库");
@@ -95,7 +97,7 @@ namespace FRSServerHttp.Service
                     {
                         int DatasetId = Convert.ToInt32(request.RestConvention);
                         DataAngine_Set.Model.dataset ds = new DataAngine_Set.Model.dataset();
-                        ds=bll.GetModel(DatasetId);
+                        ds = bll.GetModel(DatasetId);
                         //初始化                   
                         InitFRS();
                         int num = fa.RegisterInBulk1(registerInfo.Path, ds.datasetname);
@@ -103,6 +105,7 @@ namespace FRSServerHttp.Service
                             status = true;
                         Log.Debug(string.Format("共注册{0}人", num));
                     }
+                    response.SetContent(status.ToString());
 
                 }
                 else if (request.Operation == "delete")//删除
@@ -120,9 +123,25 @@ namespace FRSServerHttp.Service
                     }
                     status = bll.Delete(id);
                     //删除设备
+                    response.SetContent(status.ToString());
+                }
+                else if (request.Operation == "view")//查看
+                {
+                    Log.Debug("更新一个人员库");
+                    ViewInfo viewinfo = ViewInfo.CreateInstanceFromJSON(request.PostParams);
+                    if (viewinfo != null)
+                    {
+                        int DatasetId = Convert.ToInt32(request.RestConvention);
+                        DataAngine_Set.Model.dataset ds = new DataAngine_Set.Model.dataset();
+                        ds = bll.GetModel(DatasetId);
+
+                        UserData[] users = UserData.CreateInstanceFromDataAngineDataSet(userbll.GetPicPathList(null, viewinfo.StartIndex, viewinfo.PageSize, ds.datasetname));
+
+                        response.SetContent(JsonConvert.SerializeObject(users));
+                    }
                 }
             }
-            response.SetContent(status.ToString());
+
             response.Send();
         }
     }
